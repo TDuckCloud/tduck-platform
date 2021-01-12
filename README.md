@@ -1,5 +1,4 @@
-[![s8sdOO.png](https://s3.ax1x.com/2021/01/11/s8sdOO.png)](https://imgchr.com/i/s8sdOO)
-![输入图片说明](https://images.gitee.com/uploads/images/2021/0112/124459_77b049fb_1674451.jpeg "科技邀请函活动直播招聘色块banner.jpg")
+![输入图片说明](https://images.gitee.com/uploads/images/2021/0112/124707_ffca0883_1674451.png "微信截图_20210112124649.png")
 Tduck 填鸭—— 让每个企业都有自己的表单收集系统
 
 
