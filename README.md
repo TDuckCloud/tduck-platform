@@ -1,9 +1,9 @@
-![输入图片说明](https://images.gitee.com/uploads/images/2021/0112/124707_ffca0883_1674451.png "微信截图_20210112124649.png")
-Tduck 填鸭—— 让每个企业都有自己的表单收集系统
+    
+# Tduck 填鸭—— 让每个企业都有自己的表单收集系统
 
 
 
-# 平台简介
+## 平台简介
 
 Tduck,  Form collection system
 
