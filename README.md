@@ -111,6 +111,7 @@ Tduck 是一款基于B/S架构的表单收集系统，为企业构建自己的�
 |--- | --- |
 |  https://gitee.com/TDuckApp/tduck-platform   |  https://gitee.com/TDuckApp/tduck-front   |
 
-
+# 加入社群
+    ![输入图片说明](https://images.gitee.com/uploads/images/2021/0112/123754_9128ad9b_1674451.png "屏幕截图.png")
 
 **TDuck 使用 Apache License 2.0 协议，源代码完全开源，无商业限制。 开源不易如果喜欢请给作者 Star 鼓励 👇**
