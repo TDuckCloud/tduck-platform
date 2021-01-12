@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>重置密码</title>
+</head>
+<body>
+<table id="backgroundTable" style="background-color: #efefef; color:#4c4c4c" border="0" cellpadding="0" cellspacing="0"
+       width="100%">
+    <tbody>
+    <tr>
+        <td align="center" valign="top">
+            <table border="0" cellpadding="0" cellspacing="0" height="35" width="100%">
+                <tbody>
+                <tr>
+                    <td>&nbsp;</td>
+                </tr>
+                </tbody>
+            </table>
+            <table id="templateContainer" border="0" cellpadding="0" cellspacing="0" width="689">
+                <tbody>
+                <tr style="background-color: #fff; padding: 15px">
+                    <td align="center" valign="center">
+                        <img
+                                style="width: 186px; height: 54px;"
+                                src="http://tduck.smileyi.top/img/indexLogo.372abcee.png"/>
+                        <span style="
+                            display: inline-block;
+                            vertical-align: bottom;
+                            text-align: center;
+                            font-weight: 800;
+                            font-size: 20px;
+                            height: 54px;
+                            line-height: 54px;">专业开源表单平台</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div style="padding: 20px; background: #fff; width: 650px; text-align: left;">
+                            <p style="padding-bottom: 5px">请点击下面的链接完成邮箱修改：
+
+                            </p>
+                            <p style="color:#848484 ;padding-bottom:5px">
+                              <p th:text="${updateEmailUrl}"></p>
+                            </p>
+                            <p style=" color:#848484; padding-bottom:5px">
+                                如果以上链接无法点击，请将上面的地址复制到你的浏览器（如IE）的地址栏进入TDUCK。</p>
+                            <br/>
+                            <div style="color:#848484;">
+                                <a style="color:#2672FF; text-decoration:none;"
+                                   href="http://tduck.smileyi.top/">Tduck</a>
+                                让你轻松创建专业问卷，快速完成调研任务！
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                </tr>
+                </tbody>
+            </table>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
+
