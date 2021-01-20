@@ -1,12 +1,14 @@
 <p></p>
 <p></p>
 <p align="left">
-  <img alt="logo" src="https://images.gitee.com/uploads/images/2021/0120/114533_b7f16f5b_1674451.png" width="120" style="margin-bottom: 0px;">
+  <img alt="logo" src="https://images.gitee.com/uploads/images/2021/0120/114533_b7f16f5b_1674451.png" width="130" style="margin-bottom: 0px;">
 </p>
 <h2 align="left">Tduck 填鸭 —— 让每个企业都有自己的表单收集系统</h2>
-![](https://img.shields.io/:license-apache-blue.svg)
-![](https://img.shields.io/badge/JDK-1.8+-red.svg)
-![](https://img.shields.io/badge/BY-SpringBoot-green)
+
+![ ](https://img.shields.io/:license-apache-blue.svg)
+![ ](https://img.shields.io/badge/JDK-1.8+-red.svg)
+![ ](https://img.shields.io/badge/BY-SpringBoot-green)
+![ ](https://img.shields.io/badge/front-vue%2Belement--ui-blue)
 
 
 ### 平台简介
@@ -27,7 +29,7 @@ Tduck 填鸭：是一款基于B/S架构的表单收集系统，为企业构建�
 - 通过简单有趣的方式，轻轻松松完成问卷设计
 - 支持问卷样式模板选择，只为显现更精美的表单问卷
 
-#####三大模块助力企业能力升级：
+##### 三大模块助力企业能力升级：
 - 新建表单：自定义可拖拽式表单设计
 - 表单设置：支持多种收集方式设置
 - 反馈统计：多维度统计收集的反馈数据
