@@ -1,14 +1,11 @@
 <p></p>
 <p></p>
 <p align="center">
-  <img alt="logo" src="http://tduck.smileyi.top/img/indexLogo.372abcee.png" width="120" style="margin-bottom: 0px;">
+  <img alt="logo" src="https://images.gitee.com/uploads/images/2021/0120/114533_b7f16f5b_1674451.png" width="120" style="margin-bottom: 0px;">
 </p>
 <h2 align="center">Tduck 填鸭 —— 让每个企业都有自己的表单收集系统</h2>
 
-![Stars](http://img.shields.io/badge/GPV%20Stars-5+-yellow)
-![JAVA-Vison](1.8-red)
-![license](http://img.shields.io/badge/license-GPL%203.0-green)
-
+![](https://img.shields.io/:license-apache-blue.svg) ![](https://img.shields.io/badge/JDK-1.8+-green.svg) ![]
 
 ## 平台简介
 
