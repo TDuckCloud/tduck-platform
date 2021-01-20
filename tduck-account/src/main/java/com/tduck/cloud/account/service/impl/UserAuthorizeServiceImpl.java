@@ -36,7 +36,6 @@ public class UserAuthorizeServiceImpl extends ServiceImpl<UserAuthorizeMapper, U
             JsonNode userInfo = qqAuthorizationUtils.getUserInfo(accessToken, openId);
             if (!userInfo.isNull()) {
                 userEntity = qqAuthorizationUtils.convertJsonToUser(userInfo);
-                userEntity.setId(authorizeEntity.getUserId());
                 authorizeEntity = new UserAuthorizeEntity();
                 authorizeEntity.setAppId(appId);
                 authorizeEntity.setOpenId(openId);
