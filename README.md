@@ -1,7 +1,15 @@
-    
-# Tduck 填鸭 
-# 让每个企业都有自己的表单收集系统
+<p></p>
+<p></p>
+<p align="center">
+  <img alt="logo" src="http://tduck.smileyi.top/img/indexLogo.372abcee.png" width="120" style="margin-bottom: 0px;">
+</p>
+<h2 align="center">Tduck 填鸭 —— 让每个企业都有自己的表单收集系统</h2>
 
+<div align="center">
+
+![GVP Stars](http://img.shields.io/badge/GPV%20Stars-700+-yellow)
+![GVP Forks](http://img.shields.io/badge/GPV%20Forks-200+-yellow)
+![license](http://img.shields.io/badge/license-GPL%203.0-green)
 
 
 ## 平台简介
