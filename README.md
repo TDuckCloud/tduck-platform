@@ -4,7 +4,7 @@
   <img alt="logo" src="https://images.gitee.com/uploads/images/2021/0120/114533_b7f16f5b_1674451.png" width="120" style="margin-bottom: 0px;">
 </p>
 <h2 align="left">Tduck 填鸭 —— 让每个企业都有自己的表单收集系统</h2>
-![](https://img.shields.io/:license-apache-blue.svg) ![](https://img.shields.io/badge/JDK-1.8+-green.svg) 
+![](https://img.shields.io/:license-apache-blue.svg) ![](https://img.shields.io/badge/JDK-1.8+-green.svg) ![]
 
 
 ## 平台简介
