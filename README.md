@@ -5,8 +5,8 @@
 </p>
 <h2 align="left">Tduck 填鸭 —— 让每个企业都有自己的表单收集系统</h2>
 ![](https://img.shields.io/:license-apache-blue.svg)
-![](https://img.shields.io/badge/JDK-1.8+-green.svg）
-![license](http://img.shields.io/badge/license-GPL%203.0-green)
+![](https://img.shields.io/badge/JDK-1.8+-red.svg)
+![](https://img.shields.io/badge/BY-SpringBoot-green)
 
 
 ## 平台简介
