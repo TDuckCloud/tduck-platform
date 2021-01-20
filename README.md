@@ -5,10 +5,8 @@
 </p>
 <h2 align="center">Tduck 填鸭 —— 让每个企业都有自己的表单收集系统</h2>
 
-<div align="center">
-
-![GVP Stars](http://img.shields.io/badge/GPV%20Stars-700+-yellow)
-![GVP Forks](http://img.shields.io/badge/GPV%20Forks-200+-yellow)
+![Stars](http://img.shields.io/badge/GPV%20Stars-5+-yellow)
+![JAVA-Vison](1.8-red)
 ![license](http://img.shields.io/badge/license-GPL%203.0-green)
 
 
