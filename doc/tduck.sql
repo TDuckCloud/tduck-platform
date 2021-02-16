@@ -270,3 +270,5 @@ CREATE TABLE `wx_mp_user`  (
 ) ENGINE = InnoDB AUTO_INCREMENT = 6 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '微信公众号用户 ' ROW_FORMAT = DYNAMIC;
 
 SET FOREIGN_KEY_CHECKS = 1;
+
+INSERT INTO `tduck`.`ac_user`(`name`, `avatar`, `gender`, `email`, `phone_number`, `password`, `reg_channel`, `last_login_channel`, `last_login_time`, `last_login_ip`, `deleted`, `create_time`, `update_time`) VALUES ( 'Tduck001', 'https://freebrio.oss-cn-shanghai.aliyuncs.com/t/avatar.jpg', 0, 'test@tduck.com', NULL, 'ef797c8118f02dfb649607dd5d3f8c7623048c9c063d532cc95c5ed7a898a64f', '1', 2, '2021-01-12 17:45:41', '58.39.239.51', 0, '2020-11-12 11:50:50', '2021-01-12 17:45:41');
