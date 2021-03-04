@@ -270,11 +270,10 @@ public class UserProjectController {
         if (ObjectUtil.isNotEmpty(defaultValue)) {
             boolean json = JSONUtil.isJson(JsonUtils.objToJson(request.getDefaultValue()));
             if (json) {
-                entity.setDefaultValue(new ItemDefaultValueStruct(json, JsonUtils.objToJson(request.getDefaultValue())));
-            } else {
-                entity.setDefaultValue(new ItemDefaultValueStruct(json, defaultValue));
+                entity.setDefaultValue(new ItemDefaultValueStruct(true, JsonUtils.objToJson(request.getDefaultValue())));
             }
         }
+        entity.setDefaultValue(new ItemDefaultValueStruct(false, defaultValue));
         return entity;
     }
 
