@@ -87,7 +87,6 @@ Tduck 填鸭：是一款基于B/S架构的表单收集系统，为企业构建�
    * [JDK1.8或以上](http://www.oracle.com/technetwork/java/javase/overview/index.html)
    * [Maven](https://maven.apache.org/download.cgi)
    * [Nodejs](https://nodejs.org/en/download/)
-   * [微信开发者工具](https://developers.weixin.qq.com/miniprogram/dev/devtools/download.html)
 
 2. 创建一个tduck的数据库，并执行项目目录下doc/tduck.sql文件
 
