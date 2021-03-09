@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.tduck.cloud.common.entity.BaseEntity;
 import com.tduck.cloud.common.mybatis.handler.JacksonTypeHandler;
 import lombok.Data;
@@ -23,6 +24,8 @@ import java.util.Map;
 @Accessors(chain = true)
 @FieldNameConstants
 @TableName(value = "pr_user_project_result", autoResultMap = true)
+//不允许被序列化 允许被反序列化
+@JsonIgnoreProperties(value = {UserProjectResultEntity.Fields.originalData}, allowSetters = true)
 public class UserProjectResultEntity extends BaseEntity<UserProjectResultEntity> {
     /**
      *
@@ -42,7 +45,6 @@ public class UserProjectResultEntity extends BaseEntity<UserProjectResultEntity>
      * 填写结果原始数据
      */
     @TableField(typeHandler = JacksonTypeHandler.class)
-    @JsonIgnore
     private Map<String, Object> originalData;
 
 
