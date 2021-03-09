@@ -128,7 +128,7 @@ Tduck 填鸭：是一款基于B/S架构的表单收集系统，为企业构建�
 ![个人中心](https://images.gitee.com/uploads/images/2021/0308/141425_b5cf7846_1674451.png "微信截图_20210308141340.png")
 目前完成框架，细节正在不断完善中，欢迎提出更多意见~
 
-## 加入社群
+### 联系作者/加入社群/一起摸鱼
 ![输入图片说明](https://images.gitee.com/uploads/images/2021/0112/123754_9128ad9b_1674451.png "屏幕截图.png")
 
 **TDuck 使用 Apache License 2.0 协议，源代码完全开源，无商业限制。 
