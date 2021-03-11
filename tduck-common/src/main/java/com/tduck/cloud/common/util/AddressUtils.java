@@ -33,14 +33,11 @@ public class AddressUtils {
 
     public static String getRealAddressByIP(String ip) {
         String address = UNKNOWN;
-        if (StrUtil.isBlank(ip)) {
-            return address;
-        }
-        // 内网不查询
-        if (internalIp(ip)) {
-            return "内网IP";
-        }
         try {
+            // 内网不查询
+            if (internalIp(ip)) {
+                return "内网IP";
+            }
             String rspStr = HttpUtil.get(StrUtil.format("{}?ip={}&json=true", IP_URL, ip));
             if (StrUtil.isEmpty(rspStr)) {
                 log.error("获取地理位置异常 {}", ip);
