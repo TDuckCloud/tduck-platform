@@ -33,6 +33,9 @@ public class AddressUtils {
 
     public static String getRealAddressByIP(String ip) {
         String address = UNKNOWN;
+        if (StrUtil.isBlank(ip)) {
+            return address;
+        }
         // 内网不查询
         if (internalIp(ip)) {
             return "内网IP";
@@ -60,7 +63,7 @@ public class AddressUtils {
     }
 
     public static boolean internalIp(byte[] addr) {
-        if(ArrayUtil.isEmpty(addr)){
+        if (ArrayUtil.isEmpty(addr)) {
             return false;
         }
         final byte b0 = addr[0];
@@ -91,5 +94,9 @@ public class AddressUtils {
             default:
                 return false;
         }
+    }
+
+    public static void main(String[] args) {
+        getRealAddressByIP("218.23.216.254");
     }
 }
