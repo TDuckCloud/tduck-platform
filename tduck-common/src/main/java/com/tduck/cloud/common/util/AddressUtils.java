@@ -1,6 +1,8 @@
 package com.tduck.cloud.common.util;
 
+import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.map.MapUtil;
+import cn.hutool.core.util.ArrayUtil;
 import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.http.HttpUtil;
@@ -58,6 +60,9 @@ public class AddressUtils {
     }
 
     public static boolean internalIp(byte[] addr) {
+        if(ArrayUtil.isEmpty(addr)){
+            return false;
+        }
         final byte b0 = addr[0];
         final byte b1 = addr[1];
         //10.x.x.x/8

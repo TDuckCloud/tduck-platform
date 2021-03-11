@@ -101,7 +101,7 @@ public class UserController {
 
 
     /**
-     * 发送绑定邮箱邮件
+     * 修改邮箱
      *
      * @return
      */
