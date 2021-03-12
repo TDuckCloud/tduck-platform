@@ -9,7 +9,7 @@
 ![ ](https://img.shields.io/badge/JDK-1.8+-red.svg)
 ![ ](https://img.shields.io/badge/BY-SpringBoot-green)
 ![ ](https://img.shields.io/badge/front-vue%2Belement--ui-blue)
-### 联系作者/加入社群/一起摸鱼
+### 联系作者/加入社群
 ![输入图片说明](https://images.gitee.com/uploads/images/2021/0112/123754_9128ad9b_1674451.png "屏幕截图.png")
 
 
