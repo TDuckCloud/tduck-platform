@@ -20,6 +20,16 @@ public class CheckboxExpandStruct {
     private Integer max;
 
     /**
+     * 选项类型
+     */
+    private String optionType;
+
+    /**
+     * 选项是按钮时大小
+     */
+    private String size;
+
+    /**
      * 选项
      */
     private List<Option> options;
