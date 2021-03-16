@@ -51,7 +51,7 @@ http://tduck1.smileyi.top:81
 
 
 ```
-- SpringBoot  2.3.5
+- SpringBoot 
 - Mybatis-Plus
 - Lombok
 - Hutool
@@ -86,7 +86,7 @@ http://tduck1.smileyi.top:81
 
 1. 配置最小开发环境：
 
-   * [MySQL](https://dev.mysql.com/downloads/mysql/)
+   * [MySQL5.7或以上](https://dev.mysql.com/downloads/mysql/)
    * [JDK1.8或以上](http://www.oracle.com/technetwork/java/javase/overview/index.html)
    * [Maven](https://maven.apache.org/download.cgi)
    * [Nodejs](https://nodejs.org/en/download/)
