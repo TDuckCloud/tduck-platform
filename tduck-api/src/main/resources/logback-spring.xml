@@ -33,11 +33,11 @@
         </encoder>
     </appender>
 
-    <!-- Log file com.tduck.cloud.wx.mp.error output -->
-    <appender name="com.tduck.cloud.wx.mp.error" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <file>${log.path}/com.tduck.cloud.wx.mp.error.log</file>
+    <!-- Log file error output -->
+    <appender name="error" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${log.path}/error.log</file>
         <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
-            <fileNamePattern>${log.path}/%d{yyyy-MM}/com.tduck.cloud.wx.mp.error.%d{yyyy-MM-dd}.%i.log.gz</fileNamePattern>
+            <fileNamePattern>${log.path}/%d{yyyy-MM}/error.%d{yyyy-MM-dd}.%i.log.gz</fileNamePattern>
             <maxFileSize>50MB</maxFileSize>
             <maxHistory>30</maxHistory>
         </rollingPolicy>
@@ -53,5 +53,6 @@
     <root level="INFO">
         <appender-ref ref="console"/>
         <appender-ref ref="debug"/>
+        <appender-ref ref="error"/>
     </root>
 </configuration>
