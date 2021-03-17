@@ -10,8 +10,7 @@
 ![ ](https://img.shields.io/badge/BY-SpringBoot-green)
 ![ ](https://img.shields.io/badge/front-vue%2Belement--ui-blue)
 ### 联系作者/加入社群
-![输入图片说明](https://images.gitee.com/uploads/images/2021/0112/123754_9128ad9b_1674451.png "屏幕截图.png")
-
+![输入图片说明](https://images.gitee.com/uploads/images/2021/0317/101257_282bcd5d_1674451.png "微信图片_20210317101254.png")
 
 ### 平台简介
 
