@@ -63,6 +63,7 @@ public class BaseExceptionHandler {
      */
     @ExceptionHandler(BaseException.class)
     public Result handleException(BaseException e) {
+        log.error(e.getMessage(), e);
         return Result.failed(e.getMessage());
     }
 
