@@ -33,12 +33,6 @@ public class SignAuthFilter implements Filter {
     private final static String TIMESTAMP_KEY_NAME = "timestamp";
 
     /**
-     * swagger debug模式 请求头包含放行
-     */
-    private final static String DOC_DEBUG_KEY = "signDebug";
-    private final static String DOC_DEBUG_VALUE = "nb";
-
-    /**
      * 最大有效时间 默认 10秒钟失效 超出10s失效
      */
     private final static Long MAX_EFFECTIVE_TIMESTAMP = 10L * 1000;
@@ -59,8 +53,7 @@ public class SignAuthFilter implements Filter {
             }
         }
         // debug模式
-        String value = httpServletRequest.getHeader(DOC_DEBUG_KEY);
-        if (existsMatch || DOC_DEBUG_VALUE.equals(value)) {
+        if (existsMatch) {
             filterChain.doFilter(request, response);
             return;
         } else {

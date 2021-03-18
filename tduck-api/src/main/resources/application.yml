@@ -25,7 +25,7 @@ server:
 # 日志级别
 logging:
   level:
-    org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping: trace
+    org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping: debug
     com.tduck.cloud: debug
 
 mybatis-plus:
@@ -45,11 +45,10 @@ mybatis-plus:
     cache-enabled: false
 
 
-
 #  请求日志是否打印
 platform:
-  request:
-    trace-log: true
+#  request:
+#    trace-log: true
   sign:
     enable: true
     secret: 916lWh2WMcbSWiHv
@@ -75,8 +74,6 @@ platform:
     # token有效时长，7天，单位秒
     expire: 604800
     header: token
-
-
 
 
 aj:
