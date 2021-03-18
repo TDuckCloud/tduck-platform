@@ -50,8 +50,6 @@ public class SignUtils {
         params.remove(SIGN_KEY_NAME);
         String paramsJson = JsonUtils.mapToJson(params);
         StringBuffer sb = new StringBuffer(secret).append(paramsJson);
-        log.debug("sign :{}", sb.toString());
-        log.debug("sign :{}", DigestUtil.md5Hex(sb.toString()).toLowerCase());
         return DigestUtil.md5Hex(sb.toString()).toLowerCase();
     }
 
