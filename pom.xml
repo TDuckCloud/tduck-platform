@@ -32,6 +32,7 @@
         <captcha.version>1.2.4</captcha.version>
         <fastjson.version>1.2.75</fastjson.version>
         <tencentcloud.version>4.0.11</tencentcloud.version>
+        <poi.version>5.0.0</poi.version>
     </properties>
 
     <modules>
@@ -153,6 +154,12 @@
                 <groupId>com.tencentcloudapi</groupId>
                 <artifactId>tencentcloud-sdk-java</artifactId>
                 <version>${tencentcloud.version}</version><!-- 注：这里只是示例版本号，请获取并替换为 最新的版本号 -->
+            </dependency>
+            <!-- POI excel-->
+            <dependency>
+                <groupId>org.apache.poi</groupId>
+                <artifactId>poi-ooxml</artifactId>
+                <version>${poi.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

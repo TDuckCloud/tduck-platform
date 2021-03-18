@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.tduck.cloud.project.entity.UserProjectResultEntity;
 import com.tduck.cloud.project.request.QueryProjectResultRequest;
+import com.tduck.cloud.project.vo.ExportProjectResultVO;
 
 /**
  * 项目表单项(ProjectResult)表服务接口
@@ -28,4 +29,13 @@ public interface UserProjectResultService extends IService<UserProjectResultEnti
      * @return
      */
     Page listByQueryConditions(QueryProjectResultRequest request);
+
+
+    /**
+     * 导出excel
+     *
+     * @param request
+     * @return
+     */
+    ExportProjectResultVO exportProjectResult(QueryProjectResultRequest request);
 }

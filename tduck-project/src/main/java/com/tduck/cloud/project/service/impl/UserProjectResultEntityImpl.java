@@ -1,24 +1,32 @@
 package com.tduck.cloud.project.service.impl;
 
+import cn.hutool.core.bean.BeanUtil;
+import cn.hutool.core.collection.CollUtil;
+import cn.hutool.core.map.MapUtil;
 import cn.hutool.core.util.ObjectUtil;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.google.common.collect.ImmutableMap;
+import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
 import com.tduck.cloud.common.constant.CommonConstants;
 import com.tduck.cloud.common.entity.BaseEntity;
 import com.tduck.cloud.common.util.AddressUtils;
 import com.tduck.cloud.common.util.RedisUtils;
+import com.tduck.cloud.project.entity.UserProjectItemEntity;
 import com.tduck.cloud.project.entity.UserProjectResultEntity;
 import com.tduck.cloud.project.entity.enums.ProjectItemTypeEnum;
 import com.tduck.cloud.project.mapper.UserProjectResultMapper;
 import com.tduck.cloud.project.request.QueryProjectResultRequest;
 import com.tduck.cloud.project.service.UserProjectItemService;
 import com.tduck.cloud.project.service.UserProjectResultService;
+import com.tduck.cloud.project.vo.ExportProjectResultVO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.Set;
+import java.util.*;
+import java.util.stream.Collectors;
 
 import static com.tduck.cloud.project.constant.ProjectRedisKeyConstants.PROJECT_RESULT_NUMBER;
 
@@ -43,7 +51,6 @@ public class UserProjectResultEntityImpl extends ServiceImpl<UserProjectResultMa
             Sets.newHashSet(ProjectItemTypeEnum.SELECT, ProjectItemTypeEnum.RADIO, ProjectItemTypeEnum.CHECKBOX, ProjectItemTypeEnum.CASCADER);
 
 
-
     @Override
     public void saveProjectResult(UserProjectResultEntity entity) {
         String projectKey = entity.getProjectKey();
@@ -60,5 +67,33 @@ public class UserProjectResultEntityImpl extends ServiceImpl<UserProjectResultMa
                 .le(ObjectUtil.isNotNull(request.getEndDateTime()), UserProjectResultEntity::getCreateTime, request.getEndDateTime())
                 .ge(ObjectUtil.isNotNull(request.getBeginDateTime()), UserProjectResultEntity::getCreateTime, request.getBeginDateTime())
                 .orderByDesc(BaseEntity::getCreateTime));
+    }
+
+    @Override
+    public ExportProjectResultVO exportProjectResult(QueryProjectResultRequest request) {
+        //问题列表
+        String projectKey = request.getProjectKey();
+        List<UserProjectItemEntity> userProjectItemEntityList = userProjectItemService.listByProjectKey(projectKey);
+        // excel 标题列
+        List<ExportProjectResultVO.ExcelHeader> titleList = userProjectItemEntityList.stream()
+                .map(item -> new ExportProjectResultVO.ExcelHeader(item.getFormItemId(), item.getLabel()))
+                .collect(Collectors.toList());
+        //结果
+        List<UserProjectResultEntity> resultEntityList = this.list(Wrappers.<UserProjectResultEntity>lambdaQuery()
+                .eq(UserProjectResultEntity::getProjectKey, request.getProjectKey())
+                .le(ObjectUtil.isNotNull(request.getEndDateTime()), UserProjectResultEntity::getCreateTime, request.getEndDateTime())
+                .ge(ObjectUtil.isNotNull(request.getBeginDateTime()), UserProjectResultEntity::getCreateTime, request.getBeginDateTime())
+                .orderByDesc(BaseEntity::getCreateTime));
+        List<Map<String, Object>> resultList = resultEntityList.stream().map(item -> {
+            Map<String, Object> processData = item.getProcessData();
+            processData.put(BaseEntity.Fields.createTime, item.getCreateTime());
+            processData.put(UserProjectResultEntity.Fields.submitAddress, item.getSubmitAddress());
+            return processData;
+        }).collect(Collectors.toList());
+        List<ExportProjectResultVO.ExcelHeader> allHeaderList = new ArrayList<ExportProjectResultVO.ExcelHeader>() {{
+            addAll(ExportProjectResultVO.DEFAULT_HEADER_NAME);
+            addAll(titleList);
+        }};
+        return new ExportProjectResultVO(allHeaderList, resultList);
     }
 }
