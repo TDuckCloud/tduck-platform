@@ -176,6 +176,20 @@ public class UserProjectController {
     }
 
     /**
+     * 删除项目
+     *
+     * @param request
+     * @return
+     */
+    @Login
+    @PostMapping("/user/project/delete")
+    public Result deleteProject(@RequestBody UserProjectEntity request) {
+        boolean del = projectService.remove(Wrappers.<UserProjectEntity>lambdaQuery().eq(UserProjectEntity::getKey, request.getKey()));
+        return Result.success(del);
+    }
+
+
+    /**
      * 查询项目详情
      * 包含项目信息 项目保单项信息 项目主题
      *
