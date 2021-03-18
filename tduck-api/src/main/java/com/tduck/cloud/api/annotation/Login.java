@@ -3,9 +3,9 @@ package com.tduck.cloud.api.annotation;
 import java.lang.annotation.*;
 
 /**
- * app登录效验
+ * 登录验证 在需要登录才能调用的接口使用
  *
- * @author Mark sunlightcs@gmail.com
+ * @author smalljop
  */
 @Target(ElementType.METHOD)
 @Retention(RetentionPolicy.RUNTIME)
