@@ -9,6 +9,7 @@
 ![ ](https://img.shields.io/badge/JDK-1.8+-red.svg)
 ![ ](https://img.shields.io/badge/BY-SpringBoot-green)
 ![ ](https://img.shields.io/badge/front-vue%2Belement--ui-blue)
+[![star](https://gitee.com/TDuckApp/tduck-platform/badge/star.svg?theme=white)](https://gitee.com/TDuckApp/tduck-platform/stargazers)
 ### 联系作者/加入社群
 ![输入图片说明](https://images.gitee.com/uploads/images/2021/0317/101257_282bcd5d_1674451.png "微信图片_20210317101254.png")
 
@@ -40,7 +41,7 @@ Tduck 填鸭：是基于B/S架构的一款开源的表单问卷在线收集系�
 ![首页](https://images.gitee.com/uploads/images/2021/0120/121740_1fcdc627_1674451.png "屏幕截图.png")
 
 演示地址：
-http://tduck1.smileyi.top:81  
+ https://tduck.smileyi.top
 
 演示账号/密码：可注册登录或使用测试账号  test@tduck.com/12345678
 
