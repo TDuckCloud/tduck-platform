@@ -90,10 +90,8 @@ public class UserProjectResultEntityImpl extends ServiceImpl<UserProjectResultMa
             processData.put(UserProjectResultEntity.Fields.submitAddress, item.getSubmitAddress());
             return processData;
         }).collect(Collectors.toList());
-        List<ExportProjectResultVO.ExcelHeader> allHeaderList = new ArrayList<ExportProjectResultVO.ExcelHeader>() {{
-            addAll(ExportProjectResultVO.DEFAULT_HEADER_NAME);
-            addAll(titleList);
-        }};
+        List<ExportProjectResultVO.ExcelHeader> allHeaderList = ExportProjectResultVO.DEFAULT_HEADER_NAME;
+        allHeaderList.addAll(titleList);
         return new ExportProjectResultVO(allHeaderList, resultList);
     }
 }

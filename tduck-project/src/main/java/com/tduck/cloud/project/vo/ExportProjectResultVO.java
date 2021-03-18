@@ -5,6 +5,7 @@ import com.tduck.cloud.common.entity.BaseEntity;
 import com.tduck.cloud.project.entity.UserProjectResultEntity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.List;
 import java.util.Map;
@@ -28,8 +29,14 @@ public class ExportProjectResultVO {
      * 默认字段
      */
     public final static List<ExcelHeader> DEFAULT_HEADER_NAME = Lists.newArrayList(
-            new ExcelHeader(BaseEntity.Fields.createTime, "提交时间"),
-            new ExcelHeader(UserProjectResultEntity.Fields.submitAddress, "提交地址"));
+            new ExcelHeader() {{
+                setFieldKey(BaseEntity.Fields.createTime);
+                setTitle("提交时间");
+            }},
+            new ExcelHeader() {{
+                setFieldKey(UserProjectResultEntity.Fields.submitAddress);
+                setTitle("提交地址");
+            }});
 
     /**
      * 标题
@@ -47,6 +54,7 @@ public class ExportProjectResultVO {
      * excel表头标题
      */
     @Data
+    @NoArgsConstructor
     public static class ExcelHeader {
 
         private String fieldKey;
