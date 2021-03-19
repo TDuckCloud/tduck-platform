@@ -21,7 +21,7 @@ public enum ProjectStatusEnum {
 
     CREATE(1, "未发布"),
     RELEASE(2, "收集中"),
-    FINISH(4, "已结束");
+    STOP(3 ,"停止发布");
 
 
     @EnumValue
