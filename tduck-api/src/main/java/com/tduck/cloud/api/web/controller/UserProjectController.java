@@ -176,6 +176,20 @@ public class UserProjectController {
     }
 
     /**
+     * 停止收集
+     *
+     * @param request
+     * @return
+     */
+    @Login
+    @PostMapping("/user/project/stop")
+    public Result stopProject(@RequestBody UserProjectEntity request) {
+        UserProjectEntity entity = projectService.getByKey(request.getKey());
+        entity.setStatus(ProjectStatusEnum.STOP);
+        return Result.success(projectService.updateById(entity));
+    }
+
+    /**
      * 删除项目
      *
      * @param request
@@ -421,8 +435,9 @@ public class UserProjectController {
      *
      * @return
      */
-    @GetMapping("/setting/status")
+    @GetMapping("/setting/status1")
     public Result querySettingStatus(@RequestParam String projectKey, HttpServletRequest request) {
+        log.info("aaaaa");
         return userProjectSettingService.getUserProjectSettingStatus(projectKey, HttpUtils.getIpAddr(request));
     }
 

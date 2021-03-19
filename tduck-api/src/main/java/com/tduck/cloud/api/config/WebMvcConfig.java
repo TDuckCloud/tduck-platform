@@ -37,15 +37,6 @@ public class WebMvcConfig implements WebMvcConfigurer {
             "/**/*.ttf");
 
     @Override
-    public void addCorsMappings(CorsRegistry registry) {
-        registry.addMapping("/**")
-                .allowedOrigins("*")
-                .allowCredentials(true)
-                .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
-                .maxAge(36000);
-    }
-
-    @Override
     public void addInterceptors(InterceptorRegistry registry) {
         //所有路径都被拦截
         registry.addInterceptor(noRepeatSubmitInterceptor).addPathPatterns("/**").excludePathPatterns(staticResources);
