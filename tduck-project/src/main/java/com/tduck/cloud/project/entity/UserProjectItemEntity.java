@@ -67,6 +67,12 @@ public class UserProjectItemEntity extends BaseEntity<UserProjectItemEntity> {
      * 排序
      */
     private Long sort;
+
+    /**
+     * 栅格宽度
+     */
+    private int span;
+
     /**
      * 扩展字段 表单项独有字段
      */
