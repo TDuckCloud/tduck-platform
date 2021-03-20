@@ -60,6 +60,11 @@ public class OperateProjectItemRequest {
      */
     private Integer sort;
     /**
+     * 栅格宽度
+     */
+    private String span;
+
+    /**
      * 扩展字段 表单项独有字段
      */
     private Map<String, Object> expand;
