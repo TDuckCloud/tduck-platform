@@ -36,14 +36,6 @@ public class WebMvcConfig implements WebMvcConfigurer {
             "/**/*.woff",
             "/**/*.ttf");
 
-    @Override
-    public void addCorsMappings(CorsRegistry registry) {
-        registry.addMapping("/**")
-                .allowedOrigins("*")
-                .allowCredentials(true)
-                .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
-                .maxAge(36000);
-    }
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {

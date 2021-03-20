@@ -28,6 +28,27 @@ public class FilterConfig {
 
 
     /**
+     * 跨域过滤器
+     *
+     * @return
+     */
+    @Bean
+    public FilterRegistrationBean corsFilterRegistration() {
+        FilterRegistrationBean registration = new FilterRegistrationBean();
+        registration.setDispatcherTypes(DispatcherType.REQUEST);
+        CorsConfiguration config = new CorsConfiguration();
+        config.addAllowedOrigin("*");
+        config.addAllowedMethod("*");
+        config.addAllowedHeader("*");
+        UrlBasedCorsConfigurationSource corsConfigurationSource = new UrlBasedCorsConfigurationSource();
+        corsConfigurationSource.registerCorsConfiguration("/**", config);
+        CorsFilter corsFilter = new CorsFilter(corsConfigurationSource);
+        registration.setOrder(Integer.MAX_VALUE - 4);
+        registration.setFilter(corsFilter);
+        return registration;
+    }
+
+    /**
      * xss 过滤器 优先级最高
      * 包装 XssHttpServletRequestWrapper 解决request只能使用一次
      *
