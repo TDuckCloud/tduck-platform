@@ -36,6 +36,7 @@ public class WebMvcConfig implements WebMvcConfigurer {
             "/**/*.woff",
             "/**/*.ttf");
 
+
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         //所有路径都被拦截

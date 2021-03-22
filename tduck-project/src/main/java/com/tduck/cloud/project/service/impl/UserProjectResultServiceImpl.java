@@ -2,6 +2,7 @@ package com.tduck.cloud.project.service.impl;
 
 import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.collection.CollUtil;
+import cn.hutool.core.collection.CollectionUtil;
 import cn.hutool.core.map.MapUtil;
 import cn.hutool.core.util.ObjectUtil;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
@@ -12,6 +13,7 @@ import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
 import com.tduck.cloud.common.constant.CommonConstants;
 import com.tduck.cloud.common.entity.BaseEntity;
+import com.tduck.cloud.common.exception.BaseException;
 import com.tduck.cloud.common.util.AddressUtils;
 import com.tduck.cloud.common.util.RedisUtils;
 import com.tduck.cloud.project.entity.UserProjectItemEntity;
@@ -38,7 +40,7 @@ import static com.tduck.cloud.project.constant.ProjectRedisKeyConstants.PROJECT_
  */
 @Service("projectResultService")
 @RequiredArgsConstructor
-public class UserProjectResultEntityImpl extends ServiceImpl<UserProjectResultMapper, UserProjectResultEntity> implements UserProjectResultService {
+public class UserProjectResultServiceImpl extends ServiceImpl<UserProjectResultMapper, UserProjectResultEntity> implements UserProjectResultService {
 
     private final UserProjectItemService userProjectItemService;
     private final RedisUtils redisUtils;
@@ -84,6 +86,9 @@ public class UserProjectResultEntityImpl extends ServiceImpl<UserProjectResultMa
                 .le(ObjectUtil.isNotNull(request.getEndDateTime()), UserProjectResultEntity::getCreateTime, request.getEndDateTime())
                 .ge(ObjectUtil.isNotNull(request.getBeginDateTime()), UserProjectResultEntity::getCreateTime, request.getBeginDateTime())
                 .orderByDesc(BaseEntity::getCreateTime));
+        if (CollectionUtil.isEmpty(resultEntityList)) {
+            throw new BaseException("此表单无有效反馈，不能导出");
+        }
         List<Map<String, Object>> resultList = resultEntityList.stream().map(item -> {
             Map<String, Object> processData = item.getProcessData();
             processData.put(BaseEntity.Fields.createTime, item.getCreateTime());
