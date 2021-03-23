@@ -11,8 +11,7 @@
 ![ ](https://img.shields.io/badge/front-vue%2Belement--ui-blue)
 [![star](https://gitee.com/TDuckApp/tduck-platform/badge/star.svg?theme=white)](https://gitee.com/TDuckApp/tduck-platform/stargazers)
 ### 联系作者/加入社群
-![输入图片说明](https://images.gitee.com/uploads/images/2021/0323/090541_43ee5972_1674451.png "微信截图_20210323090340.png")
-
+![输入图片说明](https://images.gitee.com/uploads/images/2021/0323/090619_bb22b681_1674451.png "微信截图_20210111111111111.png")
 ### 平台简介
 
 Tduck,  Form collection system
