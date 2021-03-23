@@ -2,12 +2,11 @@ package com.tduck.cloud.api.web.controller;
 
 import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.util.IdUtil;
-import cn.hutool.core.util.NumberUtil;
 import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.json.JSONUtil;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
-import com.google.common.collect.Lists;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.google.common.collect.Sets;
 import com.tduck.cloud.api.annotation.Login;
 import com.tduck.cloud.api.util.HttpUtils;
@@ -29,6 +28,7 @@ import com.tduck.cloud.project.request.SortProjectItemRequest;
 import com.tduck.cloud.project.service.*;
 import com.tduck.cloud.project.util.SortUtils;
 import com.tduck.cloud.project.vo.OperateProjectItemVO;
+import com.tduck.cloud.project.vo.RecycleProjectVO;
 import com.tduck.cloud.project.vo.UserProjectDetailVO;
 import com.tduck.cloud.project.vo.UserProjectThemeVo;
 import com.tduck.cloud.wx.mp.constant.WxMpRedisKeyConstants;
@@ -60,6 +60,7 @@ public class UserProjectController {
 
     private final UserProjectService projectService;
     private final UserProjectItemService projectItemService;
+    private final UserProjectResultService projectResultService;
     private final SortUtils sortUtils;
     private final UserProjectThemeService userProjectThemeService;
     private final UserProjectSettingService userProjectSettingService;
@@ -141,6 +142,7 @@ public class UserProjectController {
     public Result queryMyProjects(@RequestAttribute Long userId, QueryProjectRequest.Page request) {
         return Result.success(projectService.page(request.toMybatisPage(),
                 Wrappers.<UserProjectEntity>lambdaQuery().eq(UserProjectEntity::getUserId, userId)
+                        .eq(UserProjectEntity::getDeleted, false)
                         .eq(ObjectUtil.isNotNull(request.getStatus()), UserProjectEntity::getStatus, request.getStatus())
                         .like(StrUtil.isNotBlank(request.getName()), UserProjectEntity::getName, request.getName())
                         .le(ObjectUtil.isNotNull(request.getEndDateTime()), UserProjectEntity::getUpdateTime, request.getEndDateTime())
@@ -198,7 +200,11 @@ public class UserProjectController {
     @Login
     @PostMapping("/user/project/delete")
     public Result deleteProject(@RequestBody UserProjectEntity request) {
-        boolean del = projectService.remove(Wrappers.<UserProjectEntity>lambdaQuery().eq(UserProjectEntity::getKey, request.getKey()));
+        boolean del = projectService.update(
+                new UserProjectEntity() {{
+                    setDeleted(Boolean.TRUE);
+                }},
+                Wrappers.<UserProjectEntity>lambdaQuery().eq(UserProjectEntity::getKey, request.getKey()));
         return Result.success(del);
     }
 
@@ -435,9 +441,8 @@ public class UserProjectController {
      *
      * @return
      */
-    @GetMapping("/setting/status1")
+    @GetMapping("/user/project/setting-status")
     public Result querySettingStatus(@RequestParam String projectKey, HttpServletRequest request) {
-        log.info("aaaaa");
         return userProjectSettingService.getUserProjectSettingStatus(projectKey, HttpUtils.getIpAddr(request));
     }
 
@@ -468,7 +473,6 @@ public class UserProjectController {
         return Result.success();
     }
 
-
     /**
      * 获取项目微信通知用户
      *
@@ -487,4 +491,62 @@ public class UserProjectController {
         return Result.success(wxMpUserService.listWxMpUserByOpenId(subNotifyUsers)
                 .stream().map(item -> new WxMpUserVO(item.getNickname(), item.getHeadImgUrl(), item.getOpenId())).collect(Collectors.toList()));
     }
+
+    /**
+     * 回收站项目分页
+     *
+     * @return
+     */
+    @Login
+    @GetMapping("/user/project/recycle/page")
+    public Result queryRecycleProjects(@RequestAttribute Long userId, QueryProjectRequest.Page request) {
+        Page page = projectService.page(request.toMybatisPage(),
+                Wrappers.<UserProjectEntity>lambdaQuery().eq(UserProjectEntity::getUserId, userId)
+                        .eq(UserProjectEntity::getDeleted, true)
+                        .orderByDesc(BaseEntity::getUpdateTime));
+        List<UserProjectEntity> records = page.getRecords();
+        List<RecycleProjectVO> projectVOList = records.stream().map(item -> {
+            int count = projectResultService.count(Wrappers.<UserProjectResultEntity>lambdaQuery().eq(UserProjectResultEntity::getProjectKey, item.getKey()));
+            return new RecycleProjectVO(item.getKey(), count, item.getName(), item.getCreateTime(), item.getUpdateTime());
+        }).collect(Collectors.toList());
+        page.setRecords(projectVOList);
+        return Result.success(page);
+    }
+
+    /**
+     * 从回收站中恢复项目
+     *
+     * @return
+     */
+    @Login
+    @PostMapping("/user/project/recycle/restore")
+    public Result restoreRecycleProject(@RequestBody UserProjectEntity request) {
+        boolean flag = projectService.update(
+                new UserProjectEntity() {{
+                    setDeleted(Boolean.FALSE);
+                }},
+                Wrappers.<UserProjectEntity>lambdaQuery().eq(UserProjectEntity::getKey, request.getKey()));
+        return Result.success(flag);
+    }
+
+    /**
+     * 从回收站中删除项目
+     *
+     * @return
+     */
+    @Login
+    @PostMapping("/user/project/recycle/delete")
+    public Result deleteRecycleProject(@RequestAttribute Long userId,@RequestBody UserProjectEntity projectEntity) {
+        boolean remove = projectService.remove(Wrappers.<UserProjectEntity>lambdaQuery().eq(UserProjectEntity::getUserId, userId)
+                .eq(UserProjectEntity::getKey, projectEntity.getKey()));
+        if (remove) {
+            userProjectThemeService.remove(Wrappers.<UserProjectThemeEntity>lambdaQuery()
+                    .eq(UserProjectThemeEntity::getProjectKey, projectEntity.getKey()));
+            userProjectSettingService.remove(Wrappers.<UserProjectSettingEntity>lambdaQuery()
+                    .eq(UserProjectSettingEntity::getProjectKey, projectEntity.getKey()));
+        }
+        return Result.success(remove);
+    }
+
+
 }

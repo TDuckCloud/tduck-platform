@@ -71,5 +71,8 @@ public class UserProjectEntity extends BaseEntity<UserProjectEntity> {
      */
     private Integer type;
 
+    @TableField(value = "is_deleted")
+    private Boolean deleted;
+
 
 }
