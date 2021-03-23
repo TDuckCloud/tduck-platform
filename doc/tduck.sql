@@ -142,6 +142,7 @@ CREATE TABLE `pr_user_project`  (
   `user_id` bigint(20) NOT NULL COMMENT '用户ID',
   `type` tinyint(2) NULL DEFAULT NULL COMMENT '项目类型',
   `status` tinyint(2) NOT NULL DEFAULT 0 COMMENT '状态',
+  `is_deleted` tinyint(1) NOT NULL DEFAULT '0' COMMENT '是否删除',
   `update_time` datetime(0) NULL DEFAULT CURRENT_TIMESTAMP(0) COMMENT '更新时间',
   `create_time` datetime(0) NULL DEFAULT CURRENT_TIMESTAMP(0) COMMENT '创建时间',
   PRIMARY KEY (`id`) USING BTREE,

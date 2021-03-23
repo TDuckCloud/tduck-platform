@@ -28,13 +28,13 @@ public class BaseEntity<T> extends Model {
      **/
     @TableField(fill = FieldFill.INSERT)
     @JsonFormat(pattern = DatePattern.NORM_DATETIME_PATTERN)
-    private LocalDateTime createTime;
+    protected LocalDateTime createTime;
 
     /**
      * 更新时间
      **/
     @TableField(fill = FieldFill.INSERT_UPDATE)
     @JsonFormat(pattern = DatePattern.NORM_DATETIME_PATTERN)
-    private LocalDateTime updateTime;
+    protected LocalDateTime updateTime;
 
 }
