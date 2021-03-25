@@ -10,6 +10,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.google.common.collect.Sets;
 import com.tduck.cloud.api.annotation.Login;
 import com.tduck.cloud.api.util.HttpUtils;
+import com.tduck.cloud.common.constant.CommonConstants;
 import com.tduck.cloud.common.entity.BaseEntity;
 import com.tduck.cloud.common.util.JsonUtils;
 import com.tduck.cloud.common.util.RedisUtils;
@@ -172,6 +173,11 @@ public class UserProjectController {
     @Login
     @PostMapping("/user/project/publish")
     public Result publishProject(@RequestBody UserProjectEntity request) {
+        int count = projectItemService
+                .count(Wrappers.<UserProjectItemEntity>lambdaQuery().eq(UserProjectItemEntity::getProjectKey, request.getKey()));
+        if (count == CommonConstants.ConstantNumber.ZERO) {
+            return Result.failed("无有效表单项，无法发布");
+        }
         UserProjectEntity entity = projectService.getByKey(request.getKey());
         entity.setStatus(ProjectStatusEnum.RELEASE);
         return Result.success(projectService.updateById(entity));
@@ -536,7 +542,7 @@ public class UserProjectController {
      */
     @Login
     @PostMapping("/user/project/recycle/delete")
-    public Result deleteRecycleProject(@RequestAttribute Long userId,@RequestBody UserProjectEntity projectEntity) {
+    public Result deleteRecycleProject(@RequestAttribute Long userId, @RequestBody UserProjectEntity projectEntity) {
         boolean remove = projectService.remove(Wrappers.<UserProjectEntity>lambdaQuery().eq(UserProjectEntity::getUserId, userId)
                 .eq(UserProjectEntity::getKey, projectEntity.getKey()));
         if (remove) {
