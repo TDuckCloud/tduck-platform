@@ -105,7 +105,6 @@ public class UserProjectResultController {
      */
     @PostMapping("/create")
     @NoRepeatSubmit
-    @Login
     public Result createProjectResult(@RequestBody UserProjectResultEntity entity, HttpServletRequest request) {
         Result<UserProjectSettingEntity> userProjectSettingStatus = userProjectSettingService.getUserProjectSettingStatus(entity.getProjectKey(), HttpUtils.getIpAddr(request));
         if (StrUtil.isNotBlank(userProjectSettingStatus.getMsg())) {
