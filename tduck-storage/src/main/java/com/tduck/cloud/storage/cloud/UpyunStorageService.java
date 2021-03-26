@@ -1,10 +1,6 @@
 package com.tduck.cloud.storage.cloud;
 
 import cn.hutool.core.util.StrUtil;
-import com.qiniu.storage.Configuration;
-import com.qiniu.storage.Region;
-import com.qiniu.storage.UploadManager;
-import com.qiniu.util.Auth;
 import com.upyun.RestManager;
 import com.upyun.UpException;
 
@@ -56,6 +52,12 @@ public class UpyunStorageService extends OssStorageService {
 
     @Override
     public void delete(String path) {
-
+        try {
+            manager.deleteFile(path, null);
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (UpException e) {
+            e.printStackTrace();
+        }
     }
 }
