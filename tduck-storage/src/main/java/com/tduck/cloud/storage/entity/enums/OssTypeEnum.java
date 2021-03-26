@@ -18,9 +18,13 @@ public enum OssTypeEnum {
     ALIYUN(0),
 
     /**
-     * 菜单
+     * 七牛云
      */
-    QINIU(1);
+    QINIU(1),
+    /**
+     * 又拍云
+     */
+    UPYUN(2);
 
 
     @JsonCreator

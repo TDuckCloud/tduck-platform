@@ -23,6 +23,8 @@ public final class OssStorageFactory {
             return new QiniuCloudStorageService(config);
         } else if (config.getOssType() == OssTypeEnum.ALIYUN) {
             return new AliyunOssStorageService(config);
+        } else if (config.getOssType() == OssTypeEnum.UPYUN) {
+            return new UpyunStorageService(config);
         }
         return null;
     }
