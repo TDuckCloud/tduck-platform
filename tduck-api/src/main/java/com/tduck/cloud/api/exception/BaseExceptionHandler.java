@@ -2,11 +2,9 @@ package com.tduck.cloud.api.exception;
 
 import cn.hutool.core.exceptions.ValidateException;
 import com.tduck.cloud.common.constant.ResponseCodeConstants;
-import com.tduck.cloud.common.exception.BaseException;
 import com.tduck.cloud.common.util.Result;
 import lombok.extern.slf4j.Slf4j;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import me.chanjar.weixin.common.error.WxErrorException;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.web.bind.MissingServletRequestParameterException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -59,13 +57,17 @@ public class BaseExceptionHandler {
     }
 
     /**
-     * 处理自定义异常
+     * 处理微信异常
+     * 没有配置错误也不返回500给前端 降低使用配置
      */
-    @ExceptionHandler(BaseException.class)
-    public Result handleException(BaseException e) {
+    @ExceptionHandler(WxErrorException.class)
+    public Result handleWxException(WxErrorException e) {
         log.error(e.getMessage(), e);
-        return Result.failed(e.getMessage());
+        return Result.success(e.getMessage());
     }
+
+
+
 
     @ExceptionHandler(Exception.class)
     public Result handleException(Exception e) {
