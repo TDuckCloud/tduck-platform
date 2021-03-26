@@ -25,7 +25,7 @@ public class CascaderExpandStruct {
     public static class Option {
         public Integer id;
         public String label;
-        public Integer value;
+        public String value;
         public List<Option> children;
     }
 }
