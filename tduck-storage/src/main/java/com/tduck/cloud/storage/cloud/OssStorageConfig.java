@@ -21,7 +21,8 @@ public class OssStorageConfig {
 
 
     /**
-     * oss 类型 参考ossconstant
+     * oss 类型
+     * 参考 OssTypeEnum.java
      */
     private OssTypeEnum ossType;
 
@@ -53,5 +54,18 @@ public class OssStorageConfig {
      * 预览域名
      */
     private String domain;
+
+
+    /**
+     * 本地存储文件存放地址
+     */
+    private String uploadFolder;
+
+
+    /**
+     * 本地存储文件访问路径
+     */
+    private String accessPathPattern;
+
 
 }

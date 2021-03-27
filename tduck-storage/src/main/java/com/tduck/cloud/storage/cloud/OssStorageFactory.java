@@ -25,6 +25,8 @@ public final class OssStorageFactory {
             return new AliyunOssStorageService(config);
         } else if (config.getOssType() == OssTypeEnum.UPYUN) {
             return new UpyunStorageService(config);
+        }else if (config.getOssType() == OssTypeEnum.LOCAL) {
+            return new localStorageService(config);
         }
         return null;
     }
