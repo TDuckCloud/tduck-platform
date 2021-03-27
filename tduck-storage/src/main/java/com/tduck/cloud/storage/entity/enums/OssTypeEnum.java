@@ -24,7 +24,12 @@ public enum OssTypeEnum {
     /**
      * 又拍云
      */
-    UPYUN(2);
+    UPYUN(2),
+
+    /**
+     * 本地存储
+     */
+    LOCAL(3);
 
 
     @JsonCreator

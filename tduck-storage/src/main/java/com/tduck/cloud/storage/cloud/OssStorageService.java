@@ -22,7 +22,7 @@ public abstract class OssStorageService {
     /**
      * 文件上传
      *
-     * @param file 文件 上传路径
+     * @param inputStream 文件 上传路径
      * @param path
      * @return
      */
