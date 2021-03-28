@@ -145,7 +145,7 @@
                 <artifactId>captcha-spring-boot-starter</artifactId>
                 <version>${captcha.version}</version>
             </dependency>
-            <!-- https://mvnrepository.com/artifact/com.alibaba/fastjson -->
+            <!--滑动验证码 需要fastjson  -->
             <dependency>
                 <groupId>com.alibaba</groupId>
                 <artifactId>fastjson</artifactId>
