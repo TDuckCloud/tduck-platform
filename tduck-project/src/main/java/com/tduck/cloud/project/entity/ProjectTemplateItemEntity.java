@@ -61,6 +61,12 @@ public class ProjectTemplateItemEntity extends BaseEntity<ProjectTemplateItemEnt
      * 输入型提示文字
      */
     private String placeholder;
+
+
+    /**
+     * 栅格宽度
+     */
+    private Integer span;
     /**
      * 排序
      */
