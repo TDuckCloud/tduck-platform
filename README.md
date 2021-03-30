@@ -4,9 +4,7 @@
   <img alt="logo" src="https://images.gitee.com/uploads/images/2021/0120/114533_b7f16f5b_1674451.png" width="130" style="margin-bottom: 0px;">
 </p>
 <h2 align="left">Tduck 填鸭 —— 表单收集器</h2>
-<p></p>
 
-## V2版本正在规划开发中，全新UI，更多功能；同时欢迎各位伙伴进群提出你的想法和需求
 
 ![ ](https://img.shields.io/:license-apache-blue.svg)
 ![ ](https://img.shields.io/badge/JDK-1.8+-red.svg)
@@ -15,6 +13,11 @@
 [![star](https://gitee.com/TDuckApp/tduck-platform/badge/star.svg?theme=white)](https://gitee.com/TDuckApp/tduck-platform/stargazers)
 ### 联系作者/加入社群
 ![输入图片说明](https://images.gitee.com/uploads/images/2021/0323/090619_bb22b681_1674451.png "微信截图_20210111111111111.png")
+
+
+## V2版本正在规划开发中，全新UI，更多功能；同时欢迎各位伙伴进群提出你的想法和需求
+<p></p>
+
 ### 平台简介
 
 Tduck,  Form collection system
