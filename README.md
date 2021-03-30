@@ -5,7 +5,8 @@
 </p>
 <h2 align="left">Tduck 填鸭 —— 表单收集器</h2>
 
-## V2版本正在规划开发中，全新UI，更多功能；同时欢迎各位伙伴进群提出你的想法和需求
+## V2版本正在规划开发中，全新UI，更多功能；
+## 同时欢迎各位伙伴进群提出你的想法和需求
 
 ![ ](https://img.shields.io/:license-apache-blue.svg)
 ![ ](https://img.shields.io/badge/JDK-1.8+-red.svg)
