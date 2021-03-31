@@ -12,7 +12,7 @@
 ![ ](https://img.shields.io/badge/front-vue%2Belement--ui-blue)
 [![star](https://gitee.com/TDuckApp/tduck-platform/badge/star.svg?theme=white)](https://gitee.com/TDuckApp/tduck-platform/stargazers)
 ### 联系作者/加入社群
-![输入图片说明](https://images.gitee.com/uploads/images/2021/0323/090619_bb22b681_1674451.png "微信截图_20210111111111111.png")
+![输入图片说明](https://images.gitee.com/uploads/images/2021/0331/160818_e6d4bbf1_1674451.png "微信截图_20210331160806.png")
 
 
 ## V2版本正在规划开发中，全新UI，更多功能；同时欢迎各位伙伴进群提出你的想法和需求
