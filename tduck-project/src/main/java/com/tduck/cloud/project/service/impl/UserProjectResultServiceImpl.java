@@ -91,6 +91,15 @@ public class UserProjectResultServiceImpl extends ServiceImpl<UserProjectResultM
         }
         List<Map<String, Object>> resultList = resultEntityList.stream().map(item -> {
             Map<String, Object> processData = item.getProcessData();
+            Iterator<String> iterator = processData.keySet().iterator();
+            while (iterator.hasNext()) {
+                String key = iterator.next();
+                if (!titleList.stream()
+                        .map(ExportProjectResultVO.ExcelHeader::getFieldKey).collect(Collectors.toList()).contains(key)) {
+                    iterator.remove();
+                }
+            }
+
             processData.put(BaseEntity.Fields.createTime, item.getCreateTime());
             processData.put(UserProjectResultEntity.Fields.submitAddress, item.getSubmitAddress());
             return processData;
