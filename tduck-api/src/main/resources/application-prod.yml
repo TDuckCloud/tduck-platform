@@ -29,6 +29,10 @@ spring:
     host:
     username:
     password:
+  flyway:
+    # 是否允许无序的迁移 开发环境最好开启, 生产环境关闭
+    out-of-order: false
+
 
 logging:
   level:
