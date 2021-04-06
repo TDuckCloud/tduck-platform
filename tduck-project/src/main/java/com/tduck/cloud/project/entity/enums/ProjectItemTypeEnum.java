@@ -32,7 +32,8 @@ public enum ProjectItemTypeEnum {
     DATE_RANGE(14, "日期范围", DateRangeExpandStruct.class),
     RATE(15, "评分", RateExpandStruct.class),
     COLOR(16, "颜色", ColorExpandStruct.class),
-    UPLOAD(17, "文件上传组件", UploadExpandStruct.class);
+    UPLOAD(17, "文件上传组件", UploadExpandStruct.class),
+    IMAGE(18, "图片展示", ImageExpandStruct.class),;
 
 
     @EnumValue
