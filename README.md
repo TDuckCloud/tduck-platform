@@ -89,6 +89,8 @@ Tduck 填鸭：是基于B/S架构的一款开源的表单问卷在线收集系�
 
 ### 快速启动
 
+## 部署文档：https://gitee.com/TDuckApp/tduck-platform/wikis/%E6%9C%AC%E5%9C%B0%E8%BF%90%E8%A1%8C?sort_id=3681729
+
 1. 配置最小开发环境：
 
    * [MySQL5.7或以上](https://dev.mysql.com/downloads/mysql/)
