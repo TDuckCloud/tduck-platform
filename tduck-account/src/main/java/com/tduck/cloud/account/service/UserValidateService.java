@@ -2,6 +2,7 @@ package com.tduck.cloud.account.service;
 
 
 import com.tduck.cloud.account.entity.UserEntity;
+import com.tduck.cloud.account.request.UpdateUserRequest;
 
 /**
  * 账号验证码
@@ -37,12 +38,11 @@ public interface UserValidateService {
     void sendUpdateAccountEmail(String email, Long userId);
 
     /**
-     * 发送绑定账号邮箱
+     * 获取需要更改邮箱的UserId
      *
-     * @param email
-     * @param key
+     * @param request
      */
-    Boolean checkUpdateAccountEmail(String email, String key);
+    Long getUpdateEmailUserId(UpdateUserRequest.Email request);
 
     /**
      * 发送短信验证码
