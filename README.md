@@ -4,8 +4,7 @@
 - 由于不是专职做开源，更新速度相对缓慢，但是一直都在不停的迭代（加班打码...）
 - 遇到问题可以进群咨询一下已经完成部署的大佬，并且在部署时参照部署文档进行部署；
 - 由于涉及到微信、QQ登录需要准备相应账号；
-- 详情请见： 
-### 部署文档 https://gitee.com/TDuckApp/tduck-platform/wikis/%E6%9C%AC%E5%9C%B0%E8%BF%90%E8%A1%8C?sort_id=3681729
+- 详情请见：部署文档 https://gitee.com/TDuckApp/tduck-platform/wikis/%E6%9C%AC%E5%9C%B0%E8%BF%90%E8%A1%8C?sort_id=3681729
 
 
 <p></p>
