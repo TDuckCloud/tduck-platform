@@ -3,10 +3,12 @@ package com.tduck.cloud.account.service.impl;
 import cn.hutool.captcha.generator.RandomGenerator;
 import cn.hutool.core.map.MapUtil;
 import cn.hutool.core.util.IdUtil;
+import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.core.util.StrUtil;
 import com.google.common.collect.ImmutableMap;
 import com.tduck.cloud.account.constant.AccountRedisKeyConstants;
 import com.tduck.cloud.account.entity.UserEntity;
+import com.tduck.cloud.account.request.UpdateUserRequest;
 import com.tduck.cloud.account.service.UserValidateService;
 import com.tduck.cloud.common.constant.CommonConstants;
 import com.tduck.cloud.common.email.MailService;
@@ -65,21 +67,21 @@ public class UserValidateServiceImpl implements UserValidateService {
     @Override
     public void sendUpdateAccountEmail(String email, Long userId) {
         String code = IdUtil.fastUUID();
-        redisUtils.set(StrUtil.format(AccountRedisKeyConstants.UPDATE_USER_EMAIL_CODE, code), userId);
+        redisUtils.set(StrUtil.format(AccountRedisKeyConstants.UPDATE_USER_EMAIL_CODE, code, email), userId);
         //发送邮件
         Map<String, Object> params = ImmutableMap.of("updateEmailUrl", StrUtil.format(updateEmailUrl, code, email));
         mailService.sendTemplateHtmlMail(email, RESET_PWD_EMAIL_TITLE, "mail/update-account-email", params);
     }
 
     @Override
-    public Boolean checkUpdateAccountEmail(String email, String key) {
-        String emailCodeKey = StrUtil.format(AccountRedisKeyConstants.UPDATE_USER_EMAIL_CODE, key);
-        String validateKey = redisUtils.get(emailCodeKey, String.class);
-        if (key.equals(validateKey)) {
+    public Long getUpdateEmailUserId(UpdateUserRequest.Email request) {
+        String emailCodeKey = StrUtil.format(AccountRedisKeyConstants.UPDATE_USER_EMAIL_CODE, request.getKey(), request.getEmail());
+        Long userId = redisUtils.get(emailCodeKey, Long.class);
+        if (ObjectUtil.isNotNull(userId)) {
             redisUtils.remove(emailCodeKey);
-            return true;
+            return userId;
         }
-        return false;
+        return null;
     }
 
 
