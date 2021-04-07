@@ -1,3 +1,10 @@
+<p></p>
+<p></p>
+<p align="left">
+  <img alt="logo" src="https://images.gitee.com/uploads/images/2021/0120/114533_b7f16f5b_1674451.png" width="130" style="margin-bottom: 0px;">
+</p>
+<h2 align="left">Tduck 填鸭 —— 表单收集器</h2>
+
 # 前言
 ### 各位老铁，感谢您的关注。
 - Tduck项目上线时间不足一年，还有许多地方需要打磨；
@@ -5,14 +12,6 @@
 - 遇到问题可以进群咨询一下已经完成部署的大佬，并且在部署时参照部署文档进行部署；
 - 由于涉及到微信、QQ登录需要准备相应账号；
 - 详情请见：部署文档 https://gitee.com/TDuckApp/tduck-platform/wikis/%E6%9C%AC%E5%9C%B0%E8%BF%90%E8%A1%8C?sort_id=3681729
-
-
-<p></p>
-<p></p>
-<p align="left">
-  <img alt="logo" src="https://images.gitee.com/uploads/images/2021/0120/114533_b7f16f5b_1674451.png" width="130" style="margin-bottom: 0px;">
-</p>
-<h2 align="left">Tduck 填鸭 —— 表单收集器</h2>
 
 
 ![ ](https://img.shields.io/:license-apache-blue.svg)
