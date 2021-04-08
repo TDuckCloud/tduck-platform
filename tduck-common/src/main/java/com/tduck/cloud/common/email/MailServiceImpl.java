@@ -9,6 +9,7 @@ import org.springframework.core.io.FileSystemResource;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.Context;
@@ -69,6 +70,7 @@ public class MailServiceImpl implements MailService {
      * @param content
      */
     @Override
+    @Async
     public void sendHtmlMail(String toAddr, String title, String content) {
         // html 邮件对象
         MimeMessage message = mailSender.createMimeMessage();
