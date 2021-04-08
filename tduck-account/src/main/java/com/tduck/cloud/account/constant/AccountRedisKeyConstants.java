@@ -30,5 +30,5 @@ public interface AccountRedisKeyConstants {
     /**
      * 修改邮箱验证
      */
-    String UPDATE_USER_EMAIL_CODE = "user:email:update:code:{}";
+    String UPDATE_USER_EMAIL_CODE = "user:email:update:code:{}:{}";
 }
