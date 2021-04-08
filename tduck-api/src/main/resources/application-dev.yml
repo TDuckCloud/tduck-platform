@@ -26,9 +26,9 @@ spring:
         max-idle: 10      # 连接池中的最大空闲连接
         min-idle: 5       # 连接池中的最小空闲连接
   mail:
-    host: smtp.88.com
-    username: mpw:cQlmMGLhCPnF0kA+y1nCw0rm/vJI/jM8cZ3/0IEc6o8=
-    password: mpw:ZxqW7Sx4UBreFcrvqab129PeI4cILz74rGFl3o4udb4=
+    host: smtp.exmail.qq.com
+    username: mpw:9jwi2HILb4x+eVy2fA0SYeits0G3qlm/YajJdX0OKQU=
+    password: mpw:kLAEhMW75jvbXovAGdf4gEoe2/j6OJMaK2GYhTD8b8A=
 
 logging:
   level:
