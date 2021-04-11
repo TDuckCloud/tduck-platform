@@ -4,7 +4,6 @@ package com.tduck.cloud.account.request;
 import lombok.Data;
 
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Pattern;
 
 /**
  * 更新用户请求

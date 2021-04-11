@@ -3,8 +3,6 @@ package com.tduck.cloud.wx.mp.handler.scan;
 import com.tduck.cloud.wx.mp.request.WxMpQrCodeGenRequest;
 import me.chanjar.weixin.mp.bean.message.WxMpXmlOutMessage;
 
-import java.util.Map;
-
 /**
  * @author : smalljop
  * @description : 扫码处理基本

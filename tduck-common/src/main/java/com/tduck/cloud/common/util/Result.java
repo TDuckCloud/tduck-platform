@@ -2,7 +2,6 @@ package com.tduck.cloud.common.util;
 
 import cn.hutool.core.util.ObjectUtil;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.tduck.cloud.common.constant.ResponseCodeConstants;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -15,7 +14,7 @@ import java.io.Serializable;
  * 响应信息主体
  *
  * @param <T>
- * @author lengleng
+ * @author smalljop
  */
 @ToString
 @NoArgsConstructor

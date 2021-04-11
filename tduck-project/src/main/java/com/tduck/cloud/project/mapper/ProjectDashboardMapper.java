@@ -1,16 +1,12 @@
 package com.tduck.cloud.project.mapper;
 
-import cn.hutool.core.map.CamelCaseMap;
-import cn.hutool.core.util.StrUtil;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.tduck.cloud.project.entity.ProjectThemeEntity;
 import com.tduck.cloud.project.entity.UserProjectResultEntity;
 import com.tduck.cloud.project.vo.ProjectReportVO;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
-import java.util.Map;
 import java.util.Set;
 
 /**

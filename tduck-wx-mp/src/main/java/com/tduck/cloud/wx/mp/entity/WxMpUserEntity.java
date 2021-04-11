@@ -2,11 +2,8 @@ package com.tduck.cloud.wx.mp.entity;
 
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
-import com.baomidou.mybatisplus.extension.activerecord.Model;
 import com.tduck.cloud.common.entity.BaseEntity;
 import lombok.Data;
-
-import java.time.LocalDateTime;
 
 
 /**

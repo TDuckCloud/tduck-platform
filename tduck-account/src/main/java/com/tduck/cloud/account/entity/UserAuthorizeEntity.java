@@ -2,7 +2,6 @@ package com.tduck.cloud.account.entity;
 
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
-import com.fasterxml.jackson.databind.JsonNode;
 import com.tduck.cloud.account.entity.enums.UserAuthorizeTypeEnum;
 import com.tduck.cloud.common.entity.BaseEntity;
 import com.tduck.cloud.common.mybatis.handler.JacksonTypeHandler;

@@ -2,7 +2,6 @@ package com.tduck.cloud.project.vo;
 
 import com.google.common.base.Objects;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 

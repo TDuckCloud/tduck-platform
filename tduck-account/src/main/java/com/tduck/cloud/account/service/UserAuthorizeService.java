@@ -4,7 +4,6 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import com.tduck.cloud.account.entity.UserAuthorizeEntity;
 import com.tduck.cloud.account.entity.UserEntity;
 import com.tduck.cloud.account.entity.enums.UserAuthorizeTypeEnum;
-import com.tduck.cloud.account.util.QqAuthorizationUtils;
 
 /**
  * 第三方用户授权信息(AcUserAuthorize)表服务接口

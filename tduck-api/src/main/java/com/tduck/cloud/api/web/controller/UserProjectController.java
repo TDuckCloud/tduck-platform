@@ -83,13 +83,15 @@ public class UserProjectController {
     @PostMapping("/user/project/create")
     public Result createProject(@RequestBody UserProjectEntity project, @RequestAttribute Long userId) {
         ValidatorUtils.validateEntity(project, AddGroup.class);
-        project.setKey(IdUtil.simpleUUID());
+        project.setKey(IdUtil.fastSimpleUUID());
         project.setUserId(userId);
         project.setStatus(ProjectStatusEnum.CREATE);
         project.setSourceType(ProjectSourceTypeEnum.BLANK);
         projectService.save(project);
         return Result.success(project.getKey());
     }
+
+
 
     /**
      * 从模板创建项目
@@ -107,7 +109,7 @@ public class UserProjectController {
         BeanUtil.copyProperties(projectTemplateEntity, userProjectEntity, UserProjectEntity.Fields.status);
         userProjectEntity.setSourceType(ProjectSourceTypeEnum.TEMPLATE);
         userProjectEntity.setSourceId(projectTemplateEntity.getId().toString());
-        userProjectEntity.setKey(IdUtil.simpleUUID());
+        userProjectEntity.setKey(IdUtil.fastSimpleUUID());
         userProjectEntity.setUserId(userId);
         userProjectEntity.setStatus(ProjectStatusEnum.CREATE);
         projectService.save(userProjectEntity);
@@ -116,6 +118,7 @@ public class UserProjectController {
         projectItemService.saveBatch(userProjectItemEntityList);
         return Result.success(userProjectEntity.getKey());
     }
+
 
 
     /**

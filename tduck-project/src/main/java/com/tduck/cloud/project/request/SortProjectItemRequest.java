@@ -1,14 +1,9 @@
 package com.tduck.cloud.project.request;
 
-import com.tduck.cloud.common.validator.group.AddGroup;
-import com.tduck.cloud.common.validator.group.UpdateGroup;
-import com.tduck.cloud.project.entity.enums.ProjectItemTypeEnum;
 import lombok.Data;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
-import java.util.List;
-import java.util.Map;
 
 /**
  * @author : smalljop

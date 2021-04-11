@@ -1,18 +1,13 @@
 package com.tduck.cloud.wx.mp.handler.scan;
 
 import cn.hutool.core.util.StrUtil;
-import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.tduck.cloud.common.util.RedisUtils;
 import com.tduck.cloud.wx.mp.constant.WxMpRedisKeyConstants;
-import com.tduck.cloud.wx.mp.entity.WxMpUserEntity;
 import com.tduck.cloud.wx.mp.request.WxMpQrCodeGenRequest;
 import com.tduck.cloud.wx.mp.service.WxMpUserMsgService;
-import com.tduck.cloud.wx.mp.service.WxMpUserService;
 import me.chanjar.weixin.mp.bean.message.WxMpXmlOutMessage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
-import java.util.concurrent.TimeUnit;
 
 /**
  * @author : smalljop

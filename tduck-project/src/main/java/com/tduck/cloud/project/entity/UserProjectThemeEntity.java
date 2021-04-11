@@ -1,12 +1,10 @@
 package com.tduck.cloud.project.entity;
 
 import com.baomidou.mybatisplus.annotation.TableName;
-import com.baomidou.mybatisplus.extension.activerecord.Model;
 import com.tduck.cloud.common.entity.BaseEntity;
 import lombok.Data;
 
 import javax.validation.constraints.NotBlank;
-import java.time.LocalDateTime;
 
 /**
  * 项目表单项(UserProjectTheme)表实体类

@@ -4,13 +4,10 @@ import cn.hutool.core.util.StrUtil;
 import com.anji.captcha.model.vo.CaptchaVO;
 import com.anji.captcha.service.CaptchaService;
 import com.google.common.collect.Lists;
-import com.tduck.cloud.api.exception.ValidateCodeException;
 import com.tduck.cloud.api.util.ResponseUtils;
-import com.tduck.cloud.common.constant.CommonConstants;
 import com.tduck.cloud.common.constant.ResponseCodeConstants;
 import com.tduck.cloud.common.util.Result;
 import com.tduck.cloud.common.util.SpringContextUtils;
-import sun.security.util.SecurityConstants;
 
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;

@@ -1,11 +1,8 @@
 package com.tduck.cloud.account.request;
 
-import cn.hutool.core.lang.Validator;
 import lombok.Data;
 
-import javax.validation.constraints.Max;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Pattern;
 
 /**
  * @author : smalljop

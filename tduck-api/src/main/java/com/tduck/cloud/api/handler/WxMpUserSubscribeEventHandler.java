@@ -7,7 +7,6 @@ import com.tduck.cloud.wx.mp.entity.WxMpUserEntity;
 import com.tduck.cloud.wx.mp.event.WxMpUserSubscribeEvent;
 import com.tduck.cloud.wx.mp.handler.scan.LoginScanStrategy;
 import com.tduck.cloud.wx.mp.service.WxMpUserService;
-import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.event.EventListener;

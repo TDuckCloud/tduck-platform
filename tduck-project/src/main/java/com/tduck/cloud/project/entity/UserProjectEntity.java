@@ -3,7 +3,6 @@ package com.tduck.cloud.project.entity;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
-import com.baomidou.mybatisplus.extension.activerecord.Model;
 import com.tduck.cloud.common.entity.BaseEntity;
 import com.tduck.cloud.common.validator.group.AddGroup;
 import com.tduck.cloud.common.validator.group.UpdateGroup;
@@ -13,8 +12,6 @@ import lombok.Data;
 import lombok.experimental.FieldNameConstants;
 
 import javax.validation.constraints.NotBlank;
-import java.time.LocalDateTime;
-import java.util.Date;
 
 /**
  * 用户项目表(Project)表实体类

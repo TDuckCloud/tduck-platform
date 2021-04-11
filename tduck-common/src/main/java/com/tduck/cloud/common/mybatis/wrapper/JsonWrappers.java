@@ -1,7 +1,5 @@
 package com.tduck.cloud.common.mybatis.wrapper;
 
-import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
-
 /**
  * msyql 查询包装类
  *

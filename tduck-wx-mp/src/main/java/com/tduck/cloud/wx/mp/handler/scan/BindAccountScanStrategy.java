@@ -1,9 +1,6 @@
 package com.tduck.cloud.wx.mp.handler.scan;
 
 import cn.hutool.core.util.ObjectUtil;
-import cn.hutool.core.util.StrUtil;
-import com.tduck.cloud.common.util.RedisUtils;
-import com.tduck.cloud.wx.mp.constant.WxMpRedisKeyConstants;
 import com.tduck.cloud.wx.mp.entity.WxMpUserEntity;
 import com.tduck.cloud.wx.mp.request.WxMpQrCodeGenRequest;
 import com.tduck.cloud.wx.mp.service.WxMpUserMsgService;

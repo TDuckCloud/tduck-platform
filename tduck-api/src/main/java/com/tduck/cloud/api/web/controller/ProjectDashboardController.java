@@ -1,28 +1,17 @@
 package com.tduck.cloud.api.web.controller;
 
-import cn.hutool.core.date.DateUtil;
-import cn.hutool.core.map.MapUtil;
-import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.core.util.StrUtil;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
-import com.google.common.collect.Maps;
 import com.tduck.cloud.api.annotation.Login;
-import com.tduck.cloud.common.constant.CommonConstants;
-import com.tduck.cloud.common.entity.BaseEntity;
 import com.tduck.cloud.common.util.RedisUtils;
 import com.tduck.cloud.common.util.Result;
-import com.tduck.cloud.project.entity.UserProjectEntity;
 import com.tduck.cloud.project.entity.UserProjectResultEntity;
-import com.tduck.cloud.project.request.QueryProjectRequest;
 import com.tduck.cloud.project.service.ProjectDashboardService;
 import com.tduck.cloud.project.service.UserProjectResultService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestAttribute;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import static com.tduck.cloud.project.constant.ProjectRedisKeyConstants.PROJECT_VIEW_IP_LIST;

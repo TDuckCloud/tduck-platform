@@ -2,7 +2,6 @@ package com.tduck.cloud.wx.mp.config;
 
 import com.tduck.cloud.wx.mp.handler.*;
 import lombok.AllArgsConstructor;
-import me.chanjar.weixin.common.redis.JedisWxRedisOps;
 import me.chanjar.weixin.common.redis.RedisTemplateWxRedisOps;
 import me.chanjar.weixin.common.redis.WxRedisOps;
 import me.chanjar.weixin.mp.api.WxMpMessageRouter;
