@@ -1,7 +1,5 @@
 package com.tduck.cloud.project.entity.struct;
 
-import cn.hutool.json.JSON;
-import cn.hutool.json.JSONUtil;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

@@ -16,29 +16,28 @@ import lombok.Getter;
 @Getter
 public enum ProjectItemTypeEnum {
 
-    INPUT(1, "单行文本", InputExpandStruct.class),
-    TEXTAREA(2, "多行文本", TextareaExpandStruct.class),
-    PASSWORD_INPUT(3, "密码输入", null),
-    NUMBER_INPUT(4, "数字输入", NumberExpandStruct.class),
-    SELECT(5, "下拉框", SelectExpandStruct.class),
-    CASCADER(6, "级联选择", CascaderExpandStruct.class),
-    RADIO(7, "单选框", RadioExpandStruct.class),
-    CHECKBOX(8, "多选框", CheckboxExpandStruct.class),
-    SWITCH(9, "开关", SwitchExpandStruct.class),
-    SLIDER(10, "滑块", SliderExpandStruct.class),
-    TIME(11, "时间选择", TimeExpandStruct.class),
-    TIME_RANGE(12, "时间范围", TimeRangeExpandStruct.class),
-    DATE(13, "日期选择", DateExpandStruct.class),
-    DATE_RANGE(14, "日期范围", DateRangeExpandStruct.class),
-    RATE(15, "评分", RateExpandStruct.class),
-    COLOR(16, "颜色", ColorExpandStruct.class),
-    UPLOAD(17, "文件上传组件", UploadExpandStruct.class),
-    IMAGE(18, "图片展示", ImageExpandStruct.class),;
-
+    INPUT("INPUT", "单行文本", InputExpandStruct.class),
+    TEXTAREA("TEXTAREA", "多行文本", TextareaExpandStruct.class),
+    PASSWORD_INPUT("PASSWORD_INPUT", "密码输入", null),
+    NUMBER_INPUT("NUMBER_INPUT", "数字输入", NumberExpandStruct.class),
+    SELECT("SELECT", "下拉框", SelectExpandStruct.class),
+    CASCADER("CASCADER", "级联选择", CascaderExpandStruct.class),
+    RADIO("RADIO", "单选框", RadioExpandStruct.class),
+    CHECKBOX("CHECKBOX", "多选框", CheckboxExpandStruct.class),
+    SWITCH("SWITCH", "开关", SwitchExpandStruct.class),
+    SLIDER("SLIDER", "滑块", SliderExpandStruct.class),
+    TIME("TIME", "时间选择", TimeExpandStruct.class),
+    TIME_RANGE("TIME_RANGE", "时间范围", TimeRangeExpandStruct.class),
+    DATE("DATE", "日期选择", DateExpandStruct.class),
+    DATE_RANGE("DATE_RANGE", "日期范围", DateRangeExpandStruct.class),
+    RATE("RATE", "评分", RateExpandStruct.class),
+    COLOR("COLOR", "颜色", ColorExpandStruct.class),
+    UPLOAD("UPLOAD", "文件上传组件", UploadExpandStruct.class),
+    IMAGE("IMAGE", "图片展示", ImageExpandStruct.class);
 
     @EnumValue
     @JsonValue
-    private int value;
+    private String value;
 
     private String desc;
     /**
@@ -48,13 +47,14 @@ public enum ProjectItemTypeEnum {
 
     /**
      * 枚举入参注解
+     *
      * @param value
      * @return
      */
     @JsonCreator
-    public static ProjectItemTypeEnum getByValue(int value) {
-        for(ProjectItemTypeEnum typeEnum : values()) {
-            if(typeEnum.getValue() == value) {
+    public static ProjectItemTypeEnum getByValue(String value) {
+        for (ProjectItemTypeEnum typeEnum : values()) {
+            if (typeEnum.getValue().equals(value)) {
                 return typeEnum;
             }
         }

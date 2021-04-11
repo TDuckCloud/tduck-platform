@@ -3,7 +3,6 @@ package com.tduck.cloud.project.service.impl;
 import cn.hutool.core.util.StrUtil;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.tduck.cloud.common.util.Result;
 import com.tduck.cloud.project.entity.UserProjectEntity;
 import com.tduck.cloud.project.mapper.UserProjectMapper;
 import com.tduck.cloud.project.service.UserProjectService;

@@ -1,13 +1,9 @@
 package com.tduck.cloud.project.entity;
 
 
-import com.baomidou.mybatisplus.annotation.FieldFill;
 import com.baomidou.mybatisplus.annotation.FieldStrategy;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
-import com.baomidou.mybatisplus.extension.activerecord.Model;
-
-
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.tduck.cloud.common.entity.BaseEntity;
 import lombok.Data;

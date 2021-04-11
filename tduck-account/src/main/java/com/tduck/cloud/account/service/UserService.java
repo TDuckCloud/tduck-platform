@@ -8,7 +8,6 @@ import com.tduck.cloud.account.request.QqLoginRequest;
 import com.tduck.cloud.account.request.RegisterAccountRequest;
 import com.tduck.cloud.account.vo.LoginUserVO;
 import com.tduck.cloud.common.util.Result;
-import io.swagger.v3.oas.annotations.parameters.RequestBody;
 
 /**
  * 用户(AcUser)表服务接口

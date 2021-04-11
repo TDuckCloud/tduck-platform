@@ -4,7 +4,7 @@ target/
 !**/src/main/**/target/
 !**/src/test/**/target/
 /logs/
-
+!**/src/main/resources/application-prod1.yml
 ### STS ###
 .apt_generated
 .classpath
@@ -26,8 +26,7 @@ target/
 /dist/
 /nbdist/
 /.nb-gradle/
-build/
-!**/src/main/**/build/
+build/ !**/src/main/**/build/
 !**/src/test/**/build/
 
 ### VS Code ###

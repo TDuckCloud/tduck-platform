@@ -9,6 +9,7 @@ import com.tduck.cloud.project.entity.struct.ItemDefaultValueStruct;
 import lombok.Data;
 import lombok.experimental.Accessors;
 import lombok.experimental.FieldNameConstants;
+import org.apache.ibatis.type.EnumTypeHandler;
 
 import javax.validation.constraints.NotNull;
 import java.util.List;
@@ -39,6 +40,7 @@ public class UserProjectItemEntity extends BaseEntity<UserProjectItemEntity> {
      * 表单项类型
      */
     @NotNull(message = "非法请求")
+    @TableField(typeHandler = EnumTypeHandler.class)
     private ProjectItemTypeEnum type;
     /**
      * 表单项标题

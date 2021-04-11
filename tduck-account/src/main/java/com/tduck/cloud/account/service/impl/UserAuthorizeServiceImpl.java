@@ -9,7 +9,6 @@ import com.tduck.cloud.account.entity.UserEntity;
 import com.tduck.cloud.account.entity.enums.UserAuthorizeTypeEnum;
 import com.tduck.cloud.account.mapper.UserAuthorizeMapper;
 import com.tduck.cloud.account.service.UserAuthorizeService;
-import com.tduck.cloud.account.service.UserService;
 import com.tduck.cloud.account.util.QqAuthorizationUtils;
 import com.tduck.cloud.common.util.JsonUtils;
 import lombok.RequiredArgsConstructor;

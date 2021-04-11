@@ -12,7 +12,6 @@ import com.tduck.cloud.account.request.UpdateUserRequest;
 import com.tduck.cloud.account.service.UserValidateService;
 import com.tduck.cloud.common.constant.CommonConstants;
 import com.tduck.cloud.common.email.MailService;
-import com.tduck.cloud.common.exception.BaseException;
 import com.tduck.cloud.common.sms.SmsService;
 import com.tduck.cloud.common.util.RedisUtils;
 import lombok.RequiredArgsConstructor;

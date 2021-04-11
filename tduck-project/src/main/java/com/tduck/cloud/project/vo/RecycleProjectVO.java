@@ -1,14 +1,9 @@
 package com.tduck.cloud.project.vo;
 
-import com.baomidou.mybatisplus.annotation.TableField;
 import com.tduck.cloud.common.entity.BaseEntity;
-import com.tduck.cloud.project.entity.UserProjectEntity;
-import com.tduck.cloud.project.entity.enums.ProjectSourceTypeEnum;
-import com.tduck.cloud.project.entity.enums.ProjectStatusEnum;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
-import javax.validation.constraints.NotBlank;
 import java.time.LocalDateTime;
 
 /**

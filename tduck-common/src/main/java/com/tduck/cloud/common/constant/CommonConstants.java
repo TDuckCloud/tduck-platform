@@ -1,10 +1,5 @@
 package com.tduck.cloud.common.constant;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-
-import java.math.BigDecimal;
-
 /**
  * @description: 通用的常亮
  * @author: smalljop

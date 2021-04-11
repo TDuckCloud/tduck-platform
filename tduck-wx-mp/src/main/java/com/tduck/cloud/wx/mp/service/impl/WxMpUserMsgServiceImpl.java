@@ -2,7 +2,6 @@ package com.tduck.cloud.wx.mp.service.impl;
 
 import cn.hutool.core.util.StrUtil;
 import com.tduck.cloud.wx.mp.service.WxMpUserMsgService;
-import lombok.RequiredArgsConstructor;
 import me.chanjar.weixin.common.error.WxErrorException;
 import me.chanjar.weixin.mp.api.WxMpService;
 import me.chanjar.weixin.mp.bean.kefu.WxMpKefuMessage;
