@@ -59,7 +59,12 @@ public class WebMvcConfig implements WebMvcConfigurer {
                     .addResourceLocations("file:" + uploadFolder);
         }
         //这句不要忘了，否则项目默认静态资源映射会失效
+        registry.addResourceHandler("swagger-ui.html").addResourceLocations("classpath:/META-INF/resources/");
+        // swagger 配置
+        registry.addResourceHandler("doc.html").addResourceLocations("classpath:/META-INF/resources/");
+        registry.addResourceHandler("/webjars/**").addResourceLocations("classpath:/META-INF/resources/webjars/");
         registry.addResourceHandler("/**").addResourceLocations("classpath:/static/");
+
     }
 
     @Override
