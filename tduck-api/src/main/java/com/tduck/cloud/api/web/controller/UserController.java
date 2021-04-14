@@ -105,16 +105,15 @@ public class UserController {
      *
      * @return
      */
-    @Login
     @PostMapping("/update/email")
-    public Result updateUserEmail(@RequestBody UpdateUserRequest.Email request, @RequestAttribute Long userId) {
+    public Result updateUserEmail(@RequestBody UpdateUserRequest.Email request) {
         Validator.validateEmail(request.getEmail(), "邮箱地址不正确");
         UserEntity userEntity = userService.getUserByEmail(request.getEmail());
         if (ObjectUtil.isNotNull(userEntity)) {
             return Result.failed("该邮箱已被绑定");
         }
-        Boolean checkUpdateAccountEmail = userValidateService.checkUpdateAccountEmail(request.getEmail(), request.getKey());
-        if (!checkUpdateAccountEmail) {
+        Long userId = userValidateService.getUpdateEmailUserId(request);
+        if (ObjectUtil.isNull(userId)) {
             return Result.success(false);
         }
         userEntity = new UserEntity();
