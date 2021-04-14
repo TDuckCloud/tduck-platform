@@ -1,8 +1,6 @@
 package com.tduck.cloud.wx.mp.config;
 
 import com.tduck.cloud.wx.mp.handler.*;
-import lombok.AllArgsConstructor;
-import me.chanjar.weixin.common.redis.JedisWxRedisOps;
 import me.chanjar.weixin.common.redis.RedisTemplateWxRedisOps;
 import me.chanjar.weixin.common.redis.WxRedisOps;
 import me.chanjar.weixin.mp.api.WxMpMessageRouter;
@@ -10,6 +8,7 @@ import me.chanjar.weixin.mp.api.WxMpService;
 import me.chanjar.weixin.mp.api.impl.WxMpServiceImpl;
 import me.chanjar.weixin.mp.config.impl.WxMpDefaultConfigImpl;
 import me.chanjar.weixin.mp.config.impl.WxMpRedisConfigImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -31,22 +30,33 @@ import static me.chanjar.weixin.mp.constant.WxMpEventConstants.POI_CHECK_NOTIFY;
  *
  * @author Binary Wang(https://github.com/binarywang)
  */
-@AllArgsConstructor
 @Configuration
 @EnableConfigurationProperties(WxMpProperties.class)
 public class WxMpConfiguration {
-    private final LogHandler logHandler;
-    private final NullHandler nullHandler;
-    private final KfSessionHandler kfSessionHandler;
-    private final StoreCheckNotifyHandler storeCheckNotifyHandler;
-    private final LocationHandler locationHandler;
-    private final MenuHandler menuHandler;
-    private final MsgHandler msgHandler;
-    private final UnsubscribeHandler unsubscribeHandler;
-    private final SubscribeHandler subscribeHandler;
-    private final ScanHandler scanHandler;
-    private final WxMpProperties properties;
-    private final StringRedisTemplate redisTemplate;
+    @Autowired
+    private LogHandler logHandler;
+    @Autowired
+    private NullHandler nullHandler;
+    @Autowired
+    private KfSessionHandler kfSessionHandler;
+    @Autowired
+    private StoreCheckNotifyHandler storeCheckNotifyHandler;
+    @Autowired
+    private LocationHandler locationHandler;
+    @Autowired
+    private MenuHandler menuHandler;
+    @Autowired
+    private MsgHandler msgHandler;
+    @Autowired
+    private UnsubscribeHandler unsubscribeHandler;
+    @Autowired
+    private SubscribeHandler subscribeHandler;
+    @Autowired
+    private ScanHandler scanHandler;
+    @Autowired
+    private WxMpProperties properties;
+    @Autowired
+    private StringRedisTemplate redisTemplate;
 
     @Bean
     public WxMpService wxMpService() {
