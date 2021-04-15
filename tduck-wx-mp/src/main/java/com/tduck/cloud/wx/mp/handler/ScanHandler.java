@@ -1,7 +1,6 @@
 package com.tduck.cloud.wx.mp.handler;
 
 import com.tduck.cloud.wx.mp.handler.scan.ScanStrategyContext;
-import lombok.RequiredArgsConstructor;
 import me.chanjar.weixin.common.error.WxErrorException;
 import me.chanjar.weixin.common.session.WxSessionManager;
 import me.chanjar.weixin.mp.api.WxMpService;
@@ -16,7 +15,6 @@ import java.util.Map;
  * @author Binary Wang(https://github.com/binarywang)
  */
 @Component
-@RequiredArgsConstructor
 public class ScanHandler extends AbstractHandler {
     @Autowired
     private ScanStrategyContext scanStrategyContext;
