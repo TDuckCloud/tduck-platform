@@ -18,7 +18,7 @@
         <mybatis.plus.version>3.4.1</mybatis.plus.version>
         <guava.version>26.0-jre</guava.version>
         <commons.lang3.vesrion>3.7</commons.lang3.vesrion>
-        <commons.io.version>2.6</commons.io.version>
+        <commons.io.version>2.7</commons.io.version>
         <commons.configuration.version>1.10</commons.configuration.version>
         <jwt.version>0.9.0</jwt.version>
         <hutool.version>5.1.2</hutool.version>
