@@ -76,7 +76,7 @@ public class UserProjectResultServiceImpl extends ServiceImpl<UserProjectResultM
         List<UserProjectItemEntity> userProjectItemEntityList = userProjectItemService.listByProjectKey(projectKey);
         // excel 标题列
         List<ExportProjectResultVO.ExcelHeader> titleList = userProjectItemEntityList.stream()
-                .map(item -> new ExportProjectResultVO.ExcelHeader(item.getFormItemId(), item.getLabel()))
+                .map(item -> new ExportProjectResultVO.ExcelHeader(item.getFormItemId().toString(), item.getLabel()))
                 .collect(Collectors.toList());
         //结果
         List<UserProjectResultEntity> resultEntityList = this.list(Wrappers.<UserProjectResultEntity>lambdaQuery()

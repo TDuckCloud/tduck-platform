@@ -32,7 +32,7 @@ public class ProjectTemplateItemEntity extends BaseEntity<ProjectTemplateItemEnt
     /**
      * 表单项Id
      */
-    private String formItemId;
+    private Long formItemId;
     /**
      * 表单项类型
      */

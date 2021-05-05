@@ -15,6 +15,7 @@ import org.springframework.stereotype.Component;
  * <p>
  * 拖动排序工具类
  * 算法参考 @link https://www.zhihu.com/question/55789722
+ *
  * @author smalljop
  */
 @RequiredArgsConstructor

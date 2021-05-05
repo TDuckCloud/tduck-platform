@@ -35,7 +35,7 @@ public class UserProjectItemEntity extends BaseEntity<UserProjectItemEntity> {
     /**
      * 表单项Id
      */
-    private String formItemId;
+    private Long formItemId;
     /**
      * 表单项类型
      */
