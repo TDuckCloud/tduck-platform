@@ -6,7 +6,7 @@ import com.tduck.cloud.project.entity.UserProjectEntity;
 /**
  * 项目表(Project)表服务接口
  *
- * @author makejava
+ * @author smalljop
  * @since 2020-11-18 18:16:18
  */
 public interface UserProjectService extends IService<UserProjectEntity> {

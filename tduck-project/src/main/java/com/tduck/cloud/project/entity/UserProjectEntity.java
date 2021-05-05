@@ -16,7 +16,7 @@ import javax.validation.constraints.NotBlank;
 /**
  * 用户项目表(Project)表实体类
  *
- * @author makejava
+ * @author smalljop
  * @since 2020-11-18 18:16:16
  */
 @Data

@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 /**
  * 用户(AcUser)表实体类
  *
- * @author makejava
+ * @author smalljop
  * @since 2020-11-10 18:10:40
  */
 @Data
