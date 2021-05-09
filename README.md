@@ -114,9 +114,10 @@ Tduck 填鸭：是基于B/S架构的一款开源的表单在线收集系统，�
    打开命令行，输入以下命令
 
    ```bash
+   mvn clean install -DskipTests
    cd tduck-platform/tduck-api
    mvn clean package -DskipTests
-   java -Dfile.encoding=UTF-8 -jar tduck-api.jar
+   java -Dfile.encoding=UTF-8 -jar target/tduck-api.jar
    ```
 
 4. 启动管理后台前端
