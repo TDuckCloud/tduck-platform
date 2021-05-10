@@ -13,6 +13,7 @@
 - 由于涉及到微信、QQ登录需要准备相应账号；
 - 详情请见：[部署文档](https://gitee.com/TDuckApp/tduck-platform/wikis/%E6%9C%AC%E5%9C%B0%E8%BF%90%E8%A1%8C?sort_id=3681729)
 ### TDuck 使用 Apache License 2.0 协议，源代码完全开源，无商业限制。 开源不易如果喜欢请给作者 Star 鼓励  :pray: 
+- V2版本正在规划开发中，全新UI，更多功能；同事欢迎有兴趣有时间的有实力的朋友加入团队（前端/设计），有想法请私聊~
 
 ![ ](https://img.shields.io/:license-apache-blue.svg)
 ![ ](https://img.shields.io/badge/JDK-1.8+-red.svg)
@@ -25,7 +26,7 @@
 ## 群聊人数已经满200，需要手动拉入
 
 
-## V2版本正在规划开发中，全新UI，更多功能；同时欢迎各位伙伴进群提出你的想法和需求
+
 <p></p>
 
 ### 平台简介
