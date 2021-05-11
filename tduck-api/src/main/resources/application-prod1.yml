@@ -29,6 +29,10 @@ spring:
     host: smtp.88.com
     username: mpw:/GXJe5uECs53VI+e8gc3R9HQ9h3VyzR8cJ0RNTPHMWQ=
     password: mpw:oZpXgWsoal59sd249H14+XZJVZ2moRDIcUxf2b+EkO8=
+  flyway:
+    # 是否允许无序的迁移 开发环境最好开启, 生产环境关闭
+    out-of-order: false
+    clean-disabled: true
 
 logging:
   level:

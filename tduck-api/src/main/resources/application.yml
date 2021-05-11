@@ -21,7 +21,8 @@ spring:
     baseline-on-migrate: true
     # 是否允许无序的迁移 开发环境最好开启, 生产环境关闭
     out-of-order: true
-
+    # 是否要清除已有库下的表
+    clean-disabled: true
 
 server:
   port: 8999
