@@ -22,7 +22,7 @@
 ![ ](https://img.shields.io/badge/front-vue%2Belement--ui-blue)
 [![star](https://gitee.com/TDuckApp/tduck-platform/badge/star.svg?theme=white)](https://gitee.com/TDuckApp/tduck-platform/stargazers)
 ### 联系作者/加入社群
-<img alt="群聊" src="https://images.gitee.com/uploads/images/2021/0513/171259_1ef11014_1674451.png " width="330" style="margin-bottom: 0px;">
+<img alt="群聊" src="https://images.gitee.com/uploads/images/2021/0513/171259_1ef11014_1674451.png " width="240" style="margin-bottom: 0px;">
 
 <p></p>
 
