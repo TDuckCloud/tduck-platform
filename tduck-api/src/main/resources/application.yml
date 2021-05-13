@@ -14,15 +14,6 @@ spring:
     multipart:
       max-file-size: 10MB
       max-request-size: 100MB
-  flyway:
-    enabled: true
-    locations: classpath:db/migration
-    # 当迁移时发现目标schema非空，而且带有没有元数据的表时，是否自动执行基准迁移
-    baseline-on-migrate: true
-    # 是否允许无序的迁移 开发环境最好开启, 生产环境关闭
-    out-of-order: true
-    # 是否要清除已有库下的表
-    clean-disabled: true
 
 server:
   port: 8999
@@ -55,7 +46,7 @@ mybatis-plus:
 #  请求日志是否打印
 platform:
   request:
-    trace-log: true
+    trace-log: false
   sign:
     enable: true
     secret: 916lWh2WMcbSWiHv
