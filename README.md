@@ -22,10 +22,7 @@
 ![ ](https://img.shields.io/badge/front-vue%2Belement--ui-blue)
 [![star](https://gitee.com/TDuckApp/tduck-platform/badge/star.svg?theme=white)](https://gitee.com/TDuckApp/tduck-platform/stargazers)
 ### 联系作者/加入社群
-![输入图片说明](https://images.gitee.com/uploads/images/2021/0407/100054_10b7177d_1674451.png "微信截图_20210407095930.png")
-
-## 群聊人数已经满200，需要手动拉入
-
+![企业微信群聊](https://images.gitee.com/uploads/images/2021/0513/171259_1ef11014_1674451.png "contact_me_qr.png")
 
 
 <p></p>
