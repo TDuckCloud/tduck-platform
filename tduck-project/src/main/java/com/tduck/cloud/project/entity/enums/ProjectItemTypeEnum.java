@@ -33,7 +33,8 @@ public enum ProjectItemTypeEnum {
     RATE("RATE", "评分", RateExpandStruct.class),
     COLOR("COLOR", "颜色", ColorExpandStruct.class),
     UPLOAD("UPLOAD", "文件上传组件", UploadExpandStruct.class),
-    IMAGE("IMAGE", "图片展示", ImageExpandStruct.class);
+    IMAGE("IMAGE", "图片展示", ImageExpandStruct.class),
+    IMAGE_SELECT("IMAGE_SELECT","图片选择",ImageSelectExpandStruct.class);
 
     @EnumValue
     @JsonValue
