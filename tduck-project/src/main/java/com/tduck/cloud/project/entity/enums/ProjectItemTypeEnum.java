@@ -34,7 +34,8 @@ public enum ProjectItemTypeEnum {
     COLOR("COLOR", "颜色", ColorExpandStruct.class),
     UPLOAD("UPLOAD", "文件上传组件", UploadExpandStruct.class),
     IMAGE("IMAGE", "图片展示", ImageExpandStruct.class),
-    IMAGE_SELECT("IMAGE_SELECT","图片选择",ImageSelectExpandStruct.class);
+    IMAGE_SELECT("IMAGE_SELECT","图片选择",ImageSelectExpandStruct.class),
+    IMAGE_CAROUSEL("IMAGE_CAROUSEL","图片选择",ImageCarouselExpandStruct.class);
 
     @EnumValue
     @JsonValue
