@@ -56,9 +56,9 @@ platform:
     validateCodeTemplateId:
     retrievePwdValidateCodeTemplateId:
   front:
-    baseUrl: http://tduck.smileyi.top/
-    resetPwdUrl: http://tduck.smileyi.top/forget/password?code={}&email={}
-    updateEmailUrl: http://localhost:8888/account/forget/validate?type=updateEmail&code={}&email={}
+    baseUrl: https://tduck.smileyi.top/
+    resetPwdUrl: https://tduck.smileyi.top/forget/password?code={}&email={}
+    updateEmailUrl: https://localhost:8888/account/forget/validate?type=updateEmail&code={}&email={}
 
 wx:
   mp:
