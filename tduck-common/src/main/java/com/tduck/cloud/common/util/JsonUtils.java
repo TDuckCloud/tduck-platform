@@ -34,8 +34,6 @@ public class JsonUtils {
 
     /**
      * 获取objectMapper实例
-     *
-     * @return
      */
     public static ObjectMapper getInstance() {
         return objectMapper;
