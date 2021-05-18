@@ -67,4 +67,5 @@ wx:
         secret: mpw:XjQD9w8yetuhWw9kte+itpW5d12sz8ZOw4FQheiq64WE/enJJwvki1WODCGANYUC
         token: mpw:bjdiFwY/AerwQGaplUBbdePohb3kRhb1k/KcoxNsN6k=
         aesKey:
-
+server:
+  port: 8098
