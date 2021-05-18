@@ -20,7 +20,6 @@ import java.util.concurrent.TimeUnit;
  * @create : 2020-12-01 17:44
  **/
 @Component
-
 public class LoginScanStrategy implements ScanStrategy {
 
     @Autowired
