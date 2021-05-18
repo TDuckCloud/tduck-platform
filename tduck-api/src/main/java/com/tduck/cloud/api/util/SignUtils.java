@@ -28,12 +28,12 @@ public class SignUtils {
      * @return
      */
     public boolean verifySign(SortedMap<String, Object> params, String secret) {
-        String urlSign = MapUtil.getStr(params, "sign");
+        String urlSign = MapUtil.getStr(params, "sign").trim();
         if (StringUtils.isBlank(urlSign)) {
             return false;
         }
         String paramsSign = getParamsSign(params, secret);
-        log.debug("sign1 {} sign2 {}", paramsSign, urlSign);
+        log.debug("sign1 {} sign2 {} result:{}", paramsSign, urlSign,urlSign.equals(paramsSign));
         return StringUtils.isNotBlank(paramsSign) && urlSign.equals(paramsSign);
     }
 
