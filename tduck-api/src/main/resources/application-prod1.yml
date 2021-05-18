@@ -68,4 +68,4 @@ wx:
         token: mpw:bjdiFwY/AerwQGaplUBbdePohb3kRhb1k/KcoxNsN6k=
         aesKey:
 server:
-  port: 8098
+  port: 8998
