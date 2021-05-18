@@ -46,7 +46,7 @@ mybatis-plus:
 #  请求日志是否打印
 platform:
   request:
-    trace-log: false
+    trace-log: true
   sign:
     enable: true
     secret: 916lWh2WMcbSWiHv
