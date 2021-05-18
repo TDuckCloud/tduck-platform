@@ -224,7 +224,10 @@ public class UserLoginController {
      * @return
      */
     @GetMapping("/login/wx/qrcode/result")
-    public Result<LoginUserVO> queryWxLoginResult(@RequestParam String loginId, HttpServletRequest request) {
+    public Result<LoginUserVO> queryWxLoginResult(@RequestParam(required = false) String loginId, HttpServletRequest request) {
+        if (StrUtil.isBlank(loginId)) {
+            return Result.success();
+        }
         Long userId = redisUtils.get(StrUtil.format(WxMpRedisKeyConstants.WX_MP_LOGIN_QRCODE, loginId), Long.class);
         if (ObjectUtil.isNull(userId)) {
             return Result.success();

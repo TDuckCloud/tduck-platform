@@ -39,7 +39,6 @@ public class UserProjectLogicController {
         return Result.success(projectLogicService.removeById(userProjectLogicEntity));
     }
 
-    @Login
     @GetMapping("/user/project/logic/list")
     public Result queryProjectItem(@RequestParam @NotBlank String projectKey) {
         List<UserProjectLogicEntity> entityList = projectLogicService.list(Wrappers.<UserProjectLogicEntity>lambdaQuery().eq(UserProjectLogicEntity::getProjectKey, projectKey));
