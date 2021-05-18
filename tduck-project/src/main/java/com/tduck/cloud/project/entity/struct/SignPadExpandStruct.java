@@ -9,6 +9,10 @@ import lombok.Data;
  */
 @Data
 public class SignPadExpandStruct {
+    /**
+     * 颜色
+     */
+    private String color;
 
 
 }
