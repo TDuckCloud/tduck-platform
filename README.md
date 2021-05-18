@@ -9,9 +9,11 @@
 ### 各位老铁，感谢您的关注。
 - Tduck项目上线时间不足一年，还有许多地方需要打磨；
 - 由于不是专职做开源，更新速度相对缓慢，但是一直都在不停的迭代（加班打码...）
-- 遇到问题可以进群咨询一下已经完成部署的大佬，并且在部署时参照部署文档进行部署；
+- 遇到问题可以进群咨询一下已经完成部署的大佬，并且在部署时参照文档进行部署；
 - 由于涉及到微信、QQ登录需要准备相应账号；
-- 详情请见：部署文档 https://gitee.com/TDuckApp/tduck-platform/wikis/%E6%9C%AC%E5%9C%B0%E8%BF%90%E8%A1%8C?sort_id=3681729
+- V2版本正在规划开发中，全新UI，更多功能；欢迎有兴趣有时间的有实力的朋友加入团队（前端/设计），有想法请私聊~
+- 详情请见：[部署文档](https://gitee.com/TDuckApp/tduck-platform/wikis/%E6%9C%AC%E5%9C%B0%E8%BF%90%E8%A1%8C?sort_id=3681729)
+### TDuck 使用 Apache License 2.0 协议，源代码完全开源，无商业限制。 开源不易如果喜欢请给作者 Star 鼓励  :pray: 
 
 
 ![ ](https://img.shields.io/:license-apache-blue.svg)
@@ -20,19 +22,15 @@
 ![ ](https://img.shields.io/badge/front-vue%2Belement--ui-blue)
 [![star](https://gitee.com/TDuckApp/tduck-platform/badge/star.svg?theme=white)](https://gitee.com/TDuckApp/tduck-platform/stargazers)
 ### 联系作者/加入社群
-![输入图片说明](https://images.gitee.com/uploads/images/2021/0407/100054_10b7177d_1674451.png "微信截图_20210407095930.png")
+<img alt="群聊" src="https://images.gitee.com/uploads/images/2021/0513/171259_1ef11014_1674451.png " width="240" style="margin-bottom: 0px;">
 
-## 群聊人数已经满200，需要手动拉入
-
-
-## V2版本正在规划开发中，全新UI，更多功能；同时欢迎各位伙伴进群提出你的想法和需求
 <p></p>
 
 ### 平台简介
 
 Tduck,  Form collection system
 
-Tduck 填鸭：是基于B/S架构的一款开源的表单问卷在线收集系统，为企业构建自己的信息反馈系统的综合解决方案，助力企业提高反馈收集客户服务效率。
+Tduck 填鸭：是基于B/S架构的一款开源的表单在线收集系统，为企业构建自己的信息反馈系统的综合解决方案，助力企业提高反馈收集客户服务效率。
 
 
 ### 应用场景
@@ -43,8 +41,8 @@ Tduck 填鸭：是基于B/S架构的一款开源的表单问卷在线收集系�
 ### 功能特性
 ##### 界面美观，全新element-ui支持，使用流畅
 - 以一种全新的设计体验，告别繁琐的设计流程
-- 通过简单有趣的方式，轻轻松松完成问卷设计
-- 支持问卷样式模板选择，只为显现更精美的表单问卷
+- 通过简单有趣的方式，轻轻松松完成表单设计
+- 支持表单样式模板选择，只为显现更精美的表单
 
 ##### 三大模块助力企业能力升级：
 - 新建表单：自定义可拖拽式表单设计
@@ -114,9 +112,10 @@ Tduck 填鸭：是基于B/S架构的一款开源的表单问卷在线收集系�
    打开命令行，输入以下命令
 
    ```bash
+   mvn clean install -DskipTests
    cd tduck-platform/tduck-api
    mvn clean package -DskipTests
-   java -Dfile.encoding=UTF-8 -jar tduck-api.jar
+   java -Dfile.encoding=UTF-8 -jar target/tduck-api.jar
    ```
 
 4. 启动管理后台前端
