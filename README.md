@@ -149,3 +149,5 @@ Tduck 填鸭：是基于B/S架构的一款开源的表单在线收集系统，�
 
 **TDuck 使用 Apache License 2.0 协议，源代码完全开源，无商业限制。 
 开源不易如果喜欢请给作者 Star 鼓励 👇**
+
+![输入图片说明](https://images.gitee.com/uploads/images/2021/0524/231551_cf206b26_1495174.png "公司logo应用规范 -07.png")[感谢ucloud赞助云服务器资源](https://www.ucloud.cn/)
