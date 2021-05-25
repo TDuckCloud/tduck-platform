@@ -1,9 +1,9 @@
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: mpw:nQ5/q3dbQxhM9HVij8Vevh9JhP4Wi+i/PONlrqWihPLN1btqaIWS7LzRNPS3Jzx47U8sHjG6C+YqZvdjhCXp4PrTPNinp7qisX/52nsooEqrSOgE62aYpyMyuev39JlcFzdymD9M0PAXsaBzKWsr1nKKRtiQuc5nTwPwg5PQIh4VjtkjRImJJvjaWlVvDimC
+    url: mpw:KgK8kYuLFIT6b38+H+cB2E0GrL/C825hS6MlTg/E1/OcM4OMb/QFCldOmz3WjLYrr3LMk/6L7jajw0Bkgm0934e1p36Ta0gd9oYG+dWzBNc9Wto8+Asb1nZPGRm3Bu/oxCszzI5m7lzhc/WniWnWQErooPUGkjRn+KeQT0sFd7irBgFCweQnR4Xh6CqpCreajKEFDCJ3+unEtJHDZEsNY0gCeEE0odBH+zKRH1BpgKg=
     username: mpw:7mG/EMKw74oyiB/LMzqIqg==
-    password: mpw:7mG/EMKw74oyiB/LMzqIqg==
+    password: mpw:PABnKNLVmn27Oo362cuTtw==
     type: com.zaxxer.hikari.HikariDataSource
     hikari:
       minimum-idle: 5
