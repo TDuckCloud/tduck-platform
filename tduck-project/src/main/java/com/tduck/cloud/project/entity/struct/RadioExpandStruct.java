@@ -13,6 +13,12 @@ import java.util.List;
 public class RadioExpandStruct {
 
     /**
+     * 选项样式
+     */
+    private String optionType;
+
+
+    /**
      * 选项
      */
     private List<Option> options;
