@@ -39,7 +39,9 @@ public enum ProjectItemTypeEnum {
     DESC_TEXT("DESC_TEXT", "文字描述", DescTextExpandStruct.class),
     SIGN_PAD("SIGN_PAD", "手写签名", SignPadExpandStruct.class),
     PAGINATION("PAGINATION", "分页", PaginationExpandStruct.class),
-    DIVIDER("DIVIDER", "分割线", DividerExpandStruct.class);
+    DIVIDER("DIVIDER", "分割线", DividerExpandStruct.class),
+    PROVINCE_CITY("PROVINCE_CITY", "省市联动", EmptyExpandStruct.class),
+    INPUT_MAP("INPUT_MAP", "地理位置", EmptyExpandStruct.class);
 
     @EnumValue
     @JsonValue
