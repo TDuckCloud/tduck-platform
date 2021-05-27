@@ -20,6 +20,10 @@ public interface ResponseCodeConstants {
      */
     int UNAUTHORIZED = 401;
 
+    /**
+     * 需要验证的请求
+     */
+    int NEED_VERIFICATION = 416;
 
     /**
      * 找不到该请求

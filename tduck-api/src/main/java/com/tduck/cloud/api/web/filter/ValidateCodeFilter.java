@@ -29,11 +29,15 @@ public class ValidateCodeFilter implements Filter {
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain filterChain) throws IOException, ServletException {
         HttpServletRequest httpServletRequest = (HttpServletRequest) request;
-        if (!StrUtil.containsAnyIgnoreCase(httpServletRequest.getRequestURI(), validateUrls.toArray(new String[validateUrls.size()]))) {
+        if (!StrUtil.containsAnyIgnoreCase(httpServletRequest.getRequestURI(),
+                validateUrls.toArray(new String[validateUrls.size()]))) {
             filterChain.doFilter(request, response);
             return;
         }
         String code = request.getParameter("slideCode");
+        if(StrUtil.isBlank(code)){
+            ResponseUtils.outJson(response, Result.failed(ResponseCodeConstants.NEED_VERIFICATION,""));
+        }
         CaptchaService captchaService = SpringContextUtils.getBean(CaptchaService.class);
         CaptchaVO vo = new CaptchaVO();
         vo.setCaptchaVerification(code);
