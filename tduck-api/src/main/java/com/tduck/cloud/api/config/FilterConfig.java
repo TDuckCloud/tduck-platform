@@ -87,11 +87,12 @@ public class FilterConfig {
 
 
     /**
-     * 请求日志
+     * 验证码过滤器
      *
      * @return
      */
     @Bean
+    @ConditionalOnProperty(prefix = "aj.captcha.enable", name = "enable", havingValue = "true")
     public FilterRegistrationBean validateCodeFilterRegistration() {
         FilterRegistrationBean registration = new FilterRegistrationBean();
         registration.setDispatcherTypes(DispatcherType.REQUEST);

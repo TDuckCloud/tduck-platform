@@ -46,7 +46,7 @@ mybatis-plus:
 #  请求日志是否打印
 platform:
   request:
-    trace-log: true
+    trace-log: false
   sign:
     enable: true
     secret: 916lWh2WMcbSWiHv
@@ -76,5 +76,5 @@ platform:
 
 aj:
   captcha:
+    enable: true
     water-mark: tduck
-
