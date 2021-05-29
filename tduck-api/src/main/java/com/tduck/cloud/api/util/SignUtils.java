@@ -33,6 +33,7 @@ public class SignUtils {
             return false;
         }
         String paramsSign = getParamsSign(params, secret);
+        log.debug("params:{}",JsonUtils.objToJson(params));
         log.debug("sign1 {} sign2 {} result:{}", paramsSign, urlSign,urlSign.equals(paramsSign));
         return StringUtils.isNotBlank(paramsSign) && urlSign.equals(paramsSign);
     }
