@@ -92,7 +92,7 @@ public class FilterConfig {
      * @return
      */
     @Bean
-    @ConditionalOnProperty(prefix = "aj.captcha.enable", name = "enable", havingValue = "true")
+    @ConditionalOnProperty(prefix = "aj.captcha", name = "enable", havingValue = "true", matchIfMissing = true)
     public FilterRegistrationBean validateCodeFilterRegistration() {
         FilterRegistrationBean registration = new FilterRegistrationBean();
         registration.setDispatcherTypes(DispatcherType.REQUEST);

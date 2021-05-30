@@ -30,7 +30,7 @@
         <knife4j.version>3.0.1</knife4j.version>
         <jwt.version>0.7.0</jwt.version>
         <weixin-java.version>4.0.0</weixin-java.version>
-        <captcha.version>1.2.7</captcha.version>
+        <captcha.version>1.2.8</captcha.version>
         <fastjson.version>1.2.75</fastjson.version>
         <tencentcloud.version>4.0.11</tencentcloud.version>
         <poi.version>5.0.0</poi.version>
@@ -141,8 +141,8 @@
             </dependency>
             <!--  滑动验证码-->
             <dependency>
-                <groupId>com.github.anji-plus</groupId>
-                <artifactId>captcha-spring-boot-starter</artifactId>
+                <groupId>com.anji-plus</groupId>
+                <artifactId>spring-boot-starter-captcha</artifactId>
                 <version>${captcha.version}</version>
             </dependency>
             <!--滑动验证码 需要fastjson  -->

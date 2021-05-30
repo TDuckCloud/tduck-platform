@@ -26,9 +26,9 @@ spring:
         max-idle: 10      # 连接池中的最大空闲连接
         min-idle: 5       # 连接池中的最小空闲连接
   mail:
-    host: smtp.88.com
-    username: mpw:/GXJe5uECs53VI+e8gc3R9HQ9h3VyzR8cJ0RNTPHMWQ=
-    password: mpw:oZpXgWsoal59sd249H14+XZJVZ2moRDIcUxf2b+EkO8=
+    host: smtp.exmail.qq.com
+    username: server@tduckapp.com
+    password: 8rH69a47pV2qynVE
 
 logging:
   level:
@@ -56,9 +56,9 @@ platform:
     validateCodeTemplateId: 808150
     retrievePwdValidateCodeTemplateId: 809014
   front:
-    baseUrl: https://tduck.smileyi.top/
-    resetPwdUrl: https://tduck.smileyi.top/forget/password?code={}&email={}
-    updateEmailUrl: https://localhost:8888/account/forget/validate?type=updateEmail&code={}&email={}
+    baseUrl: https://demo.tduckapp.com/
+    resetPwdUrl: https://demo.tduckapp.com//forget/password?code={}&email={}
+    updateEmailUrl: https://demo.tduckapp.com/forget/validate?type=updateEmail&code={}&email={}
 
 wx:
   mp:
