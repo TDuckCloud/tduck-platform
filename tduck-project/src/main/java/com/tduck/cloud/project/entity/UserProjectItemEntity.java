@@ -47,6 +47,12 @@ public class UserProjectItemEntity extends BaseEntity<UserProjectItemEntity> {
      */
     private String label;
 
+
+    /**
+     * 展示类型组件
+     */
+    @TableField("is_display_type")
+    private Boolean displayType;
     /**
      * 是否显示标签
      */
@@ -57,6 +63,11 @@ public class UserProjectItemEntity extends BaseEntity<UserProjectItemEntity> {
      */
     @TableField(typeHandler = JacksonTypeHandler.class)
     private ItemDefaultValueStruct defaultValue;
+
+    /**
+     * 是否能输入值
+     */
+    private Boolean canInputValue;
     /**
      * 是否必填
      */

@@ -24,4 +24,13 @@ public class InputExpandStruct {
      */
     private Long maxlength;
 
+    /**
+     * 前置图标
+     */
+    private String prefixIcon;
+
+    /**
+     * 显示可输入字数
+     */
+    private Boolean showWordLimit;
 }

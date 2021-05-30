@@ -38,6 +38,10 @@ public class OperateProjectItemRequest {
     private String label;
 
 
+    /**
+     * 是否有输入值
+     */
+    private Boolean displayType;
     /***
      * 是否显示标签
      */

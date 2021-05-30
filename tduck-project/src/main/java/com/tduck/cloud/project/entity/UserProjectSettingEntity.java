@@ -39,6 +39,12 @@ public class UserProjectSettingEntity extends BaseEntity<UserProjectSettingEntit
      * 提交跳转连接
      */
     private String submitJumpUrl;
+
+    /**
+     * 公开提交结果
+     */
+    @TableField("is_public_result")
+    private Boolean publicResult;
     /**
      * 只在微信填写
      */

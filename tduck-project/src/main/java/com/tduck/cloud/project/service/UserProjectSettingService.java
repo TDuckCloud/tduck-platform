@@ -23,4 +23,12 @@ public interface UserProjectSettingService extends IService<UserProjectSettingEn
      */
     Result getUserProjectSettingStatus(String projectKey, String requestIp);
 
+
+    /**
+     * 查询
+     *
+     * @param projectKey
+     * @return
+     */
+    UserProjectSettingEntity getByProjectKey(String projectKey);
 }

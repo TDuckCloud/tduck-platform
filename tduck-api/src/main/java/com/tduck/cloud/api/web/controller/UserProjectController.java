@@ -163,7 +163,6 @@ public class UserProjectController {
      * @param key
      * @return
      */
-    @Login
     @GetMapping("/user/project/{key}")
     public Result queryProjectByKey(@PathVariable @NotBlank String key) {
         return Result.success(projectService.getByKey(key));
@@ -274,7 +273,6 @@ public class UserProjectController {
      * @param key
      * @return
      */
-    @Login
     @GetMapping("/user/project/item/list")
     public Result queryProjectItem(@RequestParam @NotBlank String key) {
         List<UserProjectItemEntity> itemEntityList = projectItemService.listByProjectKey(key);
