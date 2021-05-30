@@ -2,6 +2,7 @@ package com.tduck.cloud.project.service.impl;
 
 import cn.hutool.core.collection.CollectionUtil;
 import cn.hutool.core.util.ObjectUtil;
+import cn.hutool.core.util.StrUtil;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
@@ -54,7 +55,7 @@ public class UserProjectResultServiceImpl extends ServiceImpl<UserProjectResultM
     @Override
     public void saveProjectResult(UserProjectResultEntity entity) {
         String projectKey = entity.getProjectKey();
-        entity.setSerialNumber(redisUtils.incr(PROJECT_RESULT_NUMBER, CommonConstants.ConstantNumber.ONE));
+        entity.setSerialNumber(redisUtils.incr(StrUtil.format(PROJECT_RESULT_NUMBER,projectKey), CommonConstants.ConstantNumber.ONE));
         entity.setSubmitAddress(AddressUtils.getRealAddressByIP(entity.getSubmitRequestIp()));
         this.save(entity);
 

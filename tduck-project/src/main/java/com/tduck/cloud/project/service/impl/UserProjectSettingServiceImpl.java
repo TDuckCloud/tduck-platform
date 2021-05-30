@@ -85,4 +85,10 @@ public class UserProjectSettingServiceImpl extends ServiceImpl<UserProjectSettin
         }
         return Result.success(setting);
     }
+
+    @Override
+    public UserProjectSettingEntity getByProjectKey(String projectKey) {
+        return this
+                .getOne(Wrappers.<UserProjectSettingEntity>lambdaQuery().eq(UserProjectSettingEntity::getProjectKey, projectKey));
+    }
 }

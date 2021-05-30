@@ -138,6 +138,22 @@ public class UserProjectResultController {
         return Result.success(projectResultService.listByQueryConditions(request));
     }
 
+
+    /**
+     * 查询公开结果
+     *
+     * @param request
+     * @return
+     */
+    @GetMapping("/public/page")
+    public Result queryProjectPublicResults(QueryProjectResultRequest request) {
+        UserProjectSettingEntity settingEntity = userProjectSettingService.getByProjectKey(request.getProjectKey());
+        if (!settingEntity.getPublicResult()) {
+            return Result.success();
+        }
+        return Result.success(projectResultService.listByQueryConditions(request));
+    }
+
     private void sendWriteResultNotify(UserProjectSettingEntity settingEntity, UserProjectResultEntity entity) {
         if (ObjectUtil.isNull(settingEntity)) {
             return;
