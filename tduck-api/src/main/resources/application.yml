@@ -78,3 +78,4 @@ aj:
   captcha:
     enable: true
     water-mark: tduck
+    cache-type: redis

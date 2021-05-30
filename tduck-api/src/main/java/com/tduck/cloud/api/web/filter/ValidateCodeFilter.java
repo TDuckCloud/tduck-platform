@@ -35,8 +35,9 @@ public class ValidateCodeFilter implements Filter {
             return;
         }
         String code = request.getParameter("slideCode");
-        if(StrUtil.isBlank(code)){
-            ResponseUtils.outJson(response, Result.failed(ResponseCodeConstants.NEED_VERIFICATION,""));
+        if (StrUtil.isBlank(code)) {
+            ResponseUtils.outJson(response, Result.failed(ResponseCodeConstants.NEED_VERIFICATION, ""));
+            return;
         }
         CaptchaService captchaService = SpringContextUtils.getBean(CaptchaService.class);
         CaptchaVO vo = new CaptchaVO();
