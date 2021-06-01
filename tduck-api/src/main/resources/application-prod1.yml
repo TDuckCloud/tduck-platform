@@ -63,8 +63,7 @@ platform:
 wx:
   mp:
     configs:
-      - appId: mpw:LlPToLhvLcJzDSyXIo8zLZrXR1VjSoNWIK4GIzjKEic=
-        secret: mpw:XjQD9w8yetuhWw9kte+itpW5d12sz8ZOw4FQheiq64WE/enJJwvki1WODCGANYUC
-        token: mpw:bjdiFwY/AerwQGaplUBbdePohb3kRhb1k/KcoxNsN6k=
-        aesKey:
-
+      - appId: mpw:IgmCUt6NlcOhudRzHINgCJkgssnDCnslYwtjhGhfbmU=
+        secret: mpw:C1IFFy1OS1kSw3PYQFebqVBS9GCbWEpR++3Wk7uIjEwCIIBwdVth9P27dJgOQynX
+        token: mpw:KvJQe4MSJ1ngbKSryGmFe2k/dGlQ3Aoqpm1GK7Q4JZxYHTAUzUt5AFf0midIOB17
+        aesKey: mpw:LPii9VslV/UE8UFfsK24EbR9reriiaDS0vW+by5705LWo1znd+P+DlxuEE1vXCmO
