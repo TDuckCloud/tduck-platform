@@ -1,6 +1,7 @@
 package com.tduck.cloud.api.web.controller;
 
 import cn.hutool.core.bean.BeanUtil;
+import cn.hutool.core.lang.Validator;
 import cn.hutool.core.util.IdUtil;
 import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.core.util.StrUtil;
@@ -8,6 +9,9 @@ import cn.hutool.json.JSONUtil;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.google.common.collect.Sets;
+import com.tduck.cloud.account.request.RegisterAccountRequest;
+import com.tduck.cloud.account.request.RetrievePasswordRequest;
+import com.tduck.cloud.account.service.UserValidateService;
 import com.tduck.cloud.api.annotation.Login;
 import com.tduck.cloud.api.util.HttpUtils;
 import com.tduck.cloud.common.constant.CommonConstants;
@@ -59,7 +63,7 @@ import java.util.stream.Collectors;
 @RestController
 @Slf4j
 public class UserProjectController {
-
+    private final UserValidateService userValidateService;
     private final UserProjectService projectService;
     private final UserProjectItemService projectItemService;
     private final UserProjectResultService projectResultService;
@@ -72,14 +76,10 @@ public class UserProjectController {
     private final RedisUtils redisUtils;
 
     @Autowired
-    private  WxMpService wxMpService;
+    private WxMpService wxMpService;
 
     /**
      * 创建项目
-     *
-     * @param project
-     * @param userId
-     * @return
      */
     @Login
     @PostMapping("/user/project/create")
@@ -94,12 +94,8 @@ public class UserProjectController {
     }
 
 
-
     /**
      * 从模板创建项目
-     *
-     * @param userId
-     * @return
      */
     @Login
     @PostMapping("/user/project/template/create/")
@@ -116,18 +112,14 @@ public class UserProjectController {
         userProjectEntity.setStatus(ProjectStatusEnum.CREATE);
         projectService.save(userProjectEntity);
         List<UserProjectItemEntity> userProjectItemEntityList = JsonUtils.jsonToList(JsonUtils.objToJson(projectTemplateItemEntities), UserProjectItemEntity.class);
-        userProjectItemEntityList.stream().forEach(item -> item.setProjectKey(userProjectEntity.getKey()));
+        userProjectItemEntityList.forEach(item -> item.setProjectKey(userProjectEntity.getKey()));
         projectItemService.saveBatch(userProjectItemEntityList);
         return Result.success(userProjectEntity.getKey());
     }
 
 
-
     /**
      * 根据条件查询所有项目
-     *
-     * @param userId
-     * @return
      */
     @Login
     @GetMapping("/user/project/list")
@@ -140,8 +132,6 @@ public class UserProjectController {
 
     /**
      * 查询我的项目分页
-     *
-     * @return
      */
     @Login
     @GetMapping("/user/project/page")
@@ -159,9 +149,6 @@ public class UserProjectController {
 
     /**
      * 查询项目
-     *
-     * @param key
-     * @return
      */
     @GetMapping("/user/project/{key}")
     public Result queryProjectByKey(@PathVariable @NotBlank String key) {
@@ -171,8 +158,6 @@ public class UserProjectController {
 
     /**
      * 发布项目
-     *
-     * @return
      */
     @Login
     @PostMapping("/user/project/publish")
@@ -191,7 +176,6 @@ public class UserProjectController {
      * 停止收集
      *
      * @param request
-     * @return
      */
     @Login
     @PostMapping("/user/project/stop")
@@ -205,7 +189,6 @@ public class UserProjectController {
      * 删除项目
      *
      * @param request
-     * @return
      */
     @Login
     @PostMapping("/user/project/delete")
@@ -224,7 +207,6 @@ public class UserProjectController {
      * 包含项目信息 项目保单项信息 项目主题
      *
      * @param key
-     * @return
      */
     @GetMapping("/user/project/details/{key}")
     public Result queryProjectDetails(@PathVariable @NotBlank String key) {
@@ -240,7 +222,6 @@ public class UserProjectController {
      *
      * @param project
      * @param userId
-     * @return
      */
     @Login
     @PostMapping("/user/project/update")
@@ -256,8 +237,6 @@ public class UserProjectController {
 
     /**
      * 表单项最大Id
-     *
-     * @return
      */
     @Login
     @GetMapping("/user/project/item/max-form-id")
@@ -270,8 +249,6 @@ public class UserProjectController {
     /**
      * 项目表单项查询
      *
-     * @param key
-     * @return
      */
     @GetMapping("/user/project/item/list")
     public Result queryProjectItem(@RequestParam @NotBlank String key) {
@@ -284,7 +261,6 @@ public class UserProjectController {
      * 项目表单项创建
      *
      * @param request
-     * @return
      */
     @Login
     @PostMapping("/user/project/item/create")
@@ -325,7 +301,6 @@ public class UserProjectController {
      * 表单项更新
      *
      * @param request
-     * @return
      */
     @Login
     @PostMapping("/user/project/item/update")
@@ -341,8 +316,6 @@ public class UserProjectController {
     /**
      * 表单项删除
      *
-     * @param request
-     * @return
      */
     @Login
     @PostMapping("/user/project/item/delete")
@@ -359,7 +332,6 @@ public class UserProjectController {
      * 表单项排序
      *
      * @param request
-     * @return
      */
     @Login
     @PostMapping("/user/project/item/sort")
@@ -383,7 +355,6 @@ public class UserProjectController {
      * 项目主题保存
      *
      * @param themeEntity
-     * @return
      */
     @Login
     @PostMapping("/user/project/theme/save")
@@ -402,7 +373,6 @@ public class UserProjectController {
      * 项目主题查询
      *
      * @param projectKey
-     * @return
      */
     @Login
     @GetMapping("/user/project/theme/{key}")
@@ -416,7 +386,6 @@ public class UserProjectController {
      * 项目设置保存
      *
      * @param settingEntity
-     * @return
      */
     @Login
     @PostMapping("/user/project/setting/save")
@@ -435,7 +404,6 @@ public class UserProjectController {
      * 项目设置查询
      *
      * @param projectKey
-     * @return
      */
     @GetMapping("/user/project/setting/{key}")
     public Result querySettingByKey(@PathVariable("key") String projectKey) {
@@ -447,8 +415,6 @@ public class UserProjectController {
 
     /**
      * 当前设置的状态
-     *
-     * @return
      */
     @GetMapping("/user/project/setting-status")
     public Result querySettingStatus(@RequestParam String projectKey, HttpServletRequest request) {
@@ -458,8 +424,6 @@ public class UserProjectController {
 
     /**
      * 填写微信通知二维码
-     *
-     * @return
      */
     @GetMapping("/user/project/wx/notify-qrcode")
     public Result getWxNotifyQrCode(@RequestParam("key") String projectKey) throws WxErrorException {
@@ -473,8 +437,6 @@ public class UserProjectController {
 
     /**
      * 填写微信通知二维码
-     *
-     * @return
      */
     @PostMapping("/user/project/wx/delete/notify-user")
     public Result deleteWxNotifyQrCode(@RequestParam("key") String key, @RequestParam("openId") String openId) {
@@ -485,9 +447,6 @@ public class UserProjectController {
     /**
      * 获取项目微信通知用户
      *
-     * @param projectKey
-     * @param openIdStr
-     * @return
      */
     @GetMapping("/user/project/wx/notify-user")
     public Result getWxNotifyUser(@RequestParam("key") String projectKey, @RequestParam(required = false) String openIdStr) {
@@ -503,8 +462,6 @@ public class UserProjectController {
 
     /**
      * 回收站项目分页
-     *
-     * @return
      */
     @Login
     @GetMapping("/user/project/recycle/page")
@@ -524,8 +481,6 @@ public class UserProjectController {
 
     /**
      * 从回收站中恢复项目
-     *
-     * @return
      */
     @Login
     @PostMapping("/user/project/recycle/restore")
@@ -540,8 +495,6 @@ public class UserProjectController {
 
     /**
      * 从回收站中删除项目
-     *
-     * @return
      */
     @Login
     @PostMapping("/user/project/recycle/delete")
@@ -557,5 +510,28 @@ public class UserProjectController {
         return Result.success(remove);
     }
 
+    /**
+     * 获取发送手机号验证验证码
+     */
+    @GetMapping("/project/phone/code")
+    public Result sendPhoneNumberCode(@RequestParam String phoneNumber) {
+        Validator.validateMobile(phoneNumber, "手机号码不正确");
+        userValidateService.sendPhoneCode(phoneNumber);
+        return Result.success();
+    }
+
+
+    /**
+     * 检查手机号验证码是否正确
+     */
+    @PostMapping("/project/phone/code/check")
+    public Result checkPhoneNumberCode(@RequestBody RetrievePasswordRequest.CheckPhoneCode request) {
+        Validator.validateMobile(request.getPhoneNumber(), "手机号码不正确");
+        ValidatorUtils.validateEntity(request, RegisterAccountRequest.PhoneNumberGroup.class);
+        if (!userValidateService.checkPhoneCode(request.getPhoneNumber(), request.getCode())) {
+            return Result.failed("验证码错误");
+        }
+        return Result.success(request.getPhoneNumber());
+    }
 
 }

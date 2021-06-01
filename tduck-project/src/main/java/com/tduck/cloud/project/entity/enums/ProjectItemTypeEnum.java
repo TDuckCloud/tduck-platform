@@ -41,6 +41,7 @@ public enum ProjectItemTypeEnum {
     PAGINATION("PAGINATION", "分页", PaginationExpandStruct.class),
     DIVIDER("DIVIDER", "分割线", DividerExpandStruct.class),
     PROVINCE_CITY("PROVINCE_CITY", "省市联动", EmptyExpandStruct.class),
+    PHONE_VERIFICATION("PHONE_VERIFICATION", "手机号验证", EmptyExpandStruct.class),
     INPUT_MAP("INPUT_MAP", "地理位置", EmptyExpandStruct.class);
 
     @EnumValue
