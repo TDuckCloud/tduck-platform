@@ -4,7 +4,6 @@ target/
 !**/src/main/**/target/
 !**/src/test/**/target/
 /logs/
-!**/src/main/resources/application-prod1.yml
 ### STS ###
 .apt_generated
 .classpath
