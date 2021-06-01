@@ -64,10 +64,7 @@ public class UserProjectItemEntity extends BaseEntity<UserProjectItemEntity> {
     @TableField(typeHandler = JacksonTypeHandler.class)
     private ItemDefaultValueStruct defaultValue;
 
-    /**
-     * 是否能输入值
-     */
-    private Boolean canInputValue;
+
     /**
      * 是否必填
      */
