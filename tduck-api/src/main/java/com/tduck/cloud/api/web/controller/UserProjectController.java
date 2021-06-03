@@ -1,7 +1,6 @@
 package com.tduck.cloud.api.web.controller;
 
 import cn.hutool.core.bean.BeanUtil;
-import cn.hutool.core.lang.Validator;
 import cn.hutool.core.util.IdUtil;
 import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.core.util.StrUtil;
@@ -9,9 +8,6 @@ import cn.hutool.json.JSONUtil;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.google.common.collect.Sets;
-import com.tduck.cloud.account.request.RegisterAccountRequest;
-import com.tduck.cloud.account.request.RetrievePasswordRequest;
-import com.tduck.cloud.account.service.UserValidateService;
 import com.tduck.cloud.api.annotation.Login;
 import com.tduck.cloud.api.util.HttpUtils;
 import com.tduck.cloud.common.constant.CommonConstants;
@@ -28,6 +24,7 @@ import com.tduck.cloud.project.entity.enums.ProjectSourceTypeEnum;
 import com.tduck.cloud.project.entity.enums.ProjectStatusEnum;
 import com.tduck.cloud.project.entity.struct.ItemDefaultValueStruct;
 import com.tduck.cloud.project.request.OperateProjectItemRequest;
+import com.tduck.cloud.project.request.QueryProjectItemRequest;
 import com.tduck.cloud.project.request.QueryProjectRequest;
 import com.tduck.cloud.project.request.SortProjectItemRequest;
 import com.tduck.cloud.project.service.*;
@@ -63,7 +60,7 @@ import java.util.stream.Collectors;
 @RestController
 @Slf4j
 public class UserProjectController {
-    private final UserValidateService userValidateService;
+
     private final UserProjectService projectService;
     private final UserProjectItemService projectItemService;
     private final UserProjectResultService projectResultService;
@@ -248,11 +245,13 @@ public class UserProjectController {
 
     /**
      * 项目表单项查询
-     *
      */
     @GetMapping("/user/project/item/list")
-    public Result queryProjectItem(@RequestParam @NotBlank String key) {
-        List<UserProjectItemEntity> itemEntityList = projectItemService.listByProjectKey(key);
+    public Result queryProjectItem(QueryProjectItemRequest request) {
+        ValidatorUtils.validateEntity(request);
+        List<UserProjectItemEntity> itemEntityList = projectItemService.list(Wrappers.<UserProjectItemEntity>lambdaQuery()
+                .eq(UserProjectItemEntity::getProjectKey, request.getKey())
+                .eq(ObjectUtil.isNotNull(request.getDisplayType()), UserProjectItemEntity::getDisplayType, request.getDisplayType()));
         return Result.success(itemEntityList);
     }
 
@@ -315,7 +314,6 @@ public class UserProjectController {
 
     /**
      * 表单项删除
-     *
      */
     @Login
     @PostMapping("/user/project/item/delete")
@@ -446,7 +444,6 @@ public class UserProjectController {
 
     /**
      * 获取项目微信通知用户
-     *
      */
     @GetMapping("/user/project/wx/notify-user")
     public Result getWxNotifyUser(@RequestParam("key") String projectKey, @RequestParam(required = false) String openIdStr) {
@@ -510,28 +507,5 @@ public class UserProjectController {
         return Result.success(remove);
     }
 
-    /**
-     * 获取发送手机号验证验证码
-     */
-    @GetMapping("/project/phone/code")
-    public Result sendPhoneNumberCode(@RequestParam String phoneNumber) {
-        Validator.validateMobile(phoneNumber, "手机号码不正确");
-        userValidateService.sendPhoneCode(phoneNumber);
-        return Result.success();
-    }
-
-
-    /**
-     * 检查手机号验证码是否正确
-     */
-    @PostMapping("/project/phone/code/check")
-    public Result checkPhoneNumberCode(@RequestBody RetrievePasswordRequest.CheckPhoneCode request) {
-        Validator.validateMobile(request.getPhoneNumber(), "手机号码不正确");
-        ValidatorUtils.validateEntity(request, RegisterAccountRequest.PhoneNumberGroup.class);
-        if (!userValidateService.checkPhoneCode(request.getPhoneNumber(), request.getCode())) {
-            return Result.failed("验证码错误");
-        }
-        return Result.success(request.getPhoneNumber());
-    }
 
 }
