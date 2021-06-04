@@ -2,7 +2,6 @@ package com.tduck.cloud.common.util;
 
 import cn.hutool.core.convert.Convert;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.*;
 import org.springframework.stereotype.Component;
 
@@ -11,14 +10,19 @@ import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 /**
- * Created by Dell on 23/09/2018.
+ *
+ * @author smalljop
+ * @date 23/09/2018
  */
 @Component
 @Slf4j
 public class RedisUtils {
 
-    @Autowired
-    private RedisTemplate<String, Object> redisTemplate;
+    private final RedisTemplate<String, Object> redisTemplate;
+
+    public RedisUtils(RedisTemplate<String, Object> redisTemplate) {
+        this.redisTemplate = redisTemplate;
+    }
 
     /**
      * 默认过期时长，单位：秒 一天
@@ -28,6 +32,8 @@ public class RedisUtils {
      * 不设置过期时长
      */
     public final static long NOT_EXPIRE = -1;
+
+
 
     /**
      * 写入缓存

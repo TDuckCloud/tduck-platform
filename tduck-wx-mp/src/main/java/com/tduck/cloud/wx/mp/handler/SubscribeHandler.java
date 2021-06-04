@@ -12,13 +12,13 @@ import com.tduck.cloud.wx.mp.event.WxMpUserSubscribeEvent;
 import com.tduck.cloud.wx.mp.handler.scan.ScanStrategyContext;
 import com.tduck.cloud.wx.mp.request.WxMpQrCodeGenRequest;
 import com.tduck.cloud.wx.mp.service.WxMpUserService;
+import lombok.RequiredArgsConstructor;
 import me.chanjar.weixin.common.error.WxErrorException;
 import me.chanjar.weixin.common.session.WxSessionManager;
 import me.chanjar.weixin.mp.api.WxMpService;
 import me.chanjar.weixin.mp.bean.message.WxMpXmlMessage;
 import me.chanjar.weixin.mp.bean.message.WxMpXmlOutMessage;
 import me.chanjar.weixin.mp.bean.result.WxMpUser;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.Map;
@@ -28,18 +28,17 @@ import java.util.Optional;
  * @author Binary Wang(https://github.com/binarywang)
  */
 @Component
+@RequiredArgsConstructor
 public class SubscribeHandler extends AbstractHandler {
 
-    @Autowired
-    private WxMpUserService wxMpUserService;
+    private final WxMpUserService wxMpUserService;
 
-    @Autowired
-    private ScanStrategyContext scanStrategyContext;
+    private final ScanStrategyContext scanStrategyContext;
 
 
-    private final String LOGIN_STR = "login";
+    private  String LOGIN_STR = "login";
 
-    private final String QRSCENE_STR = "qrscene_";
+    private  String QRSCENE_STR = "qrscene_";
 
     @Override
     public WxMpXmlOutMessage handle(WxMpXmlMessage wxMessage,

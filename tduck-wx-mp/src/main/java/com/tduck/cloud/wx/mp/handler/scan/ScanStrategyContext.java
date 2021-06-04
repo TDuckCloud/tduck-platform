@@ -3,6 +3,7 @@ package com.tduck.cloud.wx.mp.handler.scan;
 import cn.hutool.core.util.ObjectUtil;
 import com.tduck.cloud.common.util.JsonUtils;
 import com.tduck.cloud.wx.mp.request.WxMpQrCodeGenRequest;
+import lombok.RequiredArgsConstructor;
 import me.chanjar.weixin.mp.bean.message.WxMpXmlOutMessage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -15,9 +16,9 @@ import java.util.Map;
  * @create : 2020-12-01 17:55
  **/
 @Component
+@RequiredArgsConstructor
 public class ScanStrategyContext {
 
-    @Autowired
     private Map<String, ScanStrategy> scanStrategy;
 
     private static String SCAN_STRATEGY_NAME = "ScanStrategy";

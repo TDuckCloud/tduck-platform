@@ -8,8 +8,8 @@ import com.tduck.cloud.wx.mp.entity.WxMpUserEntity;
 import com.tduck.cloud.wx.mp.request.WxMpQrCodeGenRequest;
 import com.tduck.cloud.wx.mp.service.WxMpUserMsgService;
 import com.tduck.cloud.wx.mp.service.WxMpUserService;
+import lombok.RequiredArgsConstructor;
 import me.chanjar.weixin.mp.bean.message.WxMpXmlOutMessage;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.concurrent.TimeUnit;
@@ -20,14 +20,13 @@ import java.util.concurrent.TimeUnit;
  * @create : 2020-12-01 17:44
  **/
 @Component
+@RequiredArgsConstructor
 public class LoginScanStrategy implements ScanStrategy {
 
-    @Autowired
-    private RedisUtils redisUtils;
-    @Autowired
-    private WxMpUserService wxMpUserService;
-    @Autowired
-    private WxMpUserMsgService wxMpUserMsgService;
+    private final RedisUtils redisUtils;
+    private final WxMpUserService wxMpUserService;
+    private final WxMpUserMsgService wxMpUserMsgService;
+
 
     @Override
     public WxMpXmlOutMessage handle(String appId, String openId, WxMpQrCodeGenRequest request) {

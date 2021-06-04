@@ -4,7 +4,6 @@ import com.tduck.cloud.account.entity.UserEntity;
 import com.tduck.cloud.account.service.UserService;
 import com.tduck.cloud.api.annotation.LoginUser;
 import com.tduck.cloud.api.web.interceptor.AuthorizationInterceptor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.MethodParameter;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.support.WebDataBinderFactory;
@@ -19,8 +18,11 @@ import org.springframework.web.method.support.ModelAndViewContainer;
  */
 @Component
 public class LoginUserHandlerMethodArgumentResolver implements HandlerMethodArgumentResolver {
-    @Autowired
-    private UserService userService;
+    private final UserService userService;
+
+    public LoginUserHandlerMethodArgumentResolver(UserService userService) {
+        this.userService = userService;
+    }
 
     @Override
     public boolean supportsParameter(MethodParameter parameter) {

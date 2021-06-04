@@ -2,7 +2,7 @@ spring:
   application:
     name: tduck-api
   profiles:
-    active: dev
+    active: dev1
   jackson:
     time-zone: GMT+8
     date-format: yyyy-MM-dd HH:mm:ss
@@ -16,7 +16,7 @@ spring:
       max-request-size: 100MB
 
 server:
-  port: 8999
+  port: 8978
   servlet:
     context-path: /tduck-api
 

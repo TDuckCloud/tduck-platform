@@ -42,7 +42,6 @@ import lombok.extern.slf4j.Slf4j;
 import me.chanjar.weixin.common.error.WxErrorException;
 import me.chanjar.weixin.mp.api.WxMpService;
 import me.chanjar.weixin.mp.bean.result.WxMpQrCodeTicket;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
@@ -71,9 +70,8 @@ public class UserProjectController {
     private final ProjectTemplateItemService projectTemplateItemService;
     private final WxMpUserService wxMpUserService;
     private final RedisUtils redisUtils;
+    private final WxMpService wxMpService;
 
-    @Autowired
-    private WxMpService wxMpService;
 
     /**
      * 创建项目

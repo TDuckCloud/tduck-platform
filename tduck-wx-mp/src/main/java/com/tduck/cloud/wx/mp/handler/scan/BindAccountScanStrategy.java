@@ -5,8 +5,8 @@ import com.tduck.cloud.wx.mp.entity.WxMpUserEntity;
 import com.tduck.cloud.wx.mp.request.WxMpQrCodeGenRequest;
 import com.tduck.cloud.wx.mp.service.WxMpUserMsgService;
 import com.tduck.cloud.wx.mp.service.WxMpUserService;
+import lombok.RequiredArgsConstructor;
 import me.chanjar.weixin.mp.bean.message.WxMpXmlOutMessage;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 /**
@@ -15,12 +15,11 @@ import org.springframework.stereotype.Component;
  * @create : 2020-12-01 17:44
  **/
 @Component
+@RequiredArgsConstructor
 public class BindAccountScanStrategy implements ScanStrategy {
 
-    @Autowired
-    private WxMpUserService wxMpUserService;
-    @Autowired
-    private WxMpUserMsgService wxMpUserMsgService;
+    private final WxMpUserService wxMpUserService;
+    private final WxMpUserMsgService wxMpUserMsgService;
 
     @Override
     public WxMpXmlOutMessage handle(String appId, String openId, WxMpQrCodeGenRequest request) {
