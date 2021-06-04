@@ -1,0 +1,64 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/tduck?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC&tinyInt1isBit=false
+    username: root
+    password: root
+    type: com.zaxxer.hikari.HikariDataSource
+    hikari:
+      minimum-idle: 5
+      maximum-pool-size: 15
+      auto-commit: true
+      idle-timeout: 30000
+      pool-name: DatebookHikariCP
+      max-lifetime: 1800000
+      connection-test-query: SELECT 1 FROM DUAL
+  redis:
+    database: 1
+    host: 127.0.0.1
+    port: 6379
+    password:    # 密码（默认为空）
+    timeout: 6000ms  # 连接超时时长（毫秒）
+    jedis:
+      pool:
+        max-active: 1000  # 连接池最大连接数（使用负值表示没有限制）
+        max-wait: -1ms      # 连接池最大阻塞等待时间（使用负值表示没有限制）
+        max-idle: 10      # 连接池中的最大空闲连接
+        min-idle: 5       # 连接池中的最小空闲连接
+  mail:
+    host: smtp.exmail.qq.com # 邮箱smtp
+    username: pr@tduckapp.com # 用户名
+    password: # 授权码
+
+logging:
+  level:
+    com.tduck.cloud: debug
+  config: classpath:logback-spring.xml
+
+platform:
+  oss:
+    ossType: 1 #oss类型
+    endpoint:
+    accessKeyId: # oss key
+    accessKeySecret: #oss 秘钥
+    bucketName: tduck-cloud #
+    domain: https://qiniu.smileyi.top #访问域名
+  sms:
+    secretId: # 腾讯云短信 id
+    secretKey: #腾讯云短信秘钥
+    appId: #腾讯云appId
+    sign: # 腾讯云短信签名
+    validateCodeTemplateId: # 验证码模板ID
+    retrievePwdValidateCodeTemplateId: #找回密码模板ID
+  front:
+    baseUrl: http://localhost:8888/
+    resetPwdUrl: http://localhost:8888/forget/password?code={}&email={}
+    updateEmailUrl: http://localhost:8888/account/validate?type=updateEmail&code={}&email={}
+wx:
+  mp:
+    redis-config-key-prefix: wx
+    configs:
+      - appId: #输入微信公众号的APPId
+        secret: # 微信公众号的秘钥
+        token:  # 微信公众号token
+        aesKey:

@@ -7,29 +7,27 @@ import com.tduck.cloud.wx.mp.entity.WxMpUserEntity;
 import com.tduck.cloud.wx.mp.event.WxMpUserSubscribeEvent;
 import com.tduck.cloud.wx.mp.handler.scan.LoginScanStrategy;
 import com.tduck.cloud.wx.mp.service.WxMpUserService;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Component;
 
 
 /**
  * @author : smalljop
- * @description :
+ * @description : 微信订阅事件处理
  * @create : 2020-12-01 18:37
  **/
-@Component
 @Slf4j
+@Component
+@RequiredArgsConstructor
 public class WxMpUserSubscribeEventHandler {
 
-    @Autowired
     private  UserService userService;
 
-    @Autowired
     private  WxMpUserService wxMpUserService;
 
-    @Autowired
-    private  LoginScanStrategy loginScanStrategy;
+    private final LoginScanStrategy loginScanStrategy;
 
     @EventListener
     public void onWxMpUserSubscribe(WxMpUserSubscribeEvent event) {

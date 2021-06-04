@@ -17,8 +17,8 @@ public class JsonLambdaQueryWrapper<T> extends LambdaQueryWrapper<T> {
      * @param <T>
      * @param condition 条件
      * @param column 列表
-     * @param jsonKey
-     * @param value
+     * @param jsonKey 需查询可以
+     * @param value  等于值
      * @return
      */
     public <T> JsonLambdaQueryWrapper<T> jsonConcat(boolean condition, String column, String jsonKey, Object value) {

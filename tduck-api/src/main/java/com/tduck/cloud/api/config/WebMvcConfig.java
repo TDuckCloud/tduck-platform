@@ -18,30 +18,29 @@ import java.io.File;
 import java.util.List;
 
 /**
+ * web mvc 配置
+ *
  * @author smalljop
  */
 @Configuration
 public class WebMvcConfig implements WebMvcConfigurer {
 
-    @Autowired
-    private OssStorageConfig storageConfig;
-
-    @Autowired
-    private AuthorizationInterceptor authorizationInterceptor;
-
-    @Autowired
-    private NoRepeatSubmitInterceptor noRepeatSubmitInterceptor;
-
-    @Autowired
-    private LoginUserHandlerMethodArgumentResolver loginUserHandlerMethodArgumentResolver;
-
-    //html静态资源   js静态资源    css静态资源
+    /**
+     * html静态资源   js静态资源    css静态资源
+     */
     private final List<String> staticResources = Lists.newArrayList("/**/*.html",
             "/**/*.js",
             "/**/*.css",
             "/**/*.woff",
             "/**/*.ttf");
-
+    @Autowired
+    private OssStorageConfig storageConfig;
+    @Autowired
+    private AuthorizationInterceptor authorizationInterceptor;
+    @Autowired
+    private NoRepeatSubmitInterceptor noRepeatSubmitInterceptor;
+    @Autowired
+    private LoginUserHandlerMethodArgumentResolver loginUserHandlerMethodArgumentResolver;
 
     /**
      * 配置本地文件上传的虚拟路径和静态化的文件生成路径

@@ -23,8 +23,8 @@ import com.tduck.cloud.account.util.NameUtils;
 import com.tduck.cloud.account.vo.LoginUserVO;
 import com.tduck.cloud.common.util.RedisUtils;
 import com.tduck.cloud.common.util.Result;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -35,17 +35,16 @@ import java.time.LocalDateTime;
  * @author smalljop
  * @since 2020-11-10 18:10:43
  */
-@Service("userService")
 @Slf4j
+@Service("userService")
+@RequiredArgsConstructor
 public class UserServiceImpl extends ServiceImpl<UserMapper, UserEntity> implements UserService {
 
 
-    @Autowired
-    private JwtUtils jwtUtils;
-    @Autowired
-    private RedisUtils redisUtils;
-    @Autowired
-    private UserAuthorizeService userAuthorizeService;
+    private final JwtUtils jwtUtils;
+    private final RedisUtils redisUtils;
+    private final UserAuthorizeService userAuthorizeService;
+
 
 
     @Override
@@ -82,7 +81,6 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, UserEntity> impleme
     /**
      * 创建用户
      *
-     * @param userEntity
      */
     private void createUser(UserEntity userEntity) {
         userEntity.setName(NameUtils.getCnName());
@@ -94,7 +92,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, UserEntity> impleme
 
     @Override
     public Result accountLogin(AccountLoginRequest request) {
-        UserEntity userEntity = null;
+        UserEntity userEntity;
         if (ReUtil.isMatch(Validator.EMAIL, request.getAccount())) {
             userEntity = getUserByEmail(request.getAccount());
         } else {
@@ -112,10 +110,6 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, UserEntity> impleme
     /**
      * 获取登录结果
      *
-     * @param userEntity
-     * @param channel
-     * @param requestIp
-     * @return
      */
     @Override
     public LoginUserVO getLoginResult(UserEntity userEntity, AccountChannelEnum channel, String requestIp) {
@@ -145,8 +139,6 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, UserEntity> impleme
 
     /**
      * 根据邮箱获取
-     *
-     * @return
      */
     @Override
     public UserEntity getUserByEmail(final String email) {
