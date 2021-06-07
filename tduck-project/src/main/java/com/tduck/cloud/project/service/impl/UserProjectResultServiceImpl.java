@@ -89,14 +89,24 @@ public class UserProjectResultServiceImpl extends ServiceImpl<UserProjectResultM
         if (CollectionUtil.isEmpty(resultEntityList)) {
             throw new BaseException("此表单无有效反馈，不能导出");
         }
-        List<Map<String, Object>> resultList = resultEntityList.stream().map(item -> {
+            List<Map<String, Object>> resultList = resultEntityList.stream().map(item -> {
             Map<String, Object> processData = item.getProcessData();
-            Iterator<String> iterator = processData.keySet().iterator();
+            Map<String, Object> originalData = item.getOriginalData();
+            Iterator<String> iterator = originalData.keySet().iterator();
             while (iterator.hasNext()) {
                 String key = iterator.next();
                 if (!titleList.stream()
                         .map(ExportProjectResultVO.ExcelHeader::getFieldKey).collect(Collectors.toList()).contains(key)) {
                     iterator.remove();
+                }
+                if (!processData.keySet().contains(key)){//选择题的其他
+                    String  otherField=key+"other";
+                    if (processData.keySet().contains(otherField)){
+                        processData.put(key,processData.get(otherField));
+                        processData.remove(otherField);
+                    }else {
+                        processData.put(key,"");//选了其他但是文本框没有输入
+                    }
                 }
             }
 
