@@ -125,6 +125,18 @@ public class UserProjectResultController {
         IoUtil.close(out);
     }
 
+    /**
+     * 填写附件导出
+     *
+     * @param request
+     * @return
+     */
+    @Login
+    @GetMapping("/download/file")
+    public void downloadProjectResultFile(QueryProjectResultRequest request)  {
+        projectResultService.downloadProjectResultFile(request);
+    }
+
 
     /**
      * 结果分页

@@ -2,7 +2,6 @@ package com.tduck.cloud.wx.mp.service.impl;
 
 import cn.hutool.core.util.StrUtil;
 import com.tduck.cloud.wx.mp.service.WxMpUserMsgService;
-import lombok.RequiredArgsConstructor;
 import me.chanjar.weixin.common.error.WxErrorException;
 import me.chanjar.weixin.mp.api.WxMpService;
 import me.chanjar.weixin.mp.bean.kefu.WxMpKefuMessage;
@@ -16,10 +15,11 @@ import org.springframework.stereotype.Service;
  * @create : 2020-12-02 10:36
  **/
 @Service
-@RequiredArgsConstructor
 public class WxMpUserMsgServiceImpl implements WxMpUserMsgService {
 
-    private final WxMpService wxMpService;
+    @Lazy
+    @Autowired
+    private  WxMpService wxMpService;
 
     @Override
     public void sendKfTextMsg(String appId, String openId, String content) {

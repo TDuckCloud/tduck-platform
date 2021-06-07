@@ -1,8 +1,11 @@
 package com.tduck.cloud.project.service.impl;
 
 import cn.hutool.core.collection.CollectionUtil;
+import cn.hutool.core.io.FileUtil;
+import cn.hutool.core.map.MapUtil;
 import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.core.util.StrUtil;
+import cn.hutool.http.HttpUtil;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
@@ -12,17 +15,21 @@ import com.tduck.cloud.common.entity.BaseEntity;
 import com.tduck.cloud.common.exception.BaseException;
 import com.tduck.cloud.common.util.AddressUtils;
 import com.tduck.cloud.common.util.RedisUtils;
+import com.tduck.cloud.common.util.Result;
 import com.tduck.cloud.project.entity.UserProjectItemEntity;
 import com.tduck.cloud.project.entity.UserProjectResultEntity;
 import com.tduck.cloud.project.entity.enums.ProjectItemTypeEnum;
+import com.tduck.cloud.project.entity.struct.UploadResultStruct;
 import com.tduck.cloud.project.mapper.UserProjectResultMapper;
 import com.tduck.cloud.project.request.QueryProjectResultRequest;
 import com.tduck.cloud.project.service.UserProjectItemService;
 import com.tduck.cloud.project.service.UserProjectResultService;
 import com.tduck.cloud.project.vo.ExportProjectResultVO;
 import lombok.RequiredArgsConstructor;
+import org.springframework.boot.system.ApplicationHome;
 import org.springframework.stereotype.Service;
 
+import java.io.File;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -55,7 +62,7 @@ public class UserProjectResultServiceImpl extends ServiceImpl<UserProjectResultM
     @Override
     public void saveProjectResult(UserProjectResultEntity entity) {
         String projectKey = entity.getProjectKey();
-        entity.setSerialNumber(redisUtils.incr(StrUtil.format(PROJECT_RESULT_NUMBER,projectKey), CommonConstants.ConstantNumber.ONE));
+        entity.setSerialNumber(redisUtils.incr(StrUtil.format(PROJECT_RESULT_NUMBER, projectKey), CommonConstants.ConstantNumber.ONE));
         entity.setSubmitAddress(AddressUtils.getRealAddressByIP(entity.getSubmitRequestIp()));
         this.save(entity);
 
@@ -106,5 +113,43 @@ public class UserProjectResultServiceImpl extends ServiceImpl<UserProjectResultM
         List<ExportProjectResultVO.ExcelHeader> allHeaderList = ExportProjectResultVO.DEFAULT_HEADER_NAME;
         allHeaderList.addAll(titleList);
         return new ExportProjectResultVO(allHeaderList, resultList);
+    }
+
+    /**
+     * 下载项目结果中的附件
+     *
+     * @param request
+     * @return
+     */
+    @Override
+    public Result downloadProjectResultFile(QueryProjectResultRequest request) {
+        List<UserProjectItemEntity> userProjectItemEntityList = userProjectItemService.list(Wrappers.<UserProjectItemEntity>lambdaQuery()
+                .eq(UserProjectItemEntity::getProjectKey, request.getProjectKey())
+                .eq(UserProjectItemEntity::getType, ProjectItemTypeEnum.UPLOAD));
+        String filed = "filed";
+        // 临时下载文件位置
+        ApplicationHome home = new ApplicationHome(getClass());
+        File path = home.getSource();
+        StringBuffer downloadPath = new StringBuffer(path.getParentFile().toString()).append(request.getProjectKey()).append(File.separator);
+        //结果
+        List<UserProjectResultEntity> resultEntityList = this.list(Wrappers.<UserProjectResultEntity>lambdaQuery()
+                .eq(UserProjectResultEntity::getProjectKey, request.getProjectKey())
+                .le(ObjectUtil.isNotNull(request.getEndDateTime()), UserProjectResultEntity::getCreateTime, request.getEndDateTime())
+                .ge(ObjectUtil.isNotNull(request.getBeginDateTime()), UserProjectResultEntity::getCreateTime, request.getBeginDateTime())
+                .orderByDesc(BaseEntity::getCreateTime));
+        resultEntityList.forEach(result -> {
+            userProjectItemEntityList.forEach(item -> {
+                StringBuffer tempDownloadPath = downloadPath.append(item.getFormItemId());
+                UploadResultStruct uploadResult = MapUtil.get(result.getProcessData(), filed + item.getFormItemId(), UploadResultStruct.class);
+                if (CollectionUtil.isNotEmpty(uploadResult.getFiles())) {
+                    uploadResult.getFiles().forEach(ufile -> {
+                        File downFile = FileUtil.file(tempDownloadPath.append(File.separator)
+                                .append(result.getId()).append(File.separator).append(ufile.getFileName()).toString());
+                        HttpUtil.downloadFile(ufile.getUrl(), downFile);
+                    });
+                }
+            });
+        });
+        return null;
     }
 }

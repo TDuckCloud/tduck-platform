@@ -2,6 +2,7 @@ package com.tduck.cloud.project.service;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.tduck.cloud.common.util.Result;
 import com.tduck.cloud.project.entity.UserProjectResultEntity;
 import com.tduck.cloud.project.request.QueryProjectResultRequest;
 import com.tduck.cloud.project.vo.ExportProjectResultVO;
@@ -38,4 +39,12 @@ public interface UserProjectResultService extends IService<UserProjectResultEnti
      * @return
      */
     ExportProjectResultVO exportProjectResult(QueryProjectResultRequest request);
+
+    /**
+     * 下载项目结果中的附件
+     *
+     * @param request
+     * @return
+     */
+    Result downloadProjectResultFile(QueryProjectResultRequest request);
 }
