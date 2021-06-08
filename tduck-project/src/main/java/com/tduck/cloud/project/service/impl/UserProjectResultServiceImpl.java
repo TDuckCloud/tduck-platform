@@ -3,8 +3,8 @@ package com.tduck.cloud.project.service.impl;
 import cn.hutool.core.collection.CollectionUtil;
 import cn.hutool.core.io.FileUtil;
 import cn.hutool.core.map.MapUtil;
-import cn.hutool.core.util.ObjectUtil;
-import cn.hutool.core.util.StrUtil;
+import cn.hutool.core.thread.ThreadUtil;
+import cn.hutool.core.util.*;
 import cn.hutool.http.HttpUtil;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
@@ -14,6 +14,7 @@ import com.tduck.cloud.common.constant.CommonConstants;
 import com.tduck.cloud.common.entity.BaseEntity;
 import com.tduck.cloud.common.exception.BaseException;
 import com.tduck.cloud.common.util.AddressUtils;
+import com.tduck.cloud.common.util.AsyncProcessUtils;
 import com.tduck.cloud.common.util.RedisUtils;
 import com.tduck.cloud.common.util.Result;
 import com.tduck.cloud.project.entity.UserProjectItemEntity;
@@ -25,11 +26,14 @@ import com.tduck.cloud.project.request.QueryProjectResultRequest;
 import com.tduck.cloud.project.service.UserProjectItemService;
 import com.tduck.cloud.project.service.UserProjectResultService;
 import com.tduck.cloud.project.vo.ExportProjectResultVO;
+import com.tduck.cloud.storage.cloud.OssStorageFactory;
+import com.tduck.cloud.storage.util.StorageUtils;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.system.ApplicationHome;
 import org.springframework.stereotype.Service;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -50,7 +54,6 @@ public class UserProjectResultServiceImpl extends ServiceImpl<UserProjectResultM
 
     private final UserProjectItemService userProjectItemService;
     private final RedisUtils redisUtils;
-
 
     /**
      * 需要处理类型
@@ -126,30 +129,53 @@ public class UserProjectResultServiceImpl extends ServiceImpl<UserProjectResultM
         List<UserProjectItemEntity> userProjectItemEntityList = userProjectItemService.list(Wrappers.<UserProjectItemEntity>lambdaQuery()
                 .eq(UserProjectItemEntity::getProjectKey, request.getProjectKey())
                 .eq(UserProjectItemEntity::getType, ProjectItemTypeEnum.UPLOAD));
-        String filed = "filed";
+        String filed = "field";
         // 临时下载文件位置
         ApplicationHome home = new ApplicationHome(getClass());
         File path = home.getSource();
-        StringBuffer downloadPath = new StringBuffer(path.getParentFile().toString()).append(request.getProjectKey()).append(File.separator);
+        String uuid = IdUtil.fastSimpleUUID();
+        StringBuffer downloadPath = new StringBuffer(path.getParentFile().toString()).append(File.separator).append(uuid).append(File.separator);
+        System.out.println(downloadPath);
         //结果
         List<UserProjectResultEntity> resultEntityList = this.list(Wrappers.<UserProjectResultEntity>lambdaQuery()
                 .eq(UserProjectResultEntity::getProjectKey, request.getProjectKey())
                 .le(ObjectUtil.isNotNull(request.getEndDateTime()), UserProjectResultEntity::getCreateTime, request.getEndDateTime())
                 .ge(ObjectUtil.isNotNull(request.getBeginDateTime()), UserProjectResultEntity::getCreateTime, request.getBeginDateTime())
                 .orderByDesc(BaseEntity::getCreateTime));
-        resultEntityList.forEach(result -> {
-            userProjectItemEntityList.forEach(item -> {
-                StringBuffer tempDownloadPath = downloadPath.append(item.getFormItemId());
-                UploadResultStruct uploadResult = MapUtil.get(result.getProcessData(), filed + item.getFormItemId(), UploadResultStruct.class);
-                if (CollectionUtil.isNotEmpty(uploadResult.getFiles())) {
-                    uploadResult.getFiles().forEach(ufile -> {
-                        File downFile = FileUtil.file(tempDownloadPath.append(File.separator)
-                                .append(result.getId()).append(File.separator).append(ufile.getFileName()).toString());
-                        HttpUtil.downloadFile(ufile.getUrl(), downFile);
+        if (CollectionUtil.isEmpty(resultEntityList) || CollectionUtil.isEmpty(userProjectItemEntityList)) {
+            return Result.failed("暂无收集附件，无法下载");
+        }
+
+        ThreadUtil.execAsync(() -> {
+            try {
+                resultEntityList.forEach(result -> {
+                    int index = 0;
+                    userProjectItemEntityList.forEach(item -> {
+                        StringBuffer tempDownloadPath = new StringBuffer(downloadPath).append(item.getFormItemId());
+                        UploadResultStruct uploadResult = MapUtil.get(result.getProcessData(), filed + item.getFormItemId(), UploadResultStruct.class);
+                        if (ObjectUtil.isNotNull(uploadResult) && CollectionUtil.isNotEmpty(uploadResult.getFiles())) {
+                            uploadResult.getFiles().forEach(uFile -> {
+                                if (StrUtil.isNotBlank(uFile.getUrl())) {
+                                    File downFile = FileUtil.file(new StringBuffer(tempDownloadPath).append(File.separator)
+                                            .append(result.getId()).append(CharUtil.DASHED).append(uFile.getFileName()).toString());
+                                    HttpUtil.downloadFile(uFile.getUrl(), downFile);
+                                }
+                            });
+                        }
                     });
-                }
-            });
+                    AsyncProcessUtils.setProcess(uuid, ++index / resultEntityList.size() + 1);
+                });
+                // 压缩上传oss
+                File zip = ZipUtil.zip(downloadPath.toString());
+                String downloadUrl = OssStorageFactory.build().upload(new FileInputStream(zip), StorageUtils.generateFileName("download", ".zip"));
+                AsyncProcessUtils.setProcess(uuid, downloadUrl);
+                //删除临时文件
+                FileUtil.del(zip);
+                FileUtil.del(downloadPath.toString());
+            } catch (Exception e) {
+                log.error("download file", e);
+            }
         });
-        return null;
+        return Result.success(uuid);
     }
 }

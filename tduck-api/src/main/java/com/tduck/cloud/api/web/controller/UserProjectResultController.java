@@ -42,10 +42,11 @@ import static com.tduck.cloud.project.constant.ProjectRedisKeyConstants.PROJECT_
  * @description : 项目
  * @create : 2020-11-18 18:17
  **/
-@RequiredArgsConstructor
-@RestController
-@RequestMapping("/user/project/result")
+
 @Slf4j
+@RestController
+@RequiredArgsConstructor
+@RequestMapping("/user/project/result")
 public class UserProjectResultController {
 
     private final UserProjectService projectService;
@@ -131,10 +132,10 @@ public class UserProjectResultController {
      * @param request
      * @return
      */
-    @Login
+//    @Login
     @GetMapping("/download/file")
-    public void downloadProjectResultFile(QueryProjectResultRequest request)  {
-        projectResultService.downloadProjectResultFile(request);
+    public Result downloadProjectResultFile(QueryProjectResultRequest request) {
+        return projectResultService.downloadProjectResultFile(request);
     }
 
 
@@ -144,8 +145,8 @@ public class UserProjectResultController {
      * @param request
      * @return
      */
-    @GetMapping("/page")
     @Login
+    @GetMapping("/page")
     public Result queryProjectResults(QueryProjectResultRequest request) {
         return Result.success(projectResultService.listByQueryConditions(request));
     }
