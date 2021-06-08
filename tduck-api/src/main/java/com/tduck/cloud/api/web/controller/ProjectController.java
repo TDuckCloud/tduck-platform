@@ -22,9 +22,10 @@ import java.util.List;
  * @description :
  * @create : 2020-11-24 10:13
  **/
-@RequiredArgsConstructor
+
 @RestController
 @RequestMapping("/project/")
+@RequiredArgsConstructor
 public class ProjectController {
 
     private final ProjectThemeService projectThemeService;
