@@ -16,7 +16,7 @@ spring:
       max-request-size: 100MB
 
 server:
-  port: 8978
+  port: 8999
   servlet:
     context-path: /tduck-api
 

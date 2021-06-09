@@ -77,6 +77,7 @@ public class UserProjectResultServiceImpl extends ServiceImpl<UserProjectResultM
                 .eq(UserProjectResultEntity::getProjectKey, request.getProjectKey())
                 .le(ObjectUtil.isNotNull(request.getEndDateTime()), UserProjectResultEntity::getCreateTime, request.getEndDateTime())
                 .ge(ObjectUtil.isNotNull(request.getBeginDateTime()), UserProjectResultEntity::getCreateTime, request.getBeginDateTime())
+
                 .orderByDesc(BaseEntity::getCreateTime));
     }
 

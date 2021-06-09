@@ -37,7 +37,7 @@ public class QueryProjectResultRequest extends PageRequest {
     /**
      * 动态字段
      */
-    private Map<String, Object> expand;
+    private Map<String, Object> extParams;
 
 
 }
