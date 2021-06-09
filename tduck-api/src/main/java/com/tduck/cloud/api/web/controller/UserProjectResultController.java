@@ -77,8 +77,8 @@ public class UserProjectResultController {
      * @param request
      * @return
      */
-    @PostMapping("/create")
     @NoRepeatSubmit
+    @PostMapping("/create")
     public Result createProjectResult(@RequestBody UserProjectResultEntity entity, HttpServletRequest request) {
         Result<UserProjectSettingEntity> userProjectSettingStatus = userProjectSettingService.getUserProjectSettingStatus(entity.getProjectKey(), HttpUtils.getIpAddr(request));
         if (StrUtil.isNotBlank(userProjectSettingStatus.getMsg())) {
@@ -132,7 +132,7 @@ public class UserProjectResultController {
      * @param request
      * @return
      */
-//    @Login
+    @Login
     @GetMapping("/download/file")
     public Result downloadProjectResultFile(QueryProjectResultRequest request) {
         return projectResultService.downloadProjectResultFile(request);
