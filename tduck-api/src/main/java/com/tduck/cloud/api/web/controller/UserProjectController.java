@@ -277,7 +277,7 @@ public class UserProjectController {
      */
     private UserProjectItemEntity formatProjectItem(OperateProjectItemRequest request) {
         //把Map转换成Bean 在转换成Map 去除不在bean字段列表的多字段
-        Object bean = BeanUtil.fillBeanWithMap(request.getExpand(), request.getType().getExpandClass(),false);
+        Object bean = BeanUtil.toBeanIgnoreCase(request.getExpand(), request.getType().getExpandClass(),false);
         UserProjectItemEntity entity = new UserProjectItemEntity();
         BeanUtil.copyProperties(request, entity, UserProjectItemEntity.Fields.defaultValue);
         entity.setExpand(BeanUtil.beanToMap(bean));

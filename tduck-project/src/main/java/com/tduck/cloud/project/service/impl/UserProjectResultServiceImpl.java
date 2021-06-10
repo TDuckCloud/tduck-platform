@@ -6,6 +6,7 @@ import cn.hutool.core.map.MapUtil;
 import cn.hutool.core.thread.ThreadUtil;
 import cn.hutool.core.util.*;
 import cn.hutool.http.HttpUtil;
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
@@ -73,12 +74,23 @@ public class UserProjectResultServiceImpl extends ServiceImpl<UserProjectResultM
 
     @Override
     public Page listByQueryConditions(QueryProjectResultRequest request) {
-        return this.page(request.toMybatisPage(), Wrappers.<UserProjectResultEntity>lambdaQuery()
+        LambdaQueryWrapper<UserProjectResultEntity> lambdaQueryWrapper = Wrappers.<UserProjectResultEntity>lambdaQuery()
                 .eq(UserProjectResultEntity::getProjectKey, request.getProjectKey())
                 .le(ObjectUtil.isNotNull(request.getEndDateTime()), UserProjectResultEntity::getCreateTime, request.getEndDateTime())
                 .ge(ObjectUtil.isNotNull(request.getBeginDateTime()), UserProjectResultEntity::getCreateTime, request.getBeginDateTime())
-
-                .orderByDesc(BaseEntity::getCreateTime));
+                .orderByDesc(BaseEntity::getCreateTime);
+        if (ObjectUtil.isNotNull(request.getExtParamsMap())) {
+            request.getExtParamsMap().keySet().forEach(item -> {
+                String comparison = MapUtil.getStr(request.getExtComparisonsMap(), item);
+                QueryProjectResultRequest.QueryComparison queryComparison = QueryProjectResultRequest.QueryComparison.get(comparison);
+                Object value = request.getExtParamsMap().get(item);
+                if (queryComparison == QueryProjectResultRequest.QueryComparison.LIKE) {
+                    value = "'%" + value + "%'";
+                }
+                lambdaQueryWrapper.apply(StrUtil.format("original_data ->'$.{}' {} {} ", item, queryComparison.getKey(), value));
+            });
+        }
+        return this.page(request.toMybatisPage(), lambdaQueryWrapper);
     }
 
     @Override
