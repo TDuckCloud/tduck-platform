@@ -6,6 +6,7 @@ import com.tduck.cloud.common.entity.PageRequest;
 import com.tduck.cloud.common.util.JsonUtils;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.experimental.FieldNameConstants;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -60,6 +61,7 @@ public class QueryProjectResultRequest extends PageRequest {
         return null;
     }
 
+    @Getter
     @AllArgsConstructor
     public enum QueryComparison {
         EQ("eq", "="),
