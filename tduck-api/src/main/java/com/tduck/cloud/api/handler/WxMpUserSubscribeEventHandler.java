@@ -23,9 +23,9 @@ import org.springframework.stereotype.Component;
 @RequiredArgsConstructor
 public class WxMpUserSubscribeEventHandler {
 
-    private  UserService userService;
+    private final UserService userService;
 
-    private  WxMpUserService wxMpUserService;
+    private final WxMpUserService wxMpUserService;
 
     private final LoginScanStrategy loginScanStrategy;
 
