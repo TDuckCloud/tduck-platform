@@ -93,7 +93,7 @@ public class UserProjectController {
      * 从模板创建项目
      */
     @Login
-    @PostMapping("/user/project/template/create/")
+    @PostMapping("/user/project/use-template/create")
     public Result createProjectByTemplate(@RequestBody ProjectTemplateEntity request, @RequestAttribute Long userId) {
         String templateKey = request.getKey();
         ProjectTemplateEntity projectTemplateEntity = projectTemplateService.getByKey(templateKey);
@@ -110,6 +110,30 @@ public class UserProjectController {
         userProjectItemEntityList.forEach(item -> item.setProjectKey(userProjectEntity.getKey()));
         projectItemService.saveBatch(userProjectItemEntityList);
         return Result.success(userProjectEntity.getKey());
+    }
+
+
+    /**
+     * 项目另存为为模板
+     *
+     * @param request
+     * @param userId
+     * @return
+     */
+    @Login
+    @PostMapping("/user/project/template/save")
+    public Result saveAsProjectTemplate(@RequestBody UserProjectEntity request, @RequestAttribute Long userId) {
+        UserProjectEntity projectEntity = projectService.getByKey(request.getKey());
+        List<UserProjectItemEntity> itemEntityList = projectItemService.listByProjectKey(request.getKey());
+        ProjectTemplateEntity projectTemplateEntity = new ProjectTemplateEntity();
+        BeanUtil.copyProperties(projectEntity, projectTemplateEntity, UserProjectEntity.Fields.status);
+        projectTemplateEntity.setKey(IdUtil.fastSimpleUUID());
+        projectTemplateEntity.setCategoryId(CommonConstants.ConstantNumber.FOUR.longValue());
+        projectTemplateService.save(projectTemplateEntity);
+        List<ProjectTemplateItemEntity> projectTemplateItemList = JsonUtils.jsonToList(JsonUtils.objToJson(itemEntityList), ProjectTemplateItemEntity.class);
+        projectTemplateItemList.forEach(item -> item.setProjectKey(projectTemplateEntity.getKey()));
+        projectTemplateItemService.saveBatch(projectTemplateItemList);
+        return Result.success(projectTemplateEntity.getKey());
     }
 
 
@@ -277,7 +301,7 @@ public class UserProjectController {
      */
     private UserProjectItemEntity formatProjectItem(OperateProjectItemRequest request) {
         //把Map转换成Bean 在转换成Map 去除不在bean字段列表的多字段
-        Object bean = BeanUtil.toBeanIgnoreCase(request.getExpand(), request.getType().getExpandClass(),false);
+        Object bean = BeanUtil.toBeanIgnoreCase(request.getExpand(), request.getType().getExpandClass(), false);
         UserProjectItemEntity entity = new UserProjectItemEntity();
         BeanUtil.copyProperties(request, entity, UserProjectItemEntity.Fields.defaultValue);
         entity.setExpand(BeanUtil.beanToMap(bean));
@@ -504,8 +528,6 @@ public class UserProjectController {
         }
         return Result.success(remove);
     }
-
-
 
 
 }

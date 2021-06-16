@@ -58,6 +58,7 @@ public class ProjectTemplateController {
     }
 
 
+
     /**
      * 分页查询项目分类
      *
@@ -99,7 +100,7 @@ public class ProjectTemplateController {
     }
 
     /**
-     * 项目表单项创建
+     * 项目模板表单项创建
      *
      * @param request
      * @return
@@ -108,7 +109,7 @@ public class ProjectTemplateController {
     public Result createProjectTemplateItem(@RequestBody OperateProjectItemRequest request) {
         ValidatorUtils.validateEntity(request, AddGroup.class);
         //把Map转换成Bean 在转换成Map 去除不在bean字段列表的多字段
-        Object bean = BeanUtil.mapToBean(request.getExpand(), request.getType().getExpandClass(), true);
+        Object bean = BeanUtil.toBeanIgnoreCase(request.getExpand(), request.getType().getExpandClass(), true);
         ProjectTemplateItemEntity entity = new ProjectTemplateItemEntity();
         BeanUtil.copyProperties(request, entity, UserProjectItemEntity.Fields.defaultValue);
         entity.setExpand(BeanUtil.beanToMap(bean));

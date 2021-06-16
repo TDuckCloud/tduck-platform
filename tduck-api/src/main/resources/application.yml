@@ -48,7 +48,7 @@ platform:
   request:
     trace-log: false
   sign:
-    enable: true
+    enable: false
     secret: 916lWh2WMcbSWiHv
     ignore-urls:
       - /tduck-api/webjars/**
