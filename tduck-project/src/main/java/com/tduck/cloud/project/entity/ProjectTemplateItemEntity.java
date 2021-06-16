@@ -48,6 +48,12 @@ public class ProjectTemplateItemEntity extends BaseEntity<ProjectTemplateItemEnt
      */
     private Boolean showLabel;
 
+
+    /**
+     * 展示类型组件
+     */
+    @TableField("is_display_type")
+    private Boolean displayType;
     /**
      * 表单项默认值
      */
