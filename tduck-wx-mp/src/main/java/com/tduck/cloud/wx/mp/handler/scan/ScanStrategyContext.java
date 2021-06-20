@@ -19,7 +19,7 @@ import java.util.Map;
 @RequiredArgsConstructor
 public class ScanStrategyContext {
 
-    private Map<String, ScanStrategy> scanStrategy;
+    private final Map<String, ScanStrategy> scanStrategy;
 
     private static String SCAN_STRATEGY_NAME = "ScanStrategy";
 
