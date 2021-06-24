@@ -52,5 +52,6 @@ V2更新日志：https://doc.tduckapp.com/log/
 |  https://gitee.com/TDuckApp/tduck-platform   |  https://gitee.com/TDuckApp/tduck-front   |
 |  https://github.com/TDuckCloud/tduck-platform   |  https://github.com/TDuckCloud/tduck-platform   |
 
+感谢：
 
-
+![输入图片说明](https://images.gitee.com/uploads/images/2021/0624/105039_de3beb64_1495174.png "公司logo应用规范 -07.png")
