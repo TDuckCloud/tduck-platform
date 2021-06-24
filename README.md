@@ -54,4 +54,4 @@ V2更新日志：https://doc.tduckapp.com/log/
 
 感谢：
 
-![输入图片说明](https://images.gitee.com/uploads/images/2021/0624/105039_de3beb64_1495174.png "公司logo应用规范 -07.png" =200x200 )
+![输入图片说明](https://images.gitee.com/uploads/images/2021/0624/105039_de3beb64_1495174.png "公司logo应用规范 -07.png" )
