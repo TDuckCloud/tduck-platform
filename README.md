@@ -42,6 +42,8 @@ http://demo.tduckapp.com/
 
 V2更新日志：https://doc.tduckapp.com/log/
 
+### 加入社群
+  <img alt="logo" src="https://images.gitee.com/uploads/images/2021/0625/000242_95748ea0_1674451.png" style="margin-bottom: 0px;" width="230px">
 
 开源不易如果喜欢请给作者 Star 鼓励 👇***
 
