@@ -54,10 +54,8 @@ V2更新日志：https://doc.tduckapp.com/log/
 |  https://gitee.com/TDuckApp/tduck-platform   |  https://gitee.com/TDuckApp/tduck-front   |
 |  https://github.com/TDuckCloud/tduck-platform   |  https://github.com/TDuckCloud/tduck-platform   |
 
-感谢：
-
-
-  <img alt="logo" src="https://images.gitee.com/uploads/images/2021/0624/105039_de3beb64_1495174.png" style="margin-bottom: 0px;" width="230px">
+感谢：<img alt="logo" src="https://images.gitee.com/uploads/images/2021/0624/105039_de3beb64_1495174.png" style="margin-bottom: 0px;" width="230px">
+提供云服务器资源！
 
 ### “项目背景”
 目前市面上的表单平台虽然功能强大，但是部分业务组件或者额外收取存储等费用，且费用较高，在数据隐私性较强且有特殊表单需求的场景下无法满足业务需求，
@@ -86,15 +84,11 @@ V2更新日志：https://doc.tduckapp.com/log/
 - 【验证码】验证逻辑重构，支持验证码开关
 - 【微信功能】 微信功能增加开关配置，可配置关闭微信功能
 - 【代码优化】对前后端代码进行部分优化，结构调整
-
 ![输入图片说明](https://images.gitee.com/uploads/images/2021/0625/000932_eb5728c8_1674451.png "屏幕截图.png")
-
 ### “文档支持”
 新的文档平台，后续会不断完善文档，有需要完善的内容可以在GItee提issues反馈，收到反馈我们将第一时间调整，当然有想共享文档的也欢迎提Pr。
 
 ![输入图片说明](https://images.gitee.com/uploads/images/2021/0625/001013_eb945bce_1674451.png "屏幕截图.png")
-
-
 ### “更新说明”
 本项目非商业产品，不提供兼容更新，v2中存在破坏性更新，对v1中的部分数据存在无法兼容。
 
