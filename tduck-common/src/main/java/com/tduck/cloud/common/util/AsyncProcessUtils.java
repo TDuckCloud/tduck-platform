@@ -17,7 +17,7 @@ public class AsyncProcessUtils {
     /**
      * 最大完成率
      */
-    private final int MAX_PROCESS_RATE = 100;
+    private final static int MAX_PROCESS_RATE = 100;
     /**
      * 处理中任务 5h过期
      * timeout – 过期时长，单位：毫秒
