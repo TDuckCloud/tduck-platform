@@ -31,7 +31,7 @@ Tduck 填鸭：是基于B/S架构的一款开源的表单在线收集系统，�
 
 
 ## 在线体验
-![首页](https://images.gitee.com/uploads/images/2021/0120/121740_1fcdc627_1674451.png "屏幕截图.png")
+![首页](https://images.gitee.com/uploads/images/2021/0624/103418_43f3b04e_1495174.png "屏幕截图.png")
 
 演示地址：
 http://demo.tduckapp.com/
@@ -39,6 +39,7 @@ http://demo.tduckapp.com/
 演示账号/密码：可注册登录或使用测试账号  test@tduck.com/12345678
   
 文档地址：http://demo.tduckapp.com/
+
 V2更新日志：https://doc.tduckapp.com/log/
 
 
