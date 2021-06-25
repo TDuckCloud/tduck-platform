@@ -19,6 +19,7 @@ import com.tduck.cloud.project.service.UserProjectService;
 import com.tduck.cloud.project.service.UserProjectSettingService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 import java.time.LocalDateTime;
 import java.util.Optional;
@@ -53,18 +54,18 @@ public class UserProjectSettingServiceImpl extends ServiceImpl<UserProjectSettin
         LocalDateTime now = LocalDateTime.now();
         //时间未开始
         if (timedCollectionBeginTime.isPresent() && timedCollectionBeginTime.get().isAfter(now)) {
-            return Result.success(null, setting.getTimedNotEnabledPromptText());
+            return Result.success(null, StringUtils.isEmpty(setting.getTimedNotEnabledPromptText())?"项目时间末开始。":setting.getTimedNotEnabledPromptText());
         }
         //时间已经结束
         if (timedCollectionEndTime.isPresent() && timedCollectionEndTime.get().isBefore(now)) {
-            return Result.success(null, setting.getTimedDeactivatePromptText());
+            return Result.success(null, StringUtils.isEmpty(setting.getTimedDeactivatePromptText())?"项目时间已结束。":setting.getTimedDeactivatePromptText());
         }
         //收集数量达到
         Integer timedQuantitativeQuantity = setting.getTimedQuantitativeQuantity();
         if (Optional.ofNullable(timedQuantitativeQuantity).isPresent() && 0 != timedQuantitativeQuantity) {
             int resultCount = userProjectResultService.count(Wrappers.<UserProjectResultEntity>lambdaQuery().eq(UserProjectResultEntity::getProjectKey, projectKey));
             if (resultCount >= timedQuantitativeQuantity) {
-                return Result.success(setting, setting.getTimedEndPromptText());
+                return Result.success(setting, StringUtils.isEmpty(setting.getTimedEndPromptText())?"收集数量已达到。":setting.getTimedEndPromptText());
             }
         }
         //每个人只需填写一次 根据IP判断
