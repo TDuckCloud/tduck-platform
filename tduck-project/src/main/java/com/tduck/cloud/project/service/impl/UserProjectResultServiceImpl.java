@@ -35,10 +35,7 @@ import org.springframework.stereotype.Service;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 import static com.tduck.cloud.project.constant.ProjectRedisKeyConstants.PROJECT_RESULT_NUMBER;
@@ -126,7 +123,8 @@ public class UserProjectResultServiceImpl extends ServiceImpl<UserProjectResultM
             processData.put(UserProjectResultEntity.Fields.submitAddress, item.getSubmitAddress());
             return processData;
         }).collect(Collectors.toList());
-        List<ExportProjectResultVO.ExcelHeader> allHeaderList = ExportProjectResultVO.DEFAULT_HEADER_NAME;
+        List<ExportProjectResultVO.ExcelHeader> allHeaderList = new ArrayList<>();
+        allHeaderList.addAll(ExportProjectResultVO.DEFAULT_HEADER_NAME);
         allHeaderList.addAll(titleList);
         return new ExportProjectResultVO(allHeaderList, resultList);
     }
