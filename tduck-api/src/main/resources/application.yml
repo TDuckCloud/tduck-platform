@@ -48,7 +48,7 @@ platform:
   request:
     trace-log: true
   sign:
-    enable: false
+    enable: true
     secret: 916lWh2WMcbSWiHv
     ignore-urls:
       - /tduck-api/webjars/**
@@ -62,6 +62,7 @@ platform:
       - /tduck-api/user/file/upload
       - /tduck-api/project/file/upload/**
       - /tduck-api/wx/mp/portal/**
+      - /tduck-api/u/**
       - /**/*.js
       - /**/*.css
       - /**/*.png
