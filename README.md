@@ -36,7 +36,7 @@ Tduck 填鸭：是基于B/S架构的一款开源的表单在线收集系统，�
 演示地址：
 http://demo.tduckapp.com/
 
-演示账号/密码：可注册登录或使用测试账号  test@tduck.com/12345678
+演示账号/密码：扫码注册登录
 
 文档地址：http://demo.tduckapp.com/
 
