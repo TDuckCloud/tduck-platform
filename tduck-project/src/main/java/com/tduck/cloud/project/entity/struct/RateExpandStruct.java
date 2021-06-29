@@ -14,6 +14,22 @@ public class RateExpandStruct {
      * 最大分数
      */
     private Integer max;
+    /**
+     * 允许半选
+     */
+    private Boolean allowHalf;
+    /**
+     * 辅助文字
+     */
+    private Boolean showText;
+    /**
+     * 显示分数
+     */
+    private Boolean showScore;
+    /**
+     * 禁用
+     */
+    private Boolean disabled;
 
 
 }
