@@ -46,4 +46,8 @@ public class UploadExpandStruct {
      * 是否可以多选
      */
     private boolean multiple;
+    /**
+     * 允许上传的文件类型
+     */
+    private String accept;
 }
