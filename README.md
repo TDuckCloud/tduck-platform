@@ -47,7 +47,9 @@ V2更新日志：https://doc.tduckapp.com/log/
 ### 加入社群
   <img alt="logo" src="https://images.gitee.com/uploads/images/2021/0625/000242_95748ea0_1674451.png" style="margin-bottom: 0px;" width="230px">
 
-开源不易如果喜欢请给作者 Star 鼓励 👇***
+- 获取《使用Docker运行Tduck》教程请加入社群获取
+- 获取《tduck-纯小白部署教程》请加入社群获取
+- 开源不易如果喜欢请给作者 Star 鼓励
 
 #### 项目源码
 
