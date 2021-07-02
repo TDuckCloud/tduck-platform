@@ -46,4 +46,12 @@ public interface ProjectDashboardService {
      * @return
      */
     List<ProjectReportVO.Source> projectReportSource(String projectKey);
+
+
+    /**
+     *
+     * @param projectKey
+     * @return
+     */
+    List<ProjectReportVO.Analysis> projectReportAnalysis(String projectKey);
 }

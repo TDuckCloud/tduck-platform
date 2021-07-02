@@ -5,6 +5,9 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+import java.util.Map;
+
 /**
  * @author : smalljop
  * @description : 项目报表
@@ -76,5 +79,27 @@ public class ProjectReportVO {
          */
         private Integer count;
 
+    }
+
+
+    /**
+     * 反馈数据分析
+     */
+    @Data
+    @AllArgsConstructor
+    @NoArgsConstructor
+    public static class Analysis {
+        /** 类型 */
+        private String type;
+        /** 题目名称 */
+        private String label;
+        /** 标签集 */
+        private List<String> fieldName;
+        /** 数据集 */
+        private List<Integer> data;
+        /** 合集 */
+        private Map map;
+        /** 图表类型 */
+        private String chartType = "pie";
     }
 }

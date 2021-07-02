@@ -8,6 +8,8 @@ import com.tduck.cloud.common.util.Result;
 import com.tduck.cloud.project.entity.UserProjectResultEntity;
 import com.tduck.cloud.project.service.ProjectDashboardService;
 import com.tduck.cloud.project.service.UserProjectResultService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -24,6 +26,7 @@ import static com.tduck.cloud.project.constant.ProjectRedisKeyConstants.PROJECT_
 
 @RestController
 @RequiredArgsConstructor
+@Api(tags = "Dashboard")
 public class ProjectDashboardController {
 
     private final RedisUtils redisUtils;
@@ -82,5 +85,14 @@ public class ProjectDashboardController {
     @GetMapping("/user/project/report/source")
     public Result projectReportSource(String projectKey) {
         return Result.success(projectDashboardService.projectReportSource(projectKey));
+    }
+
+    /**
+     * 数据分析
+     */
+    @Login
+    @GetMapping("/user/project/report/analysis")
+    public Result projectReportAnalysis(String projectKey){
+        return Result.success(projectDashboardService.projectReportAnalysis(projectKey));
     }
 }
