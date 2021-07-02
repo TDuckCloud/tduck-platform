@@ -4,14 +4,13 @@ import cn.hutool.cache.CacheUtil;
 import cn.hutool.cache.impl.TimedCache;
 import cn.hutool.core.util.StrUtil;
 import lombok.AllArgsConstructor;
-import lombok.experimental.UtilityClass;
 
 /**
  * @author : smalljop
  * @description : 异步处理进度 像导出文件等异步耗时操作
  * @create :  2021/06/08 15:35
  **/
-@UtilityClass
+
 public class AsyncProcessUtils {
 
     /**
@@ -22,7 +21,7 @@ public class AsyncProcessUtils {
      * 处理中任务 5h过期
      * timeout – 过期时长，单位：毫秒
      */
-    TimedCache<String, Process> processMap = CacheUtil.newTimedCache(5 * 60 * 60 * 1000);
+    static TimedCache<String, Process> processMap = CacheUtil.newTimedCache(5 * 60 * 60 * 1000);
 
 
     static {
@@ -36,7 +35,7 @@ public class AsyncProcessUtils {
      * @param key
      * @param rate
      */
-    public void setProcess(String key, int rate) {
+    public static void setProcess(String key, int rate) {
         processMap.put(key, new Process(rate * 100, StrUtil.EMPTY));
     }
 
@@ -45,7 +44,7 @@ public class AsyncProcessUtils {
      *
      * @param key
      */
-    public void setProcess(String key, String url) {
+    public static void setProcess(String key, String url) {
         processMap.put(key, new Process(MAX_PROCESS_RATE, url));
     }
 
@@ -54,13 +53,13 @@ public class AsyncProcessUtils {
      *
      * @param key
      */
-    public Process getProcess(String key) {
+    public static Process getProcess(String key) {
         return processMap.get(key);
     }
 
 
     @AllArgsConstructor
-    public class Process {
+    public static class Process {
         /**
          * 完成进度
          */
