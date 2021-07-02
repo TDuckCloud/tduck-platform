@@ -105,7 +105,7 @@ Tduck诞生非常有趣，不经意之间的一个想法，一步步实现至今
 Tduck永远珍惜每一位用户，重视每一个issues。
 感谢对Tduck团队的支持，以及大家对v2期盼与鼓励。
 
-### ChangeLog
+### ChangeLog 持续更新中 :sparkles: 
 
 增加单选/多选题型统计图 2021-07-02
 ![输入图片说明](https://images.gitee.com/uploads/images/2021/0702/180333_6991a4bf_1674451.png "屏幕截图.png")
