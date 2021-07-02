@@ -22,7 +22,6 @@ import org.springframework.web.servlet.NoHandlerFoundException;
 public class BaseExceptionHandler {
 
 
-
     @ExceptionHandler(NoHandlerFoundException.class)
     public Result handlerNoFoundException(NoHandlerFoundException e) {
         log.error(e.getMessage(), e);
@@ -68,10 +67,9 @@ public class BaseExceptionHandler {
 
 
 
-
     @ExceptionHandler(Exception.class)
     public Result handleException(Exception e) {
         log.error(e.getMessage(), e);
-        return Result.failed();
+        return Result.failed(e.getMessage());
     }
 }
