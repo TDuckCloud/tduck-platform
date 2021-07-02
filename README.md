@@ -1,30 +1,10 @@
 <p></p>
 <p></p>
 <p align="left">
-  <img alt="logo" src="https://images.gitee.com/uploads/images/2021/0120/114533_b7f16f5b_1674451.png" width="130" style="margin-bottom: 0px;">
+  <img alt="logo" src="https://doc.tduckapp.com/img/banner.png" style="margin-bottom: 0px;">
 </p>
 <h2 align="left">Tduck 填鸭 —— 表单收集器</h2>
 
-# 前言
-### 各位老铁，感谢您的关注。
-- Tduck项目上线时间不足一年，还有许多地方需要打磨；
-- 由于不是专职做开源，更新速度相对缓慢，但是一直都在不停的迭代（加班打码...）
-- 遇到问题可以进群咨询一下已经完成部署的大佬，并且在部署时参照文档进行部署；
-- 由于涉及到微信、QQ登录需要准备相应账号；
-- V2版本正在规划开发中，全新UI，更多功能；欢迎有兴趣有时间的有实力的朋友加入团队（前端/设计），有想法请私聊~
-- 详情请见：[部署文档](https://gitee.com/TDuckApp/tduck-platform/wikis/%E6%9C%AC%E5%9C%B0%E8%BF%90%E8%A1%8C?sort_id=3681729)
-### TDuck 使用 Apache License 2.0 协议，源代码完全开源，无商业限制。 开源不易如果喜欢请给作者 Star 鼓励  :pray: 
-
-
-![ ](https://img.shields.io/:license-apache-blue.svg)
-![ ](https://img.shields.io/badge/JDK-1.8+-red.svg)
-![ ](https://img.shields.io/badge/BY-SpringBoot-green)
-![ ](https://img.shields.io/badge/front-vue%2Belement--ui-blue)
-[![star](https://gitee.com/TDuckApp/tduck-platform/badge/star.svg?theme=white)](https://gitee.com/TDuckApp/tduck-platform/stargazers)
-### 联系作者/加入社群
-<img alt="群聊" src="https://images.gitee.com/uploads/images/2021/0513/171259_1ef11014_1674451.png " width="240" style="margin-bottom: 0px;">
-
-<p></p>
 
 ### 平台简介
 
@@ -51,101 +31,79 @@ Tduck 填鸭：是基于B/S架构的一款开源的表单在线收集系统，�
 
 
 ## 在线体验
-![首页](https://images.gitee.com/uploads/images/2021/0120/121740_1fcdc627_1674451.png "屏幕截图.png")
+![首页](https://images.gitee.com/uploads/images/2021/0624/103418_43f3b04e_1495174.png "屏幕截图.png")
 
-演示地址：
- https://tduck.smileyi.top
+### 演示环境&详细文档👮‍♀️
+- 演示地址：http://demo.tduckapp.com/
+- 演示账号/密码：扫码注册登录
+- 文档地址：http://demo.tduckapp.com/
+- V2更新日志：https://doc.tduckapp.com/log/
+- 部署默认账号： test@tduck.com/12345678
+- 获取《使用Docker运行Tduck》教程请加入社群获取
+- 获取《tduck-纯小白部署教程》请加入社群获取
+- 开源不易如果喜欢请给作者 Star 鼓励
 
-演示账号/密码：可注册登录或使用测试账号  test@tduck.com/12345678
-
-## 技术体系
-
-### 服务端
-
-
-```
-- SpringBoot 
-- Mybatis-Plus
-- Lombok
-- Hutool
-- Guava
-```
-
-
-### 客户端
-
-```
-- Vue2
-- ElementUI
-- Echarts
-- Axios
-- nprogress
-```
-
-
-
-### 后端项目结构
-
--  tduck-common 通用模块
--  tduck-account 账号模块
--  tduck-storage 存储模块
--  tduck-project 项目模块
--  tduck-wx-mp  微信公众号模块
--  tduck-api 客户端API
-
-
-
-### 快速启动
-
-
-1. 配置最小开发环境：
-
-   * [MySQL5.7或以上](https://dev.mysql.com/downloads/mysql/)
-   * [JDK1.8或以上](http://www.oracle.com/technetwork/java/javase/overview/index.html)
-   * [Maven](https://maven.apache.org/download.cgi)
-   * [Nodejs](https://nodejs.org/en/download/)
-
-2. 创建一个tduck的数据库，并执行项目目录下doc/tduck.sql文件
-
-3. 启动后端服务
-
-   打开命令行，输入以下命令
-
-   ```bash
-   mvn clean install -DskipTests
-   cd tduck-platform/tduck-api
-   mvn clean package -DskipTests
-   java -Dfile.encoding=UTF-8 -jar target/tduck-api.jar
-   ```
-
-4. 启动管理后台前端
-
-   打开命令行，输入以下命令
-
-   ```bash
-   npm install -g cnpm --registry=https://registry.npm.taobao.org
-   cd tduck-front
-   cnpm install
-   cnpm run serve
-   ```
-
-   此时，浏览器打开，输入网址`http://localhost:8888`, 进入页面。
-
+### 加入社群
+  <img alt="logo" src="https://images.gitee.com/uploads/images/2021/0625/000242_95748ea0_1674451.png" style="margin-bottom: 0px;" width="230px">
 
 #### 项目源码
 
 |   后端源码  |   前端源码  |
 |--- | --- |
 |  https://gitee.com/TDuckApp/tduck-platform   |  https://gitee.com/TDuckApp/tduck-front   |
+|  https://github.com/TDuckCloud/tduck-platform   |  https://github.com/TDuckCloud/tduck-platform   |
 
-## 项目规划
-![tduck登录页](https://images.gitee.com/uploads/images/2021/0112/124009_1573a7c5_1674451.png "屏幕截图.png")
-![首页](https://images.gitee.com/uploads/images/2021/0112/124033_27eb486e_1674451.png "屏幕截图.png")
-![我的表单](https://images.gitee.com/uploads/images/2021/0112/124102_c1615270_1674451.png "屏幕截图.png")
-![自定义编辑](https://images.gitee.com/uploads/images/2021/0112/124136_db03b4ce_1674451.png "屏幕截图.png")
-![个人中心](https://images.gitee.com/uploads/images/2021/0308/141425_b5cf7846_1674451.png "微信截图_20210308141340.png")
-目前完成框架，细节正在不断完善中，欢迎提出更多意见~
+感谢：<img alt="logo" src="https://images.gitee.com/uploads/images/2021/0624/105039_de3beb64_1495174.png" style="margin-bottom: 0px;" width="230px">
+提供云服务器资源！
 
+### “项目背景”
+目前市面上的表单平台虽然功能强大，但是部分业务组件或者额外收取存储等费用，且费用较高，在数据隐私性较强且有特殊表单需求的场景下无法满足业务需求，
+目前国内的的开源平台表单问卷平台比较少，tduck表单平台应运而生。让中小公司拥有独立自定义表单问卷，快速赋能业务。
 
-**TDuck 使用 Apache License 2.0 协议，源代码完全开源，无商业限制。 
-开源不易如果喜欢请给作者 Star 鼓励 👇**
+### “新特性”
+
+- 【表单逻辑】支持对单选，多选框，下拉框等组件进行逻辑设置，目前仅支持选中 未选中等逻辑关系
+- 【表单分页】支持对问卷问题较多时，进行分页
+- 【手写签名】支持手写签名保存上传
+- 【位置选择】支持高德地图进行地理位置选择
+- 【手机验证】支持对输入手机号进行短信验证 验证通过则能保存
+- 【省市联动】支持省市县联动选择输入
+- 【图形选择】图片选择组件，支持单选多选
+- 【图片展示】图片展示组件，展示二维码引流等
+- 【图片轮播】图片轮播组件，图片和文字轮播显示
+- 【文字描述】文件描述组件，支持颜色，位置设置
+- 【分割线】 内容分割线
+- 【联系人】 手机号，邮箱，身份证输入 格式校验
+- 【公开反馈结果】 公开反馈结果设置，开启后填写完成将看到他人填写结果
+- 【附件导出】填写完成后可对收集的附件进行导出zip下载
+- 【统计筛选】可对填写完的结果进行筛选查询 支持模糊等
+- 【表单预览】添加预览按钮，实时预览内容，预览二维码
+- 【另存为模板】添加另存为模板按钮，保存项目为模板
+- 【UI重构】项目整体UI全面重构，更美观，更简洁
+- 【验证码】验证逻辑重构，支持验证码开关
+- 【微信功能】 微信功能增加开关配置，可配置关闭微信功能
+- 【代码优化】对前后端代码进行部分优化，结构调整
+![输入图片说明](https://images.gitee.com/uploads/images/2021/0625/000932_eb5728c8_1674451.png "屏幕截图.png")
+### “文档支持”
+新的文档平台，后续会不断完善文档，有需要完善的内容可以在GItee提issues反馈，收到反馈我们将第一时间调整，当然有想共享文档的也欢迎提Pr。
+
+![输入图片说明](https://images.gitee.com/uploads/images/2021/0625/001013_eb945bce_1674451.png "屏幕截图.png")
+
+![输入图片说明](https://images.gitee.com/uploads/images/2021/0625/001053_f3c320c4_1674451.png "屏幕截图.png")
+
+### “项目规划”
+“让每个企业轻松拥有自己的问卷系统”是Tduck团队不变的初衷；v2版本的开发工作目前算是暂时结束，经过团队内部自测推出，同时欢迎大家进行测试，对存在的问题在Gitee提issues,社群内反馈可能无法及时解决，后续可能会遗忘。我们会定期对issues问题修复和做一些优化，竭力维护一个稳定的v2版本。
+
+![输入图片说明](https://images.gitee.com/uploads/images/2021/0625/001803_d0b579e3_1674451.png "屏幕截图.png")
+
+###  :heart: 致谢 ！
+
+Tduck诞生非常有趣，不经意之间的一个想法，一步步实现至今。在v2开发期间，团队成员非全职开发，都是业余时间进行打码，所以迭代时间较长，期间群中反馈的问题没有及时给予反馈（深感抱歉）。
+
+Tduck永远珍惜每一位用户，重视每一个issues。
+感谢对Tduck团队的支持，以及大家对v2期盼与鼓励。
+
+### ChangeLog 持续更新中 :sparkles: 
+
+增加单选/多选题型统计图 2021-07-02
+![输入图片说明](https://images.gitee.com/uploads/images/2021/0702/180333_6991a4bf_1674451.png "屏幕截图.png")

@@ -10,5 +10,11 @@ import lombok.Data;
 @Data
 public class DateExpandStruct {
 
+    // 日期类型
+    private String type;
+    // 日期格式
+    private String format;
+    // 日期格式
+    private String valueFormat;
 
 }
