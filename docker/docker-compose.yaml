@@ -1,0 +1,76 @@
+version: '3.6'
+services:
+  tduck-app:
+    environment:
+#      - SPRING_DATASOURCE_DRIVER-CLASS-NAME=com.mysql.cj.jdbc.driver
+      - SPRING_DATASOURCE_URL=$SPRING_DATASOURCE_URL
+      - SPRING_DATASOURCE_USERNAME=$SPRING_DATASOURCE_NAME
+      - SPRING_DATASOURCE_PASSWORD=$MYSQL_ROOT_PASSWORD
+      - SPRING_REDIS_DATABASE=0
+      - SPRING_REDIS_HOST=$REDIS_HOST
+      - SPRING_REDIS_PORT=$REDIS_PORT
+      - AJ_CAPTCHA_ENABLE=false
+#      - SPRING_REDIS_PASSWORD=
+#      - WX_MP_CONFIGS_APPID=
+#      - WX_MP_CONFIGS_SECRET=
+#      - WX_MP_CONFIGS_TOKEN=
+#      - WX_MP_CONFIGS_AESKEY=
+#      - OSS_OSSTYPE=
+#      - OSS_ENDPOINT=
+#      - OSS_ACCESSKEYID=
+#      - OSS_ACCESSKEYSECRET=
+#      - OSS_BUCKETNAME=
+#      - OSS_DOMAIN=
+
+    image: "tecdo/tduck"
+    ports:
+      - 23569:8999
+
+    restart: always
+
+
+
+  tduck-redis:
+    image: redis:6.2.1
+    ports:
+      - 36379:6379
+    volumes:
+      - redis_data:/data
+  redis-commander:
+    container_name: redis-commander
+    hostname: redis-commander
+    image: rediscommander/redis-commander:latest
+    restart: always
+    environment:
+      - REDIS_HOSTS=local:$REDIS_HOST:$REDIS_PORT
+    ports:
+      - "28083:8081"
+
+
+  tduck-mysql:
+    image: mysql:8
+    restart: always
+    environment:
+      - MYSQL_ROOT_PASSWORD=$MYSQL_ROOT_PASSWORD
+      - MYSQL_DATABASE=$MYSQL_DATABASE
+    ports:
+      - 43033:3306
+    volumes:
+      - mysql_data3:/var/lib/mysql
+      - ./init-db:/docker-entrypoint-initdb.d:ro
+    command: --default-authentication-plugin=mysql_native_password
+
+  tduck-front:
+    image: nginx:1.21.0
+    restart: always
+    ports:
+      - 43039:80
+    volumes:
+      - ./front:/usr/share/nginx/html/
+      - nginx_log:/var/log/nginx
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+
+volumes:
+  mysql_data3:
+  nginx_log:
+  redis_data:
