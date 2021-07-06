@@ -44,7 +44,7 @@ Tduck 填鸭：是基于B/S架构的一款开源的表单在线收集系统，�
 - 开源不易如果喜欢请给作者 Star 鼓励
 
 ### 加入社群
-  <img alt="logo" src="https://images.gitee.com/uploads/images/2021/0625/000242_95748ea0_1674451.png" style="margin-bottom: 0px;" width="230px">
+ <img alt="logo" src="https://images.gitee.com/uploads/images/2021/0706/174654_31b12d64_1674451.png" style="margin-bottom: 0px;" width="230px">
 
 #### 项目源码
 
