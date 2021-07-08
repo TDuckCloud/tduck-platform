@@ -273,7 +273,9 @@ public class UserProjectController {
         ValidatorUtils.validateEntity(request);
         List<UserProjectItemEntity> itemEntityList = projectItemService.list(Wrappers.<UserProjectItemEntity>lambdaQuery()
                 .eq(UserProjectItemEntity::getProjectKey, request.getKey())
-                .eq(ObjectUtil.isNotNull(request.getDisplayType()), UserProjectItemEntity::getDisplayType, request.getDisplayType()));
+                .eq(ObjectUtil.isNotNull(request.getDisplayType()), UserProjectItemEntity::getDisplayType, request.getDisplayType())
+                .orderByAsc(UserProjectItemEntity::getSort)
+                );
         return Result.success(itemEntityList);
     }
 
