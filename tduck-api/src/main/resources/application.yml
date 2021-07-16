@@ -63,6 +63,7 @@ platform:
       - /tduck-api/project/file/upload/**
       - /tduck-api/wx/mp/portal/**
       - /tduck-api/u/**
+      - /tduck-api/wx/**
       - /**/*.js
       - /**/*.css
       - /**/*.png
