@@ -74,6 +74,9 @@
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <version>${spring-boot.version}</version>
                 <configuration>
+                    <layers>
+                        <enabled>true</enabled>
+                    </layers>
                     <finalName>${project.build.finalName}</finalName>
                 </configuration>
                 <executions>

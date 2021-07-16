@@ -21,6 +21,20 @@ public class CascaderExpandStruct {
      */
     private Boolean filterable;
 
+    /**
+     * 多选
+     */
+    private Boolean multiple;
+
+    /**
+     * 分割符
+     */
+    private String separator;
+
+    /**
+     * 显示全路径
+     */
+    private Boolean showAllLevels;
 
     public static class Option {
         public Integer id;
