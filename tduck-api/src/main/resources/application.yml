@@ -46,9 +46,9 @@ mybatis-plus:
 #  请求日志是否打印
 platform:
   request:
-    trace-log: true
+    trace-log: false
   sign:
-    enable: true
+    enable: false
     secret: 916lWh2WMcbSWiHv
     ignore-urls:
       - /tduck-api/webjars/**
