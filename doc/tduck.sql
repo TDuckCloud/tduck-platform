@@ -4,13 +4,14 @@
  Source Server         : ivo
  Source Server Type    : MySQL
  Source Server Version : 50718
+ Source Host           : sh-cynosdbmysql-grp-e911sges.sql.tencentcdb.com:29062
  Source Schema         : tduck
 
  Target Server Type    : MySQL
  Target Server Version : 50718
  File Encoding         : 65001
 
- Date: 17/07/2021 15:07:35
+ Date: 17/07/2021 15:12:39
 */
 
 SET NAMES utf8mb4;
@@ -219,7 +220,7 @@ CREATE TABLE `pr_user_project_result`  (
 -- ----------------------------
 DROP TABLE IF EXISTS `pr_user_project_setting`;
 CREATE TABLE `pr_user_project_setting`  (
-  `id` bigint(20) NOT NULL,
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `project_key` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '项目key',
   `submit_prompt_img` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '提交提示图片',
   `submit_prompt_text` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '提交提示文字',
@@ -246,7 +247,7 @@ CREATE TABLE `pr_user_project_setting`  (
   `create_time` datetime NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
   PRIMARY KEY (`id`) USING BTREE,
   UNIQUE INDEX `project_key`(`project_key`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '项目表单项' ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 530 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '项目表单项' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Table structure for pr_user_project_theme
