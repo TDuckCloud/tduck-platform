@@ -19,9 +19,10 @@ public interface UserProjectSettingService extends IService<UserProjectSettingEn
      *
      * @param projectKey
      * @param requestIp
+     * @param wxOpenId
      * @return
      */
-    Result getUserProjectSettingStatus(String projectKey, String requestIp);
+    Result getUserProjectSettingStatus(String projectKey, String requestIp, String wxOpenId);
 
 
     /**

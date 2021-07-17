@@ -80,12 +80,12 @@ public class UserProjectResultController {
     @NoRepeatSubmit
     @PostMapping("/create")
     public Result createProjectResult(@RequestBody UserProjectResultEntity entity, HttpServletRequest request) {
-        Result<UserProjectSettingEntity> userProjectSettingStatus = userProjectSettingService.getUserProjectSettingStatus(entity.getProjectKey(), HttpUtils.getIpAddr(request));
+        ValidatorUtils.validateEntity(entity);
+        entity.setSubmitRequestIp(HttpUtils.getIpAddr(request));
+        Result<UserProjectSettingEntity> userProjectSettingStatus = userProjectSettingService.getUserProjectSettingStatus(entity.getProjectKey(), entity.getSubmitRequestIp(),entity.getWxOpenId());
         if (StrUtil.isNotBlank(userProjectSettingStatus.getMsg())) {
             return Result.failed(userProjectSettingStatus.getMsg());
         }
-        entity.setSubmitRequestIp(HttpUtils.getIpAddr(request));
-        ValidatorUtils.validateEntity(entity);
         projectResultService.saveProjectResult(entity);
         ThreadUtil.execAsync(() -> {
             UserProjectSettingEntity settingEntity = userProjectSettingStatus.isDataNull() ? null : userProjectSettingStatus.getData();

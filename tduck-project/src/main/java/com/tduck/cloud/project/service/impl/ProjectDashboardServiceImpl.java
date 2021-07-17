@@ -118,7 +118,9 @@ public class ProjectDashboardServiceImpl implements ProjectDashboardService {
                     for (int i = 0; i < fieldValues.length; i++) {
                         // 获取问题集合中对应的选项的count
                         Integer count = entry.getValue().get(fieldValues[i]);
-                        entry.getValue().put(fieldValues[i], count +1);
+                        if(ObjectUtil.isNotNull(count)){
+                            entry.getValue().put(fieldValues[i], count +1);
+                        }
                     }
                 }
                 formMap.get(entry.getKey()).setFieldName(new ArrayList(entry.getValue().keySet()));

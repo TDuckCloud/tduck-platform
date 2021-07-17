@@ -76,6 +76,10 @@ public class UserProjectResultEntity extends BaseEntity<UserProjectResultEntity>
     private String submitRequestIp;
 
     /**
+     * 提交地址
+     */
+    private String submitRequestMac;
+    /**
      * 提交ip
      */
     private String submitAddress;
@@ -85,4 +89,14 @@ public class UserProjectResultEntity extends BaseEntity<UserProjectResultEntity>
      */
     private Long completeTime;
 
+    /**
+     * 微信openID
+     */
+    private String wxOpenId;
+
+    /**
+     * 微信用户信息
+     */
+    @TableField(typeHandler = JacksonTypeHandler.class)
+    private Map<String, Object> wxUserInfo;
 }
