@@ -75,10 +75,7 @@ public class UserProjectResultEntity extends BaseEntity<UserProjectResultEntity>
      */
     private String submitRequestIp;
 
-    /**
-     * 提交地址
-     */
-    private String submitRequestMac;
+
     /**
      * 提交ip
      */
