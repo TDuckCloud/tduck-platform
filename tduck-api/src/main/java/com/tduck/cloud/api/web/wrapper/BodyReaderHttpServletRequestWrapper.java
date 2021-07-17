@@ -22,11 +22,10 @@ import java.util.Map;
  * @author
  */
 public class BodyReaderHttpServletRequestWrapper extends HttpServletRequestWrapper {
-    //没被包装过的HttpServletRequest（特殊场景，需要自己过滤）
-    HttpServletRequest orgRequest;
     //html过滤
     private final static HTMLFilter htmlFilter = new HTMLFilter();
-
+    //没被包装过的HttpServletRequest（特殊场景，需要自己过滤）
+    HttpServletRequest orgRequest;
     @Getter
     private String bodyJson;
 
@@ -35,13 +34,23 @@ public class BodyReaderHttpServletRequestWrapper extends HttpServletRequestWrapp
         orgRequest = request;
     }
 
+    /**
+     * 获取最原始的request
+     */
+    public static HttpServletRequest getOrgRequest(HttpServletRequest request) {
+        if (request instanceof BodyReaderHttpServletRequestWrapper) {
+            return ((BodyReaderHttpServletRequestWrapper) request).getOrgRequest();
+        }
+
+        return request;
+    }
 
     @Override
     public ServletInputStream getInputStream() throws IOException {
-        if(!MediaType.APPLICATION_JSON_VALUE.equalsIgnoreCase(super.getHeader(HttpHeaders.CONTENT_TYPE))){
+        if (!MediaType.APPLICATION_JSON_VALUE.equalsIgnoreCase(super.getHeader(HttpHeaders.CONTENT_TYPE))) {
             return super.getInputStream();
         }
-        if(StrUtil.isBlank(bodyJson)){
+        if (StrUtil.isBlank(bodyJson)) {
             bodyJson = IOUtils.toString(super.getInputStream(), "utf-8");
         }
         final ByteArrayInputStream bis = new ByteArrayInputStream(bodyJson.getBytes("utf-8"));
@@ -122,17 +131,6 @@ public class BodyReaderHttpServletRequestWrapper extends HttpServletRequestWrapp
      */
     public HttpServletRequest getOrgRequest() {
         return orgRequest;
-    }
-
-    /**
-     * 获取最原始的request
-     */
-    public static HttpServletRequest getOrgRequest(HttpServletRequest request) {
-        if (request instanceof BodyReaderHttpServletRequestWrapper) {
-            return ((BodyReaderHttpServletRequestWrapper) request).getOrgRequest();
-        }
-
-        return request;
     }
 
 }

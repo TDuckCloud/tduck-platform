@@ -85,7 +85,6 @@ public class UserLoginController {
 
     /**
      * 手机号注册
-     *
      */
     @PostMapping("/register/email")
     public Result emailRegister(@RequestBody RegisterAccountRequest request) {
@@ -97,7 +96,6 @@ public class UserLoginController {
 
     /**
      * 找回密码手机验证码
-     *
      */
     @GetMapping("/retrieve/password/phone/code")
     public Result sendRetrievePwdPhoneCode(@RequestParam String phoneNumber) {
@@ -113,7 +111,6 @@ public class UserLoginController {
 
     /**
      * 发送找回密码邮件
-     *
      */
     @GetMapping("/retrieve/password/email")
     public Result sendRetrievePwdEmail(@RequestParam String email) {

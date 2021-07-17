@@ -62,5 +62,4 @@ public class WxMpUserEntity extends BaseEntity<WxMpUserEntity> {
     private Long userId;
 
 
-
 }

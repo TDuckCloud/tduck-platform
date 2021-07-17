@@ -8,30 +8,29 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- *
  * HTML filtering utility for protecting against XSS (Cross Site Scripting).
- *
+ * <p>
  * This code is licensed LGPLv3
- *
+ * <p>
  * This code is a Java port of the original work interceptor PHP by Cal Hendersen.
  * http://code.iamcal.com/php/lib_filter/
- *
+ * <p>
  * The trickiest part of the translation was handling the differences interceptor regex handling
  * between PHP and Java.  These resources were helpful interceptor the process:
- *
+ * <p>
  * http://java.sun.com/j2se/1.4.2/docs/api/java/util/regex/Pattern.html
  * http://us2.php.net/manual/en/reference.pcre.pattern.modifiers.php
  * http://www.regular-expressions.info/modifiers.html
- *
+ * <p>
  * A note on naming conventions: instance variables are prefixed with a "v"; global
  * constant are interceptor all caps.
- *
+ * <p>
  * Sample use:
  * String input = ...
  * String clean = new HTMLFilter().filter( input );
- *
+ * <p>
  * The class is not thread safe. Create a new instance if interceptor doubt.
- *
+ * <p>
  * If you find bugs or have suggestions on improvement (especially regarding
  * performance), please contact us.  The latest version of this
  * source, and our contact details, can be found at http://xss-html-filter.sf.net
@@ -42,7 +41,9 @@ import java.util.regex.Pattern;
  */
 public final class HTMLFilter {
 
-    /** regex flag union representing /si modifiers interceptor php **/
+    /**
+     * regex flag union representing /si modifiers interceptor php
+     **/
     private static final int REGEX_FLAGS_SI = Pattern.CASE_INSENSITIVE | Pattern.DOTALL;
     private static final Pattern P_COMMENTS = Pattern.compile("<!--(.*?)-->", Pattern.DOTALL);
     private static final Pattern P_COMMENT = Pattern.compile("^!--(.*)--$", REGEX_FLAGS_SI);
@@ -69,41 +70,61 @@ public final class HTMLFilter {
     private static final Pattern P_BOTH_ARROWS = Pattern.compile("<>");
 
     // @xxx could grow large... maybe use sesat's ReferenceMap
-    private static final ConcurrentMap<String,Pattern> P_REMOVE_PAIR_BLANKS = new ConcurrentHashMap<String, Pattern>();
-    private static final ConcurrentMap<String,Pattern> P_REMOVE_SELF_BLANKS = new ConcurrentHashMap<String, Pattern>();
+    private static final ConcurrentMap<String, Pattern> P_REMOVE_PAIR_BLANKS = new ConcurrentHashMap<String, Pattern>();
+    private static final ConcurrentMap<String, Pattern> P_REMOVE_SELF_BLANKS = new ConcurrentHashMap<String, Pattern>();
 
-    /** set of allowed html elements, along with allowed attributes for each element **/
+    /**
+     * set of allowed html elements, along with allowed attributes for each element
+     **/
     private final Map<String, List<String>> vAllowed;
-    /** counts of open tags for each (allowable) html element **/
+    /**
+     * counts of open tags for each (allowable) html element
+     **/
     private final Map<String, Integer> vTagCounts = new HashMap<String, Integer>();
 
-    /** html elements which must always be self-closing (e.g. "<img />") **/
+    /**
+     * html elements which must always be self-closing (e.g. "<img />")
+     **/
     private final String[] vSelfClosingTags;
-    /** html elements which must always have separate opening and closing tags (e.g. "<b></b>") **/
+    /**
+     * html elements which must always have separate opening and closing tags (e.g. "<b></b>")
+     **/
     private final String[] vNeedClosingTags;
-    /** set of disallowed html elements **/
+    /**
+     * set of disallowed html elements
+     **/
     private final String[] vDisallowed;
-    /** attributes which should be checked for valid protocols **/
+    /**
+     * attributes which should be checked for valid protocols
+     **/
     private final String[] vProtocolAtts;
-    /** allowed protocols **/
+    /**
+     * allowed protocols
+     **/
     private final String[] vAllowedProtocols;
-    /** tags which should be removed if they contain no content (e.g. "<b></b>" or "<b />") **/
+    /**
+     * tags which should be removed if they contain no content (e.g. "<b></b>" or "<b />")
+     **/
     private final String[] vRemoveBlanks;
-    /** entities allowed within html markup **/
+    /**
+     * entities allowed within html markup
+     **/
     private final String[] vAllowedEntities;
-    /** flag determining whether comments are allowed interceptor input String. */
+    /**
+     * flag determining whether comments are allowed interceptor input String.
+     */
     private final boolean stripComment;
     private final boolean encodeQuotes;
-    private boolean vDebug = false;
     /**
      * flag determining whether to try to make tags when presented with "unbalanced"
      * angle brackets (e.g. "<b text </b>" becomes "<b> text </b>").  If set to false,
      * unbalanced angle brackets will be html escaped.
      */
     private final boolean alwaysMakeTags;
+    private boolean vDebug = false;
 
-    /** Default constructor.
-     *
+    /**
+     * Default constructor.
      */
     public HTMLFilter() {
         vAllowed = new HashMap<>();
@@ -138,7 +159,8 @@ public final class HTMLFilter {
         alwaysMakeTags = true;
     }
 
-    /** Set debug flag to true. Otherwise use default settings. See the default constructor.
+    /**
+     * Set debug flag to true. Otherwise use default settings. See the default constructor.
      *
      * @param debug turn debug on with a true argument
      */
@@ -148,11 +170,12 @@ public final class HTMLFilter {
 
     }
 
-    /** Map-parameter configurable constructor.
+    /**
+     * Map-parameter configurable constructor.
      *
      * @param conf map containing configuration. keys match field names.
      */
-    public HTMLFilter(final Map<String,Object> conf) {
+    public HTMLFilter(final Map<String, Object> conf) {
 
         assert conf.containsKey("vAllowed") : "configuration requires vAllowed";
         assert conf.containsKey("vSelfClosingTags") : "configuration requires vSelfClosingTags";
@@ -171,19 +194,9 @@ public final class HTMLFilter {
         vProtocolAtts = (String[]) conf.get("vProtocolAtts");
         vRemoveBlanks = (String[]) conf.get("vRemoveBlanks");
         vAllowedEntities = (String[]) conf.get("vAllowedEntities");
-        stripComment =  conf.containsKey("stripComment") ? (Boolean) conf.get("stripComment") : true;
+        stripComment = conf.containsKey("stripComment") ? (Boolean) conf.get("stripComment") : true;
         encodeQuotes = conf.containsKey("encodeQuotes") ? (Boolean) conf.get("encodeQuotes") : true;
         alwaysMakeTags = conf.containsKey("alwaysMakeTags") ? (Boolean) conf.get("alwaysMakeTags") : true;
-    }
-
-    private void reset() {
-        vTagCounts.clear();
-    }
-
-    private void debug(final String msg) {
-        if (vDebug) {
-            Logger.getAnonymousLogger().info(msg);
-        }
     }
 
     //---------------------------------------------------------------
@@ -201,7 +214,32 @@ public final class HTMLFilter {
         return result;
     }
 
+    private static String regexReplace(final Pattern regex_pattern, final String replacement, final String s) {
+        Matcher m = regex_pattern.matcher(s);
+        return m.replaceAll(replacement);
+    }
+
+    private static boolean inArray(final String s, final String[] array) {
+        for (String item : array) {
+            if (item != null && item.equals(s)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     //---------------------------------------------------------------
+
+    private void reset() {
+        vTagCounts.clear();
+    }
+
+    private void debug(final String msg) {
+        if (vDebug) {
+            Logger.getAnonymousLogger().info(msg);
+        }
+    }
+
     /**
      * given a user submitted input String, filter out any invalid or restricted
      * html.
@@ -235,11 +273,11 @@ public final class HTMLFilter {
         return s;
     }
 
-    public boolean isAlwaysMakeTags(){
+    public boolean isAlwaysMakeTags() {
         return alwaysMakeTags;
     }
 
-    public boolean isStripComments(){
+    public boolean isStripComments() {
         return stripComment;
     }
 
@@ -309,22 +347,17 @@ public final class HTMLFilter {
     private String processRemoveBlanks(final String s) {
         String result = s;
         for (String tag : vRemoveBlanks) {
-            if(!P_REMOVE_PAIR_BLANKS.containsKey(tag)){
+            if (!P_REMOVE_PAIR_BLANKS.containsKey(tag)) {
                 P_REMOVE_PAIR_BLANKS.putIfAbsent(tag, Pattern.compile("<" + tag + "(\\s[^>]*)?></" + tag + ">"));
             }
             result = regexReplace(P_REMOVE_PAIR_BLANKS.get(tag), "", result);
-            if(!P_REMOVE_SELF_BLANKS.containsKey(tag)){
+            if (!P_REMOVE_SELF_BLANKS.containsKey(tag)) {
                 P_REMOVE_SELF_BLANKS.putIfAbsent(tag, Pattern.compile("<" + tag + "(\\s[^>]*)?/>"));
             }
             result = regexReplace(P_REMOVE_SELF_BLANKS.get(tag), "", result);
         }
 
         return result;
-    }
-
-    private static String regexReplace(final Pattern regex_pattern, final String replacement, final String s) {
-        Matcher m = regex_pattern.matcher(s);
-        return m.replaceAll(replacement);
     }
 
     private String processTag(final String s) {
@@ -409,7 +442,7 @@ public final class HTMLFilter {
         // comments
         m = P_COMMENT.matcher(s);
         if (!stripComment && m.find()) {
-            return  "<" + m.group() + ">";
+            return "<" + m.group() + ">";
         }
 
         return "";
@@ -483,8 +516,8 @@ public final class HTMLFilter {
         return encodeQuotes(buf.toString());
     }
 
-    private String encodeQuotes(final String s){
-        if(encodeQuotes){
+    private String encodeQuotes(final String s) {
+        if (encodeQuotes) {
             StringBuffer buf = new StringBuffer();
             Matcher m = P_VALID_QUOTES.matcher(s);
             while (m.find()) {
@@ -495,7 +528,7 @@ public final class HTMLFilter {
             }
             m.appendTail(buf);
             return buf.toString();
-        }else{
+        } else {
             return s;
         }
     }
@@ -509,15 +542,6 @@ public final class HTMLFilter {
 
     private boolean isValidEntity(final String entity) {
         return inArray(entity, vAllowedEntities);
-    }
-
-    private static boolean inArray(final String s, final String[] array) {
-        for (String item : array) {
-            if (item != null && item.equals(s)) {
-                return true;
-            }
-        }
-        return false;
     }
 
     private boolean allowed(final String name) {

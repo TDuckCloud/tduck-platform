@@ -49,7 +49,6 @@ public interface ProjectDashboardService {
 
 
     /**
-     *
      * @param projectKey
      * @return
      */

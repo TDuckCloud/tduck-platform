@@ -21,15 +21,15 @@ public class MenuHandler extends AbstractHandler {
                                     Map<String, Object> context, WxMpService weixinService,
                                     WxSessionManager sessionManager) {
         String msg = String.format("type:%s, event:%s, key:%s",
-            wxMessage.getMsgType(), wxMessage.getEvent(),
-            wxMessage.getEventKey());
+                wxMessage.getMsgType(), wxMessage.getEvent(),
+                wxMessage.getEventKey());
         if (EventType.VIEW.equals(wxMessage.getEvent())) {
             return null;
         }
 
         return WxMpXmlOutMessage.TEXT().content(msg)
-            .fromUser(wxMessage.getToUser()).toUser(wxMessage.getFromUser())
-            .build();
+                .fromUser(wxMessage.getToUser()).toUser(wxMessage.getFromUser())
+                .build();
     }
 
 }

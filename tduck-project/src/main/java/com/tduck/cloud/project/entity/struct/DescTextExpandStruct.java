@@ -5,6 +5,7 @@ import lombok.Data;
 
 /**
  * 文字描述组件属性
+ *
  * @author smalljop
  */
 @Data

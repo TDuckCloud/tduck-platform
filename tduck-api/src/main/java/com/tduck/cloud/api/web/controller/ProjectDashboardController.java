@@ -9,7 +9,6 @@ import com.tduck.cloud.project.entity.UserProjectResultEntity;
 import com.tduck.cloud.project.service.ProjectDashboardService;
 import com.tduck.cloud.project.service.UserProjectResultService;
 import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -92,7 +91,7 @@ public class ProjectDashboardController {
      */
     @Login
     @GetMapping("/user/project/report/analysis")
-    public Result projectReportAnalysis(String projectKey){
+    public Result projectReportAnalysis(String projectKey) {
         return Result.success(projectDashboardService.projectReportAnalysis(projectKey));
     }
 }

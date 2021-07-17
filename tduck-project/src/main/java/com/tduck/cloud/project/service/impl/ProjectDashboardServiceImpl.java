@@ -19,7 +19,6 @@ import com.tduck.cloud.project.service.UserProjectItemService;
 import com.tduck.cloud.project.service.UserProjectResultService;
 import com.tduck.cloud.project.vo.ProjectReportVO;
 import lombok.RequiredArgsConstructor;
-import lombok.Value;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
@@ -92,19 +91,19 @@ public class ProjectDashboardServiceImpl implements ProjectDashboardService {
         // 储存标题与可选项
         Map<String, Map<String, Integer>> map = new HashMap<>();
         for (UserProjectItemEntity userProjectItemEntity : projectItemList) {
-            if (typeEnumList.contains(userProjectItemEntity.getType())){
+            if (typeEnumList.contains(userProjectItemEntity.getType())) {
                 Map<String, Integer> optionMap = new LinkedHashMap<>();
-                List<Map<String,Object>> options = (List<Map<String,Object>>)userProjectItemEntity.getExpand().get("options");
+                List<Map<String, Object>> options = (List<Map<String, Object>>) userProjectItemEntity.getExpand().get("options");
                 for (Map<String, Object> option : options) {
                     optionMap.put(option.get("label").toString(), 0);
                 }
                 // 单选框类型
-                map.put("field"+userProjectItemEntity.getFormItemId(),optionMap);
+                map.put("field" + userProjectItemEntity.getFormItemId(), optionMap);
                 // id and label
                 ProjectReportVO.Analysis analysis = new ProjectReportVO.Analysis();
                 analysis.setLabel(userProjectItemEntity.getLabel());
                 analysis.setType(userProjectItemEntity.getType().getDesc());
-                formMap.put("field"+userProjectItemEntity.getFormItemId(), analysis);
+                formMap.put("field" + userProjectItemEntity.getFormItemId(), analysis);
             }
         }
 
@@ -112,14 +111,14 @@ public class ProjectDashboardServiceImpl implements ProjectDashboardService {
             Map<String, Object> processData = userProjectResultEntity.getProcessData();
 
             for (Map.Entry<String, Map<String, Integer>> entry : map.entrySet()) {
-                if (processData.containsKey(entry.getKey())){
+                if (processData.containsKey(entry.getKey())) {
                     // 结果中字段值  处理多选
                     String[] fieldValues = processData.get(entry.getKey()).toString().split(",");
                     for (int i = 0; i < fieldValues.length; i++) {
                         // 获取问题集合中对应的选项的count
                         Integer count = entry.getValue().get(fieldValues[i]);
-                        if(ObjectUtil.isNotNull(count)){
-                            entry.getValue().put(fieldValues[i], count +1);
+                        if (ObjectUtil.isNotNull(count)) {
+                            entry.getValue().put(fieldValues[i], count + 1);
                         }
                     }
                 }

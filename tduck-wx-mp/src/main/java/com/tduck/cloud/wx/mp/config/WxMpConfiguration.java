@@ -48,7 +48,6 @@ public class WxMpConfiguration {
     private final StringRedisTemplate redisTemplate;
 
 
-
     @Bean
     public WxMpService wxMpService() {
         final List<WxMpProperties.MpConfig> configs = this.properties.getConfigs();

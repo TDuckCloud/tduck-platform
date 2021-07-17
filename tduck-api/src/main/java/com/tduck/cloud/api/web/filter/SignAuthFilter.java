@@ -28,15 +28,12 @@ import java.util.SortedMap;
 @Data
 public class SignAuthFilter implements Filter {
 
-    private PlatformSignProperties platformSignProperties;
-
     private final static String TIMESTAMP_KEY_NAME = "timestamp";
-
     /**
      * 最大有效时间 默认 10秒钟失效 超出10s失效
      */
     private final static Long MAX_EFFECTIVE_TIMESTAMP = 10L * 1000;
-
+    private PlatformSignProperties platformSignProperties;
 
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain filterChain) throws IOException, ServletException {

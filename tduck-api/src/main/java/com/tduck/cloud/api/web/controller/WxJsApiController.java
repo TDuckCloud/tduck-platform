@@ -58,8 +58,7 @@ public class WxJsApiController {
     /**
      * 签名
      *
-     * @param url
-     *1 
+     * @param url 1
      * @return
      * @throws WxErrorException
      */

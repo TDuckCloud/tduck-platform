@@ -32,6 +32,11 @@ import java.util.concurrent.TimeUnit;
 @RequiredArgsConstructor
 public class UserValidateServiceImpl implements UserValidateService {
 
+    private final static String REG_EMAIL_TITLE = "TDuck注册验证码";
+    private final static String RESET_PWD_EMAIL_TITLE = "重置密码";
+    private final RedisUtils redisUtils;
+    private final MailService mailService;
+    private final SmsService smsService;
     /**
      * 重置密码地址
      */
@@ -39,13 +44,6 @@ public class UserValidateServiceImpl implements UserValidateService {
     private String resetPwdUrl;
     @Value("${platform.front.updateEmailUrl}")
     private String updateEmailUrl;
-
-
-    private final RedisUtils redisUtils;
-    private final MailService mailService;
-    private final SmsService smsService;
-    private final static String REG_EMAIL_TITLE = "TDuck注册验证码";
-    private final static String RESET_PWD_EMAIL_TITLE = "重置密码";
 
     @Override
     public void sendEmailCode(String email) {

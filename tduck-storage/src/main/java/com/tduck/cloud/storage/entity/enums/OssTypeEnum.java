@@ -32,13 +32,13 @@ public enum OssTypeEnum {
     LOCAL(3);
 
 
+    @EnumValue
+    @JsonValue
+    private final int value;
+
     @JsonCreator
     OssTypeEnum(int value) {
         this.value = value;
     }
-
-    @EnumValue
-    @JsonValue
-    private final int value;
 
 }

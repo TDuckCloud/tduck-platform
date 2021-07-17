@@ -15,18 +15,26 @@ public abstract class NameUtils {
     private static final ArrayList<String> cnSurnameList = new ArrayList<>();
     private static final ArrayList<String> cnNameList = new ArrayList<>();
 
+    static {
+        initEnHeadList();
+        initEntailList();
+        initCnSurnameList();
+        initCnNameList();
+    }
+
     public static String getEnName() {
         String head = enHeadList.get((int) (Math.random() * enHeadList.size()));
         String tail = entailList.get((int) (Math.random() * entailList.size()));
         return head + tail;
     }
+
     public static String getCnName() {
         String head = cnSurnameList.get((int) (Math.random() * cnSurnameList.size()));
         String tail = cnNameList.get((int) (Math.random() * cnNameList.size()));
         return head + tail;
     }
 
-    public static void initEnHeadList(){
+    public static void initEnHeadList() {
         enHeadList.add("Ter");
         enHeadList.add("Wind");
         enHeadList.add("Buck");
@@ -784,7 +792,8 @@ public abstract class NameUtils {
         enHeadList.add("Vir");
         enHeadList.add("Ran");
     }
-    public static void initEntailList(){
+
+    public static void initEntailList() {
         entailList.add("nings");
         entailList.add("hale");
         entailList.add("lvis");
@@ -1581,7 +1590,8 @@ public abstract class NameUtils {
         entailList.add("gust");
         entailList.add("sper");
     }
-    public static void initCnSurnameList(){
+
+    public static void initCnSurnameList() {
         cnSurnameList.add("怀");
         cnSurnameList.add("老");
         cnSurnameList.add("堂");
@@ -2632,7 +2642,8 @@ public abstract class NameUtils {
         cnSurnameList.add("韶");
         cnSurnameList.add("忻");
     }
-    public static void initCnNameList(){
+
+    public static void initCnNameList() {
         cnNameList.add("慕雁");
         cnNameList.add("婉然");
         cnNameList.add("月明");
@@ -6908,12 +6919,5 @@ public abstract class NameUtils {
         cnNameList.add("忆曼");
         cnNameList.add("碧莹");
         cnNameList.add("思山");
-    }
-
-    static {
-        initEnHeadList();
-        initEntailList();
-        initCnSurnameList();
-        initCnNameList();
     }
 }

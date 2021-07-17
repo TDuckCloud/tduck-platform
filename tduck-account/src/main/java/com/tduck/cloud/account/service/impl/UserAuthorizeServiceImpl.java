@@ -44,7 +44,7 @@ public class UserAuthorizeServiceImpl extends ServiceImpl<UserAuthorizeMapper, U
                 authorizeEntity.setUserId(userEntity.getId());
                 this.save(authorizeEntity);
             }
-        }else{
+        } else {
             userEntity.setId(authorizeEntity.getUserId());
         }
         return authorizeEntity;

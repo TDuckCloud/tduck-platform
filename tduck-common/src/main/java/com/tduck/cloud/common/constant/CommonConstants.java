@@ -17,6 +17,10 @@ public interface CommonConstants {
      * 1:正常 0 :禁用
      */
     Integer USER_NORMAL_STATUS = 1;
+    /**
+     * 文件下载content_type
+     */
+    String FILE_DOWNLOAD_CONTENT_TYPE = "application/octet-stream;charset=UTF-8";
 
 
     /**
@@ -85,11 +89,5 @@ public interface CommonConstants {
 
 
     }
-
-
-    /**
-     * 文件下载content_type
-     */
-    String FILE_DOWNLOAD_CONTENT_TYPE = "application/octet-stream;charset=UTF-8";
 
 }

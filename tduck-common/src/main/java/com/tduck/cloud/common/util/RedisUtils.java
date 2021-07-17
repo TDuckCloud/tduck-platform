@@ -10,19 +10,12 @@ import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 /**
- *
  * @author smalljop
  * @date 23/09/2018
  */
 @Component
 @Slf4j
 public class RedisUtils {
-
-    private final RedisTemplate<String, Object> redisTemplate;
-
-    public RedisUtils(RedisTemplate<String, Object> redisTemplate) {
-        this.redisTemplate = redisTemplate;
-    }
 
     /**
      * 默认过期时长，单位：秒 一天
@@ -32,8 +25,10 @@ public class RedisUtils {
      * 不设置过期时长
      */
     public final static long NOT_EXPIRE = -1;
-
-
+    private final RedisTemplate<String, Object> redisTemplate;
+    public RedisUtils(RedisTemplate<String, Object> redisTemplate) {
+        this.redisTemplate = redisTemplate;
+    }
 
     /**
      * 写入缓存

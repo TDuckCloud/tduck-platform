@@ -83,7 +83,6 @@ public class Result<T> implements Serializable {
     }
 
 
-
     @JsonIgnore
     public Boolean isDataNull() {
         return ObjectUtil.isNull(data);

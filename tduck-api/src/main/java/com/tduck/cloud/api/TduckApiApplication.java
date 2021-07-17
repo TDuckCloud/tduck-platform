@@ -13,8 +13,8 @@ import org.springframework.scheduling.annotation.EnableAsync;
 @ComponentScan("com.tduck.cloud.*")
 public class TduckApiApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(TduckApiApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(TduckApiApplication.class, args);
+    }
 
 }

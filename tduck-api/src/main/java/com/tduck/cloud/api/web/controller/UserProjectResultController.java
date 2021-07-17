@@ -82,7 +82,7 @@ public class UserProjectResultController {
     public Result createProjectResult(@RequestBody UserProjectResultEntity entity, HttpServletRequest request) {
         ValidatorUtils.validateEntity(entity);
         entity.setSubmitRequestIp(HttpUtils.getIpAddr(request));
-        Result<UserProjectSettingEntity> userProjectSettingStatus = userProjectSettingService.getUserProjectSettingStatus(entity.getProjectKey(), entity.getSubmitRequestIp(),entity.getWxOpenId());
+        Result<UserProjectSettingEntity> userProjectSettingStatus = userProjectSettingService.getUserProjectSettingStatus(entity.getProjectKey(), entity.getSubmitRequestIp(), entity.getWxOpenId());
         if (StrUtil.isNotBlank(userProjectSettingStatus.getMsg())) {
             return Result.failed(userProjectSettingStatus.getMsg());
         }

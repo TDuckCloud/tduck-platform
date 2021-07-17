@@ -33,7 +33,7 @@ public class LocationHandler extends AbstractHandler {
 
         //上报地理位置事件
         this.logger.info("上报地理位置，纬度 : {}，经度 : {}，精度 : {}",
-            wxMessage.getLatitude(), wxMessage.getLongitude(), String.valueOf(wxMessage.getPrecision()));
+                wxMessage.getLatitude(), wxMessage.getLongitude(), String.valueOf(wxMessage.getPrecision()));
 
 
         return null;

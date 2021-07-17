@@ -4,7 +4,6 @@ import com.anji.captcha.service.CaptchaCacheService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 
-
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -15,7 +14,7 @@ public class CaptchaCacheServiceProvider implements CaptchaCacheService {
     private static final String REDIS = "redis";
 
     @Autowired
-    private RedisTemplate<String,String> redisTemplate;
+    private RedisTemplate<String, String> redisTemplate;
 
     @Override
     public void set(String key, String value, long expiresInSeconds) {
