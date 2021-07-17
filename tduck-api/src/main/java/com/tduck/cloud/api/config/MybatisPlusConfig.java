@@ -9,8 +9,8 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 /**
- * @description mybaits plus 配置文件
  * @author smalljop
+ * @description mybaits plus 配置文件
  * @create 2019-12-10 16:28
  **/
 @EnableTransactionManagement

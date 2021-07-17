@@ -21,7 +21,7 @@ public class SelectExpandStruct {
     private Boolean multiple;
 
     /**
-     *  塞选
+     * 塞选
      */
     private Boolean filterable;
     /**
@@ -38,8 +38,6 @@ public class SelectExpandStruct {
      * 按钮控制位置
      */
     private String controlsPosition;
-
-
 
 
     public static class Option {

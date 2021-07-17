@@ -27,9 +27,9 @@ import java.util.Map;
 @RequiredArgsConstructor
 public class MailServiceImpl implements MailService {
 
-    private  final TemplateEngine templateEngine;
+    private final TemplateEngine templateEngine;
 
-    private  final  JavaMailSender mailSender;
+    private final JavaMailSender mailSender;
 
     /**
      * 注入常量

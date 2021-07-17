@@ -29,7 +29,7 @@ public interface MailService {
      * @param toAddr
      * @param title
      * @param template 模板
-     * @param params  参数
+     * @param params   参数
      */
     void sendTemplateHtmlMail(String toAddr, String title, String template, Map<String, Object> params);
 

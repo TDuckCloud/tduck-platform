@@ -5,7 +5,6 @@ import com.tduck.cloud.account.util.JwtUtils;
 import com.tduck.cloud.api.annotation.Login;
 import com.tduck.cloud.api.exception.AuthorizationException;
 import io.jsonwebtoken.Claims;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
@@ -18,9 +17,8 @@ import javax.servlet.http.HttpServletResponse;
  */
 @Component
 public class AuthorizationInterceptor extends HandlerInterceptorAdapter {
-    private final JwtUtils jwtUtils;
-
     public static final String USER_KEY = "userId";
+    private final JwtUtils jwtUtils;
 
     public AuthorizationInterceptor(JwtUtils jwtUtils) {
         this.jwtUtils = jwtUtils;

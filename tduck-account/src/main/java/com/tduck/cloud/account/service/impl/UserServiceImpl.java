@@ -46,7 +46,6 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, UserEntity> impleme
     private final UserAuthorizeService userAuthorizeService;
 
 
-
     @Override
     public Result emailRegister(RegisterAccountRequest request) {
         //检查验证码是否正确
@@ -80,7 +79,6 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, UserEntity> impleme
 
     /**
      * 创建用户
-     *
      */
     private void createUser(UserEntity userEntity) {
         userEntity.setName(NameUtils.getCnName());
@@ -109,7 +107,6 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, UserEntity> impleme
 
     /**
      * 获取登录结果
-     *
      */
     @Override
     public LoginUserVO getLoginResult(UserEntity userEntity, AccountChannelEnum channel, String requestIp) {

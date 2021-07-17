@@ -36,9 +36,9 @@ public class SubscribeHandler extends AbstractHandler {
     private final ScanStrategyContext scanStrategyContext;
 
 
-    private  String LOGIN_STR = "login";
+    private String LOGIN_STR = "login";
 
-    private  String QRSCENE_STR = "qrscene_";
+    private String QRSCENE_STR = "qrscene_";
 
     @Override
     public WxMpXmlOutMessage handle(WxMpXmlMessage wxMessage,

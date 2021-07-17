@@ -14,7 +14,8 @@ public class CheckboxExpandStruct {
     /**
      * 最小
      */
-    private Integer min;/**
+    private Integer min;
+    /**
      * 最大
      */
     private Integer max;

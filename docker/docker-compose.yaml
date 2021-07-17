@@ -2,7 +2,7 @@ version: '3.6'
 services:
   tduck-app:
     environment:
-#      - SPRING_DATASOURCE_DRIVER-CLASS-NAME=com.mysql.cj.jdbc.driver
+      #      - SPRING_DATASOURCE_DRIVER-CLASS-NAME=com.mysql.cj.jdbc.driver
       - SPRING_DATASOURCE_URL=$SPRING_DATASOURCE_URL
       - SPRING_DATASOURCE_USERNAME=$SPRING_DATASOURCE_NAME
       - SPRING_DATASOURCE_PASSWORD=$MYSQL_ROOT_PASSWORD
@@ -10,17 +10,17 @@ services:
       - SPRING_REDIS_HOST=$REDIS_HOST
       - SPRING_REDIS_PORT=$REDIS_PORT
       - AJ_CAPTCHA_ENABLE=false
-#      - SPRING_REDIS_PASSWORD=
-#      - WX_MP_CONFIGS_APPID=
-#      - WX_MP_CONFIGS_SECRET=
-#      - WX_MP_CONFIGS_TOKEN=
-#      - WX_MP_CONFIGS_AESKEY=
-#      - OSS_OSSTYPE=
-#      - OSS_ENDPOINT=
-#      - OSS_ACCESSKEYID=
-#      - OSS_ACCESSKEYSECRET=
-#      - OSS_BUCKETNAME=
-#      - OSS_DOMAIN=
+    #      - SPRING_REDIS_PASSWORD=
+    #      - WX_MP_CONFIGS_APPID=
+    #      - WX_MP_CONFIGS_SECRET=
+    #      - WX_MP_CONFIGS_TOKEN=
+    #      - WX_MP_CONFIGS_AESKEY=
+    #      - OSS_OSSTYPE=
+    #      - OSS_ENDPOINT=
+    #      - OSS_ACCESSKEYID=
+    #      - OSS_ACCESSKEYSECRET=
+    #      - OSS_BUCKETNAME=
+    #      - OSS_DOMAIN=
 
     image: "tecdo/tduck"
     ports:

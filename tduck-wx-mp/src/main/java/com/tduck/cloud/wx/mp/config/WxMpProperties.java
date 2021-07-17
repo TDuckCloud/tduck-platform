@@ -25,6 +25,11 @@ public class WxMpProperties {
      */
     private List<MpConfig> configs;
 
+    @Override
+    public String toString() {
+        return JsonUtils.objToJson(this);
+    }
+
     @Data
     public static class MpConfig {
         /**
@@ -46,10 +51,5 @@ public class WxMpProperties {
          * 设置微信公众号的EncodingAESKey
          */
         private String aesKey;
-    }
-
-    @Override
-    public String toString() {
-        return JsonUtils.objToJson(this);
     }
 }

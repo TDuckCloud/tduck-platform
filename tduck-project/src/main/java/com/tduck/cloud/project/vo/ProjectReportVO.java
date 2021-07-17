@@ -89,17 +89,29 @@ public class ProjectReportVO {
     @AllArgsConstructor
     @NoArgsConstructor
     public static class Analysis {
-        /** 类型 */
+        /**
+         * 类型
+         */
         private String type;
-        /** 题目名称 */
+        /**
+         * 题目名称
+         */
         private String label;
-        /** 标签集 */
+        /**
+         * 标签集
+         */
         private List<String> fieldName;
-        /** 数据集 */
+        /**
+         * 数据集
+         */
         private List<Integer> data;
-        /** 合集 */
+        /**
+         * 合集
+         */
         private Map map;
-        /** 图表类型 */
+        /**
+         * 图表类型
+         */
         private String chartType = "pie";
     }
 }

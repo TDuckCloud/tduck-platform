@@ -19,7 +19,7 @@ public class WxMpUserMsgServiceImpl implements WxMpUserMsgService {
 
     @Lazy
     @Autowired
-    private  WxMpService wxMpService;
+    private WxMpService wxMpService;
 
     @Override
     public void sendKfTextMsg(String appId, String openId, String content) {
@@ -29,9 +29,9 @@ public class WxMpUserMsgServiceImpl implements WxMpUserMsgService {
                 .content(content)
                 .build();
         try {
-            if(StrUtil.isBlank(appId)){
+            if (StrUtil.isBlank(appId)) {
                 wxMpService.getKefuService().sendKefuMessage(msg);
-            }else{
+            } else {
                 wxMpService.switchoverTo(appId).getKefuService().sendKefuMessage(msg);
             }
         } catch (WxErrorException e) {
