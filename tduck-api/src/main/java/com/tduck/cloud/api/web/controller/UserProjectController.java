@@ -275,7 +275,7 @@ public class UserProjectController {
                 .eq(UserProjectItemEntity::getProjectKey, request.getKey())
                 .eq(ObjectUtil.isNotNull(request.getDisplayType()), UserProjectItemEntity::getDisplayType, request.getDisplayType())
                 .orderByAsc(UserProjectItemEntity::getSort)
-                );
+        );
         return Result.success(itemEntityList);
     }
 
@@ -440,7 +440,7 @@ public class UserProjectController {
      */
     @GetMapping("/user/project/setting-status")
     public Result querySettingStatus(@RequestParam String projectKey, HttpServletRequest request) {
-        return userProjectSettingService.getUserProjectSettingStatus(projectKey, HttpUtils.getIpAddr(request));
+        return userProjectSettingService.getUserProjectSettingStatus(projectKey, HttpUtils.getIpAddr(request), "");
     }
 
 

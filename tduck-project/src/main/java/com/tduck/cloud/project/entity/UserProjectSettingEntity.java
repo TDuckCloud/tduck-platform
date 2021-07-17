@@ -50,6 +50,12 @@ public class UserProjectSettingEntity extends BaseEntity<UserProjectSettingEntit
      */
     @TableField("is_wx_write")
     private Boolean wxWrite;
+
+    /**
+     * 一个微信只能填写一次
+     */
+    @TableField("is_wx_write_once")
+    private Boolean wxWriteOnce;
     /**
      * 每人只能填写一次
      */
@@ -117,7 +123,6 @@ public class UserProjectSettingEntity extends BaseEntity<UserProjectSettingEntit
      * 分享描述
      */
     private String shareDesc;
-
 
 
 }

@@ -39,7 +39,7 @@ public class UserProjectSettingServiceImpl extends ServiceImpl<UserProjectSettin
 
 
     @Override
-    public Result getUserProjectSettingStatus(String projectKey, String requestIp) {
+    public Result getUserProjectSettingStatus(String projectKey, String requestIp, String wxOpenId) {
         UserProjectEntity userProjectEntity = userProjectService.getByKey(projectKey);
         if (ObjectUtil.isNull(userProjectEntity) || userProjectEntity.getStatus() != ProjectStatusEnum.RELEASE) {
             return Result.success(null, "项目暂时无法填写");
@@ -54,18 +54,18 @@ public class UserProjectSettingServiceImpl extends ServiceImpl<UserProjectSettin
         LocalDateTime now = LocalDateTime.now();
         //时间未开始
         if (timedCollectionBeginTime.isPresent() && timedCollectionBeginTime.get().isAfter(now)) {
-            return Result.success(null, StringUtils.isEmpty(setting.getTimedNotEnabledPromptText())?"项目时间末开始。":setting.getTimedNotEnabledPromptText());
+            return Result.success(null, StringUtils.isEmpty(setting.getTimedNotEnabledPromptText()) ? "项目时间末开始。" : setting.getTimedNotEnabledPromptText());
         }
         //时间已经结束
         if (timedCollectionEndTime.isPresent() && timedCollectionEndTime.get().isBefore(now)) {
-            return Result.success(null, StringUtils.isEmpty(setting.getTimedDeactivatePromptText())?"项目时间已结束。":setting.getTimedDeactivatePromptText());
+            return Result.success(null, StringUtils.isEmpty(setting.getTimedDeactivatePromptText()) ? "项目时间已结束。" : setting.getTimedDeactivatePromptText());
         }
         //收集数量达到
         Integer timedQuantitativeQuantity = setting.getTimedQuantitativeQuantity();
         if (Optional.ofNullable(timedQuantitativeQuantity).isPresent() && 0 != timedQuantitativeQuantity) {
             int resultCount = userProjectResultService.count(Wrappers.<UserProjectResultEntity>lambdaQuery().eq(UserProjectResultEntity::getProjectKey, projectKey));
             if (resultCount >= timedQuantitativeQuantity) {
-                return Result.success(setting, StringUtils.isEmpty(setting.getTimedEndPromptText())?"收集数量已达到。":setting.getTimedEndPromptText());
+                return Result.success(setting, StringUtils.isEmpty(setting.getTimedEndPromptText()) ? "收集数量已达到。" : setting.getTimedEndPromptText());
             }
         }
         //每个人只需填写一次 根据IP判断
@@ -82,6 +82,16 @@ public class UserProjectSettingServiceImpl extends ServiceImpl<UserProjectSettin
             int writeCount = userProjectResultService.count(wrapper);
             if (CommonConstants.ConstantNumber.ONE <= writeCount) {
                 return Result.success(null, setting.getWriteOncePromptText());
+            }
+        }
+        //每个微信仅填写一次
+        if (setting.getWxWriteOnce() && StrUtil.isNotEmpty(wxOpenId)) {
+            LambdaQueryWrapper<UserProjectResultEntity> wrapper = Wrappers.<UserProjectResultEntity>lambdaQuery()
+                    .eq(UserProjectResultEntity::getProjectKey, projectKey)
+                    .eq(UserProjectResultEntity::getWxOpenId, wxOpenId);
+            int writeCount = userProjectResultService.count(wrapper);
+            if (CommonConstants.ConstantNumber.ONE <= writeCount) {
+                return Result.success(null, "已经填写过，无法再次填写");
             }
         }
         return Result.success(setting);
