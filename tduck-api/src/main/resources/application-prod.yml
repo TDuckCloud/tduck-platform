@@ -1,9 +1,9 @@
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url:
-    username:
-    password:
+    url: jdbc:mysql://127.0.0.1:3306/tduck?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC&tinyInt1isBit=false
+    username:  tduck
+    password: tduck001
     type: com.zaxxer.hikari.HikariDataSource
     hikari:
       minimum-idle: 5
@@ -14,8 +14,8 @@ spring:
       max-lifetime: 1800000
       connection-test-query: SELECT 1 FROM DUAL
   redis:
-    database: 8
-    host:
+    database: 0
+    host: 127.0.0.1
     port: 6379
     password:
     timeout: 6000ms  # 连接超时时长（毫秒）
@@ -26,9 +26,9 @@ spring:
         max-idle: 10      # 连接池中的最大空闲连接
         min-idle: 5       # 连接池中的最小空闲连接
   mail:
-    host:
-    username:
-    password:
+    host: smtp.163.com
+    username: test@163.com  # 邮箱账号
+    password: DSXFPX24XOBURMDY #邮箱授权码
 
 logging:
   level:
@@ -42,29 +42,32 @@ platform:
       appId:
       secret:
   oss:
-    ossType: 1
-    endpoint: 12
+    ossType: 3 #本地存储
+    endpoint:
     accessKeyId:
     accessKeySecret:
     bucketName:
-    domain:
+    domain: https://demo.tduckapp.com/profile/  #提供访问的域名
+    upload-folder: /home/tduck/profile #文件存放的位置
+    access-path-pattern: /profile/**  # 文件访问路径前缀 这里更改domain也需要更改
   sms:
-    secretId:
-    secretKey:
+    type: 1  # 短信平台类型
+    secretId: Ga2AIryi8174KXz  #短信秘钥
+    secretKey: uHSpKfjtadadaezjwtN6B0dvbelv #短信秘钥
     appId:
-    sign:
-    validateCodeTemplateId:
-    retrievePwdValidateCodeTemplateId:
+    sign:  tduck                  #短信签名
+    validateCodeTemplateId: SMS_219865038 #验证码模板
+    retrievePwdValidateCodeTemplateId: SMS_219865039  # 找回密码模板
   front:
-    baseUrl: https://tduck.smileyi.top/
-    resetPwdUrl: https://tduck.smileyi.top/forget/password?code={}&email={}
-    updateEmailUrl: https://localhost:8888/account/forget/validate?type=updateEmail&code={}&email={}
+    baseUrl: https://demo.tduckapp.com/
+    resetPwdUrl: https://demo.tduckapp.com/forget/password?code={}&email={}
+    updateEmailUrl: https://demo.tduckapp.com/account/forget/validate?type=updateEmail&code={}&email={}
 
 wx:
   mp:
     configs:
-      - appId:
-        secret:
-        token:
-        aesKey:
+      - appId:   #公众号appId
+        secret: #公众号秘钥
+        token: dHClTzEAcayUX0Jyy9TwBp89QrdWvvZZ
+        aesKey: 3aNsbtc8wdx92M14YszvQSU4zksx9M1Gl8k655vYOLB
 
