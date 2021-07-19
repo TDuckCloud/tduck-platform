@@ -5,7 +5,9 @@ package com.tduck.cloud.common.sms;
  * @description : 短信服务
  * @create : 2020-12-15 10:30
  **/
-public interface SmsService {
+public abstract class SmsService {
+
+    public SmsPlatformProperties properties;
 
     /**
      * 发送短信
@@ -15,7 +17,7 @@ public interface SmsService {
      * @param templateParams 短信模板參數
      * @return
      */
-    boolean sendSms(String phoneNumber, String templateId, String... templateParams);
+    public abstract boolean sendSms(String phoneNumber, String templateId, String... templateParams);
 
     /**
      * 发送验证短信
@@ -24,7 +26,7 @@ public interface SmsService {
      * @param templateParams 短信模板參數
      * @return
      */
-    boolean sendValidateSms(String phoneNumber, String... templateParams);
+    public abstract boolean sendValidateSms(String phoneNumber, String... templateParams);
 
     /**
      * 发送找回密码验证码
@@ -33,6 +35,6 @@ public interface SmsService {
      * @param templateParams
      * @return
      */
-    boolean sendRetrievePwdValidateSms(String phoneNumber, String... templateParams);
+    public abstract boolean sendRetrievePwdValidateSms(String phoneNumber, String... templateParams);
 
 }

@@ -44,6 +44,7 @@ platform:
     bucketName: tduck-cloud
     domain: https://qiniu.smileyi.top
   sms:
+    type: 1  # 短信平台类型
     secretId: mpw:EvC1LR0eGdzeQzkuO7fhEazxGtmdue8FJDzSA1l+gICuOUEDXI8zcjK+VXB2aWKS
     secretKey: mpw:W3kvWxvHdgUJPAwqR6mwpfMoQMerAYcxZGHwJc259lK3m+jzceGuu0Tgnx++02Bk
     appId: 1400461467
