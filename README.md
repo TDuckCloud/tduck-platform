@@ -1,22 +1,13 @@
-<p></p>
-<p></p>
-<p align="left">
-  <img alt="logo" src="https://doc.tduckapp.com/img/banner.png" style="margin-bottom: 0px;">
-</p>
-<h2 align="left">Tduck 填鸭 —— 表单收集器</h2>
-
+<p align="left"><img alt="logo" src="https://doc.tduckapp.com/img/banner.png" style="margin-bottom: 0px;"></p>
 
 ### 平台简介
 
 Tduck,  Form collection system
-
 Tduck 填鸭：是基于B/S架构的一款开源的表单在线收集系统，为企业构建自己的信息反馈系统的综合解决方案，助力企业提高反馈收集客户服务效率。
-
 
 ### 应用场景
 
 主要应用与泛零售、电商、金融、调研、资料收集等行业用户，提供多种工具、多渠道、多方式收集有效信息，更好的提升客户服务，增加客户满意度。
-
 
 ### 功能特性
 ##### 界面美观，全新element-ui支持，使用流畅
@@ -82,13 +73,12 @@ Tduck 填鸭：是基于B/S架构的一款开源的表单在线收集系统，�
 
 ## 在线体验
 ![首页](https://images.gitee.com/uploads/images/2021/0624/103418_43f3b04e_1495174.png "屏幕截图.png")
-
 ![输入图片说明](https://images.gitee.com/uploads/images/2021/0625/000932_eb5728c8_1674451.png "屏幕截图.png")
+
 ### “文档支持”
 新的文档平台，后续会不断完善文档，有需要完善的内容可以在GItee提issues反馈，收到反馈我们将第一时间调整，当然有想共享文档的也欢迎提Pr。
 
 ![输入图片说明](https://images.gitee.com/uploads/images/2021/0625/001013_eb945bce_1674451.png "屏幕截图.png")
-
 ![输入图片说明](https://images.gitee.com/uploads/images/2021/0625/001053_f3c320c4_1674451.png "屏幕截图.png")
 
 ### “项目规划”
