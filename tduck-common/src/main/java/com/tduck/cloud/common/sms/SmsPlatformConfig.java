@@ -17,7 +17,7 @@ public class SmsPlatformConfig {
 
 
     @Bean
-    public SmsService xssFilterRegistration() {
+    public SmsService smsService() {
         SmsService smsService = null;
         switch (properties.getType()) {
             case ALIYUN:
