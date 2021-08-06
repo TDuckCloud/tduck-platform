@@ -44,12 +44,12 @@ platform:
     bucketName: tduck-cloud
     domain: https://qiniu.smileyi.top
   sms:
-    secretId: mpw:EvC1LR0eGdzeQzkuO7fhEazxGtmdue8FJDzSA1l+gICuOUEDXI8zcjK+VXB2aWKS
-    secretKey: mpw:W3kvWxvHdgUJPAwqR6mwpfMoQMerAYcxZGHwJc259lK3m+jzceGuu0Tgnx++02Bk
-    appId: 1400461467
-    sign: smileyi知识分享
-    validateCodeTemplateId: 808150
-    retrievePwdValidateCodeTemplateId: 809014
+    secretId: mpw:EvC1LR0eGdzeQzkuO7fhEazxGtmdue8FJDzSA1l+gICuOUEDXI8zcjK+VXB2aWKS       # 腾讯云账户ID
+    secretKey: mpw:W3kvWxvHdgUJPAwqR6mwpfMoQMerAYcxZGHwJc259lK3m+jzceGuu0Tgnx++02Bk       # 腾讯云账户key
+    appId: 1400461467       # 腾讯云短信应用ID
+    sign: smileyi知识分享       # 腾讯云短信签名
+    validateCodeTemplateId: 808150       # 腾讯云短信模板ID
+    retrievePwdValidateCodeTemplateId: 809014       # 腾讯云短信模板ID
   front:
     baseUrl: http://localhost:8888/
     resetPwdUrl: http://localhost:8888/forget/password?code={}&email={}
