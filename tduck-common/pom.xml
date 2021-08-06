@@ -73,5 +73,10 @@
             <groupId>com.tencentcloudapi</groupId>
             <artifactId>tencentcloud-sdk-java</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.aliyun</groupId>
+            <artifactId>dysmsapi20170525</artifactId>
+            <version>2.0.4</version>
+        </dependency>
     </dependencies>
 </project>
