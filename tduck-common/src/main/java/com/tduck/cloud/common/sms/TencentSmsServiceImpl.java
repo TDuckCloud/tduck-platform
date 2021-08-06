@@ -8,45 +8,34 @@ import com.tencentcloudapi.sms.v20190711.models.SendSmsRequest;
 import com.tencentcloudapi.sms.v20190711.models.SendSmsResponse;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.stereotype.Component;
 
-import javax.annotation.PostConstruct;
 
 /**
  * @author : smalljop
  * @description : 腾讯云短信
  * @create : 2020-12-15 10:33
  **/
-@ConfigurationProperties(prefix = "platform.sms")
-@Component
+
 @Slf4j
 @Data
-public class TencentSmsServiceImpl implements SmsService {
-
-    private String secretId;
-
-    private String secretKey;
-    private String appId;
-    private String sign;
-    private String validateCodeTemplateId;
-    private String retrievePwdValidateCodeTemplateId;
+public class TencentSmsServiceImpl extends SmsService {
 
     private SmsClient client;
 
-    @PostConstruct
-    public void init() {
+    public TencentSmsServiceImpl(SmsPlatformProperties properties) {
         /* 必要步骤：
          * 实例化一个认证对象，入参需要传入腾讯云账户密钥对 secretId 和 secretKey
          * 本示例采用从环境变量读取的方式，需要预先在环境变量中设置这两个值
          * 您也可以直接在代码中写入密钥对，但需谨防泄露，不要将代码复制、上传或者分享给他人
          * CAM 密钥查询：https://console.cloud.tencent.com/cam/capi
          */
-        Credential cred = new Credential(secretId, secretKey);
+        Credential cred = new Credential(properties.getSecretId(), properties.getSecretKey());
         /* 实例化 SMS 的 client 对象
          * 第二个参数是地域信息，可以直接填写字符串 ap-guangzhou，或者引用预设的常量 */
         client = new SmsClient(cred, "ap-guangzhou");
+        this.properties = properties;
     }
+
 
     @Override
     public boolean sendSms(String phoneNumber, String templateId, String... templateParams) {
@@ -58,10 +47,10 @@ public class TencentSmsServiceImpl implements SmsService {
          * sms helper：https://cloud.tencent.com/document/product/382/3773 */
         SendSmsRequest req = new SendSmsRequest();
         /* 短信应用 ID: 在 [短信控制台] 添加应用后生成的实际 SDKAppID，例如1400006666 */
-        req.setSmsSdkAppid(appId);
+        req.setSmsSdkAppid(properties.getAppId());
 
         /* 短信签名内容: 使用 UTF-8 编码，必须填写已审核通过的签名，可登录 [短信控制台] 查看签名信息 */
-        req.setSign(sign);
+        req.setSign(properties.getSign());
 
         /* 模板 ID: 必须填写已审核通过的模板 ID，可登录 [短信控制台] 查看模板 ID */
         req.setTemplateID(templateId);
@@ -90,13 +79,13 @@ public class TencentSmsServiceImpl implements SmsService {
 
     @Override
     public boolean sendValidateSms(String phoneNumber, String... templateParams) {
-        this.sendSms(phoneNumber, validateCodeTemplateId, templateParams);
+        this.sendSms(phoneNumber, properties.getValidateCodeTemplateId(), templateParams);
         return true;
     }
 
     @Override
     public boolean sendRetrievePwdValidateSms(String phoneNumber, String... templateParams) {
-        this.sendSms(phoneNumber, retrievePwdValidateCodeTemplateId, templateParams);
+        this.sendSms(phoneNumber, properties.getRetrievePwdValidateCodeTemplateId(), templateParams);
         return false;
     }
 }
