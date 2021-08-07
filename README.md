@@ -20,6 +20,14 @@ Tduck 填鸭：是基于B/S架构的一款开源的表单在线收集系统，�
 - 表单设置：支持多种收集方式设置
 - 反馈统计：多维度统计收集的反馈数据
 
+### 项目源码
+
+|   后端源码  |   前端源码  |
+|--- | --- |
+|  https://gitee.com/TDuckApp/tduck-platform   |  https://gitee.com/TDuckApp/tduck-front   |
+|  https://github.com/TDuckCloud/tduck-platform   |  https://github.com/TDuckCloud/tduck-front   |
+
+
 ### 演示环境&详细文档👮‍♀️
 - 演示地址：http://demo.tduckapp.com/
 - 演示账号/密码：扫码注册登录
@@ -30,15 +38,13 @@ Tduck 填鸭：是基于B/S架构的一款开源的表单在线收集系统，�
 - 获取《tduck-纯小白部署教程》请加入社群获取
 - 开源不易如果喜欢请给作者 Star 鼓励
 
+### 参与调研 :star: 
+亲爱的Tducker，感谢你选择使用Tduck表单系统。
+为了功能更加完善以及能够为开源做更多贡献；
+我们迫切需要了解一些信息，如果可以，请帮助完成填写[来访者调研表单](https://demo.tduckapp.com/s/4d162343d29e494ea1701c7c9b368332)
+
 ### 加入社群
  <img alt="logo" src="https://images.gitee.com/uploads/images/2021/0706/174654_31b12d64_1674451.png" style="margin-bottom: 0px;" width="230px">
-
-### 项目源码
-
-|   后端源码  |   前端源码  |
-|--- | --- |
-|  https://gitee.com/TDuckApp/tduck-platform   |  https://gitee.com/TDuckApp/tduck-front   |
-|  https://github.com/TDuckCloud/tduck-platform   |  https://github.com/TDuckCloud/tduck-front   |
 
 感谢：<img alt="logo" src="https://images.gitee.com/uploads/images/2021/0624/105039_de3beb64_1495174.png" style="margin-bottom: 0px;" width="230px">
 提供云服务器资源！
