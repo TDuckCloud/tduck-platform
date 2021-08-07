@@ -44,10 +44,8 @@ Tduck 填鸭：是基于B/S架构的一款开源的表单在线收集系统，�
 我们迫切需要了解一些信息，如果可以，请帮助完成填写[来访者调研表单](https://demo.tduckapp.com/s/4d162343d29e494ea1701c7c9b368332)
 
 ### 加入社群
- <img alt="logo" src="https://images.gitee.com/uploads/images/2021/0706/174654_31b12d64_1674451.png" style="margin-bottom: 0px;" width="230px">
+ <img alt="logo" src="https://images.gitee.com/uploads/images/2021/0706/174654_31b12d64_1674451.png" style="margin-bottom: 0px;" width="200px">
 
-感谢：<img alt="logo" src="https://images.gitee.com/uploads/images/2021/0624/105039_de3beb64_1495174.png" style="margin-bottom: 0px;" width="230px">
-提供云服务器资源！
 
 ### “项目背景”
 目前市面上的表单平台虽然功能强大，但是部分业务组件或者额外收取存储等费用，且费用较高，在数据隐私性较强且有特殊表单需求的场景下无法满足业务需求，
@@ -88,3 +86,10 @@ Tduck 填鸭：是基于B/S架构的一款开源的表单在线收集系统，�
 ![输入图片说明](https://images.gitee.com/uploads/images/2021/0625/001013_eb945bce_1674451.png "屏幕截图.png")
 ![输入图片说明](https://images.gitee.com/uploads/images/2021/0625/001053_f3c320c4_1674451.png "屏幕截图.png")
 ![输入图片说明](https://images.gitee.com/uploads/images/2021/0625/001803_d0b579e3_1674451.png "屏幕截图.png")
+
+### 致谢 :heart: 
+- 感谢[Ucloud优刻得](https://www.ucloud.cn/)提供服务器资源
+- 感谢公众号：“各种折腾”贡献详细部署文档
+- 感谢博主[@daishenghui](https://daishenghui.club/)贡献docker镜像/视频
+- 感谢捐赠区支持Tduck的伙伴
+- 感谢积极为Tduck版本优化贡献力量的小伙伴
