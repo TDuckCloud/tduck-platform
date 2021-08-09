@@ -1,22 +1,16 @@
 /*
  Navicat Premium Data Transfer
 
- Source Server         : ivo
  Source Server Type    : MySQL
  Source Server Version : 50718
- Source Host           : sh-cynosdbmysql-grp-e911sges.sql.tencentcdb.com:29062
  Source Schema         : tduck
-
  Target Server Type    : MySQL
- Target Server Version : 50718
- File Encoding         : 65001
 
  Date: 17/07/2021 15:12:39
 */
 
 SET NAMES utf8mb4;
-SET
-FOREIGN_KEY_CHECKS = 0;
+SET FOREIGN_KEY_CHECKS = 0;
 
 -- ----------------------------
 -- Table structure for ac_user
@@ -39,7 +33,7 @@ CREATE TABLE `ac_user`
     `create_time`        datetime                                                      NOT NULL DEFAULT CURRENT_TIMESTAMP,
     `update_time`        datetime                                                      NOT NULL DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 945 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '用户' ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB  CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '用户' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Table structure for ac_user_authorize
@@ -57,7 +51,7 @@ CREATE TABLE `ac_user_authorize`
     `create_time` datetime                                                      NOT NULL DEFAULT CURRENT_TIMESTAMP,
     `update_time` datetime                                                      NOT NULL DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '第三方用户授权信息' ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB  CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '第三方用户授权信息' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Table structure for pr_project_template
@@ -77,7 +71,7 @@ CREATE TABLE `pr_project_template`
     `create_time` datetime NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
     PRIMARY KEY (`id`) USING BTREE,
     UNIQUE INDEX `code`(`key`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 341 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '项目表' ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB  CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '项目表' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Table structure for pr_project_template_category
@@ -117,7 +111,7 @@ CREATE TABLE `pr_project_template_item`
     `is_display_type` tinyint(1) NOT NULL DEFAULT 0 COMMENT '展示类型组件',
     PRIMARY KEY (`id`) USING BTREE,
     INDEX             `project_key`(`project_key`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 2451 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '项目表单项' ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '项目表单项' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Table structure for pr_project_theme
@@ -134,7 +128,7 @@ CREATE TABLE `pr_project_theme`
     `update_time`  datetime NULL DEFAULT CURRENT_TIMESTAMP COMMENT '更新时间',
     `create_time`  datetime NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
     PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 216 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '项目主题外观模板' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB  CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '项目主题外观模板' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Table structure for pr_user_project
@@ -156,7 +150,7 @@ CREATE TABLE `pr_user_project`
     `create_time` datetime NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
     PRIMARY KEY (`id`) USING BTREE,
     UNIQUE INDEX `code`(`key`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 4081 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '项目表' ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB  CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '项目表' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Table structure for pr_user_project_item
@@ -182,7 +176,7 @@ CREATE TABLE `pr_user_project_item`
     `create_time`     datetime NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
     PRIMARY KEY (`id`) USING BTREE,
     INDEX             `project_key`(`project_key`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 30013 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '项目表单项' ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB  CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '项目表单项' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Table structure for pr_user_project_logic
@@ -199,7 +193,7 @@ CREATE TABLE `pr_user_project_logic`
     `update_time`    datetime NULL DEFAULT CURRENT_TIMESTAMP COMMENT '更新时间',
     PRIMARY KEY (`id`) USING BTREE,
     INDEX            `project_key`(`project_key`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 569 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '项目逻辑' ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB  CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '项目逻辑' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Table structure for pr_user_project_result
@@ -224,7 +218,7 @@ CREATE TABLE `pr_user_project_result`
     `update_time`       datetime NULL DEFAULT CURRENT_TIMESTAMP COMMENT '更新时间',
     PRIMARY KEY (`id`) USING BTREE,
     INDEX               `project_key`(`project_key`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 2226 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '项目表单项' ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB  CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '项目表单项' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Table structure for pr_user_project_setting
@@ -259,7 +253,7 @@ CREATE TABLE `pr_user_project_setting`
     `create_time`                   datetime NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
     PRIMARY KEY (`id`) USING BTREE,
     UNIQUE INDEX `project_key`(`project_key`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 530 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '项目表单项' ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB  CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '项目表单项' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Table structure for pr_user_project_theme
@@ -282,7 +276,7 @@ CREATE TABLE `pr_user_project_theme`
     `create_time`      datetime NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
     PRIMARY KEY (`id`) USING BTREE,
     UNIQUE INDEX `project_key`(`project_key`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 945 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '项目表单项' ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB  CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '项目表单项' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Table structure for wx_mp_user
@@ -306,7 +300,8 @@ CREATE TABLE `wx_mp_user`
     `create_time`  datetime NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
     PRIMARY KEY (`id`) USING BTREE,
     INDEX          `wx_union_id`(`head_img_url`(191)) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 728 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '微信公众号用户 ' ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB  CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '微信公众号用户 ' ROW_FORMAT = DYNAMIC;
 
-SET
-FOREIGN_KEY_CHECKS = 1;
+INSERT INTO `tduck`.`ac_user`( `name`, `avatar`, `gender`, `email`, `phone_number`, `password`, `reg_channel`, `last_login_channel`, `last_login_time`, `last_login_ip`, `deleted`, `create_time`, `update_time`) VALUES ( 'Tduck001', 'https://oss.smileyi.top/757b505cfd34c64c85ca5b5690ee5293/4c415e1c1af04af68d740e667819bece.png', 0, 'test@tduckapp.com', NULL, 'ef797c8118f02dfb649607dd5d3f8c7623048c9c063d532cc95c5ed7a898a64f', '1', 2, '2021-06-24 11:08:21', '111.30.56.26', 0, '2020-11-12 11:50:50', '2021-06-24 11:08:21');
+
+SET FOREIGN_KEY_CHECKS = 1;
