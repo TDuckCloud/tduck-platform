@@ -93,6 +93,3 @@ Tduck 填鸭：是基于B/S架构的一款开源的表单在线收集系统，�
 - 感谢博主[@daishenghui](https://daishenghui.club/)贡献docker镜像/视频
 - 感谢捐赠区支持Tduck的伙伴
 - 感谢积极为Tduck版本优化贡献力量的小伙伴
-
-## Stargazers over time
-[![Stargazers over time](https://whnb.wang/stars/kekingcn/file-online-preview?e=86400)](https://whnb.wang)
