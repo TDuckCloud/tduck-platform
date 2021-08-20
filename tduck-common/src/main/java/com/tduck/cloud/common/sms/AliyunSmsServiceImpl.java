@@ -14,7 +14,7 @@ import java.util.Map;
 
 /**
  * @author : smalljop
- * @description : 腾讯云短信
+ * @description : 阿里云短信
  * @create : 2020-12-15 10:33
  **/
 @Data
