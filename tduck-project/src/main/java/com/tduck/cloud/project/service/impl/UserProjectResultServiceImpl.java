@@ -36,6 +36,7 @@ import org.springframework.stereotype.Service;
 import java.io.File;
 import java.io.FileInputStream;
 import java.util.*;
+import java.util.concurrent.atomic.AtomicReference;
 import java.util.stream.Collectors;
 
 import static com.tduck.cloud.project.constant.ProjectRedisKeyConstants.PROJECT_RESULT_NUMBER;
@@ -108,17 +109,28 @@ public class UserProjectResultServiceImpl extends ServiceImpl<UserProjectResultM
         if (CollectionUtil.isEmpty(resultEntityList)) {
             throw new BaseException("此表单无有效反馈，不能导出");
         }
+        // 导出会使用第一行数据作为标题 第一行未填写的数据需要填充默认值 不然导出会存在列丢失
+        AtomicReference<Boolean> isFillRow = new AtomicReference<>(false);
         List<Map<String, Object>> resultList = resultEntityList.stream().map(item -> {
             Map<String, Object> processData = item.getProcessData();
+            if (!isFillRow.get()) {
+                titleList.stream()
+                        .map(ExportProjectResultVO.ExcelHeader::getFieldKey).collect(Collectors.toList()).forEach(key -> {
+                            if (!processData.containsKey(key))
+                                processData.put(key, StrUtil.EMPTY);
+                        });
+                isFillRow.set(true);
+            }
             Iterator<String> iterator = processData.keySet().iterator();
             while (iterator.hasNext()) {
                 String key = iterator.next();
-                if (!titleList.stream()
-                        .map(ExportProjectResultVO.ExcelHeader::getFieldKey).collect(Collectors.toList()).contains(key)) {
+                List<String> titleStrList = titleList.stream()
+                        .map(ExportProjectResultVO.ExcelHeader::getFieldKey).collect(Collectors.toList());
+                // 不存在导出列的数据移除掉 避免多于字段导致excel格式错乱
+                if (!titleStrList.contains(key)) {
                     iterator.remove();
                 }
             }
-
             processData.put(BaseEntity.Fields.createTime, item.getCreateTime());
             processData.put(UserProjectResultEntity.Fields.submitAddress, item.getSubmitAddress());
             return processData;
