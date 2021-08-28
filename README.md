@@ -53,10 +53,6 @@ Tduck 填鸭：是基于B/S架构的一款开源的表单在线收集系统，�
 目前国内的的开源平台表单问卷平台比较少，tduck表单平台应运而生。让中小公司拥有独立自定义表单问卷，快速赋能业务。
 
 
-## Stargazers over time
-[![Stargazers over time](https://whnb.wang/stars/TDuckApp/tduck-platform)](https://whnb.wang)
-      
-
 ### “V2新特性”
 
 - 【表单逻辑】支持对单选，多选框，下拉框等组件进行逻辑设置，目前仅支持选中 未选中等逻辑关系
@@ -99,6 +95,9 @@ Tduck 填鸭：是基于B/S架构的一款开源的表单在线收集系统，�
 - 感谢博主[@daishenghui](https://daishenghui.club/)贡献docker镜像/视频
 - 感谢捐赠区支持Tduck的伙伴
 - 感谢积极为Tduck版本优化贡献力量的小伙伴
+
+
+[![Stargazers over time](https://whnb.wang/stars/TDuckApp/tduck-platform)](https://whnb.wang)  
 
 ### 项目贡献者
 ## contributors
