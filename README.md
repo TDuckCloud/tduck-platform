@@ -89,9 +89,11 @@ Tduck 填鸭：是基于B/S架构的一款开源的表单在线收集系统，�
 
 ![输入图片说明](https://images.gitee.com/uploads/images/2021/0729/205432_6ee1e855_1674451.png "微信截图_20210729205409.png")
 ![输入图片说明](https://images.gitee.com/uploads/images/2021/0625/000932_eb5728c8_1674451.png "屏幕截图.png")
+![表单页](https://images.gitee.com/uploads/images/2021/0828/150919_35bfaceb_1674451.png "屏幕截图.png")
 ![输入图片说明](https://images.gitee.com/uploads/images/2021/0625/001013_eb945bce_1674451.png "屏幕截图.png")
 ![输入图片说明](https://images.gitee.com/uploads/images/2021/0625/001053_f3c320c4_1674451.png "屏幕截图.png")
 ![输入图片说明](https://images.gitee.com/uploads/images/2021/0625/001803_d0b579e3_1674451.png "屏幕截图.png")
+![模板界面](https://images.gitee.com/uploads/images/2021/0828/145804_14bc4c1d_1674451.png "屏幕截图.png")
 
 ### 致谢 :heart: 
 - 感谢[Ucloud优刻得](https://www.ucloud.cn/)提供服务器资源
