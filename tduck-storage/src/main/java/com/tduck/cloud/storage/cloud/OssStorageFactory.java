@@ -26,6 +26,8 @@ public final class OssStorageFactory {
             return new UpyunStorageService(config);
         } else if (config.getOssType() == OssTypeEnum.LOCAL) {
             return new localStorageService(config);
+        }else if (config.getOssType() == OssTypeEnum.MINIO) {
+            return new MIniOStorageService(config);
         }
         return null;
     }

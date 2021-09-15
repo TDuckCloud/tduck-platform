@@ -29,8 +29,12 @@ public enum OssTypeEnum {
     /**
      * 本地存储
      */
-    LOCAL(3);
+    LOCAL(3),
 
+    /**
+     * minio
+     */
+    MINIO(4);
 
     @EnumValue
     @JsonValue
