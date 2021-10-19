@@ -1,5 +1,3 @@
-<p align="left"><img alt="logo" src="https://doc.tduckapp.com/img/banner.png" style="margin-bottom: 0px;"></p>
-
 ### 平台简介
 Tduck 填鸭：是基于B/S架构的一款开源的表单在线收集系统，为企业构建自己的信息反馈系统的综合解决方案，助力企业提高反馈收集客户服务效率。
 主要应用与泛零售、电商、金融、调研、资料收集等行业用户，提供多种工具、多渠道、多方式收集有效信息，更好的提升客户服务，增加客户满意度。
@@ -49,11 +47,6 @@ Tduck 填鸭：是基于B/S架构的一款开源的表单在线收集系统，�
 ### “项目规划及界面”
 “让每个企业轻松拥有自己的问卷系统”是Tduck团队不变的初衷；v2版本的开发工作目前算是暂时结束，经过团队内部自测推出，同时欢迎大家进行测试，对存在的问题在Gitee提issues,社群内反馈可能无法及时解决，后续可能会遗忘。我们会定期对issues问题修复和做一些优化，竭力维护一个稳定的v2版本。
 
-![首页](https://images.gitee.com/uploads/images/2021/0729/205432_6ee1e855_1674451.png "微信截图_20210729205409.png")
-![登录界面](https://images.gitee.com/uploads/images/2021/0828/151216_aad75126_1674451.png "屏幕截图.png")
-![编辑界面](https://images.gitee.com/uploads/images/2021/0828/151052_d9af3089_1674451.png "屏幕截图.png")
-![表单页](https://images.gitee.com/uploads/images/2021/0828/150919_35bfaceb_1674451.png "屏幕截图.png")
-![模板界面](https://images.gitee.com/uploads/images/2021/0828/145804_14bc4c1d_1674451.png "屏幕截图.png")
 
 ### “V2新特性”
 - 【表单逻辑】支持对单选，多选框，下拉框等组件进行逻辑设置，目前仅支持选中 未选中等逻辑关系
@@ -87,7 +80,3 @@ Tduck 填鸭：是基于B/S架构的一款开源的表单在线收集系统，�
 
 
 [![Stargazers over time](https://whnb.wang/stars/TDuckApp/tduck-platform)](https://whnb.wang)  
-
-### 项目贡献者
-## contributors
-[![contributors](https://whnb.wang/contributors/TDuckApp/tduck-platform)](https://whnb.wang)
