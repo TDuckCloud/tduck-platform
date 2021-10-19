@@ -72,8 +72,8 @@ v2版本的开发工作目前算是暂时结束，经过团队内部自测推出
  <img alt="logo" src="https://images.gitee.com/uploads/images/2021/0706/174654_31b12d64_1674451.png" style="margin-bottom: 0px;" width="150px">
 
 ### 参与调研 :star: 
--亲爱的Tducker，感谢你选择使用Tduck表单系统；为了功能更加完善以及能够为开源做更多贡献
--我们迫切需要了解一些信息，如果可以，请帮助完成填写[来访者调研表单](https://demo.tduckapp.com/s/4d162343d29e494ea1701c7c9b368332)
+- 亲爱的Tducker，感谢你选择使用Tduck表单系统；为了功能更加完善以及能够为开源做更多贡献
+- 我们迫切需要了解一些信息，如果可以，请帮助完成填写[来访者调研表单](https://demo.tduckapp.com/s/4d162343d29e494ea1701c7c9b368332)
 
 
 [![Stargazers over time](https://whnb.wang/stars/TDuckApp/tduck-platform)](https://whnb.wang)  
