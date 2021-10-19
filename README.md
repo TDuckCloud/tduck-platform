@@ -32,7 +32,7 @@ Tduck 填鸭：是基于B/S架构的一款开源的表单在线收集系统，�
 新的文档平台：https://doc.tduckapp.com 后续会不断完善文档，有需要完善的内容可以在GItee提issues反馈，收到反馈我们将第一时间调整，当然有想共享文档的也欢迎提Pr。
 
 ### “项目规划及界面”
-“让每个企业轻松拥有自己的问卷系统”是Tduck团队不变的初衷；v2版本的开发工作目前算是暂时结束，经过团队内部自测推出，同时欢迎大家进行测试，对存在的问题在Gitee提issues,社群内反馈可能无法及时解决，后续可能会遗忘。我们会定期对issues问题修复和做一些优化，竭力维护一个稳定的v2版本。
+“让每个企业轻松拥有自己的问卷系统”是Tduck团队不变的初衷；</br>v2版本的开发工作目前算是暂时结束，经过团队内部自测推出，同时欢迎大家进行测试，对存在的问题在Gitee提issues,社群内反馈可能无法及时解决，后续可能会遗忘。我们会定期对issues问题修复和做一些优化，竭力维护一个稳定的v2版本。
 
 ### “V2新特性”
 -【公开反馈结果】 公开反馈结果设置，开启后填写完成将看到他人填写结果
@@ -71,8 +71,8 @@ Tduck 填鸭：是基于B/S架构的一款开源的表单在线收集系统，�
  <img alt="logo" src="https://images.gitee.com/uploads/images/2021/0706/174654_31b12d64_1674451.png" style="margin-bottom: 0px;" width="150px">
 
 ### 参与调研 :star: 
-亲爱的Tducker，感谢你选择使用Tduck表单系统；为了功能更加完善以及能够为开源做更多贡献
-我们迫切需要了解一些信息，如果可以，请帮助完成填写[来访者调研表单](https://demo.tduckapp.com/s/4d162343d29e494ea1701c7c9b368332)
+-亲爱的Tducker，感谢你选择使用Tduck表单系统；为了功能更加完善以及能够为开源做更多贡献
+-我们迫切需要了解一些信息，如果可以，请帮助完成填写[来访者调研表单](https://demo.tduckapp.com/s/4d162343d29e494ea1701c7c9b368332)
 
 
 [![Stargazers over time](https://whnb.wang/stars/TDuckApp/tduck-platform)](https://whnb.wang)  
