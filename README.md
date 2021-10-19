@@ -21,20 +21,15 @@
 - 提问的艺术：http://t.hk.uy/KME
 
 ### 项目规划
-<br/>
 #### 尽全力维护一个稳定的v2版本
-</br>
 <br/>“让每个企业轻松拥有自己的问卷系统”是Tduck团队不变的初衷；</br>
 <br/>v2版本的开发工作目前算是暂时结束，经过团队内部自测推出，同时欢迎大家进行测试，对存在的问题在Gitee提issues,社群内反馈可能无法及时解决，后续可能会遗忘。我们会定期对issues问题修复和做一些优化，竭力维护一个稳定的v2版本。</br>
 
-<br/>
 #### pro版本正在开发中 :star2: 
-</br>
 <br/>1. 核心表单引擎重构，可扩展性更强，加入矩阵填空，多选，量表，横向填空组件</br>
 <br/>2. 表单基于vant适配移动端，交互更友好</br>
 <br/>2. 基于ElasticSerach实现表单数据存储，能支持百万级数据</br>
 <br/>4. 表单数据权限，实现用户，角色，部门数据权限精确管理</br>
-
 
 
 ### V2新特性
@@ -69,9 +64,9 @@
 - 开源不易如果喜欢请给作者 Star 鼓励
 
 ### 加入社群
-<br/>获取《使用Docker运行Tduck》教程请加入社群获取</br>
-<br/>获取《tduck-纯小白部署教程》请加入社群获取</br>
- <img alt="logo" src="https://images.gitee.com/uploads/images/2021/0706/174654_31b12d64_1674451.png" style="margin-bottom: 0px;" width="150px">
+-  获取《使用Docker运行Tduck》教程请加入社群获取
+-  获取《tduck-纯小白部署教程》请加入社群获取
+<img alt="logo" src="https://images.gitee.com/uploads/images/2021/0706/174654_31b12d64_1674451.png" style="margin-bottom: 0px;" width="150px">
 
 ### 参与调研 :star: 
 <br/>亲爱的Tducker，感谢你选择使用Tduck表单系统；为了功能更加完善以及能够为开源做更多贡献</br>
