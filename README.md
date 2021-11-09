@@ -15,7 +15,7 @@ Tduck 填鸭：是基于B/S架构的一款开源的表单在线收集系统，�
 
 ###  :fire: PRO版本-全新表单引擎/协作填写/多权限控制
 - 详情查看：https://www.tduckcloud.com/
-- 账号密码：test/1245678
+- 账号密码：test/12345678
 ![输入图片说明](https://images.gitee.com/uploads/images/2021/1104/122850_6cedfc93_1674451.png "屏幕截图.png")
 
 ### 开源版-全量开源/拖拽设计/统计分析
