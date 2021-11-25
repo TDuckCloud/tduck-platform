@@ -26,6 +26,11 @@ Tduck 填鸭：是基于B/S架构的一款开源的表单在线收集系统，�
 - 提问的艺术：http://t.hk.uy/KME
 ![输入图片说明](https://images.gitee.com/uploads/images/2021/1104/122909_ddb8d013_1674451.png "屏幕截图.png")
 
+### 加入社群
+-  获取《使用Docker运行Tduck》教程请加入社群获取
+-  获取《tduck-纯小白部署教程》请加入社群获取
+<img alt="logo" src="https://images.gitee.com/uploads/images/2021/0706/174654_31b12d64_1674451.png" style="margin-bottom: 0px;" width="150px">
+
 ### 项目规划
 尽全力维护一个稳定的v2版本  
 “让每个企业轻松拥有自己的问卷系统”是Tduck团队不变的初衷；</br>
@@ -62,14 +67,6 @@ v2版本的开发工作目前算是暂时结束，经过团队内部自测推出
 - 感谢积极为Tduck版本优化贡献力量的小伙伴
 - 开源不易如果喜欢请给作者 Star 鼓励
 
-### 加入社群
--  获取《使用Docker运行Tduck》教程请加入社群获取
--  获取《tduck-纯小白部署教程》请加入社群获取
-<img alt="logo" src="https://images.gitee.com/uploads/images/2021/0706/174654_31b12d64_1674451.png" style="margin-bottom: 0px;" width="150px">
-
 ### 参与调研 :star: 
 <br/>亲爱的Tducker，感谢你选择使用Tduck表单系统；为了功能更加完善以及能够为开源做更多贡献</br>
 <br/>我们迫切需要了解一些信息，如果可以，请帮助完成填写[来访者调研表单](https://demo.tduckapp.com/s/4d162343d29e494ea1701c7c9b368332)</br>
-
-
-[![Stargazers over time](https://whnb.wang/stars/TDuckApp/tduck-platform)](https://whnb.wang)  
