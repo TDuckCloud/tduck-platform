@@ -18,14 +18,12 @@ Tduck 填鸭：是基于B/S架构的一款开源的表单在线收集系统，�
 |  https://github.com/TDuckCloud/tduck-platform   |  https://github.com/TDuckCloud/tduck-front   |
 
 ### 演示环境&详细文档👮‍♀️
-- 演示地址：http://demo.tduckapp.com/
+- 演示地址：www.tduckcloud.com
 - 演示账号/密码：扫码注册登录
-- 文档地址：http://demo.tduckapp.com/
-- V2更新日志：https://doc.tduckapp.com/log/
+- 文档地址：http://doc.tduckapp.com/
 - 部署默认账号： test@tduckapp.com/12345678
 - 获取《使用Docker运行Tduck》教程请加入社群获取
 - 获取《tduck-纯小白部署教程》请加入社群获取
-- 提问的艺术：http://t.hk.uy/KME
 - 开源不易如果喜欢请给作者 Star 鼓励
 
 ### 参与调研 :star: 
