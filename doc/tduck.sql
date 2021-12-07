@@ -209,7 +209,7 @@ CREATE TABLE `pr_user_project_result`
 (
     `id`                bigint(20) NOT NULL AUTO_INCREMENT,
     `project_key`       varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '项目key',
-    `serial_number`     int(11) NULL DEFAULT NULL COMMENT '序号',
+    `serial_number`     bigint(20) NULL DEFAULT NULL COMMENT '序号',
     `original_data`     json NULL COMMENT '填写结果',
     `process_data`      json NULL COMMENT '填写结果',
     `submit_ua`         json NULL COMMENT '提交ua',
