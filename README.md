@@ -13,11 +13,6 @@ Tduck 填鸭：是基于B/S架构的一款开源的表单在线收集系统，�
 |  https://gitee.com/TDuckApp/tduck-platform   |  https://gitee.com/TDuckApp/tduck-front   |
 |  https://github.com/TDuckCloud/tduck-platform   |  https://github.com/TDuckCloud/tduck-front   |
 
-###  :fire: PRO版本-全新表单引擎/协作填写/多权限控制
-- 详情查看：https://www.tduckcloud.com/
-- 账号密码：test/12345678
-- pro使用文档/权益说明：https://shimo.im/docs/473QgQODgRiexrkw
-![输入图片说明](https://images.gitee.com/uploads/images/2021/1104/122850_6cedfc93_1674451.png "屏幕截图.png")
 
 ### 开源版-全量开源/拖拽设计/统计分析
 - 演示地址：https://www.tduckcloud.com/（点击开源版按钮）
@@ -26,6 +21,13 @@ Tduck 填鸭：是基于B/S架构的一款开源的表单在线收集系统，�
 - 部署默认账号： test@tduckapp.com/12345678
 - 提问的艺术：https://shimo.im/docs/3CHpCQjRvWDrvvrD/
 ![输入图片说明](https://images.gitee.com/uploads/images/2021/1104/122909_ddb8d013_1674451.png "屏幕截图.png")
+
+###  :fire: PRO版本-全新表单引擎/协作填写/多权限控制
+- 详情查看：https://www.tduckcloud.com/
+- 账号密码：test/12345678
+- pro使用文档/权益说明：https://shimo.im/docs/473QgQODgRiexrkw
+![输入图片说明](https://images.gitee.com/uploads/images/2021/1104/122850_6cedfc93_1674451.png "屏幕截图.png")
+
 
 ### 加入社群
 -  获取《使用Docker运行Tduck》教程请加入社群获取
