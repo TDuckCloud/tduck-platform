@@ -21,7 +21,7 @@ import com.tduck.cloud.account.service.UserService;
 import com.tduck.cloud.account.util.JwtUtils;
 import com.tduck.cloud.account.util.NameUtils;
 import com.tduck.cloud.account.vo.LoginUserVO;
-import com.tduck.cloud.common.util.RedisUtils;
+import com.tduck.cloud.common.util.CacheUtils;
 import com.tduck.cloud.common.util.Result;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -42,14 +42,13 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, UserEntity> impleme
 
 
     private final JwtUtils jwtUtils;
-    private final RedisUtils redisUtils;
+    private final CacheUtils cacheUtils;
     private final UserAuthorizeService userAuthorizeService;
 
 
     @Override
     public Result emailRegister(RegisterAccountRequest request) {
-        //检查验证码是否正确
-        String code = redisUtils.get(StrUtil.format(AccountRedisKeyConstants.EMAIL_CODE, request.getEmail()), String.class);
+        String code = cacheUtils.get(StrUtil.format(AccountRedisKeyConstants.EMAIL_CODE, request.getEmail()));
         if (!request.getCode().equals(code)) {
             return Result.failed("验证码错误");
         }

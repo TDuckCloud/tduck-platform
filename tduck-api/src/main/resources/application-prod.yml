@@ -1,9 +1,9 @@
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://127.0.0.1:3306/tduck?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC&tinyInt1isBit=false
-    username:  tduck
-    password: tduck001
+    url: jdbc:mysql://localhost:3306/tduck-v3?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC&tinyInt1isBit=false
+    username: root
+    password: root
     type: com.zaxxer.hikari.HikariDataSource
     hikari:
       minimum-idle: 5
@@ -13,18 +13,6 @@ spring:
       pool-name: DatebookHikariCP
       max-lifetime: 1800000
       connection-test-query: SELECT 1 FROM DUAL
-  redis:
-    database: 0
-    host: 127.0.0.1
-    port: 6379
-    password:
-    timeout: 6000ms  # 连接超时时长（毫秒）
-    jedis:
-      pool:
-        max-active: 1000  # 连接池最大连接数（使用负值表示没有限制）
-        max-wait: -1ms      # 连接池最大阻塞等待时间（使用负值表示没有限制）
-        max-idle: 10      # 连接池中的最大空闲连接
-        min-idle: 5       # 连接池中的最小空闲连接
   mail:
     host: smtp.163.com
     username: test@163.com  # 邮箱账号
@@ -42,20 +30,20 @@ platform:
       appId:
       secret:
   oss:
-    ossType: 3 #本地存储
+    ossType: 3 # 本地存储
     endpoint:
     accessKeyId:
     accessKeySecret:
     bucketName:
-    domain: https://demo.tduckapp.com/profile/  #提供访问的域名
-    upload-folder: /home/tduck/profile #文件存放的位置
+    domain:   #提供访问的域名
+    upload-folder:  #文件存放的位置
     access-path-pattern: /profile/**  # 文件访问路径前缀 这里更改domain也需要更改
   sms:
     type: 1  # 短信平台类型
     secretId: Ga2AIryi8174KXz  #短信秘钥
     secretKey: uHSpKfjtadadaezjwtN6B0dvbelv #短信秘钥
     appId:
-    sign:  tduck                  #短信签名
+    sign: tduck                  #短信签名
     validateCodeTemplateId: SMS_219865038 #验证码模板
     retrievePwdValidateCodeTemplateId: SMS_219865039  # 找回密码模板
   front:

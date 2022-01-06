@@ -47,16 +47,16 @@ public class UploadFileController {
 
 
     /**
-     * 项目文件上传
+     * 表单文件上传
      *
      * @param file
-     * @param projectKey
+     * @param formKey
      * @return
      * @throws IOException
      */
-    @PostMapping("/project/file/upload/{projectKey}")
-    public Result<String> uploadProjectFile(@RequestParam("file") MultipartFile file, @PathVariable("projectKey") String projectKey) throws IOException {
-        String path = new StringBuffer(SecureUtil.md5(projectKey))
+    @PostMapping("/form/file/upload/{formKey}")
+    public Result<String> uploadFormFile(@RequestParam("file") MultipartFile file, @PathVariable("formKey") String formKey) throws IOException {
+        String path = new StringBuffer(SecureUtil.md5(formKey))
                 .append(CharUtil.SLASH)
                 .append(IdUtil.simpleUUID())
                 .append(CharUtil.DOT)

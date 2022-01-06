@@ -2,7 +2,7 @@ package com.tduck.cloud.wx.mp.handler.scan;
 
 import cn.hutool.core.util.StrUtil;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
-import com.tduck.cloud.common.util.RedisUtils;
+import com.tduck.cloud.common.util.CacheUtils;
 import com.tduck.cloud.wx.mp.constant.WxMpRedisKeyConstants;
 import com.tduck.cloud.wx.mp.entity.WxMpUserEntity;
 import com.tduck.cloud.wx.mp.request.WxMpQrCodeGenRequest;
@@ -12,7 +12,6 @@ import lombok.RequiredArgsConstructor;
 import me.chanjar.weixin.mp.bean.message.WxMpXmlOutMessage;
 import org.springframework.stereotype.Component;
 
-import java.util.concurrent.TimeUnit;
 
 /**
  * @author : smalljop
@@ -23,7 +22,7 @@ import java.util.concurrent.TimeUnit;
 @RequiredArgsConstructor
 public class LoginScanStrategy implements ScanStrategy {
 
-    private final RedisUtils redisUtils;
+    private final CacheUtils cacheUtils;
     private final WxMpUserService wxMpUserService;
     private final WxMpUserMsgService wxMpUserMsgService;
 
@@ -33,7 +32,7 @@ public class LoginScanStrategy implements ScanStrategy {
         WxMpUserEntity userEntity = wxMpUserService.
                 getOne(Wrappers.<WxMpUserEntity>lambdaQuery().eq(WxMpUserEntity::getAppid, appId)
                         .eq(WxMpUserEntity::getOpenId, openId));
-        redisUtils.set(StrUtil.format(WxMpRedisKeyConstants.WX_MP_LOGIN_QRCODE, request.getData()), userEntity.getUserId(), 10L, TimeUnit.MINUTES);
+        cacheUtils.tempSave(StrUtil.format(WxMpRedisKeyConstants.WX_MP_LOGIN_QRCODE, request.getData()), userEntity.getUserId().toString());
         wxMpUserMsgService.sendKfTextMsg(appId, openId, "登录成功");
         return null;
     }

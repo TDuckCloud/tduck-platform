@@ -1,7 +1,7 @@
 package com.tduck.cloud.wx.mp.handler.scan;
 
 import cn.hutool.core.util.StrUtil;
-import com.tduck.cloud.common.util.RedisUtils;
+import com.tduck.cloud.common.util.CacheUtils;
 import com.tduck.cloud.wx.mp.constant.WxMpRedisKeyConstants;
 import com.tduck.cloud.wx.mp.request.WxMpQrCodeGenRequest;
 import com.tduck.cloud.wx.mp.service.WxMpUserMsgService;
@@ -18,12 +18,12 @@ import org.springframework.stereotype.Component;
 @RequiredArgsConstructor
 public class SubNotifyScanStrategy implements ScanStrategy {
 
-    private final RedisUtils redisUtils;
+    private final CacheUtils cacheUtils;
     private final WxMpUserMsgService wxMpUserMsgService;
 
     @Override
     public WxMpXmlOutMessage handle(String appId, String openId, WxMpQrCodeGenRequest request) {
-        redisUtils.add(StrUtil.format(WxMpRedisKeyConstants.WX_MP_SUB_NOTIFY, request.getData()), openId);
+        cacheUtils.addList(StrUtil.format(WxMpRedisKeyConstants.WX_MP_SUB_NOTIFY, request.getData()), openId);
         wxMpUserMsgService.sendKfTextMsg(appId, openId, "订阅通知成功");
         return null;
     }

@@ -13,14 +13,13 @@ import com.tduck.cloud.account.service.UserValidateService;
 import com.tduck.cloud.common.constant.CommonConstants;
 import com.tduck.cloud.common.email.MailService;
 import com.tduck.cloud.common.sms.SmsService;
-import com.tduck.cloud.common.util.RedisUtils;
+import com.tduck.cloud.common.util.CacheUtils;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.util.Map;
-import java.util.concurrent.TimeUnit;
 
 /**
  * @author : smalljop
@@ -34,7 +33,7 @@ public class UserValidateServiceImpl implements UserValidateService {
 
     private final static String REG_EMAIL_TITLE = "TDuck注册验证码";
     private final static String RESET_PWD_EMAIL_TITLE = "重置密码";
-    private final RedisUtils redisUtils;
+    private final CacheUtils cacheUtils;
     private final MailService mailService;
     private final SmsService smsService;
     /**
@@ -55,7 +54,6 @@ public class UserValidateServiceImpl implements UserValidateService {
     @Override
     public void sendResetPwdEmail(String email, UserEntity userEntity) {
         String code = getRestPasswordCode(userEntity.getId());
-
         //发送邮件
         Map<String, Object> params = ImmutableMap.of("email", email, "resetPwdUrl", StrUtil.format(updateEmailUrl, code, email));
         mailService.sendTemplateHtmlMail(email, RESET_PWD_EMAIL_TITLE, "mail/reset-password", params);
@@ -64,7 +62,7 @@ public class UserValidateServiceImpl implements UserValidateService {
     @Override
     public void sendUpdateAccountEmail(String email, Long userId) {
         String code = IdUtil.fastUUID();
-        redisUtils.set(StrUtil.format(AccountRedisKeyConstants.UPDATE_USER_EMAIL_CODE, code, email), userId);
+        cacheUtils.tempSave(StrUtil.format(AccountRedisKeyConstants.UPDATE_USER_EMAIL_CODE, code, email), userId.toString());
         //发送邮件
         Map<String, Object> params = ImmutableMap.of("updateEmailUrl", StrUtil.format(updateEmailUrl, code, email));
         mailService.sendTemplateHtmlMail(email, RESET_PWD_EMAIL_TITLE, "mail/update-account-email", params);
@@ -73,10 +71,10 @@ public class UserValidateServiceImpl implements UserValidateService {
     @Override
     public Long getUpdateEmailUserId(UpdateUserRequest.Email request) {
         String emailCodeKey = StrUtil.format(AccountRedisKeyConstants.UPDATE_USER_EMAIL_CODE, request.getKey(), request.getEmail());
-        Long userId = redisUtils.get(emailCodeKey, Long.class);
+        String userId = cacheUtils.getTemp(emailCodeKey);
         if (ObjectUtil.isNotNull(userId)) {
-            redisUtils.remove(emailCodeKey);
-            return userId;
+            cacheUtils.removeTemp(emailCodeKey);
+            return Long.parseLong(userId);
         }
         return null;
     }
@@ -89,7 +87,7 @@ public class UserValidateServiceImpl implements UserValidateService {
         //生成验证码
         RandomGenerator randomGenerator = new RandomGenerator("0123456789", CommonConstants.ConstantNumber.FOUR);
         String code = randomGenerator.generate();
-        redisUtils.set(key, code, 5L, TimeUnit.MINUTES);
+        cacheUtils.tempSave(key, code);
         log.debug("genValidateCode:{}", code);
         return code;
     }
@@ -103,9 +101,9 @@ public class UserValidateServiceImpl implements UserValidateService {
     @Override
     public Boolean checkPhoneCode(String phoneNumber, String code) {
         String phoneCodeKey = StrUtil.format(AccountRedisKeyConstants.PHONE_NUMBER_CODE, phoneNumber);
-        String validateCode = redisUtils.get(phoneCodeKey, String.class);
+        String validateCode = cacheUtils.get(phoneCodeKey);
         if (code.equals(validateCode)) {
-            redisUtils.remove(phoneCodeKey);
+            cacheUtils.removeTemp(phoneCodeKey);
             return true;
         }
         return false;
@@ -122,7 +120,7 @@ public class UserValidateServiceImpl implements UserValidateService {
     @Override
     public String getRestPasswordCode(Long userId) {
         String code = IdUtil.fastUUID();
-        redisUtils.set(StrUtil.format(AccountRedisKeyConstants.RETRIEVE_PWD_USER_CODE, code), userId);
+        cacheUtils.tempSave(StrUtil.format(AccountRedisKeyConstants.RETRIEVE_PWD_USER_CODE, code), userId.toString());
         return code;
     }
 

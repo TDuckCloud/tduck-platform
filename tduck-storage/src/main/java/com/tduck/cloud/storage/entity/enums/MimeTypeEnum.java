@@ -5,6 +5,7 @@ import org.apache.commons.lang3.StringUtils;
 
 /**
  * 文件后缀名与ContentType
+ *
  * @author pfwang
  */
 @Getter
