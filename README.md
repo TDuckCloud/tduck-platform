@@ -7,7 +7,7 @@ Tduck 填鸭：是基于B/S架构的一款开源的表单在线收集系统，�
 目前国内的的开源平台表单问卷平台比较少，tduck表单平台应运而生。让中小公司拥有独立自定义表单问卷，快速赋能业务。
 
 ### 更新日志
-- 更新日志：[《好久不见，来看看TDUCK的新面孔》](http://https://mp.weixin.qq.com/s/pLltfRv-KvStMxKefAvD_g)
+- 更新日志：[《好久不见，来看看TDUCK的新面孔》](https://mp.weixin.qq.com/s/pLltfRv-KvStMxKefAvD_g)
 
 ### 项目源码
 
