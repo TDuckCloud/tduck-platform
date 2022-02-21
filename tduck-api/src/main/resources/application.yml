@@ -26,9 +26,8 @@ server:
 # 日志级别
 logging:
   level:
-    org.springframework.web: debug
+#    org.springframework.web: debug
     com.tduck.cloud: debug
-
 mybatis-plus:
   type-aliases-package: com.tduck.cloud.*.entity
   type-enums-package: com.tduck.cloud.*.entity.enums

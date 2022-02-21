@@ -223,14 +223,14 @@ public class UserLoginController {
         if (StrUtil.isBlank(loginId)) {
             return Result.success();
         }
-        Long userId = Convert.toLong(cacheUtils.get(StrUtil.format(WxMpRedisKeyConstants.WX_MP_LOGIN_QRCODE, loginId)));
+        Long userId = Convert.toLong(cacheUtils.getTemp(StrUtil.format(WxMpRedisKeyConstants.WX_MP_LOGIN_QRCODE, loginId)));
         if (ObjectUtil.isNull(userId)) {
             return Result.success();
         }
         UserEntity userEntity = userService.getById(userId);
         LoginUserVO loginUserVO = Optional.ofNullable(userEntity).isPresent() ?
                 userService.getLoginResult(userEntity, AccountChannelEnum.WX_MP, HttpUtils.getIpAddr(request)) : null;
-        return Result.success(null);
+        return Result.success(loginUserVO);
     }
 
     /**
