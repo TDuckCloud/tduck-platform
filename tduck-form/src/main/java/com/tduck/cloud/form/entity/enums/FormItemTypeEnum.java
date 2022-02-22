@@ -13,9 +13,12 @@ import lombok.Getter;
 public enum FormItemTypeEnum {
 
     INPUT("单行文本"),
+    NUMBER("数字"),
     TEXTAREA("多行文本"),
     SELECT("下拉框"),
     CASCADER("级联选择"),
+    SORT("排序"),
+    SLIDER("滑块"),
     RADIO("单选框"),
     CHECKBOX("多选框"),
     DATE("日期选择"),
