@@ -10,7 +10,7 @@ Tduck 填鸭：是基于B/S架构的一款开源的表单在线收集系统，�
 - 更新日志：[《好久不见，来看看TDUCK的新面孔》](https://mp.weixin.qq.com/s/pLltfRv-KvStMxKefAvD_g)
 - 更新日志：[[Pro版本更新日志]](https://www.yuque.com/mawuhui/kgacqz/qsds2g)
 
-## 一键部署：https://www.yuque.com/mawuhui/kgacqz/vl7y79
+## 一键部署：[点击获取部署文档](https://www.yuque.com/mawuhui/kgacqz/vl7y79)
 
 ### 项目源码
 
