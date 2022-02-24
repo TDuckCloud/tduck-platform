@@ -10,6 +10,10 @@
 - 开源版本：https://www.tduckcloud.com
 - 演示账号/密码：扫码注册登录
 - 部署默认账号： test@tduckapp.com/12345678
+![输入图片说明](https://oss.tduckcloud.com/_20220224113207.png)
+![输入图片说明](https://oss.tduckcloud.com/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20220224113811.png)
+![输入图片说明](https://oss.tduckcloud.com/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20220224113836.png)
+
 
 ### PRO版本-全新表单引擎/工作流/多权限控制
 - 演示地址：https://www.tduckcloud.com
