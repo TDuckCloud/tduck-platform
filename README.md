@@ -6,6 +6,16 @@
 - 更新日志：[好久不见，来看看TDUCK的新面孔](https://mp.weixin.qq.com/s/pLltfRv-KvStMxKefAvD_g)
 - 更新日志：[Pro版本更新日志](https://www.yuque.com/mawuhui/kgacqz/qsds2g)
 
+### 演示地址
+- 开源版本：https://www.tduckcloud.com
+- 演示账号/密码：扫码注册登录
+- 部署默认账号： test@tduckapp.com/12345678
+
+### PRO版本-全新表单引擎/工作流/多权限控制
+- 演示地址：https://www.tduckcloud.com
+- 账号密码：test/12345678
+- pro使用文档/权益说明：https://www.yuque.com/mawuhui/kgacqz
+
 ## 部署准备：
 
 部署文件下载方式：关注公众号"TDUCK填鸭"，回复“部署文件”，下载我们提供的简化部署文件
@@ -34,17 +44,6 @@
 ##### 5.访问项目
 浏览器地址栏输入http://localhost:8999/
 默认账号密码：test@tduck.com/12356789
-
-### 演示地址
-- 开源版本：https://www.tduckcloud.com
-- 演示账号/密码：扫码注册登录
-- 部署默认账号： test@tduckapp.com/12345678
-
-### PRO版本-全新表单引擎/工作流/多权限控制
-- 演示地址：https://www.tduckcloud.com
-- 账号密码：test/12345678
-- pro使用文档/权益说明：https://www.yuque.com/mawuhui/kgacqz
-
 
 ### 加入社群
 -  获取  **使用Docker运行Tduck**  教程请加入社群获取
