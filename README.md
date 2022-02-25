@@ -20,6 +20,15 @@
 - 账号密码：test/12345678
 - pro使用文档/权益说明：https://www.yuque.com/mawuhui/kgacqz
 
+
+#### 项目源码
+
+|   后端源码  |   前端源码  |
+|--- | --- |
+|  https://gitee.com/TDuckApp/tduck-platform   |  https://gitee.com/TDuckApp/tduck-front   |
+|  https://github.com/TDuckCloud/tduck-platform   |  https://github.com/TDuckCloud/tduck-platform   |
+
+
 ## 部署准备：
 
 部署文件下载方式：关注公众号"TDUCK填鸭"，回复“部署文件”，下载我们提供的简化部署文件
