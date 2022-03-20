@@ -131,6 +131,17 @@ java -Dfile.encoding=UTF-8 -jar tduck-api.jar --spring.profiles.active=custom
 浏览器地址栏输入http://localhost:8999/
 默认账号密码：test@tduck.com/12356789
 
+
+### 宝塔部署教程
+
+视频教程：https://www.zhihu.com/zvideo/1488944973613981696
+
+
+宝塔配置参数：
+``` bash
+/usr/local/btjdk/jdk8/bin/java -jar -Xmx1024M -Xms256M  /www/wwwroot/xxxx.jar --server.port=5097  --spring.datasource.url=jdbc:mysql://localhost:3306/tduck --spring.datasource.username=root --spring.datasource.password=root
+```
+
 ### 加入社群
 -  获取  **使用Docker运行Tduck**  教程请加入社群获取
 -  获取  **tduck-纯小白部署教程**  请加入社群获取
