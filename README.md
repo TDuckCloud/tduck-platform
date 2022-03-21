@@ -73,7 +73,7 @@
    * [Maven](https://maven.apache.org/download.cgi)
    * [Nodejs](https://nodejs.org/en/download/)
 
-2. 创建一个tduck的数据库，并执行项目目录下doc/tduck.sql文件
+2. 创建一个tduck的数据库  **版本选择mysql5.7**  ，并执行项目目录下doc/tduck.sql文件
 
 3. 启动后端服务
 
@@ -141,6 +141,9 @@ java -Dfile.encoding=UTF-8 -jar tduck-api.jar --spring.profiles.active=custom
 ``` bash
 /usr/local/btjdk/jdk8/bin/java -jar -Xmx1024M -Xms256M  /www/wwwroot/xxxx.jar --server.port=5097  --spring.datasource.url=jdbc:mysql://localhost:3306/tduck --spring.datasource.username=root --spring.datasource.password=root
 ```
+
+
+ :warning: 注意事项：mysql版本需要选择  **5.7**
 
 ### 加入社群
 -  获取  **使用Docker运行Tduck**  教程请加入社群获取
