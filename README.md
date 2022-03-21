@@ -143,7 +143,7 @@ java -Dfile.encoding=UTF-8 -jar tduck-api.jar --spring.profiles.active=custom
 ```
 
 
- :warning: 注意事项：mysql版本需要选择  **5.7**
+ :warning: 注意事项：上述参数需要改成自己的路径，且mysql版本需要选择  **5.7**
 
 ### 加入社群
 -  获取  **使用Docker运行Tduck**  教程请加入社群获取
