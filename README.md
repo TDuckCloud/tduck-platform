@@ -5,6 +5,7 @@
 #### 了解更多
 - 更新日志：[来看看TDUCK的新面孔](https://mp.weixin.qq.com/s/pLltfRv-KvStMxKefAvD_g)
 - 更新日志：[Pro版本更新日志](https://www.yuque.com/mawuhui/kgacqz/qsds2g)
+- 参与项目：[参与TDUCK项目，贡献一份力量！](https://gitee.com/TDuckApp/tduck-platform/issues/I4ZC6R)
 
 ### 演示地址
 - 开源版本：https://www.tduckcloud.com
