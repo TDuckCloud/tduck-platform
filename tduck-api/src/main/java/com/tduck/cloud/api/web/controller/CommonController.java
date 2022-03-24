@@ -1,11 +1,15 @@
 package com.tduck.cloud.api.web.controller;
 
+import cn.hutool.core.io.FileUtil;
+import cn.hutool.core.util.CharUtil;
+import cn.hutool.core.util.IdUtil;
 import com.tduck.cloud.common.util.AsyncProcessUtils;
 import com.tduck.cloud.common.util.Result;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import com.tduck.cloud.storage.cloud.OssStorageFactory;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.IOException;
 
 /**
  * @author : smalljop
@@ -24,4 +28,27 @@ public class CommonController {
     public Result getProcess(@RequestParam String key) {
         return Result.success(AsyncProcessUtils.getProcess(key));
     }
+
+
+    /**
+     * 上传
+     *
+     * @param file
+     * @return
+     * @throws IOException
+     */
+    @PostMapping("/upload")
+    public Result avatar(@RequestParam("file") MultipartFile file) throws IOException {
+        if (!file.isEmpty()) {
+            String path = new StringBuffer(IdUtil.simpleUUID())
+                    .append(CharUtil.DOT)
+                    .append(FileUtil.extName(file.getOriginalFilename())).toString();
+            String url = OssStorageFactory.build().upload(file.getInputStream(), path);
+            return Result.success(url);
+        }
+        return Result.failed("上传文件异常，请联系管理员");
+    }
+
+
+
 }

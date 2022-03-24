@@ -6,6 +6,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.*;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+import lombok.Getter;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -20,12 +21,15 @@ import java.util.Map;
  **/
 public class JsonUtils {
 
+    @Getter
     private final static ObjectMapper objectMapper = new ObjectMapper();
 
     static {
         objectMapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
         objectMapper.registerModule(new JavaTimeModule());
     }
+
+
 
     private JsonUtils() {
 

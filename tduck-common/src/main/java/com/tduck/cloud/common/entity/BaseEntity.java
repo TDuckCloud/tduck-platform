@@ -5,6 +5,10 @@ import com.baomidou.mybatisplus.annotation.FieldFill;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.extension.activerecord.Model;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateTimeDeserializer;
+import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.FieldNameConstants;
@@ -27,6 +31,8 @@ public class BaseEntity<T> extends Model {
      * 创建时间
      **/
     @TableField(fill = FieldFill.INSERT)
+    @JsonDeserialize(using = LocalDateTimeDeserializer.class)
+    @JsonSerialize(using = LocalDateTimeSerializer.class)
     @JsonFormat(pattern = DatePattern.NORM_DATETIME_PATTERN)
     protected LocalDateTime createTime;
 
@@ -35,6 +41,9 @@ public class BaseEntity<T> extends Model {
      **/
     @TableField(fill = FieldFill.INSERT_UPDATE)
     @JsonFormat(pattern = DatePattern.NORM_DATETIME_PATTERN)
+    @JsonDeserialize(using = LocalDateTimeDeserializer.class)
+    @JsonSerialize(using = LocalDateTimeSerializer.class)
     protected LocalDateTime updateTime;
+
 
 }
