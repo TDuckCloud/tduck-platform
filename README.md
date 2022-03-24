@@ -58,7 +58,7 @@
 -  tduck-common 通用模块
 -  tduck-account 账号模块
 -  tduck-storage 存储模块
--  tduck-project 项目模块
+-  tduck-form 表单模块
 -  tduck-wx-mp  微信公众号模块
 -  tduck-api 客户端API
 

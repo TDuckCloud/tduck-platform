@@ -18,17 +18,16 @@ import java.io.InputStream;
  * @author smalljop
  */
 public class QiniuCloudStorageService extends OssStorageService {
-    private UploadManager uploadManager;
-    private String token;
-    private Auth auth;
-    private Configuration cfg;
+    private final UploadManager uploadManager;
+    private final Auth auth;
+    private final Configuration cfg;
 
     QiniuCloudStorageService(OssStorageConfig config) {
         this.config = config;
         cfg = new Configuration(Region.autoRegion());
         uploadManager = new UploadManager(cfg);
         auth = Auth.create(config.getAccessKeyId(), config.getAccessKeySecret());
-        token = auth.uploadToken(config.getBucketName());
+
     }
 
     @Override
@@ -40,9 +39,10 @@ public class QiniuCloudStorageService extends OssStorageService {
     @Override
     public String upload(byte[] data, String path) {
         try {
+            String token = auth.uploadToken(config.getBucketName());
             Response res = uploadManager.put(data, path, token);
             if (!res.isOK()) {
-                throw new RuntimeException("上传七牛出错：" + res.toString());
+                throw new RuntimeException("上传七牛出错：" + res);
             }
         } catch (Exception e) {
             throw new StorageException("上传文件失败，请核对七牛配置信息", e);
