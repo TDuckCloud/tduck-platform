@@ -76,9 +76,7 @@ public class UserFormDataServiceImpl extends ServiceImpl<UserFormDataMapper, Use
     @Override
     public Result downloadFormResultFile(QueryFormResultRequest request) {
         String uuid = IdUtil.simpleUUID();
-        List<UserFormItemEntity> userFormItemEntityList = userFormItemService.list(Wrappers.<UserFormItemEntity>lambdaQuery()
-                .eq(UserFormItemEntity::getFormKey, request.getFormKey())
-                .in(UserFormItemEntity::getType, Lists.newArrayList(FormItemTypeEnum.UPLOAD.toString(), FormItemTypeEnum.IMAGE_UPLOAD.toString())));
+        List<UserFormItemEntity> userFormItemEntityList = userFormItemService.list(Wrappers.<UserFormItemEntity>lambdaQuery().eq(UserFormItemEntity::getFormKey, request.getFormKey()).in(UserFormItemEntity::getType, Lists.newArrayList(FormItemTypeEnum.UPLOAD.toString(), FormItemTypeEnum.IMAGE_UPLOAD.toString())));
         //结果
         FormDataTableVO formDataTableVO = this.listFormDataTable(request);
         List<Map> rows = formDataTableVO.getRows();
@@ -121,9 +119,18 @@ public class UserFormDataServiceImpl extends ServiceImpl<UserFormDataMapper, Use
 
     @Override
     public FormDataTableVO listFormDataTable(QueryFormResultRequest request) {
-        Page<UserFormDataEntity> page = this.page(request.toMybatisPage(), Wrappers.<UserFormDataEntity>
-                lambdaQuery().eq(UserFormDataEntity::getFormKey, request.getFormKey()));
-        List<Map> list = page.getRecords().stream().map(item -> {
+        List<UserFormDataEntity> dataEntityList = null;
+        Long total = 0L;
+        // 查询全部
+        if (0 == request.getCurrent()) {
+            dataEntityList = this.list(Wrappers.<UserFormDataEntity>lambdaQuery().eq(UserFormDataEntity::getFormKey, request.getFormKey()));
+            total = Long.valueOf(dataEntityList.size());
+        } else {
+            Page<UserFormDataEntity> page = this.page(request.toMybatisPage(), Wrappers.<UserFormDataEntity>lambdaQuery().eq(UserFormDataEntity::getFormKey, request.getFormKey()));
+            dataEntityList = page.getRecords();
+            total = page.getTotal();
+        }
+        List<Map> list = dataEntityList.stream().map(item -> {
             Map<String, Object> originalData = item.getOriginalData();
             item.setOriginalData(null);
             originalData.put(BaseEntity.Fields.createTime, LocalDateTimeUtil.formatNormal(item.getCreateTime()));
@@ -132,7 +139,7 @@ public class UserFormDataServiceImpl extends ServiceImpl<UserFormDataMapper, Use
             formDataMap.putAll(originalData);
             return formDataMap;
         }).collect(Collectors.toList());
-        return new FormDataTableVO(list, page.getTotal());
+        return new FormDataTableVO(list, total);
     }
 
 
