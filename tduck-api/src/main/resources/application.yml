@@ -2,7 +2,7 @@ spring:
   application:
     name: tduck-api
   profiles:
-    active: dev
+    active: prod
   jackson:
     time-zone: GMT+8
     date-format: yyyy-MM-dd HH:mm:ss
@@ -14,18 +14,20 @@ spring:
     multipart:
       max-file-size: 100MB
       max-request-size: 100MB
-
+  cache:
+    ehcache:
+      config: classpath:ehcache.xml
 server:
   port: 8999
-  servlet:
-    context-path: /tduck-api
+  compression:
+    enabled: true
+    mime-types: application/javascript,text/css,application/json,application/xml,text/html,text/xml,text/plain
 
 # 日志级别
 logging:
   level:
-    org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping: debug
+#    org.springframework.web: debug
     com.tduck.cloud: debug
-
 mybatis-plus:
   type-aliases-package: com.tduck.cloud.*.entity
   type-enums-package: com.tduck.cloud.*.entity.enums
@@ -42,7 +44,6 @@ mybatis-plus:
     map-underscore-to-camel-case: true
     cache-enabled: false
 
-
 #  请求日志是否打印
 platform:
   request:
@@ -51,19 +52,19 @@ platform:
     enable: false
     secret: 916lWh2WMcbSWiHv
     ignore-urls:
-      - /tduck-api/webjars/**
-      - /tduck-api/swagger/**
-      - /tduck-api/swagger-ui.html
-      - /tduck-api/swagger-resources/**
-      - /tduck-api/swagger/**
-      - /tduck-api/**/v2/api-docs
-      - /tduck-api/**/v2/api-docs-ext
-      - /tduck-api/doc.html
-      - /tduck-api/user/file/upload
-      - /tduck-api/project/file/upload/**
-      - /tduck-api/wx/mp/portal/**
-      - /tduck-api/u/**
-      - /tduck-api/wx/**
+      - /webjars/**
+      - /swagger/**
+      - /swagger-ui.html
+      - /swagger-resources/**
+      - /swagger/**
+      - /**/v2/api-docs
+      - /**/v2/api-docs-ext
+      - /doc.html
+      - /user/file/upload
+      - /form/file/upload/*
+      - /wx/mp/portal/**
+      - /profile/**
+      - /wx/**
       - /**/*.js
       - /**/*.css
       - /**/*.png
@@ -80,4 +81,4 @@ aj:
   captcha:
     enable: true
     water-mark: tduck
-    cache-type: redis
+    cache-type: local

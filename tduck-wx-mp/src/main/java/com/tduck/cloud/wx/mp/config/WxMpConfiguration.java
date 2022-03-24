@@ -2,17 +2,13 @@ package com.tduck.cloud.wx.mp.config;
 
 import com.tduck.cloud.wx.mp.handler.*;
 import lombok.RequiredArgsConstructor;
-import me.chanjar.weixin.common.redis.RedisTemplateWxRedisOps;
-import me.chanjar.weixin.common.redis.WxRedisOps;
 import me.chanjar.weixin.mp.api.WxMpMessageRouter;
 import me.chanjar.weixin.mp.api.WxMpService;
 import me.chanjar.weixin.mp.api.impl.WxMpServiceImpl;
 import me.chanjar.weixin.mp.config.impl.WxMpDefaultConfigImpl;
-import me.chanjar.weixin.mp.config.impl.WxMpRedisConfigImpl;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.data.redis.core.StringRedisTemplate;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -45,7 +41,6 @@ public class WxMpConfiguration {
     private final SubscribeHandler subscribeHandler;
     private final ScanHandler scanHandler;
     private final WxMpProperties properties;
-    private final StringRedisTemplate redisTemplate;
 
 
     @Bean
@@ -58,14 +53,12 @@ public class WxMpConfiguration {
         WxMpService service = new WxMpServiceImpl();
         service.setMultiConfigStorages(configs
                 .stream().map(a -> {
-                    WxRedisOps redisOps = new RedisTemplateWxRedisOps(redisTemplate);
-                    WxMpRedisConfigImpl wxMpRedisConfig = new WxMpRedisConfigImpl(redisOps,
-                            properties.getRedisConfigKeyPrefix());
-                    wxMpRedisConfig.setAppId(a.getAppId());
-                    wxMpRedisConfig.setSecret(a.getSecret());
-                    wxMpRedisConfig.setToken(a.getToken());
-                    wxMpRedisConfig.setAesKey(a.getAesKey());
-                    return wxMpRedisConfig;
+                    WxMpDefaultConfigImpl wxMpDefaultConfig = new WxMpDefaultConfigImpl();
+                    wxMpDefaultConfig.setAppId(a.getAppId());
+                    wxMpDefaultConfig.setSecret(a.getSecret());
+                    wxMpDefaultConfig.setToken(a.getToken());
+                    wxMpDefaultConfig.setAesKey(a.getAesKey());
+                    return wxMpDefaultConfig;
                 }).collect(Collectors.toMap(WxMpDefaultConfigImpl::getAppId, a -> a, (o, n) -> o)));
         return service;
     }

@@ -1,5 +1,6 @@
 package com.tduck.cloud.api.web.controller;
 
+import cn.hutool.core.convert.Convert;
 import cn.hutool.core.lang.Validator;
 import cn.hutool.core.util.IdUtil;
 import cn.hutool.core.util.ObjectUtil;
@@ -18,8 +19,8 @@ import com.tduck.cloud.account.service.UserValidateService;
 import com.tduck.cloud.account.util.QqAuthorizationUtils;
 import com.tduck.cloud.account.vo.LoginUserVO;
 import com.tduck.cloud.api.util.HttpUtils;
+import com.tduck.cloud.common.util.CacheUtils;
 import com.tduck.cloud.common.util.JsonUtils;
-import com.tduck.cloud.common.util.RedisUtils;
 import com.tduck.cloud.common.util.Result;
 import com.tduck.cloud.common.validator.ValidatorUtils;
 import com.tduck.cloud.wx.mp.constant.WxMpRedisKeyConstants;
@@ -46,7 +47,7 @@ public class UserLoginController {
     private final UserService userService;
     private final WxMpService wxMpService;
     private final UserValidateService userValidateService;
-    private final RedisUtils redisUtils;
+    private final CacheUtils cacheUtils;
     private final QqAuthorizationUtils qqAuthorizationUtils;
 
 
@@ -134,7 +135,7 @@ public class UserLoginController {
     public Result checkRetrievePwdPhoneCode(@RequestBody RetrievePasswordRequest.CheckPhoneCode request) {
         Validator.validateMobile(request.getPhoneNumber(), "手机号码不正确");
         ValidatorUtils.validateEntity(request);
-        String code = redisUtils.get(StrUtil.format(AccountRedisKeyConstants.PHONE_RETRIEVE_PWD_CODE, request.getPhoneNumber()), String.class);
+        String code = cacheUtils.getTemp(StrUtil.format(AccountRedisKeyConstants.PHONE_RETRIEVE_PWD_CODE, request.getPhoneNumber()));
         if (!request.getCode().equals(code)) {
             return Result.failed("验证码错误");
         }
@@ -157,7 +158,7 @@ public class UserLoginController {
     public Result retrieveResetPassword(@RequestBody RetrievePasswordRequest.Reset request) {
         ValidatorUtils.validateEntity(request);
         String codeKey = StrUtil.format(AccountRedisKeyConstants.RETRIEVE_PWD_USER_CODE, request.getCode());
-        Long userId = redisUtils.get(codeKey, Long.class);
+        Long userId = Convert.toLong(cacheUtils.getTemp(codeKey));
         if (ObjectUtil.isNull(userId)) {
             return Result.failed("重置密码操作已过期，请重试");
         }
@@ -165,7 +166,7 @@ public class UserLoginController {
             return Result.failed("两次密码不一致");
         }
         userService.updatePassword(userId, request.getPassword());
-        redisUtils.remove(codeKey);
+        cacheUtils.removeTemp(codeKey);
         return Result.success();
     }
 
@@ -222,7 +223,7 @@ public class UserLoginController {
         if (StrUtil.isBlank(loginId)) {
             return Result.success();
         }
-        Long userId = redisUtils.get(StrUtil.format(WxMpRedisKeyConstants.WX_MP_LOGIN_QRCODE, loginId), Long.class);
+        Long userId = Convert.toLong(cacheUtils.getTemp(StrUtil.format(WxMpRedisKeyConstants.WX_MP_LOGIN_QRCODE, loginId)));
         if (ObjectUtil.isNull(userId)) {
             return Result.success();
         }

@@ -4,6 +4,7 @@ import cn.hutool.core.util.StrUtil;
 import cn.hutool.core.util.URLUtil;
 import com.tduck.cloud.common.util.Result;
 import lombok.AllArgsConstructor;
+import lombok.SneakyThrows;
 import me.chanjar.weixin.common.bean.WxJsapiSignature;
 import me.chanjar.weixin.common.bean.WxOAuth2UserInfo;
 import me.chanjar.weixin.common.bean.oauth2.WxOAuth2AccessToken;
@@ -62,9 +63,14 @@ public class WxJsApiController {
      * @return
      * @throws WxErrorException
      */
+    @SneakyThrows
     @GetMapping("/signature")
-    public Result getSignature(@RequestParam String url) throws WxErrorException {
-        WxJsapiSignature signature = wxService.createJsapiSignature(url);
+    public Result getSignature(@RequestParam String url)  {
+        WxJsapiSignature signature = null;
+        try {
+            signature = wxService.createJsapiSignature(url);
+        }catch (Exception e){
+        }
         return Result.success(signature);
     }
 

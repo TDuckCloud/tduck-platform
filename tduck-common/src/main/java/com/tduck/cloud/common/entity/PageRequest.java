@@ -12,7 +12,7 @@ import lombok.Data;
 public class PageRequest {
 
     private long current = 1;
-    private long size = 20;
+    private long size = 50;
 
 
     public Page toMybatisPage() {

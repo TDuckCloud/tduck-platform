@@ -24,6 +24,10 @@
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
         <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+        </dependency>
+        <dependency>
             <groupId>commons-io</groupId>
             <artifactId>commons-io</artifactId>
         </dependency>
@@ -34,7 +38,7 @@
         </dependency>
         <dependency>
             <groupId>com.tduck</groupId>
-            <artifactId>tduck-project</artifactId>
+            <artifactId>tduck-form</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
         <dependency>
