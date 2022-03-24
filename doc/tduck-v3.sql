@@ -40,7 +40,11 @@ CREATE TABLE `ac_user`  (
 ) ENGINE = InnoDB AUTO_INCREMENT = 202 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '用户' ROW_FORMAT = Dynamic;
 
 INSERT INTO `ac_user`
-VALUES (201, 'Tduck001', 'https://freebrio.oss-cn-shanghai.aliyuncs.com/t/avatar.jpg', 0, 'test@tduck.com', NULL,
+VALUES (201, 'Tduck001', 'https://oss.tduckcloud.com/logo-blue.png', 0, 'test@tduck.com', NULL,
+        'ef797c8118f02dfb649607dd5d3f8c7623048c9c063d532cc95c5ed7a898a64f', '1', 2, '2022-01-10 11:00:20', '127.0.0.1',
+        0, '2020-11-12 11:50:50', '2022-01-10 11:00:20');
+INSERT INTO `ac_user`
+VALUES (202, 'Tduck002', 'https://oss.tduckcloud.com/logo-blue.png', 0, 'test@tduckapp.com', NULL,
         'ef797c8118f02dfb649607dd5d3f8c7623048c9c063d532cc95c5ed7a898a64f', '1', 2, '2022-01-10 11:00:20', '127.0.0.1',
         0, '2020-11-12 11:50:50', '2022-01-10 11:00:20');
 
