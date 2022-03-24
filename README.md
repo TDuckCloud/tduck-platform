@@ -58,7 +58,7 @@
 -  tduck-common 通用模块
 -  tduck-account 账号模块
 -  tduck-storage 存储模块
--  tduck-form 表单模块
+-  tduck-project 项目模块
 -  tduck-wx-mp  微信公众号模块
 -  tduck-api 客户端API
 
@@ -73,7 +73,7 @@
    * [Maven](https://maven.apache.org/download.cgi)
    * [Nodejs](https://nodejs.org/en/download/)
 
-2. 创建一个tduck的数据库，并执行项目目录下doc/tduck.sql文件
+2. 创建一个tduck的数据库  **版本选择mysql5.7**  ，并执行项目目录下doc/tduck.sql文件
 
 3. 启动后端服务
 
@@ -130,6 +130,20 @@ java -Dfile.encoding=UTF-8 -jar tduck-api.jar --spring.profiles.active=custom
 ##### 5.访问项目
 浏览器地址栏输入http://localhost:8999/
 默认账号密码：test@tduck.com/12356789
+
+
+### 宝塔部署教程
+
+视频教程：https://www.zhihu.com/zvideo/1488944973613981696
+
+
+宝塔配置参数：
+``` bash
+/usr/local/btjdk/jdk8/bin/java -jar -Xmx1024M -Xms256M  /www/wwwroot/xxxx.jar --server.port=5097  --spring.datasource.url=jdbc:mysql://localhost:3306/tduck --spring.datasource.username=root --spring.datasource.password=root
+```
+
+
+ :warning: 注意事项：上述参数需要改成自己的路径，且mysql版本需要选择  **5.7**
 
 ### 加入社群
 -  获取  **使用Docker运行Tduck**  教程请加入社群获取
