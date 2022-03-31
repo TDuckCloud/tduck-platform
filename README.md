@@ -130,7 +130,7 @@ java -Dfile.encoding=UTF-8 -jar tduck-api.jar --spring.profiles.active=custom
 
 ##### 5.访问项目
 浏览器地址栏输入http://localhost:8999/
-默认账号密码：test@tduck.com/12356789
+默认账号密码：test@tduck.com/1235678
 
 
 ### 宝塔部署教程
