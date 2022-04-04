@@ -2,6 +2,7 @@
 目前市面上的表单平台虽然功能强大，但是部分业务组件或者额外收取存储等费用，且费用较高，在数据隐私性较强且有特殊表单需求的场景下无法满足业务需求，国内的开源表单系统比较少，tduck表单应运而生。作为一个  **私有化部署属性的信息填报系统解决方案**  ，愿景能够让中小公司拥有独立自定义表单问卷，快速赋能业务。
 
 
+
 ### 演示地址
 - 开源版本：https://www.tduckcloud.com
 - 演示账号/密码：扫码注册登录
@@ -10,51 +11,8 @@
 
 
 
-#### 项目源码
 
-|   后端源码  |   前端源码  |
-|--- | --- |
-|  https://gitee.com/TDuckApp/tduck-platform   |  https://gitee.com/TDuckApp/tduck-front   |
-|  https://github.com/TDuckCloud/tduck-platform   |  https://github.com/TDuckCloud/tduck-platform   |
-
-
-## 技术体系
-
-### 服务端
-
-
-```
-- SpringBoot 
-- Mybatis-Plus
-- Lombok
-- Hutool
-- Guava
-```
-
-
-### 客户端
-
-```
-- Vue2
-- ElementUI
-- Echarts
-- Axios
-- nprogress
-```
-
-
-
-### 后端项目结构
-
--  tduck-common 通用模块
--  tduck-account 账号模块
--  tduck-storage 存储模块
--  tduck-project 项目模块
--  tduck-wx-mp  微信公众号模块
--  tduck-api 客户端API
-
-
-## 快速启动
+##  :star: 快速启动
 
 
 1. 配置最小开发环境：
@@ -91,7 +49,7 @@
    此时，浏览器打开，输入网址`http://localhost:8888`, 进入页面。
 
 
-## 一键部署：
+##  :star: 一键部署：
 
 部署文件下载方式：关注公众号  **"TDUCK填鸭"**  ，回复“部署文件”，下载我们提供的简化部署文件
 
@@ -136,6 +94,49 @@ java -Dfile.encoding=UTF-8 -jar tduck-api.jar --spring.profiles.active=custom
 
  :warning: 注意事项：上述参数需要改成自己的路径，且mysql版本需要选择  **5.7**
 
+
+
+##  :star: 技术体系
+
+### 服务端
+
+
+```
+- SpringBoot 
+- Mybatis-Plus
+- Lombok
+- Hutool
+- Guava
+```
+
+
+### 客户端
+
+```
+- Vue2
+- ElementUI
+- Echarts
+- Axios
+- nprogress
+```
+
+### 后端项目结构
+
+-  tduck-common 通用模块
+-  tduck-account 账号模块
+-  tduck-storage 存储模块
+-  tduck-project 项目模块
+-  tduck-wx-mp  微信公众号模块
+-  tduck-api 客户端API
+
+#### 项目源码
+
+|   后端源码  |   前端源码  |
+|--- | --- |
+|  https://gitee.com/TDuckApp/tduck-platform   |  https://gitee.com/TDuckApp/tduck-front   |
+|  https://github.com/TDuckCloud/tduck-platform   |  https://github.com/TDuckCloud/tduck-platform   |
+
+
 ### 加入社群
 -  获取  **使用Docker运行Tduck**  教程请加入社群获取
 -  获取  **tduck-纯小白部署教程**  请加入社群获取
@@ -164,6 +165,7 @@ java -Dfile.encoding=UTF-8 -jar tduck-api.jar --spring.profiles.active=custom
 - 【验证码】验证逻辑重构，支持验证码开关
 - 【分割线】 内容分割线
 - 【联系人】 手机号，邮箱，身份证输入 格式校验
+- 【修改数据】支持修改已经提交的数据
 
 
 ### 致谢
