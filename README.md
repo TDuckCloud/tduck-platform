@@ -2,22 +2,12 @@
 目前市面上的表单平台虽然功能强大，但是部分业务组件或者额外收取存储等费用，且费用较高，在数据隐私性较强且有特殊表单需求的场景下无法满足业务需求，国内的开源表单系统比较少，tduck表单应运而生。作为一个  **私有化部署属性的信息填报系统解决方案**  ，愿景能够让中小公司拥有独立自定义表单问卷，快速赋能业务。
 
 
-#### 了解更多
-- 更新日志：[来看看TDUCK的新面孔](https://mp.weixin.qq.com/s/pLltfRv-KvStMxKefAvD_g)
-- 更新日志：[Pro版本更新日志](https://www.yuque.com/mawuhui/kgacqz/qsds2g)
-- 参与项目：[参与TDUCK项目，贡献一份力量！](https://gitee.com/TDuckApp/tduck-platform/issues/I4ZC6R)
-
 ### 演示地址
 - 开源版本：https://www.tduckcloud.com
 - 演示账号/密码：扫码注册登录
 - 部署默认账号： test@tduckapp.com/12345678
 ![输入图片说明](https://oss.tduckcloud.com/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20220224113836.png)
 
-
-### PRO版本-全新表单引擎/工作流/多权限控制
-- 演示地址：https://www.tduckcloud.com
-- 账号密码：test/12345678
-- pro使用文档/权益说明：https://www.yuque.com/mawuhui/kgacqz
 
 
 #### 项目源码
@@ -183,3 +173,7 @@ java -Dfile.encoding=UTF-8 -jar tduck-api.jar --spring.profiles.active=custom
 - 感谢捐赠区支持Tduck的伙伴
 - 感谢积极为Tduck版本优化贡献力量的小伙伴
 - 开源不易如果喜欢请给作者 Star 鼓励
+
+#### 了解更多
+- 更新日志：[来看看TDUCK的新面孔](https://mp.weixin.qq.com/s/pLltfRv-KvStMxKefAvD_g)
+- 参与项目：[参与TDUCK项目，贡献一份力量！](https://gitee.com/TDuckApp/tduck-platform/issues/I4ZC6R)
