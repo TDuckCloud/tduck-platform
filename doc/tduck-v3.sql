@@ -97,6 +97,11 @@ CREATE TABLE `fm_form_template_category`  (
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 34 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '项目模板分类' ROW_FORMAT = Dynamic;
 
+INSERT INTO `fm_form_template_category` (`id`, `name`, `sort`, `update_time`, `create_time`) VALUES (1, '调查', 1, '2021-01-06 10:18:48', '2021-01-06 10:18:48');
+INSERT INTO `fm_form_template_category` (`id`, `name`, `sort`, `update_time`, `create_time`) VALUES (2, '测试', 2, '2021-01-06 10:18:59', '2021-01-06 10:18:59');
+INSERT INTO `fm_form_template_category` (`id`, `name`, `sort`, `update_time`, `create_time`) VALUES (3, '满意度', 3, '2021-01-06 10:19:06', '2021-01-06 10:19:06');
+
+
 -- ----------------------------
 -- Table structure for fm_form_theme
 -- ----------------------------
