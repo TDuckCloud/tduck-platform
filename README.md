@@ -1,69 +1,22 @@
-## 前言
-目前市面上的表单平台虽然功能强大，但是部分业务组件或者额外收取存储等费用，且费用较高，在数据隐私性较强且有特殊表单需求的场景下无法满足业务需求，国内的开源表单系统比较少，tduck表单应运而生。作为一个  **私有化部署属性的信息填报系统解决方案**  ，愿景能够让中小公司拥有独立自定义表单问卷，快速赋能业务。
+
+##  _TDUCK_  填鸭表单收集器
 
 
-#### 了解更多
-- 更新日志：[来看看TDUCK的新面孔](https://mp.weixin.qq.com/s/pLltfRv-KvStMxKefAvD_g)
-- 更新日志：[Pro版本更新日志](https://www.yuque.com/mawuhui/kgacqz/qsds2g)
+目前市面上的表单平台虽然功能强大，但是部分业务组件或者额外收取存储等费用，且费用较高，在数据隐私性较强且有特殊表单需求的场景下无法满足业务需求，国内的开源表单系统比较少，tduck表单应运而生。愿景能够让中小企业低成本拥有独立自定义表单问卷，快速赋能业务。
 
-### 演示地址
-- 开源版本：https://www.tduckcloud.com
-- 演示账号/密码：扫码注册登录
+
+
+
+###  :fire:   演示地址
+- 演示地址：https://www.tduckcloud.com
+- 演示账号/密码：扫码登录即可
 - 部署默认账号： test@tduckapp.com/12345678
 ![输入图片说明](https://oss.tduckcloud.com/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20220224113836.png)
 
 
-### PRO版本-全新表单引擎/工作流/多权限控制
-- 演示地址：https://www.tduckcloud.com
-- 账号密码：test/12345678
-- pro使用文档/权益说明：https://www.yuque.com/mawuhui/kgacqz
 
 
-#### 项目源码
-
-|   后端源码  |   前端源码  |
-|--- | --- |
-|  https://gitee.com/TDuckApp/tduck-platform   |  https://gitee.com/TDuckApp/tduck-front   |
-|  https://github.com/TDuckCloud/tduck-platform   |  https://github.com/TDuckCloud/tduck-platform   |
-
-
-## 技术体系
-
-### 服务端
-
-
-```
-- SpringBoot 
-- Mybatis-Plus
-- Lombok
-- Hutool
-- Guava
-```
-
-
-### 客户端
-
-```
-- Vue2
-- ElementUI
-- Echarts
-- Axios
-- nprogress
-```
-
-
-
-### 后端项目结构
-
--  tduck-common 通用模块
--  tduck-account 账号模块
--  tduck-storage 存储模块
--  tduck-form 表单模块
--  tduck-wx-mp  微信公众号模块
--  tduck-api 客户端API
-
-
-## 快速启动
+##  :star:  快速启动
 
 
 1. 配置最小开发环境：
@@ -73,7 +26,7 @@
    * [Maven](https://maven.apache.org/download.cgi)
    * [Nodejs](https://nodejs.org/en/download/)
 
-2. 创建一个tduck的数据库，并执行项目目录下doc/tduck.sql文件
+2. 创建一个tduck的数据库  **版本选择mysql5.7**  ，并执行项目目录下doc/tduck.sql文件
 
 3. 启动后端服务
 
@@ -100,7 +53,7 @@
    此时，浏览器打开，输入网址`http://localhost:8888`, 进入页面。
 
 
-## 一键部署：
+##  :star:  一键部署：
 
 部署文件下载方式：关注公众号  **"TDUCK填鸭"**  ，回复“部署文件”，下载我们提供的简化部署文件
 
@@ -129,7 +82,64 @@ java -Dfile.encoding=UTF-8 -jar tduck-api.jar --spring.profiles.active=custom
 
 ##### 5.访问项目
 浏览器地址栏输入http://localhost:8999/
-默认账号密码：test@tduck.com/12356789
+默认账号密码：test@tduck.com/1235678
+
+
+### 宝塔部署教程
+
+视频教程：https://www.zhihu.com/zvideo/1488944973613981696
+
+
+宝塔配置参数：
+``` bash
+/usr/local/btjdk/jdk8/bin/java -jar -Xmx1024M -Xms256M  /www/wwwroot/xxxx.jar --server.port=5097  --spring.datasource.url=jdbc:mysql://localhost:3306/tduck --spring.datasource.username=root --spring.datasource.password=root
+```
+
+
+ :warning: 注意事项：上述参数需要改成自己的路径，且mysql版本需要选择  **5.7**
+
+
+
+##  :star:  技术体系
+
+### 服务端
+
+
+```
+- SpringBoot 
+- Mybatis-Plus
+- Lombok
+- Hutool
+- Guava
+```
+
+
+### 客户端
+
+```
+- Vue2
+- ElementUI
+- Echarts
+- Axios
+- nprogress
+```
+
+### 后端项目结构
+
+-  tduck-common 通用模块
+-  tduck-account 账号模块
+-  tduck-storage 存储模块
+-  tduck-project 项目模块
+-  tduck-wx-mp  微信公众号模块
+-  tduck-api 客户端API
+
+#### 项目源码
+
+|   后端源码  |   前端源码  |
+|--- | --- |
+|  https://gitee.com/TDuckApp/tduck-platform   |  https://gitee.com/TDuckApp/tduck-front   |
+|  https://github.com/TDuckCloud/tduck-platform   |  https://github.com/TDuckCloud/tduck-platform   |
+
 
 ### 加入社群
 -  获取  **使用Docker运行Tduck**  教程请加入社群获取
@@ -159,6 +169,7 @@ java -Dfile.encoding=UTF-8 -jar tduck-api.jar --spring.profiles.active=custom
 - 【验证码】验证逻辑重构，支持验证码开关
 - 【分割线】 内容分割线
 - 【联系人】 手机号，邮箱，身份证输入 格式校验
+- 【修改数据】支持修改已经提交的数据
 
 
 ### 致谢
@@ -168,3 +179,7 @@ java -Dfile.encoding=UTF-8 -jar tduck-api.jar --spring.profiles.active=custom
 - 感谢捐赠区支持Tduck的伙伴
 - 感谢积极为Tduck版本优化贡献力量的小伙伴
 - 开源不易如果喜欢请给作者 Star 鼓励
+
+#### 了解更多
+- 更新日志：[来看看TDUCK的新面孔](https://mp.weixin.qq.com/s/pLltfRv-KvStMxKefAvD_g)
+- 参与项目：[参与TDUCK项目，贡献一份力量！](https://gitee.com/TDuckApp/tduck-platform/issues/I4ZC6R)
