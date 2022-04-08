@@ -7,13 +7,21 @@
 
 
 
-###  :fire:   演示地址
+###  :fire:   开源版演示地址
 - 演示地址：https://www.tduckcloud.com
 - 演示账号/密码：扫码登录即可
 - 部署默认账号： test@tduckapp.com/12345678
 ![输入图片说明](https://oss.tduckcloud.com/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20220224113836.png)
 
 
+
+###  :fire:   PRO版演示地址
+- 演示地址：https://www.tduckcloud.com
+- 演示账号/密码：test/12345678
+![输入图片说明](https://s1.ax1x.com/2022/04/08/LptAVP.png)
+![输入图片说明](https://s1.ax1x.com/2022/04/08/LptV58.png)
+![输入图片说明](https://s1.ax1x.com/2022/04/08/Lpt6PO.png)
+![输入图片说明](https://s1.ax1x.com/2022/04/08/LptUxJ.png)
 
 
 ##  :star:  快速启动
