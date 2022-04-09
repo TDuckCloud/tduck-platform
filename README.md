@@ -90,7 +90,7 @@ java -Dfile.encoding=UTF-8 -jar tduck-api.jar --spring.profiles.active=custom
 
 ##### 5.访问项目
 浏览器地址栏输入http://localhost:8999/
-默认账号密码：test@tduck.com/1235678
+默认账号密码：test@tduck.com/12345678
 
 
 ### 宝塔部署教程
@@ -141,7 +141,7 @@ java -Dfile.encoding=UTF-8 -jar tduck-api.jar --spring.profiles.active=custom
 -  tduck-wx-mp  微信公众号模块
 -  tduck-api 客户端API
 
-#### 项目源码
+### 项目源码
 
 |   后端源码  |   前端源码  |
 |--- | --- |
@@ -188,6 +188,6 @@ java -Dfile.encoding=UTF-8 -jar tduck-api.jar --spring.profiles.active=custom
 - 感谢积极为Tduck版本优化贡献力量的小伙伴
 - 开源不易如果喜欢请给作者 Star 鼓励
 
-#### 了解更多
+### 了解更多
 - 更新日志：[来看看TDUCK的新面孔](https://mp.weixin.qq.com/s/pLltfRv-KvStMxKefAvD_g)
 - 参与项目：[参与TDUCK项目，贡献一份力量！](https://gitee.com/TDuckApp/tduck-platform/issues/I4ZC6R)
