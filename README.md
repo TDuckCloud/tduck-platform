@@ -149,12 +149,6 @@ java -Dfile.encoding=UTF-8 -jar tduck-api.jar --spring.profiles.active=custom
 |  https://github.com/TDuckCloud/tduck-platform   |  https://github.com/TDuckCloud/tduck-platform   |
 
 
-### 加入社群
--  获取  **使用Docker运行Tduck**  教程请加入社群获取
--  获取  **tduck-纯小白部署教程**  请加入社群获取
-<img alt="logo" src="https://images.gitee.com/uploads/images/2021/0706/174654_31b12d64_1674451.png" style="margin-bottom: 0px;" width="150px">
-
-
 ### 开源版特性
 - 【公开反馈结果】 公开反馈结果设置，开启后填写完成将看到他人填写结果
 - 【表单逻辑】支持对单选，多选框，下拉框等组件进行逻辑设置，目前仅支持选中 未选中等逻辑关系
@@ -179,6 +173,9 @@ java -Dfile.encoding=UTF-8 -jar tduck-api.jar --spring.profiles.active=custom
 - 【联系人】 手机号，邮箱，身份证输入 格式校验
 - 【修改数据】支持修改已经提交的数据
 
+### TDUCK社区
+<img alt="logo" src="https://images.gitee.com/uploads/images/2021/0706/174654_31b12d64_1674451.png" style="margin-bottom: 0px;" width="150px">
+
 
 ### 致谢
 - 感谢[Ucloud优刻得](https://www.ucloud.cn/)提供服务器资源
@@ -189,5 +186,8 @@ java -Dfile.encoding=UTF-8 -jar tduck-api.jar --spring.profiles.active=custom
 - 开源不易如果喜欢请给作者 Star 鼓励
 
 ### 了解更多
-- 更新日志：[来看看TDUCK的新面孔](https://mp.weixin.qq.com/s/pLltfRv-KvStMxKefAvD_g)
-- 参与项目：[参与TDUCK项目，贡献一份力量！](https://gitee.com/TDuckApp/tduck-platform/issues/I4ZC6R)
+- [来看看TDUCK的新面孔](https://mp.weixin.qq.com/s/pLltfRv-KvStMxKefAvD_g)
+- [参与TDUCK项目，贡献一份力量！](https://gitee.com/TDuckApp/tduck-platform/issues/I4ZC6R)
+- [JAR包部署修改前端内容](https://www.yuque.com/mawuhui/kgacqz/zpubyn)
+- [宝塔Jar包部署如何指定配置文件](https://www.yuque.com/mawuhui/kgacqz/paqc6g)
+
