@@ -14,6 +14,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class UploadResultStruct {
 
-    private String fileName;
+    private String name;
     private String url;
 }

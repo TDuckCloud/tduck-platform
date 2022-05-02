@@ -96,7 +96,7 @@ public class UserFormDataServiceImpl extends ServiceImpl<UserFormDataMapper, Use
                             uploadResults.forEach(uFile -> {
                                 UploadResultStruct uploadResult = Convert.convert(UploadResultStruct.class, uFile);
                                 if (StrUtil.isNotBlank(uploadResult.getUrl())) {
-                                    paths.add(new StringBuffer().append(item.getId()).append(CharUtil.DASHED).append(id).append(uploadResult.getFileName()).toString());
+                                    paths.add(new StringBuffer().append(item.getId()).append(CharUtil.DASHED).append(uploadResult.getName()).toString());
                                     byte[] bytes = HttpUtil.downloadBytes(uploadResult.getUrl());
                                     ins.add(IoUtil.toStream(bytes));
                                 }
