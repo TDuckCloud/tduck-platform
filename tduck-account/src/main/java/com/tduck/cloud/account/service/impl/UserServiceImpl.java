@@ -48,7 +48,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, UserEntity> impleme
 
     @Override
     public Result emailRegister(RegisterAccountRequest request) {
-        String code = cacheUtils.get(StrUtil.format(AccountRedisKeyConstants.EMAIL_CODE, request.getEmail()));
+        String code = cacheUtils.getTemp(StrUtil.format(AccountRedisKeyConstants.EMAIL_CODE, request.getEmail()));
         if (!request.getCode().equals(code)) {
             return Result.failed("验证码错误");
         }
