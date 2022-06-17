@@ -31,7 +31,7 @@
         <jwt.version>0.7.0</jwt.version>
         <weixin-java.version>4.1.0</weixin-java.version>
         <captcha.version>1.2.8</captcha.version>
-        <fastjson.version>1.2.75</fastjson.version>
+        <fastjson.version>1.2.83</fastjson.version>
         <tencentcloud.version>4.0.11</tencentcloud.version>
         <poi.version>5.0.0</poi.version>
     </properties>
