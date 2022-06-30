@@ -54,13 +54,14 @@ public class FormDataImportUtils {
         ExcelWriter writer = ExcelUtil.getWriter(true).writeHeadRow(rows);
         ServletOutputStream out = null;
         try {
-            out = response.getOutputStream();
-            writer.flush(out, true);
-            //response为HttpServletResponse对象
+           //response为HttpServletResponse对象
             response.setContentType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=utf-8");
             //test.xls是弹出下载对话框的文件名，不能为中文，中文请自行编码
             String fileName = URLUtil.encode("表单数据导入模板");
+            response.setHeader("Access-Control-Expose-Headers", "Content-Disposition");
             response.setHeader("Content-Disposition", "attachment;filename=" + fileName + ".xlsx");
+            out = response.getOutputStream();
+            writer.flush(out, true);
             // 关闭writer，释放内存
             writer.close();
             //此处记得关闭输出Servlet流
