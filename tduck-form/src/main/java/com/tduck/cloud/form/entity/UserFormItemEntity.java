@@ -64,7 +64,6 @@ public class UserFormItemEntity extends BaseEntity<UserFormItemEntity> {
     /**
      * 表单项默认值
      */
-    @TableField(value = "default_value",jdbcType = JdbcType.NVARCHAR,updateStrategy = FieldStrategy.IGNORED)
     private String defaultValue;
 
 
