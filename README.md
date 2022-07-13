@@ -19,6 +19,8 @@
 ###  :fire:   PRO版演示地址
 - 演示地址：https://www.tduckcloud.com
 - 演示账号/密码：test/12345678
+![输入图片说明](https://s1.ax1x.com/2022/07/13/jWNO7n.png)
+![输入图片说明](https://s1.ax1x.com/2022/07/13/jWUSpT.png)
 ![输入图片说明](https://s1.ax1x.com/2022/04/08/LptAVP.png)
 ![输入图片说明](https://s1.ax1x.com/2022/04/08/LptV58.png)
 ![输入图片说明](https://s1.ax1x.com/2022/04/08/Lpt6PO.png)
@@ -147,7 +149,7 @@ java -Dfile.encoding=UTF-8 -jar tduck-api.jar --spring.profiles.active=custom
 |   后端源码  |   前端源码  |
 |--- | --- |
 |  https://gitee.com/TDuckApp/tduck-platform   |  https://gitee.com/TDuckApp/tduck-front   |
-|  https://github.com/TDuckCloud/tduck-platform   |  https://github.com/TDuckCloud/tduck-platform   |
+|  https://github.com/TDuckCloud/tduck-platform   |  https://github.com/TDuckCloud/tduck-front   |
 
 
 ### 开源版特性
