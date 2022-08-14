@@ -14,15 +14,15 @@
 
 
 ###  开源版演示地址
-- 演示地址：www.tduckcloud.com
+- 演示地址：[www.tduckcloud.com](http://www.tduckcloud.com)
 - 登录方法：扫码登录即可
-- 文档地址：www.yuque.com/tduck/home
+- 文档地址：[点击查看文档](http://www.yuque.com/tduck/home)
 - 部署默认账号： test@tduckapp.com/12345678
 
 
 
 ###  PRO版演示地址
-- 演示地址：www.tduckcloud.com
+- 演示地址：[www.tduckcloud.com](http://www.tduckcloud.com)
 - 演示账号密码：test/12345678
 ![输入图片说明](https://s1.ax1x.com/2022/07/13/jWNO7n.png)
 ![输入图片说明](https://s1.ax1x.com/2022/07/13/jWUSpT.png)
