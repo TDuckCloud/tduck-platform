@@ -2,12 +2,9 @@
 
 ##  _TDUCK_  填鸭表单收集器
 
-
 目前市面上的表单平台虽然功能强大，但是部分业务组件或者额外收取存储等费用，且费用较高，在数据隐私性较强且有特殊表单需求的场景下无法满足业务需求，国内的开源表单系统比较少，tduck表单应运而生。愿景能够让中小企业低成本拥有独立自定义表单问卷，快速赋能业务。
-<p align="left"><img alt="logo" src="https://doc.tduckapp.com/img/banner.png" style="margin-bottom: 0px;"></p>
 
-
-###  :fire:   开源版演示地址
+### 演示地址
 - 演示地址：https://www.tduckcloud.com
 - 演示账号/密码：扫码登录即可
 - 部署默认账号： test@tduckapp.com/12345678
@@ -15,17 +12,7 @@
 
 
 
-###  :fire:   PRO版演示地址
-- 演示地址：https://www.tduckcloud.com
-- 演示账号/密码：test/12345678
-![输入图片说明](https://s1.ax1x.com/2022/04/08/LptAVP.png)
-![输入图片说明](https://s1.ax1x.com/2022/04/08/LptV58.png)
-![输入图片说明](https://s1.ax1x.com/2022/04/08/Lpt6PO.png)
-![输入图片说明](https://s1.ax1x.com/2022/04/08/LptUxJ.png)
-
-
-##  :star:  快速启动
-
+##  快速启动
 
 1. 配置最小开发环境：
 
@@ -61,7 +48,7 @@
    此时，浏览器打开，输入网址`http://localhost:8888`, 进入页面。
 
 
-##  :star:  一键部署：
+##    一键部署：
 
 部署文件下载方式：关注公众号  **"TDUCK填鸭"**  ，回复“部署文件”，下载我们提供的简化部署文件
 
@@ -108,7 +95,7 @@ java -Dfile.encoding=UTF-8 -jar tduck-api.jar --spring.profiles.active=custom
 
 
 
-##  :star:  技术体系
+##   技术体系
 
 ### 服务端
 
