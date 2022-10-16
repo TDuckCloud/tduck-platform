@@ -16,7 +16,7 @@
 ###  开源版演示地址
 - 演示地址：[www.tduckcloud.com](http://www.tduckcloud.com)
 - 登录方法：扫码登录即可
-- 文档地址：[点击查看文档](http://www.yuque.com/tduck/home)
+- 部署文档：[点击查看部署文档](http://www.yuque.com/tduck/home)
 - 部署默认账号： test@tduckapp.com/12345678
 
 
