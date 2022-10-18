@@ -30,16 +30,9 @@
 ###  PRO版演示地址
 - 演示地址：<a href="http://www.tduckcloud.com" target="_blank">PRO演示地址</a>
 - 演示账号密码：test/12345678
-![输入图片说明](https://s1.ax1x.com/2022/07/13/jWNO7n.png)
-![输入图片说明](https://s1.ax1x.com/2022/07/13/jWUSpT.png)
-![输入图片说明](https://s1.ax1x.com/2022/04/08/LptAVP.png)
-![输入图片说明](https://s1.ax1x.com/2022/04/08/LptV58.png)
-![输入图片说明](https://s1.ax1x.com/2022/04/08/Lpt6PO.png)
-![输入图片说明](https://s1.ax1x.com/2022/04/08/LptUxJ.png)
 
 
 ##  快速启动
-
 
 #### 配置最小开发环境：
 
@@ -113,8 +106,6 @@
 -  tduck-wx-mp  微信公众号模块
 -  tduck-api 客户端API
 
-### TDUCK社区
-<img alt="logo" src="https://images.gitee.com/uploads/images/2021/0706/174654_31b12d64_1674451.png" style="margin-bottom: 0px;" width="150px">
 
 
 ### 了解更多
