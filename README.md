@@ -5,34 +5,45 @@
     </a>
 </p>
 
+<br />
 <p align="center"><b>TDUCK</b> 数据收集，如此简单。</p>
+<br />
 
+<p align="center">
+    <img src='https://gitee.com/TDuckApp/tduck-platform/badge/star.svg?theme=dark' alt='star'></img>
+    <img src='https://gitee.com/TDuckApp/tduck-platform/badge/fork.svg?theme=dark' alt='fork'></img>
+    <img src='https://img.shields.io/github/stars/tduckcloud/tduck-platform?style=social' alt='star'></img>
+    <img src='https://img.shields.io/github/forks/tduckcloud/tduck-platform?style=social' alt='fork'></img>
+    <br />
+    <a href="https://www.tduckcloud.com/">官网</a>
+    <a href="https://www.yuque.com/tduck/home">文档</a>
+    <a href="https://pro.tduckcloud.com/s/QUiDSKq8">社区</a>
+    <a href="https://space.bilibili.com/409825300">频道</a>
+</p>
 
-<a href='https://gitee.com/TDuckApp/tduck-platform/stargazers'><img src='https://gitee.com/TDuckApp/tduck-platform/badge/star.svg?theme=dark' alt='star'></img></a>
-<a href='https://gitee.com/TDuckApp/tduck-platform/members'><img src='https://gitee.com/TDuckApp/tduck-platform/badge/fork.svg?theme=dark' alt='fork'></img></a>
-![GitHub Repo stars](https://img.shields.io/github/stars/tduckcloud/tduck-platform?style=social)
-![GitHub forks](https://img.shields.io/github/forks/tduckcloud/tduck-platform?style=social)
-
-
+<br />
 > 目前市面上的表单平台虽然功能强大，但是部分业务组件或者额外收取存储等费用，且费用较高，在数据隐私性较强且有特殊表单需求的场景下无法满足业务需求，国内的开源表单系统比较少，tduck表单应运而生。愿景能够让企业低成本拥有独立自定义表单问卷，快速赋能业务。
 
+------------------------------
 
 
 
-###  开源版演示地址
-- 演示地址：<a href="http://www.tduckcloud.com" target="_blank">开源演示地址</a>
-- 登录方法：扫码登录即可
-- 部署文档：<a href="https://www.yuque.com/tduck/home/vl7y79" target="_blank">点击查看部署文档</a>
-- 部署默认账号： test@tduckapp.com/12345678
+###  开源版
+- 在线体验：<a href="http://www.tduckcloud.com" target="_blank">演示地址</a>
+- 默认账号：test@tduckapp.com
+- 默认密码：12345678
 
 
 
-###  PRO版演示地址
-- 演示地址：<a href="http://www.tduckcloud.com" target="_blank">PRO演示地址</a>
-- 演示账号密码：test/12345678
+###  PRO版
+- 在线体验：<a href="http://www.tduckcloud.com" target="_blank">演示地址</a>
+- 账号：test
+- 密码：12345678
 
 
 ##  快速启动
+
+- 部署文档：<a href="https://www.yuque.com/tduck/home/vl7y79" target="_blank">点击查看部署文档</a>
 
 #### 配置最小开发环境：
 
