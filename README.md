@@ -1,7 +1,7 @@
 
 <p align="center">
     <a href="https://www.tduckcloud.com" target="_blank" rel="noopener noreferrer">
-        <img style="margin-bottom: 0px;" width="10px" src="https://oss.tduckcloud.com/lading-image/ico-icon-superlittle.png" alt="TDUCK logo" />
+        <img style="margin-bottom: 0px;" width="10px" src="https://oss.tduckcloud.com/lading-image/ICO-icon.png" alt="TDUCK logo" />
     </a>
 </p>
 
