@@ -6,7 +6,6 @@
 </p>
 
 <p align="center">数据收集，如此简单。</p>
-<br />
 
 <p align="center">
     <img src='https://gitee.com/TDuckApp/tduck-platform/badge/star.svg?theme=dark' alt='star'></img>
