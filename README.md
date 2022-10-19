@@ -6,7 +6,7 @@
 </p>
 
 <br />
-<p align="center"><b>TDUCK</b> 数据收集，如此简单。</p>
+<p align="center">数据收集，如此简单。</p>
 <br />
 
 <p align="center">
