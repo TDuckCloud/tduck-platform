@@ -5,7 +5,6 @@
     </a>
 </p>
 
-<br />
 <p align="center">数据收集，如此简单。</p>
 <br />
 
