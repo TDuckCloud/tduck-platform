@@ -15,14 +15,15 @@
     <img src='https://img.shields.io/github/stars/tduckcloud/tduck-platform?style=social' alt='star'></img>
     <img src='https://img.shields.io/github/forks/tduckcloud/tduck-platform?style=social' alt='fork'></img>
     <br />
-    <a href="https://www.tduckcloud.com/">官网</a>
-    <a href="https://www.yuque.com/tduck/home">文档</a>
-    <a href="https://pro.tduckcloud.com/s/QUiDSKq8">社区</a>
-    <a href="https://space.bilibili.com/409825300">频道</a>
+    <br />   
+    <a href="https://www.tduckcloud.com/" target="_blank">官方网站</a>&nbsp;
+    <a href="https://www.yuque.com/tduck/home"  target="_blank" >部署文档</a>&nbsp;
+    <a href="https://pro.tduckcloud.com/s/QUiDSKq8" target="_blank">微信社区</a>&nbsp;
+    <a href="https://space.bilibili.com/409825300" target="_blank">bilibili频道</a>
 </p>
 
 <br />
-> 目前市面上的表单平台虽然功能强大，但是部分业务组件或者额外收取存储等费用，且费用较高，在数据隐私性较强且有特殊表单需求的场景下无法满足业务需求，国内的开源表单系统比较少，tduck表单应运而生。愿景能够让企业低成本拥有独立自定义表单问卷，快速赋能业务。
+目前市面上的表单平台虽然功能强大，但是部分业务组件或者额外收取存储等费用，且费用较高，在数据隐私性较强且有特殊表单需求的场景下无法满足业务需求，国内的开源表单系统比较少，tduck表单应运而生。愿景能够让企业低成本拥有独立自定义表单问卷，快速赋能业务。
 
 ------------------------------
 
