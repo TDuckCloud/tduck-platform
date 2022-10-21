@@ -30,7 +30,7 @@
 <br />
 💥作者说：把<a href="https://github.com/TDuckCloud/tduck-platform" target="_blank"> <b>github托管的这个项目 点到1.5k star！</b> </a>💥就全部开源！
 <br />
-💥如果您想提前获得改源码 请贡献10个star（gitee/github都行），联系作者获取源码！
+💥如果您想提前获得改源码 请贡献20个star（gitee/github都行），联系作者获取源码！
 
 ------------------------------
 
