@@ -25,7 +25,14 @@
 
 ------------------------------
 
+### 提示
+💥表单设计模块暂未开源，项目通过npm引用，不影响使用、二开其他功能。
+<br />
+💥作者说：把<a href="https://github.com/TDuckCloud/tduck-platform" target="_blank"> <b>github托管的这个项目 点到1.5k star！</b> </a>💥就全部开源！
+<br />
+💥如果您想提前获得改源码 请贡献20个star（gitee/github都行），联系作者获取源码！
 
+------------------------------
 
 ###  开源版
 - 在线体验：<a href="http://www.tduckcloud.com" target="_blank">演示地址</a>
