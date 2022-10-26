@@ -40,6 +40,8 @@
 - 在线体验：<a href="http://www.tduckcloud.com" target="_blank">演示地址</a>
 - 默认账号：test@tduckapp.com
 - 默认密码：12345678
+![输入图片说明](https://oss.tduckcloud.com/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20220224113836.png)
+![输入图片说明](https://oss.tduckcloud.com/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20220224114416.png)
 
 
 
@@ -47,7 +49,12 @@
 - 在线体验：<a href="http://www.tduckcloud.com" target="_blank">演示地址</a>
 - 账号：test
 - 密码：12345678
-
+![输入图片说明](https://s1.ax1x.com/2022/07/13/jWNO7n.png)
+![输入图片说明](https://s1.ax1x.com/2022/07/13/jWUSpT.png)
+![输入图片说明](https://s1.ax1x.com/2022/04/08/LptAVP.png)
+![输入图片说明](https://s1.ax1x.com/2022/04/08/LptV58.png)
+![输入图片说明](https://s1.ax1x.com/2022/04/08/Lpt6PO.png)
+![输入图片说明](https://s1.ax1x.com/2022/04/08/LptUxJ.png)
 
 ##  快速启动
 
