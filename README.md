@@ -55,6 +55,17 @@
 ![输入图片说明](https://s1.ax1x.com/2022/04/08/LptV58.png)
 ![输入图片说明](https://s1.ax1x.com/2022/04/08/Lpt6PO.png)
 ![输入图片说明](https://s1.ax1x.com/2022/04/08/LptUxJ.png)
+![表单编辑](https://s1.ax1x.com/2022/11/21/zl0tFH.png)
+![逻辑设置](https://s1.ax1x.com/2022/11/21/zl0UfA.png)
+![外观设置](https://s1.ax1x.com/2022/11/21/zl0dSI.png)
+![表单设置](https://s1.ax1x.com/2022/11/21/zl0wlt.png)
+![表单权限组](https://s1.ax1x.com/2022/11/21/zl006P.png)
+![查看数据详情](https://s1.ax1x.com/2022/11/21/zl0yTg.png)
+![用户管理](https://s1.ax1x.com/2022/11/21/zl0gYj.png)
+![参数配置](https://s1.ax1x.com/2022/11/21/zl0Wpn.png)
+
+
+
 
 ##  快速启动
 
