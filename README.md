@@ -29,7 +29,7 @@
 ### 提示
 💥表单设计模块暂未开源，项目通过npm引用，不影响使用、二开其他功能。
 <br />
-💥作者说：把<a href="https://github.com/TDuckCloud/tduck-platform" target="_blank"> <b>github托管的这个项目 到1.5k star！</b> </a>💥就全部开源！
+💥：<a href="https://github.com/TDuckCloud/tduck-platform" target="_blank"> <b>github托管的这个项目 到1.5k star！</b> </a>💥就会全部开源！
 
 ------------------------------
 
