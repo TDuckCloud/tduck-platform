@@ -27,13 +27,10 @@
 ------------------------------
 
 
-###  开源版
+###  立即体验
 - 在线体验：<a href="http://www.tduckcloud.com" target="_blank">体验地址</a>
 - 默认账号：test@tduckapp.com
 - 默认密码：12345678
-![输入图片说明](https://oss.tduckcloud.com/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20220224113836.png)
-![输入图片说明](https://oss.tduckcloud.com/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20220224114416.png)
-
 
 ##  快速启动
 
