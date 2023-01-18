@@ -114,6 +114,8 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, UserEntity> impleme
         userEntity.setLastLoginTime(LocalDateTime.now());
         this.updateById(userEntity);
         String token = jwtUtils.generateToken(userEntity.getId());
+        // 缓存token
+        cacheUtils.save(StrUtil.format(AccountRedisKeyConstants.USER_TOKEN, userEntity.getId()), token);
         return new LoginUserVO(userEntity.getAvatar(), userEntity.getName(), token);
     }
 

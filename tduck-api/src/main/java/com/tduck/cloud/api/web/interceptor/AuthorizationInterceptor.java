@@ -1,9 +1,11 @@
 package com.tduck.cloud.api.web.interceptor;
 
 import cn.hutool.core.util.StrUtil;
+import com.tduck.cloud.account.constant.AccountRedisKeyConstants;
 import com.tduck.cloud.account.util.JwtUtils;
 import com.tduck.cloud.api.annotation.Login;
 import com.tduck.cloud.api.exception.AuthorizationException;
+import com.tduck.cloud.common.util.CacheUtils;
 import io.jsonwebtoken.Claims;
 import org.springframework.stereotype.Component;
 import org.springframework.web.method.HandlerMethod;
@@ -18,10 +20,15 @@ import javax.servlet.http.HttpServletResponse;
 @Component
 public class AuthorizationInterceptor extends HandlerInterceptorAdapter {
     public static final String USER_KEY = "userId";
+
+
     private final JwtUtils jwtUtils;
 
-    public AuthorizationInterceptor(JwtUtils jwtUtils) {
+    private final CacheUtils cacheUtils;
+
+    public AuthorizationInterceptor(JwtUtils jwtUtils, CacheUtils cacheUtils) {
         this.jwtUtils = jwtUtils;
+        this.cacheUtils = cacheUtils;
     }
 
     @Override
@@ -52,10 +59,13 @@ public class AuthorizationInterceptor extends HandlerInterceptorAdapter {
         if (claims == null || jwtUtils.isTokenExpired(claims.getExpiration())) {
             throw new AuthorizationException(jwtUtils.getHeader() + "失效，请重新登录");
         }
-
+        // 缓存中是否存在token
+        String cacheToken = cacheUtils.get(StrUtil.format(AccountRedisKeyConstants.USER_TOKEN, claims.getSubject()));
+        if (StrUtil.isBlank(cacheToken) || !StrUtil.equals(cacheToken, token)) {
+            throw new AuthorizationException(jwtUtils.getHeader() + "失效，请重新登录");
+        }
         //设置userId到request里，后续根据userId，获取用户信息
         request.setAttribute(USER_KEY, Long.parseLong(claims.getSubject()));
-
         return true;
     }
 }
