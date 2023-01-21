@@ -16,7 +16,7 @@
     <br />
     <br />   
     <a href="https://www.tduckcloud.com/" target="_blank">官方网站</a>&nbsp;
-    <a href="https://www.yuque.com/tduck/home"  target="_blank" >部署文档</a>&nbsp;
+    <a href="https://doc.tduckapp.com"  target="_blank" >部署文档</a>&nbsp;
     <a href="https://pro.tduckcloud.com/s/QUiDSKq8" target="_blank">微信社区</a>&nbsp;
     <a href="https://space.bilibili.com/409825300" target="_blank">bilibili频道</a>
 </p>
@@ -32,9 +32,7 @@
 - 默认账号：test@tduckapp.com
 - 默认密码：12345678
 
-##  快速启动
-
-- 部署文档：<a href="https://www.yuque.com/tduck/home/vl7y79" target="_blank">点击查看部署文档</a>
+##  快速启动 <a href="https://doc.tduckapp.com" target="_blank">部署文档</a>
 
 #### 配置最小开发环境：
 
@@ -43,9 +41,9 @@
    * [Maven](https://maven.apache.org/download.cgi)
    * [Nodejs](https://nodejs.org/en/download/)
 
-#### 创建一个tduck的数据库  **版本选择mysql5.7**  ，并执行项目目录下doc/tduck.sql文件
+#### 创建一个tduck的数据库  **版本≥mysql5.7**  ，并执行项目目录下doc/tduck.sql文件
 
-#### 启动后端服务
+#### 1️⃣ 启动后端
 
    打开命令行，输入以下命令
 
@@ -56,7 +54,7 @@
    java -Dfile.encoding=UTF-8 -jar target/tduck-api.jar
    ```
 
-#### 启动管理后台前端
+#### 2️⃣ 启动前端
 
    打开命令行，输入以下命令
 
@@ -99,7 +97,7 @@
 - nprogress
 ```
 
-### 后端项目结构
+### 后端结构
 
 -  tduck-common 通用模块
 -  tduck-account 账号模块
@@ -107,7 +105,6 @@
 -  tduck-project 项目模块
 -  tduck-wx-mp  微信公众号模块
 -  tduck-api 客户端API
-
 
 
 ### 了解更多
