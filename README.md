@@ -106,10 +106,3 @@
 -  tduck-wx-mp  微信公众号模块
 -  tduck-api 客户端API
 
-
-### 了解更多
-- [来看看TDUCK的新面孔](https://mp.weixin.qq.com/s/pLltfRv-KvStMxKefAvD_g)
-- [参与TDUCK项目，贡献一份力量！](https://gitee.com/TDuckApp/tduck-platform/issues/I4ZC6R)
-- [JAR包部署修改前端内容](https://www.yuque.com/mawuhui/kgacqz/zpubyn)
-- [宝塔Jar包部署如何指定配置文件](https://www.yuque.com/mawuhui/kgacqz/paqc6g)
-
