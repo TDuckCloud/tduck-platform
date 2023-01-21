@@ -6,7 +6,7 @@
     </a>
 </p>
 
-<p align="center">数据收集，如此简单。</p>
+<p align="center">一款在线数据收集/问卷调查工具</p>
 
 <p align="center">
     <img src='https://gitee.com/TDuckApp/tduck-platform/badge/star.svg?theme=dark' alt='star'></img>
@@ -16,7 +16,7 @@
     <br />
     <br />   
     <a href="https://www.tduckcloud.com/" target="_blank">官方网站</a>&nbsp;
-    <a href="https://www.yuque.com/tduck/home"  target="_blank" >部署文档</a>&nbsp;
+    <a href="https://doc.tduckapp.com"  target="_blank" >部署文档</a>&nbsp;
     <a href="https://pro.tduckcloud.com/s/QUiDSKq8" target="_blank">微信社区</a>&nbsp;
     <a href="https://space.bilibili.com/409825300" target="_blank">bilibili频道</a>
 </p>
@@ -26,39 +26,13 @@
 
 ------------------------------
 
-### 提示
-💥表单设计模块暂未开源，项目通过npm引用，不影响使用、二开其他功能。
-<br />
-💥作者说：把<a href="https://github.com/TDuckCloud/tduck-platform" target="_blank"> <b>github托管的这个项目 点到1.5k star！</b> </a>💥就全部开源！
-<br />
-💥如果您想提前获得该源码 请贡献20个star（gitee/github都行），联系作者获取源码！
 
-------------------------------
-
-
-###  开源版
-- 在线体验：<a href="http://www.tduckcloud.com" target="_blank">演示地址</a>
+##  🚀 立即体验
+- 在线体验：<a href="http://www.tduckcloud.com" target="_blank">体验地址</a>
 - 默认账号：test@tduckapp.com
 - 默认密码：12345678
-![输入图片说明](https://oss.tduckcloud.com/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20220224113836.png)
-![输入图片说明](https://oss.tduckcloud.com/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20220224114416.png)
 
-
-
-###  PRO版
-- 在线体验：<a href="http://www.tduckcloud.com" target="_blank">演示地址</a>
-- 账号：test
-- 密码：12345678
-![输入图片说明](https://s1.ax1x.com/2022/07/13/jWNO7n.png)
-![输入图片说明](https://s1.ax1x.com/2022/07/13/jWUSpT.png)
-![输入图片说明](https://s1.ax1x.com/2022/04/08/LptAVP.png)
-![输入图片说明](https://s1.ax1x.com/2022/04/08/LptV58.png)
-![输入图片说明](https://s1.ax1x.com/2022/04/08/Lpt6PO.png)
-![输入图片说明](https://s1.ax1x.com/2022/04/08/LptUxJ.png)
-
-##  快速启动
-
-- 部署文档：<a href="https://www.yuque.com/tduck/home/vl7y79" target="_blank">点击查看部署文档</a>
+##  快速启动 <a href="https://doc.tduckapp.com" target="_blank">部署文档</a>
 
 #### 配置最小开发环境：
 
@@ -67,9 +41,9 @@
    * [Maven](https://maven.apache.org/download.cgi)
    * [Nodejs](https://nodejs.org/en/download/)
 
-#### 创建一个tduck的数据库  **版本选择mysql5.7**  ，并执行项目目录下doc/tduck.sql文件
+#### 创建一个tduck的数据库  **版本≥mysql5.7**  ，并执行项目目录下doc/tduck.sql文件
 
-#### 启动后端服务
+#### 1️⃣ 启动后端
 
    打开命令行，输入以下命令
 
@@ -80,7 +54,7 @@
    java -Dfile.encoding=UTF-8 -jar target/tduck-api.jar
    ```
 
-#### 启动管理后台前端
+#### 2️⃣ 启动前端
 
    打开命令行，输入以下命令
 
@@ -123,7 +97,7 @@
 - nprogress
 ```
 
-### 后端项目结构
+### 后端结构
 
 -  tduck-common 通用模块
 -  tduck-account 账号模块
@@ -131,12 +105,4 @@
 -  tduck-project 项目模块
 -  tduck-wx-mp  微信公众号模块
 -  tduck-api 客户端API
-
-
-
-### 了解更多
-- [来看看TDUCK的新面孔](https://mp.weixin.qq.com/s/pLltfRv-KvStMxKefAvD_g)
-- [参与TDUCK项目，贡献一份力量！](https://gitee.com/TDuckApp/tduck-platform/issues/I4ZC6R)
-- [JAR包部署修改前端内容](https://www.yuque.com/mawuhui/kgacqz/zpubyn)
-- [宝塔Jar包部署如何指定配置文件](https://www.yuque.com/mawuhui/kgacqz/paqc6g)
 
