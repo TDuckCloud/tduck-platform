@@ -32,7 +32,7 @@
 - 默认账号：test@tduckapp.com
 - 默认密码：12345678
 
-##  快速启动 <a href="https://doc.tduckapp.com" target="_blank">部署文档</a>
+##  快速启动 <a href="https://doc.tduckcloud.com" target="_blank">部署文档</a>
 
 #### 配置最小开发环境：
 
