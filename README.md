@@ -28,7 +28,7 @@
 
 
 ##  🚀 立即体验
-- 在线体验：<a href="http://www.tduckcloud.com" target="_blank">体验地址</a>
+- 在线体验：<a href="http://www.tduckcloud.com" target="_blank">演示地址</a>
 - 默认账号：test@tduckapp.com
 - 默认密码：12345678
 
