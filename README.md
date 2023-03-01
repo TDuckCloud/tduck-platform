@@ -39,13 +39,6 @@
 ------------------------------
 
 
-## Hot！社区活动
-
-[💥 如何获取 [开源版表单编辑器] 源码](https://doc.tduckcloud.com/openSource/#hot-%E7%A4%BE%E5%8C%BA%E6%B4%BB%E5%8A%A8)
-
-------------------------------
-
-
 ## 查看演示
 
 
@@ -76,3 +69,11 @@
 ![screely-1677667119617](https://doc-oss.tduckcloud.com/doc/screely-1677667119617.png)
 
 ![screely-1677667148732](https://doc-oss.tduckcloud.com/doc/screely-1677667148732.png)
+
+------------------------------
+
+## Hot！社区活动
+
+[💥 如何获取 [开源版表单编辑器] 源码](https://doc.tduckcloud.com/openSource/#hot-%E7%A4%BE%E5%8C%BA%E6%B4%BB%E5%8A%A8)
+
+
