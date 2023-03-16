@@ -73,8 +73,4 @@
 
 ------------------------------
 
-## Hot！社区活动
-
-[💥 如何获取 [开源版表单编辑器] 源码](https://doc.tduckcloud.com/openSource/#hot-%E7%A4%BE%E5%8C%BA%E6%B4%BB%E5%8A%A8)
-
 
