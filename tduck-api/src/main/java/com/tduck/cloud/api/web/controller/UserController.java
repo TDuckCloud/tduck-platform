@@ -12,8 +12,8 @@ import com.tduck.cloud.account.request.UpdateUserRequest;
 import com.tduck.cloud.account.service.UserAuthorizeService;
 import com.tduck.cloud.account.service.UserService;
 import com.tduck.cloud.account.service.UserValidateService;
+import com.tduck.cloud.account.util.PasswordUtils;
 import com.tduck.cloud.account.vo.UserDetailVO;
-import com.tduck.cloud.api.annotation.Login;
 import com.tduck.cloud.api.annotation.LoginUser;
 import com.tduck.cloud.common.util.JsonUtils;
 import com.tduck.cloud.common.util.Result;
@@ -47,7 +47,6 @@ public class UserController {
      * @param userId
      * @return
      */
-    @Login
     @GetMapping("/current/detail")
     public Result queryCurrentUser(@RequestAttribute Long userId) {
         UserEntity userEntity = userService.getById(userId);
@@ -62,6 +61,7 @@ public class UserController {
         if (ObjectUtil.isNotNull(wxMpUserEntity)) {
             userDetailVO.setWxName(wxMpUserEntity.getNickname());
         }
+        userDetailVO.setAdmin(userEntity.isAdmin());
         return Result.success(userDetailVO);
     }
 
@@ -71,7 +71,6 @@ public class UserController {
      * @param userEntity
      * @return
      */
-    @Login
     @PostMapping("/update")
     public Result updateUser(@RequestBody UserEntity userEntity, @RequestAttribute Long userId) {
         userEntity.setPassword(null);
@@ -86,7 +85,6 @@ public class UserController {
      * @return
      */
     @GetMapping("/update-email/msg")
-    @Login
     public Result sendUpdateEmailMsg(@RequestParam String email, @RequestAttribute Long userId) {
         Validator.validateEmail(email, "邮箱地址不正确");
         UserEntity userEntity = userService.getUserByEmail(email);
@@ -121,29 +119,12 @@ public class UserController {
         return Result.success(true);
     }
 
-    /**
-     * 修改手机号验证码
-     *
-     * @return
-     */
-    @GetMapping("/update-phone/code")
-    public Result sendUpdatePhoneCode(@RequestParam String phoneNumber) {
-        Validator.validateMobile(phoneNumber, "手机号码不正确");
-        UserEntity userEntity = userService.getUserByPhoneNumber(phoneNumber);
-        if (ObjectUtil.isNotNull(userEntity)) {
-            return Result.failed("该手机号已被绑定");
-        }
-        userValidateService.sendPhoneCode(phoneNumber);
-        return Result.success();
-    }
-
 
     /**
      * 绑定微信二维码
      *
      * @return
      */
-    @Login
     @GetMapping("/bind/wx/qrcode")
     public Result getBindWxQrcode(@RequestAttribute Long userId) throws WxErrorException {
         String bindSceneStr = JsonUtils.objToJson(new WxMpQrCodeGenRequest(WxMpQrCodeGenRequest.QrCodeType.BIND_ACCOUNT, String.valueOf(userId)));
@@ -153,28 +134,6 @@ public class UserController {
         return Result.success(bindAccountQrcodeUrl);
     }
 
-    /**
-     * 修改手机号
-     *
-     * @return
-     */
-    @Login
-    @PostMapping("/update/phone-number")
-    public Result updatePhoneNumber(@RequestBody UpdateUserRequest.PhoneNumber request, @RequestAttribute Long userId) {
-        ValidatorUtils.validateEntity(request);
-        Validator.validateMobile(request.getPhoneNumber(), "手机号码不正确");
-        //检查验证码是否正确
-        Boolean checkPhoneCode = userValidateService.checkPhoneCode(request.getPhoneNumber(), request.getCode());
-        if (checkPhoneCode) {
-            return Result.failed("验证码错误");
-        }
-        UserEntity userEntity = new UserEntity();
-        userEntity.setId(userId);
-        userEntity.setPhoneNumber(request.getPhoneNumber());
-        userService.updateById(userEntity);
-        return Result.success();
-    }
-
 
     /**
      * 修改密码e
@@ -182,10 +141,9 @@ public class UserController {
      * @return
      */
     @PostMapping("/update/password")
-    @Login
     public Result updatePassword(@RequestBody UpdateUserRequest.Password request, @LoginUser UserEntity userEntity) {
         ValidatorUtils.validateEntity(request);
-        if (!userEntity.getPassword().equals(DigestUtil.sha256Hex(request.getOldPassword()))) {
+        if (!PasswordUtils.checkPassword(userEntity, request.getOldPassword())) {
             return Result.failed("旧密码错误");
         }
         if (!request.getPassword().equals(request.getRepeatPassword())) {
@@ -201,7 +159,6 @@ public class UserController {
      * @return
      */
 
-    @Login
     @PostMapping("/bind/qq")
     public Result bindQQAccount(@RequestBody QqLoginRequest request, @RequestAttribute Long userId) {
         UserAuthorizeEntity authorizeEntity = userAuthorizeService.getQqAuthorization(request.getAuthorizeCode(), request.getRedirectUri(), new UserEntity());

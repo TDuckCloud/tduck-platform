@@ -1,21 +1,20 @@
 package com.tduck.cloud.form.entity.enums;
 
 import com.baomidou.mybatisplus.annotation.EnumValue;
-import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
+import com.tduck.cloud.common.entity.IDictEnum;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 
 /**
  * @author : smalljop
  * @description : 表单来源
  * @create : 2020-12-04 13:35
  **/
-@AllArgsConstructor
+
 @Getter
-@NoArgsConstructor
-public enum FormSourceTypeEnum {
+@AllArgsConstructor
+public enum FormSourceTypeEnum implements IDictEnum {
 
     BLANK(1, "空白创建"),
     TEMPLATE(2, "模板");
@@ -23,25 +22,9 @@ public enum FormSourceTypeEnum {
 
     @EnumValue
     @JsonValue
-    private int value;
+    private Integer value;
 
     private String desc;
 
-
-    /**
-     * 枚举入参注解
-     *
-     * @param value
-     * @return
-     */
-    @JsonCreator
-    public static FormSourceTypeEnum getByValue(int value) {
-        for (FormSourceTypeEnum sourceTypeEnum : values()) {
-            if (sourceTypeEnum.getValue() == value) {
-                return sourceTypeEnum;
-            }
-        }
-        return null;
-    }
 
 }

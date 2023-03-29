@@ -1,7 +1,7 @@
 package com.tduck.cloud.storage.util;
 
 import cn.hutool.core.date.DateUtil;
-import org.apache.commons.lang3.StringUtils;
+import cn.hutool.core.util.StrUtil;
 
 import java.text.DecimalFormat;
 import java.util.Date;
@@ -26,7 +26,7 @@ public class StorageUtils {
         String uuid = UUID.randomUUID().toString().replaceAll("-", "");
         //文件路径
         String path = DateUtil.format(new Date(), "yyyyMMdd") + "/" + uuid;
-        if (StringUtils.isNotBlank(prefix)) {
+        if (StrUtil.isNotBlank(prefix)) {
             path = prefix + '/' + path;
         }
         return path + suffix;

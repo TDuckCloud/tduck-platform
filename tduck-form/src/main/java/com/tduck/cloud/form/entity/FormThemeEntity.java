@@ -1,13 +1,9 @@
 package com.tduck.cloud.form.entity;
 
-import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.tduck.cloud.common.entity.BaseEntity;
-import com.tduck.cloud.common.mybatis.handler.JacksonTypeHandler;
 import lombok.Data;
 import lombok.experimental.FieldNameConstants;
-
-import java.util.List;
 
 
 /**
@@ -21,7 +17,6 @@ import java.util.List;
 @FieldNameConstants
 public class FormThemeEntity extends BaseEntity<FormThemeEntity> {
 
-    private Long id;
     /**
      * 主题名称
      */
@@ -29,23 +24,22 @@ public class FormThemeEntity extends BaseEntity<FormThemeEntity> {
     /**
      * 主题风格
      */
-    @TableField(typeHandler = JacksonTypeHandler.class)
-    private List<Integer> style;
+    private Long style;
     /**
      * 头部图片
      */
     private String headImgUrl;
 
     /**
-     * 按钮颜色
+     * 背景图片
      */
-    private String btnsColor;
+    private String backgroundImg;
+
 
     /**
-     * 颜色代码
+     * 主题颜色
      */
-    @TableField(typeHandler = JacksonTypeHandler.class)
-    private List<String> color;
+    private String themeColor;
 
 
 }

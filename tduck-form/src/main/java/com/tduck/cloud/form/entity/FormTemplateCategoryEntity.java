@@ -15,7 +15,6 @@ import lombok.Data;
 @Data
 @TableName(value = "fm_form_template_category", autoResultMap = true)
 public class FormTemplateCategoryEntity extends BaseEntity<FormTemplateCategoryEntity> {
-    private Long id;
     /**
      * 主题名称
      */

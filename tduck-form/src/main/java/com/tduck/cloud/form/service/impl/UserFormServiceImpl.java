@@ -22,8 +22,7 @@ public class UserFormServiceImpl extends ServiceImpl<UserFormMapper, UserFormEnt
         if (StrUtil.isBlank(key)) {
             return null;
         }
-        UserFormEntity entity = this.getOne(Wrappers.<UserFormEntity>lambdaQuery().eq(UserFormEntity::getKey, key));
-        return entity;
+        return this.getOne(Wrappers.<UserFormEntity>lambdaQuery().eq(UserFormEntity::getFormKey, key));
     }
 
 

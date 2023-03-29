@@ -9,6 +9,7 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateTimeDeserializer;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
+import com.tduck.cloud.common.mybatis.handler.LongToStringSerializer;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.FieldNameConstants;
@@ -27,6 +28,13 @@ public class BaseEntity<T> extends Model {
 
     private static final long serialVersionUID = 1L;
 
+
+    /**
+     * 主键 避免超出长度 前端丢失精度
+     */
+    @JsonSerialize(using= LongToStringSerializer.class)
+    private Long id;
+
     /**
      * 创建时间
      **/
@@ -44,6 +52,5 @@ public class BaseEntity<T> extends Model {
     @JsonDeserialize(using = LocalDateTimeDeserializer.class)
     @JsonSerialize(using = LocalDateTimeSerializer.class)
     protected LocalDateTime updateTime;
-
 
 }

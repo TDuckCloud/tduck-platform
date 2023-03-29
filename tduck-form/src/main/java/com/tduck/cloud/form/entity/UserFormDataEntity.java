@@ -1,10 +1,10 @@
 package com.tduck.cloud.form.entity;
 
 import com.baomidou.mybatisplus.annotation.TableField;
-import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
-import com.tduck.cloud.common.entity.BaseEntity;
+import com.tduck.cloud.common.entity.SysBaseEntity;
 import com.tduck.cloud.common.mybatis.handler.JacksonTypeHandler;
+import com.tduck.cloud.form.entity.enums.FormTypeEnum;
 import lombok.Data;
 import lombok.experimental.Accessors;
 import lombok.experimental.FieldNameConstants;
@@ -22,17 +22,14 @@ import java.util.Map;
 @Accessors(chain = true)
 @FieldNameConstants
 @TableName(value = "fm_user_form_data", autoResultMap = true)
-public class UserFormDataEntity extends BaseEntity {
-    /**
-     *
-     */
-    @TableId
-    private Long id;
+public class UserFormDataEntity extends SysBaseEntity {
+
     /**
      * 表单key
      */
     @NotBlank(message = "错误请求")
     private String formKey;
+
 
     /**
      * 提交序号
@@ -45,6 +42,9 @@ public class UserFormDataEntity extends BaseEntity {
     @TableField(typeHandler = JacksonTypeHandler.class)
     private Map<String, Object> originalData;
 
+
+    @TableField(exist = false)
+    private FormTypeEnum formType;
 
     /**
      * 填写用户Ua
@@ -89,4 +89,12 @@ public class UserFormDataEntity extends BaseEntity {
      */
     @TableField(typeHandler = JacksonTypeHandler.class)
     private Map<String, Object> wxUserInfo;
+
+    /**
+     * 扩展字段
+     */
+    private String extValue;
+
+
+
 }

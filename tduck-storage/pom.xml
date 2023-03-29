@@ -39,9 +39,8 @@
             <artifactId>java-sdk</artifactId>
         </dependency>
         <dependency>
-            <groupId>io.minio</groupId>
-            <artifactId>minio</artifactId>
-            <version>7.0.2</version>
+            <groupId>com.amazonaws</groupId>
+            <artifactId>aws-java-sdk-s3</artifactId>
         </dependency>
     </dependencies>
 </project>

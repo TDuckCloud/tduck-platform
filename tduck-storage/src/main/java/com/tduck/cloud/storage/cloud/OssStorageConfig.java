@@ -1,20 +1,17 @@
 package com.tduck.cloud.storage.cloud;
 
-import com.tduck.cloud.storage.entity.enums.OssTypeEnum;
+import com.tduck.cloud.storage.enums.OssTypeEnum;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.stereotype.Component;
 
 /**
- * @description: Oss配置
- * @author: smalljop
- * @create: 2018-10-18 13:53
+ * Oss配置
+ *
+ * @author : smalljop
+ * @since : 2018-10-18 13:53
  **/
 @Data
-@Component
 @Slf4j
-@ConfigurationProperties(prefix = "platform.oss")
 public class OssStorageConfig {
 
 
@@ -63,7 +60,7 @@ public class OssStorageConfig {
     /**
      * 本地存储文件访问路径
      */
-    private String accessPathPattern;
+    private String accessPathPattern = "/u/**";
 
 
 }

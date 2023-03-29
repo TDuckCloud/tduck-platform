@@ -3,6 +3,7 @@ package com.tduck.cloud.form.mapper;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.tduck.cloud.form.entity.UserFormDataEntity;
 import com.tduck.cloud.form.vo.FormReportVO;
+import com.tduck.cloud.form.vo.SituationVO;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 
@@ -25,9 +26,12 @@ public interface FormDashboardMapper extends BaseMapper<UserFormDataEntity> {
      * @param formKey
      * @return
      */
-    @Select("SELECT date_format( create_time, '%Y-%m-%d' ) as create_time, COUNT( 1 ) AS count FROM fm_user_form_data" +
-            " WHERE YEARWEEK( date_format( create_time, '%Y-%m-%d' )) = YEARWEEK( now()) AND Form_key=#{formKey} GROUP BY date_format( create_time, '%Y-%m-%d' )")
-    Set<FormReportVO.Situation> selectFormReportSituation(@Param("formKey") String formKey);
+    @Select(" SELECT date_format(create_time, '%Y-%m-%d') as create_time, COUNT(1) AS count\n" +
+            "        FROM fm_user_form_data\n" +
+            "        WHERE create_time >= YEARWEEK(now())\n" +
+            "          AND form_key = #{formKey}\n" +
+            "        GROUP BY date_format(create_time, '%Y-%m-%d')")
+    Set<SituationVO> selectFormReportSituation(@Param("formKey") String formKey);
 
 
     /**

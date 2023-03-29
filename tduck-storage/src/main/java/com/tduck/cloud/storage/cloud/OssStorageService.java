@@ -7,9 +7,10 @@ import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 
 /**
- * @description: Oss基础客户端
- * @author: smalljop
- * @create: 2018-10-18 13:57
+ * Oss基础客户端
+ *
+ * @author : smalljop
+ * @since : 2018-10-18 13:57
  **/
 public abstract class OssStorageService {
 
@@ -22,19 +23,19 @@ public abstract class OssStorageService {
     /**
      * 文件上传
      *
-     * @param inputStream 文件 上传路径
-     * @param path
-     * @return
+     * @param is   文件
+     * @param path 相对于存储系统的路径
+     * @return 文件地址
      */
-    public abstract String upload(InputStream inputStream, String path);
+    public abstract String upload(InputStream is, String path);
 
 
     /**
      * 文件上传
      *
      * @param data 文件 上传路径
-     * @param path
-     * @return
+     * @param path 相对于存储系统的路径
+     * @return 文件地址
      */
     public abstract String upload(byte[] data, String path);
 
@@ -43,7 +44,7 @@ public abstract class OssStorageService {
      * 下载文件
      *
      * @param url 文件地址
-     * @return
+     * @return 文件
      */
     public InputStream download(String url) {
         final ByteArrayOutputStream output = new ByteArrayOutputStream();
@@ -55,7 +56,6 @@ public abstract class OssStorageService {
      * 删除文件
      *
      * @param path 相对于存储系统的路径
-     * @return
      */
     public abstract void delete(String path);
 }

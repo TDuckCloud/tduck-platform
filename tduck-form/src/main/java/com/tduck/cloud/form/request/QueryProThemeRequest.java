@@ -11,6 +11,6 @@ import lombok.Data;
 public class QueryProThemeRequest {
     private String color;
 
-    private String style;
+    private Long style;
 
 }

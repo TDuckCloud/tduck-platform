@@ -4,19 +4,31 @@ spring:
   profiles:
     active: prod
   jackson:
-    time-zone: GMT+8
     date-format: yyyy-MM-dd HH:mm:ss
+    #设置空如何序列化
+    defaultPropertyInclusion: always
+    serialization:
+      # 格式化输出
+      indent_output: false
+      # 忽略无法转换的对象
+      fail_on_empty_beans: false
+    deserialization:
+      #允许对象忽略json中不存在的属性
+      fail_on_unknown_properties: false
   mail:
     host: smtp.88.com
     port: 465
     protocol: smtps
   servlet:
     multipart:
-      max-file-size: 100MB
-      max-request-size: 100MB
+      max-file-size: 1000MB
+      max-request-size: 1000MB
   cache:
     ehcache:
       config: classpath:ehcache.xml
+  autoconfigure:
+    exclude: org.springframework.boot.autoconfigure.mongo.MongoAutoConfiguration, org.springframework.boot.autoconfigure.data.mongo.MongoDataAutoConfiguration
+
 server:
   port: 8999
   compression:
@@ -30,7 +42,6 @@ logging:
     com.tduck.cloud: debug
 mybatis-plus:
   type-aliases-package: com.tduck.cloud.*.entity
-  type-enums-package: com.tduck.cloud.*.entity.enums
   mapper-locations: classpath*:mapper/**/*.xml
   #实体扫描，多个package用逗号或者分号分隔
   global-config:
@@ -48,27 +59,6 @@ mybatis-plus:
 platform:
   request:
     trace-log: false
-  sign:
-    enable: false
-    secret: 916lWh2WMcbSWiHv
-    ignore-urls:
-      - /webjars/**
-      - /swagger/**
-      - /swagger-ui.html
-      - /swagger-resources/**
-      - /swagger/**
-      - /**/v2/api-docs
-      - /**/v2/api-docs-ext
-      - /doc.html
-      - /user/file/upload
-      - /form/file/upload/*
-      - /wx/mp/portal/**
-      - /profile/**
-      - /wx/**
-      - /**/*.js
-      - /**/*.css
-      - /**/*.png
-      - /**/*.ico
   jwt:
     # 加密秘钥
     secret: f6f31a5f2136758f86b67cde583cb125
@@ -76,9 +66,24 @@ platform:
     expire: 604800
     header: token
 
+springdoc:
+  swagger-ui:
+    # 修改Swagger UI路径
+    path: /swagger-ui.html
+    # 开启Swagger UI界面
+    enabled: true
+  api-docs:
+    # 修改api-docs路径
+    path: /v3/api-docs
+    # 开启api-docs
+    enabled: true
+  # 配置需要生成接口文档的扫描包
+  packages-to-scan: com.tduck.cloud.api.web.controller
+#  # 配置需要生成接口文档的接口路径
+#  paths-to-match:
 
 aj:
   captcha:
-    enable: true
+    enable: false
     water-mark: tduck
     cache-type: local

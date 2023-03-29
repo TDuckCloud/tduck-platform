@@ -12,11 +12,10 @@ import com.tduck.cloud.account.request.UpdateUserRequest;
 import com.tduck.cloud.account.service.UserValidateService;
 import com.tduck.cloud.common.constant.CommonConstants;
 import com.tduck.cloud.common.email.MailService;
-import com.tduck.cloud.common.sms.SmsService;
 import com.tduck.cloud.common.util.CacheUtils;
+import com.tduck.cloud.envconfig.service.SysEnvConfigService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.util.Map;
@@ -35,14 +34,7 @@ public class UserValidateServiceImpl implements UserValidateService {
     private final static String RESET_PWD_EMAIL_TITLE = "重置密码";
     private final CacheUtils cacheUtils;
     private final MailService mailService;
-    private final SmsService smsService;
-    /**
-     * 重置密码地址
-     */
-    @Value("${platform.front.resetPwdUrl}")
-    private String resetPwdUrl;
-    @Value("${platform.front.updateEmailUrl}")
-    private String updateEmailUrl;
+    private final SysEnvConfigService sysEnvConfigService;
 
     @Override
     public void sendEmailCode(String email) {
@@ -55,7 +47,9 @@ public class UserValidateServiceImpl implements UserValidateService {
     public void sendResetPwdEmail(String email, UserEntity userEntity) {
         String code = getRestPasswordCode(userEntity.getId());
         //发送邮件
-        Map<String, Object> params = ImmutableMap.of("email", email, "resetPwdUrl", StrUtil.format(updateEmailUrl, code, email));
+        String webBaseUrl = sysEnvConfigService.getSystemEnvConfig().getWebBaseUrl();
+        String resetPwdUrl = webBaseUrl + "/forget/password?code={}&email={}";
+        Map<String, Object> params = ImmutableMap.of("email", email, "resetPwdUrl", StrUtil.format(resetPwdUrl, code, email));
         mailService.sendTemplateHtmlMail(email, RESET_PWD_EMAIL_TITLE, "mail/reset-password", params);
     }
 
@@ -64,6 +58,8 @@ public class UserValidateServiceImpl implements UserValidateService {
         String code = IdUtil.fastUUID();
         cacheUtils.tempSave(StrUtil.format(AccountRedisKeyConstants.UPDATE_USER_EMAIL_CODE, code, email), userId.toString());
         //发送邮件
+        String webBaseUrl = sysEnvConfigService.getSystemEnvConfig().getWebBaseUrl();
+        String updateEmailUrl = webBaseUrl + "/account/forget/validate?type=updateEmail&code={}&email={}";
         Map<String, Object> params = ImmutableMap.of("updateEmailUrl", StrUtil.format(updateEmailUrl, code, email));
         mailService.sendTemplateHtmlMail(email, RESET_PWD_EMAIL_TITLE, "mail/update-account-email", params);
     }
@@ -92,30 +88,9 @@ public class UserValidateServiceImpl implements UserValidateService {
         return code;
     }
 
-    @Override
-    public void sendPhoneCode(String phoneNumber) {
-        smsService.sendValidateSms(phoneNumber,
-                genValidateCode(StrUtil.format(AccountRedisKeyConstants.PHONE_NUMBER_CODE, phoneNumber)));
-    }
-
-    @Override
-    public Boolean checkPhoneCode(String phoneNumber, String code) {
-        String phoneCodeKey = StrUtil.format(AccountRedisKeyConstants.PHONE_NUMBER_CODE, phoneNumber);
-        String validateCode = cacheUtils.get(phoneCodeKey);
-        if (code.equals(validateCode)) {
-            cacheUtils.removeTemp(phoneCodeKey);
-            return true;
-        }
-        return false;
-
-    }
 
 
-    @Override
-    public void sendRetrievePwdPhoneCode(String phoneNumber) {
-        String code = genValidateCode(StrUtil.format(AccountRedisKeyConstants.PHONE_RETRIEVE_PWD_CODE, phoneNumber));
-        smsService.sendRetrievePwdValidateSms(phoneNumber, code);
-    }
+
 
     @Override
     public String getRestPasswordCode(Long userId) {

@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.tduck.cloud.account.entity.enums.AccountChannelEnum;
 import com.tduck.cloud.common.entity.BaseEntity;
+import com.tduck.cloud.common.util.SecurityUtils;
 import lombok.Data;
 
 import java.time.LocalDateTime;
@@ -65,6 +66,16 @@ public class UserEntity extends BaseEntity<UserEntity> {
      * 状态
      */
     private Boolean deleted;
+
+    /**
+     * 密码模式 默认为0  0为开源版默认使用sha256 1 为springsecurity BCrypt强哈希
+     */
+    private Integer passwordType;
+
+
+    public Boolean isAdmin() {
+        return SecurityUtils.isAdmin(this.id);
+    }
 
 
 }

@@ -23,14 +23,12 @@ import java.util.List;
 @Data
 @TableName(value = "fm_form_template", autoResultMap = true)
 public class FormTemplateEntity extends BaseEntity<FormTemplateEntity> {
-    private Long id;
     /**
      * 模板唯一标识
      */
-    @TableField("`key`")
     @NotBlank(message = "错误请求", groups = {UpdateGroup.class})
-    private String key;
-    /**
+    private String formKey;
+    /**i1b
      * 表单名称
      */
     @NotBlank(message = "表单名称不能为空", groups = {AddGroup.class, UpdateGroup.class})
@@ -64,8 +62,11 @@ public class FormTemplateEntity extends BaseEntity<FormTemplateEntity> {
 
     @Data
     public static class Definition {
+
+        private Integer formType;
         private List<UserFormItemEntity> formItems;
         private UserFormThemeEntity userFormTheme;
+        private UserFormLogicEntity userFormLogic;
     }
 
 

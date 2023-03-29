@@ -26,4 +26,6 @@ public class LoginUserVO {
      * token
      */
     private String token;
+
+    private boolean isAdmin;
 }

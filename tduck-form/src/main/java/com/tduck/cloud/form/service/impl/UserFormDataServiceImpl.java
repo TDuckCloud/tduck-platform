@@ -1,27 +1,24 @@
 package com.tduck.cloud.form.service.impl;
 
 import cn.hutool.core.bean.BeanUtil;
+import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.collection.CollectionUtil;
-import cn.hutool.core.convert.Convert;
-import cn.hutool.core.date.LocalDateTimeUtil;
+import cn.hutool.core.date.DateUtil;
+import cn.hutool.core.date.TimeInterval;
 import cn.hutool.core.io.IoUtil;
+import cn.hutool.core.io.file.FileNameUtil;
 import cn.hutool.core.map.MapUtil;
 import cn.hutool.core.thread.ThreadUtil;
-import cn.hutool.core.util.CharUtil;
 import cn.hutool.core.util.IdUtil;
+import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.core.util.ZipUtil;
 import cn.hutool.http.HttpUtil;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
 import com.tduck.cloud.common.constant.CommonConstants;
-import com.tduck.cloud.common.entity.BaseEntity;
-import com.tduck.cloud.common.util.AddressUtils;
-import com.tduck.cloud.common.util.AsyncProcessUtils;
-import com.tduck.cloud.common.util.CacheUtils;
-import com.tduck.cloud.common.util.Result;
+import com.tduck.cloud.common.util.*;
 import com.tduck.cloud.form.entity.UserFormDataEntity;
 import com.tduck.cloud.form.entity.UserFormItemEntity;
 import com.tduck.cloud.form.entity.enums.FormItemTypeEnum;
@@ -30,20 +27,24 @@ import com.tduck.cloud.form.mapper.UserFormDataMapper;
 import com.tduck.cloud.form.request.QueryFormResultRequest;
 import com.tduck.cloud.form.service.UserFormDataService;
 import com.tduck.cloud.form.service.UserFormItemService;
+import com.tduck.cloud.form.util.FormDataUtils;
 import com.tduck.cloud.form.vo.FormDataTableVO;
+import com.tduck.cloud.form.vo.FormFieldVO;
 import com.tduck.cloud.storage.cloud.OssStorageFactory;
 import com.tduck.cloud.storage.util.StorageUtils;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
-import static com.tduck.cloud.form.constant.FormConstants.FORM_RESULT_NUMBER;
+import static com.tduck.cloud.form.constant.FormRedisKeyConstants.FORM_RESULT_NUMBER;
 
 /**
  * 表单表单项(FormResult)表服务实现类
@@ -52,18 +53,26 @@ import static com.tduck.cloud.form.constant.FormConstants.FORM_RESULT_NUMBER;
  * @since 2020-11-23 14:09:22
  */
 @Service
+@Slf4j
 @RequiredArgsConstructor
 public class UserFormDataServiceImpl extends ServiceImpl<UserFormDataMapper, UserFormDataEntity> implements UserFormDataService {
 
     private final UserFormItemService userFormItemService;
-    private final CacheUtils cacheUtils;
+    private final CacheUtils redisUtils;
+    private final FormDataUtils formDataUtils;
+
 
     @Override
-    public void saveFormResult(UserFormDataEntity entity) {
+    @Transactional(rollbackFor = Exception.class)
+    public Map<String, Object> saveFormResult(UserFormDataEntity entity) {
+        HashMap<String, Object> result = MapUtil.newHashMap();
         String formKey = entity.getFormKey();
-        entity.setSerialNumber(cacheUtils.incr(StrUtil.format(FORM_RESULT_NUMBER, formKey), CommonConstants.ConstantNumber.ONE));
         entity.setSubmitAddress(AddressUtils.getRealAddressByIP(entity.getSubmitRequestIp()));
+        entity.setSerialNumber(redisUtils.incr(StrUtil.format(FORM_RESULT_NUMBER, formKey), CommonConstants.ConstantNumber.ONE));
         this.save(entity);
+        formDataUtils.syncSaveFormData(entity);
+        result.put("id", entity.getId());
+        return result;
     }
 
 
@@ -76,40 +85,46 @@ public class UserFormDataServiceImpl extends ServiceImpl<UserFormDataMapper, Use
     @Override
     public Result downloadFormResultFile(QueryFormResultRequest request) {
         String uuid = IdUtil.simpleUUID();
-        List<UserFormItemEntity> userFormItemEntityList = userFormItemService.list(Wrappers.<UserFormItemEntity>lambdaQuery().eq(UserFormItemEntity::getFormKey, request.getFormKey()).in(UserFormItemEntity::getType, Lists.newArrayList(FormItemTypeEnum.UPLOAD.toString(), FormItemTypeEnum.IMAGE_UPLOAD.toString())));
+        List<UserFormItemEntity> userFormItemEntityList = userFormItemService.list(Wrappers.<UserFormItemEntity>lambdaQuery().eq(UserFormItemEntity::getFormKey, request.getFormKey()).in(UserFormItemEntity::getType, CollUtil.newArrayList(FormItemTypeEnum.UPLOAD.toString(), FormItemTypeEnum.IMAGE_UPLOAD.toString())));
         //结果
-        FormDataTableVO formDataTableVO = this.listFormDataTable(request);
-        List<Map> rows = formDataTableVO.getRows();
+        List<Map> rows = null;
+        if (ObjectUtil.isNull(request.getCurrent()) && ObjectUtil.isNull(request.getSize())) {
+            rows = formDataUtils.searchAll(request);
+        } else {
+            FormDataTableVO formDataTableVO = this.listFormDataTable(request);
+            rows = formDataTableVO.getRows();
+        }
         if (CollectionUtil.isEmpty(rows) || CollectionUtil.isEmpty(userFormItemEntityList)) {
             return Result.failed("暂无收集附件，无法下载");
         }
+        List<Map> finalRows = rows;
         ThreadUtil.execAsync(() -> {
+            TimeInterval timer = DateUtil.timer();
             List<String> paths = new ArrayList<>();
             List<InputStream> ins = new ArrayList<>();
             try {
-                rows.forEach(result -> {
+                finalRows.forEach(result -> {
                     int index = 0;
-                    String id = MapUtil.getStr(result, "id");
                     userFormItemEntityList.forEach(item -> {
-                        List<Object> uploadResults = MapUtil.get(result, item.getFormItemId(), List.class);
+                        List<UploadResultStruct> uploadResults = JsonUtils.jsonToList(JsonUtils.objToJson(MapUtil.get(result, item.getFormItemId(), List.class)), UploadResultStruct.class);
                         if (CollectionUtil.isNotEmpty(uploadResults)) {
                             uploadResults.forEach(uFile -> {
-                                UploadResultStruct uploadResult = Convert.convert(UploadResultStruct.class, uFile);
-                                if (StrUtil.isNotBlank(uploadResult.getUrl())) {
-                                    paths.add(new StringBuffer().append(item.getId()).append(CharUtil.DASHED).append(uploadResult.getName()).toString());
-                                    byte[] bytes = HttpUtil.downloadBytes(uploadResult.getUrl());
+                                if (StrUtil.isNotBlank(uFile.getUrl())) {
+                                    paths.add(FileNameUtil.getName(uFile.getUrl()));
+                                    byte[] bytes = HttpUtil.downloadBytes(uFile.getUrl());
                                     ins.add(IoUtil.toStream(bytes));
                                 }
                             });
                         }
                     });
-                    AsyncProcessUtils.setProcess(uuid, ++index / rows.size() + 1);
+                    AsyncProcessUtils.setProcess(uuid, ++index / finalRows.size());
                 });
                 // 压缩上传oss
                 ByteArrayOutputStream zipOutputStream = new ByteArrayOutputStream();
                 ZipUtil.zip(zipOutputStream, paths.toArray(new String[]{}), ins.toArray(new InputStream[]{}));
-                String downloadUrl = OssStorageFactory.build().upload(zipOutputStream.toByteArray(), StorageUtils.generateFileName("download", ".zip"));
+                String downloadUrl = OssStorageFactory.getStorageService().upload(zipOutputStream.toByteArray(), StorageUtils.generateFileName("download", ".zip"));
                 AsyncProcessUtils.setProcess(uuid, downloadUrl);
+                log.info("export file cost time: {}", timer.interval());
             } catch (Exception e) {
                 log.error("download file", e);
             }
@@ -117,43 +132,45 @@ public class UserFormDataServiceImpl extends ServiceImpl<UserFormDataMapper, Use
         return Result.success(uuid);
     }
 
+
     @Override
     public FormDataTableVO listFormDataTable(QueryFormResultRequest request) {
-        List<UserFormDataEntity> dataEntityList = null;
-        Long total = 0L;
-        // 查询全部
-        if (0 == request.getCurrent()) {
-            dataEntityList = this.list(Wrappers.<UserFormDataEntity>lambdaQuery().eq(UserFormDataEntity::getFormKey, request.getFormKey()));
-            total = Long.valueOf(dataEntityList.size());
-        } else {
-            Page<UserFormDataEntity> page = this.page(request.toMybatisPage(), Wrappers.<UserFormDataEntity>lambdaQuery().eq(UserFormDataEntity::getFormKey, request.getFormKey()));
-            dataEntityList = page.getRecords();
-            total = page.getTotal();
-        }
-        List<Map> list = dataEntityList.stream().map(item -> {
-            Map<String, Object> originalData = item.getOriginalData();
-            item.setOriginalData(null);
-            originalData.put(BaseEntity.Fields.createTime, LocalDateTimeUtil.formatNormal(item.getCreateTime()));
-            originalData.put(BaseEntity.Fields.updateTime, LocalDateTimeUtil.formatNormal(item.getUpdateTime()));
-            Map<String, Object> formDataMap = BeanUtil.beanToMap(item);
-            formDataMap.putAll(originalData);
-            return formDataMap;
-        }).collect(Collectors.toList());
-        return new FormDataTableVO(list, total);
+        return formDataUtils.search(request);
     }
 
 
     @Override
     public Boolean deleteByIds(List<String> dataIdList, String formKey) {
         baseMapper.deleteBatchIds(dataIdList);
-        return null;
+        formDataUtils.asyncDeleteEsDocument(dataIdList, formKey);
+        return true;
     }
 
     @Override
     public Boolean updateFormResult(UserFormDataEntity entity) {
         UserFormDataEntity dataEntity = this.getById(entity.getId());
         dataEntity.setOriginalData(entity.getOriginalData());
+        dataEntity.setUpdateBy(entity.getUpdateBy());
         boolean update = this.updateById(dataEntity);
+        // 查询数据 同步到es 避免数据变空被覆盖
+        formDataUtils.asyncUpdateEsDocument(dataEntity);
         return update;
+    }
+
+    @Override
+    public Result getFormDataDetails(String dataId) {
+        Map<String, Object> result = Maps.newHashMap();
+        UserFormDataEntity dataEntity = this.getById(dataId);
+        List<FormFieldVO> formFields = userFormItemService.listFormFields(dataEntity.getFormKey());
+        // 表单字段
+        result.put("formFields", formFields);
+        // 表单填写数据
+        if (ObjectUtil.isNotNull(dataEntity)) {
+            Map<String, Object> originalData = dataEntity.getOriginalData();
+            dataEntity.setOriginalData(null);
+            originalData.putAll(BeanUtil.beanToMap(dataEntity, false, true));
+            result.put("formData", originalData);
+        }
+        return Result.success(result);
     }
 }

@@ -40,4 +40,6 @@ public class UserDetailVO {
      */
     private String wxName;
 
+
+    private boolean isAdmin;
 }

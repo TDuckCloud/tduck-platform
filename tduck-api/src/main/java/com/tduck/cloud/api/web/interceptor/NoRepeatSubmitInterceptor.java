@@ -34,7 +34,6 @@ public class NoRepeatSubmitInterceptor implements HandlerInterceptor {
     @PostConstruct
     public void init() {
         caches.schedulePrune(5);
-
     }
 
     @Override

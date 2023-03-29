@@ -36,7 +36,7 @@ public class JacksonTypeHandler extends AbstractJsonTypeHandler<Object> {
 
     public static void setObjectMapper(ObjectMapper objectMapper) {
         Assert.notNull(objectMapper, "ObjectMapper should not be null");
-        JacksonTypeHandler.objectMapper = JsonUtils.getObjectMapper();
+        JacksonTypeHandler.objectMapper = JsonUtils.getInstance();
     }
 
     @Override

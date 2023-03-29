@@ -23,34 +23,6 @@ logging:
     com.tduck.cloud: debug
   config: classpath:logback-spring.xml
 
-#  请求日志是否打印
-platform:
-  qq:
-    oauth:
-      appId:
-      secret:
-  oss:
-    ossType: 3 # 本地存储
-    endpoint:
-    accessKeyId:
-    accessKeySecret:
-    bucketName:
-    domain:   #提供访问的域名
-    upload-folder:  #文件存放的位置
-    access-path-pattern: /profile/**  # 文件访问路径前缀 这里更改domain也需要更改
-  sms:
-    type: 1  # 短信平台类型
-    secretId: Ga2AIryi8174KXz  #短信秘钥
-    secretKey: uHSpKfjtadadaezjwtN6B0dvbelv #短信秘钥
-    appId:
-    sign: tduck                  #短信签名
-    validateCodeTemplateId: SMS_219865038 #验证码模板
-    retrievePwdValidateCodeTemplateId: SMS_219865039  # 找回密码模板
-  front:
-    baseUrl: https://demo.tduckapp.com/
-    resetPwdUrl: https://demo.tduckapp.com/forget/password?code={}&email={}
-    updateEmailUrl: https://demo.tduckapp.com/account/forget/validate?type=updateEmail&code={}&email={}
-
 wx:
   mp:
     configs:
