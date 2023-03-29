@@ -1,13 +1,15 @@
 package com.tduck.cloud.form.entity;
 
 import com.baomidou.mybatisplus.annotation.TableField;
-import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.tduck.cloud.common.entity.BaseEntity;
+import com.tduck.cloud.common.mybatis.handler.BooleanTypeHandler;
 import com.tduck.cloud.common.validator.group.AddGroup;
 import com.tduck.cloud.common.validator.group.UpdateGroup;
 import com.tduck.cloud.form.entity.enums.FormSourceTypeEnum;
 import com.tduck.cloud.form.entity.enums.FormStatusEnum;
+import com.tduck.cloud.form.entity.enums.FormTypeEnum;
+import com.tduck.cloud.form.util.HtmlUtils;
 import lombok.Data;
 import lombok.experimental.FieldNameConstants;
 
@@ -21,16 +23,13 @@ import javax.validation.constraints.NotBlank;
  */
 @Data
 @FieldNameConstants
-@TableName("fm_user_form")
+@TableName(value = "fm_user_form", autoResultMap = true)
 public class UserFormEntity extends BaseEntity<UserFormEntity> {
-    @TableId
-    private Long id;
     /**
      * 表单code
      */
     @NotBlank(message = "错误请求", groups = {UpdateGroup.class})
-    @TableField("`key`")
-    private String key;
+    private String formKey;
     /**
      * 表单名称
      */
@@ -60,15 +59,32 @@ public class UserFormEntity extends BaseEntity<UserFormEntity> {
     /***
      * 状态
      */
-    @TableField("`status`")
     private FormStatusEnum status;
     /**
      * 表单类型
      */
-    private Integer type;
+    private FormTypeEnum type;
 
-    @TableField(value = "is_deleted")
+    @TableField(value = "is_deleted", typeHandler = BooleanTypeHandler.class)
     private Boolean deleted;
 
+    /**
+     * 是否是文件夹
+     */
+    @TableField(value = "is_folder", typeHandler = BooleanTypeHandler.class)
+    private Boolean folder;
+    /**
+     * 父级文件夹ID
+     */
+    private Long folderId;
 
+
+    /**
+     * 移除html标签
+     * @return 文本
+     */
+    public String getTextName() {
+        // 标题是富文本 去除html 标签
+        return HtmlUtils.cleanHtmlTag(name);
+    }
 }

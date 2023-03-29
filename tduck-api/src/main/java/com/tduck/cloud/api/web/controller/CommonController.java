@@ -43,7 +43,7 @@ public class CommonController {
             String path = new StringBuffer(IdUtil.simpleUUID())
                     .append(CharUtil.DOT)
                     .append(FileUtil.extName(file.getOriginalFilename())).toString();
-            String url = OssStorageFactory.build().upload(file.getInputStream(), path);
+            String url = OssStorageFactory.getStorageService().upload(file.getInputStream(), path);
             return Result.success(url);
         }
         return Result.failed("上传文件异常，请联系管理员");

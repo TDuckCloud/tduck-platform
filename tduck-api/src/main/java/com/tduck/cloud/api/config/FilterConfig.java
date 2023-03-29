@@ -1,7 +1,6 @@
 package com.tduck.cloud.api.config;
 
 import com.tduck.cloud.api.web.filter.HttpTraceLogFilter;
-import com.tduck.cloud.api.web.filter.SignAuthFilter;
 import com.tduck.cloud.api.web.filter.ValidateCodeFilter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
@@ -48,25 +47,7 @@ public class FilterConfig {
         return registration;
     }
 
-    /**
-     * xss 过滤器 优先级最高
-     * 包装 XssHttpServletRequestWrapper 解决request只能使用一次
-     *
-     * @return
-     */
-    @Bean
-    @ConditionalOnProperty(prefix = "platform.sign", name = "enable", havingValue = "true", matchIfMissing = true)
-    public FilterRegistrationBean xssFilterRegistration() {
-        FilterRegistrationBean registration = new FilterRegistrationBean();
-        registration.setDispatcherTypes(DispatcherType.REQUEST);
-        SignAuthFilter signAuthFilter = new SignAuthFilter();
-        signAuthFilter.setPlatformSignProperties(platformSignProperties);
-        registration.setFilter(signAuthFilter);
-        registration.addUrlPatterns("/*");
-        registration.setName("signAuthFilter");
-        registration.setOrder(Integer.MAX_VALUE - 3);
-        return registration;
-    }
+
 
     /**
      * 请求日志

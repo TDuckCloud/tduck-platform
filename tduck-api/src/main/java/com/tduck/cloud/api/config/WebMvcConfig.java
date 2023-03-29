@@ -7,7 +7,7 @@ import com.tduck.cloud.api.web.interceptor.NoRepeatSubmitInterceptor;
 import com.tduck.cloud.api.web.resolver.LoginUserHandlerMethodArgumentResolver;
 import com.tduck.cloud.storage.cloud.OssStorageConfig;
 import com.tduck.cloud.storage.cloud.OssStorageFactory;
-import com.tduck.cloud.storage.entity.enums.OssTypeEnum;
+import com.tduck.cloud.storage.enums.OssTypeEnum;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.system.ApplicationHome;

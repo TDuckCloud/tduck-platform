@@ -19,7 +19,7 @@ public class WxMpUserEntity extends BaseEntity<WxMpUserEntity> {
     /**
      * 主键
      */
-    private Integer id;
+    private Long id;
     /**
      * 公众号AppId
      */

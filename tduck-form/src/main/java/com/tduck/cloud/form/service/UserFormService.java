@@ -15,8 +15,8 @@ public interface UserFormService extends IService<UserFormEntity> {
     /**
      * 根据key获取
      *
-     * @param key
-     * @return
+     * @param key key
+     * @return UserFormEntity
      */
     UserFormEntity getByKey(final String key);
 

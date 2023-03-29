@@ -1,6 +1,7 @@
 package com.tduck.cloud.form.service;
 
 import com.tduck.cloud.form.vo.FormReportVO;
+import com.tduck.cloud.form.vo.SituationVO;
 
 import java.util.Collection;
 import java.util.List;
@@ -19,7 +20,7 @@ public interface FormDashboardService {
      * @param formKey
      * @return
      */
-    Collection<FormReportVO.Situation> formReportSituation(String formKey);
+    Collection<SituationVO> formReportSituation(String formKey);
 
 
     /**

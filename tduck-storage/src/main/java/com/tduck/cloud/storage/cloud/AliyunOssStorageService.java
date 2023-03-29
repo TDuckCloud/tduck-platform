@@ -8,9 +8,10 @@ import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 
 /**
- * @description: 阿里云oss
- * @author: smalljop
- * @create: 2018-10-18 14:01
+ * 阿里云oss
+ *
+ * @author : smalljop
+ * @since : 2018-10-18 14:01
  **/
 public class AliyunOssStorageService extends OssStorageService {
 
@@ -27,6 +28,7 @@ public class AliyunOssStorageService extends OssStorageService {
                 .build(config.getEndpoint(), config.getAccessKeyId(), config.getAccessKeySecret());
     }
 
+
     @Override
     public String upload(InputStream inputStream, String path) {
         try {
@@ -34,19 +36,12 @@ public class AliyunOssStorageService extends OssStorageService {
         } catch (Exception e) {
             throw new StorageException("上传文件失败，请检查配置信息", e);
         }
-
         return config.getDomain() + "/" + path;
     }
 
     @Override
     public String upload(byte[] data, String path) {
-        try {
-            client.putObject(config.getBucketName(), path, new ByteArrayInputStream(data));
-        } catch (Exception e) {
-            throw new StorageException("上传文件失败，请检查配置信息", e);
-        }
-
-        return config.getDomain() + "/" + path;
+        return upload(new ByteArrayInputStream(data), path);
     }
 
 

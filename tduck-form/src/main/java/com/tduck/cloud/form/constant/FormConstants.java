@@ -7,7 +7,9 @@ package com.tduck.cloud.form.constant;
  **/
 public interface FormConstants {
 
-
+    /**
+     * 选择性组件保存会创建两个字段 一个存放Id 一个存放选项名
+     */
     String FIELD_SUFFIX_LABEL = "label";
 
 

@@ -10,7 +10,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
-import static com.tduck.cloud.form.constant.FormConstants.PHONE_NUMBER_CODE;
+import static com.tduck.cloud.form.constant.FormRedisKeyConstants.PHONE_NUMBER_CODE;
 
 
 /**

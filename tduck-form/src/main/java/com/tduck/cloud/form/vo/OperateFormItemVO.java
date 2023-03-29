@@ -29,4 +29,9 @@ public class OperateFormItemVO {
     private Boolean operateSuccess;
 
 
+    /**
+     * 刷新全部
+     */
+    private Boolean refreshAll;
+
 }

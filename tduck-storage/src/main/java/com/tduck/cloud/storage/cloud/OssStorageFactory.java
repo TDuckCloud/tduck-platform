@@ -1,48 +1,51 @@
 package com.tduck.cloud.storage.cloud;
 
 
-import cn.hutool.core.util.StrUtil;
-import com.tduck.cloud.common.util.ServletUtils;
+import cn.hutool.core.util.ObjectUtil;
+import com.tduck.cloud.common.util.JsonUtils;
 import com.tduck.cloud.common.util.SpringContextUtils;
-import com.tduck.cloud.storage.entity.enums.OssTypeEnum;
-import org.springframework.boot.system.ApplicationHome;
+import com.tduck.cloud.envconfig.constants.ConfigConstants;
+import com.tduck.cloud.envconfig.service.SysEnvConfigService;
+import com.tduck.cloud.storage.enums.OssTypeEnum;
+import lombok.Getter;
+import lombok.extern.slf4j.Slf4j;
+
 
 /**
  * 文件上传Factory
  *
- * @author smalljop
+ * @author tduck
  */
+@Slf4j
 public final class OssStorageFactory {
+
+    @Getter
+    private static OssStorageService storageService;
+    @Getter
     private static OssStorageConfig config;
 
     static {
-        config = SpringContextUtils.getBean(OssStorageConfig.class);
+        build();
     }
 
-
-    public static OssStorageService build() {
-        if (config.getOssType() == OssTypeEnum.QINIU) {
-            return new QiniuCloudStorageService(config);
-        } else if (config.getOssType() == OssTypeEnum.ALIYUN) {
-            return new AliyunOssStorageService(config);
-        } else if (config.getOssType() == OssTypeEnum.UPYUN) {
-            return new UpyunStorageService(config);
-        } else if (config.getOssType() == OssTypeEnum.LOCAL) {
-            // 本地存储默认配置
-            if (StrUtil.isBlank(config.getUploadFolder())) {
-                ApplicationHome ah = new ApplicationHome(OssStorageFactory.class);
-                config.setUploadFolder(ah.getDir().getAbsolutePath());
-            }
-            if (StrUtil.isBlank(config.getDomain())) {
-                String domain = ServletUtils.getDomain(ServletUtils.getRequest());
-                config.setDomain(domain + "/profile/");
-            }
-
-            return new localStorageService(config);
-        } else if (config.getOssType() == OssTypeEnum.MINIO) {
-            return new MIniOStorageService(config);
+    public static synchronized void build() {
+        OssStorageConfig config = JsonUtils.jsonToObj(SpringContextUtils.getBean(SysEnvConfigService.class).getValueByKey(ConfigConstants.FILE_ENV_CONFIG), OssStorageConfig.class);
+        if (ObjectUtil.isNull(config)) {
+            return;
         }
-        return null;
+        if (config.getOssType() == OssTypeEnum.QINIU) {
+            storageService = new QiniuCloudStorageService(config);
+        } else if (config.getOssType() == OssTypeEnum.ALIYUN) {
+            storageService = new AliyunOssStorageService(config);
+        } else if (config.getOssType() == OssTypeEnum.UPYUN) {
+            storageService = new UpyunStorageService(config);
+        } else if (config.getOssType() == OssTypeEnum.LOCAL) {
+            storageService = new LocalStorageService(config);
+        } else {
+            storageService = new S3StorageService(config);
+        }
+        log.info("更新存储配置完成:{}", JsonUtils.objToJson(config));
+        OssStorageFactory.config = config;
     }
 
 }

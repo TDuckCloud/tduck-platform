@@ -1,5 +1,6 @@
 package com.tduck.cloud.form.entity.enums;
 
+import com.baomidou.mybatisplus.annotation.IEnum;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
@@ -10,7 +11,7 @@ import lombok.Getter;
  **/
 @AllArgsConstructor
 @Getter
-public enum FormItemTypeEnum {
+public enum FormItemTypeEnum implements IEnum<String> {
 
     INPUT("单行文本"),
     NUMBER("数字"),
@@ -40,9 +41,20 @@ public enum FormItemTypeEnum {
     MATRIX_INPUT("矩阵填空"),
     MATRIX_SCALE("矩阵量表"),
     HORIZONTAL_INPUT("横向填空"),
-    MATRIX_SELECT("矩阵选择");
-
+    MATRIX_SELECT("矩阵选择"),
+    USER_SELECT("成员选择"),
+    DEPT_SELECT("部门选择"),
+    OCR("文字识别"),
+    RANDOM_NUMBER("随机编号"),
+    FUNCTION_CALC("函数计算"),
+    GOODS_SELECT("商品选择"),
+    RESERVE_DAY("预约日期"),
+    RESERVE_TIME_RANGE("预约时段");
     private String desc;
 
 
+    @Override
+    public String getValue() {
+        return this.toString();
+    }
 }

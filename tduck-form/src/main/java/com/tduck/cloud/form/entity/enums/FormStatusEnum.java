@@ -1,8 +1,8 @@
 package com.tduck.cloud.form.entity.enums;
 
 import com.baomidou.mybatisplus.annotation.EnumValue;
-import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
+import com.tduck.cloud.common.entity.IDictEnum;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -12,10 +12,10 @@ import lombok.NoArgsConstructor;
  * @description : 表单状态
  * @create : 2020-12-04 13:35
  **/
-@AllArgsConstructor
 @Getter
+@AllArgsConstructor
 @NoArgsConstructor
-public enum FormStatusEnum {
+public enum FormStatusEnum implements IDictEnum<Integer> {
 
     CREATE(1, "未发布"),
     RELEASE(2, "收集中"),
@@ -24,24 +24,8 @@ public enum FormStatusEnum {
 
     @EnumValue
     @JsonValue
-    private int value;
+    private Integer value;
 
     private String desc;
 
-
-    /**
-     * 枚举入参注解
-     *
-     * @param value
-     * @return
-     */
-    @JsonCreator
-    public static FormStatusEnum getByValue(int value) {
-        for (FormStatusEnum statusEnum : values()) {
-            if (statusEnum.getValue() == value) {
-                return statusEnum;
-            }
-        }
-        return null;
-    }
 }

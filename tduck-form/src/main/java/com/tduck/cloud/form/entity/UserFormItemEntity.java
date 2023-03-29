@@ -1,12 +1,16 @@
 package com.tduck.cloud.form.entity;
 
+import com.baomidou.mybatisplus.annotation.FieldStrategy;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.tduck.cloud.common.entity.BaseEntity;
+import com.tduck.cloud.common.mybatis.handler.BooleanTypeHandler;
 import com.tduck.cloud.common.mybatis.handler.JacksonTypeHandler;
 import com.tduck.cloud.common.validator.group.AddGroup;
 import com.tduck.cloud.common.validator.group.UpdateGroup;
 import com.tduck.cloud.form.entity.enums.FormItemTypeEnum;
+import com.tduck.cloud.form.util.HtmlUtils;
 import lombok.Data;
 import lombok.experimental.Accessors;
 import lombok.experimental.FieldNameConstants;
@@ -15,7 +19,6 @@ import org.apache.ibatis.type.EnumTypeHandler;
 import javax.validation.constraints.NotNull;
 import java.util.List;
 import java.util.Map;
-
 /**
  * 表单表单项(FormItem)表实体类
  *
@@ -24,10 +27,10 @@ import java.util.Map;
  */
 @Data
 @Accessors(chain = true)
-@TableName(value = "fm_user_form_item", autoResultMap = true)
 @FieldNameConstants
+@JsonIgnoreProperties(ignoreUnknown = true)
+@TableName(value = "fm_user_form_item", autoResultMap = true)
 public class UserFormItemEntity extends BaseEntity<UserFormItemEntity> {
-    private Long id;
     /**
      * 表单Id
      */
@@ -52,24 +55,39 @@ public class UserFormItemEntity extends BaseEntity<UserFormItemEntity> {
 
 
     /**
-     * 展示类型组件
+     * 展示类型组件 只在表单填写页查询到
      */
-    @TableField("is_display_type")
+    @TableField(value = "is_display_type", typeHandler = BooleanTypeHandler.class)
     private Boolean displayType;
+
+    /**
+     * 隐藏类型组件 在表单填写页面无法查看到
+     */
+    @TableField(value = "is_hide_type", typeHandler = BooleanTypeHandler.class)
+    private Boolean hideType;
+
+    /**
+     * 需要在入库前特殊处理的组件 比如随机编码等 验重
+     */
+    @TableField(value = "is_special_type", typeHandler = BooleanTypeHandler.class)
+    private Boolean specialType;
     /**
      * 是否显示标签
      */
+    @TableField(typeHandler = BooleanTypeHandler.class)
     private Boolean showLabel;
 
     /**
      * 表单项默认值
      */
+    @TableField(updateStrategy = FieldStrategy.IGNORED)
     private String defaultValue;
 
 
     /**
      * 是否必填
      */
+    @TableField(typeHandler = BooleanTypeHandler.class)
     private Boolean required;
     /**
      * 输入型提示文字
@@ -96,6 +114,16 @@ public class UserFormItemEntity extends BaseEntity<UserFormItemEntity> {
      */
     @TableField(typeHandler = JacksonTypeHandler.class)
     private List<Map<String, Object>> regList;
+
+
+    /**
+     * 去除html格式
+     *
+     * @return
+     */
+    public String getTextLabel() {
+        return HtmlUtils.cleanHtmlTag(this.label);
+    }
 
 
 }

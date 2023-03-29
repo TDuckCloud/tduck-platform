@@ -2,7 +2,7 @@ spring:
   application:
     name: tduck-api
   profiles:
-    active: prod
+    active: prod1
   jackson:
     time-zone: GMT+8
     date-format: yyyy-MM-dd HH:mm:ss
@@ -30,7 +30,6 @@ logging:
     com.tduck.cloud: debug
 mybatis-plus:
   type-aliases-package: com.tduck.cloud.*.entity
-  type-enums-package: com.tduck.cloud.*.entity.enums
   mapper-locations: classpath*:mapper/**/*.xml
   #实体扫描，多个package用逗号或者分号分隔
   global-config:
@@ -76,6 +75,21 @@ platform:
     expire: 604800
     header: token
 
+springdoc:
+  swagger-ui:
+    # 修改Swagger UI路径
+    path: /swagger-ui.html
+    # 开启Swagger UI界面
+    enabled: true
+  api-docs:
+    # 修改api-docs路径
+    path: /v3/api-docs
+    # 开启api-docs
+    enabled: true
+  # 配置需要生成接口文档的扫描包
+  packages-to-scan: com.tduck.cloud.api.web.controller
+#  # 配置需要生成接口文档的接口路径
+#  paths-to-match:
 
 aj:
   captcha:

@@ -17,7 +17,6 @@ import javax.validation.constraints.NotBlank;
 @Data
 @TableName(value = "fm_form_theme_category", autoResultMap = true)
 public class FormThemeCategoryEntity extends BaseEntity<FormThemeCategoryEntity> {
-    private Long id;
     /**
      * 主题名称
      */

@@ -1,6 +1,5 @@
 package com.tduck.cloud.form.vo;
 
-import com.google.common.base.Objects;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -33,31 +32,7 @@ public class FormReportVO {
 
     }
 
-    /**
-     * 填写统计
-     */
-    @Data
-    @AllArgsConstructor
-    @NoArgsConstructor
-    public static class Situation {
-        private String createTime;
 
-        private Integer count;
-
-
-        @Override
-        public boolean equals(Object o) {
-            if (this == o) return true;
-            if (o == null || getClass() != o.getClass()) return false;
-            Situation situation = (Situation) o;
-            return Objects.equal(createTime, situation.createTime);
-        }
-
-        @Override
-        public int hashCode() {
-            return Objects.hashCode(createTime);
-        }
-    }
 
 
     /**

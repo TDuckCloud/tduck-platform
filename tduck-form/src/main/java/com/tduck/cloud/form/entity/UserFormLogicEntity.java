@@ -4,7 +4,6 @@ import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.tduck.cloud.common.entity.BaseEntity;
 import com.tduck.cloud.common.mybatis.handler.JacksonTypeHandler;
-import com.tduck.cloud.form.entity.enums.FormLogicExpressionEnum;
 import lombok.Data;
 import lombok.experimental.Accessors;
 
@@ -22,7 +21,6 @@ import java.util.Set;
 @Accessors(chain = true)
 @TableName(value = "fm_user_form_logic", autoResultMap = true)
 public class UserFormLogicEntity extends BaseEntity<UserFormLogicEntity> {
-    private Long id;
     /**
      * 表单key
      */
@@ -38,22 +36,29 @@ public class UserFormLogicEntity extends BaseEntity<UserFormLogicEntity> {
      */
     @Data
     public static class Definition {
-        /**
-         * 表单项Id
-         */
-        private String formItemId;
-        /**
-         * 条件成立的表达式
-         */
-        private FormLogicExpressionEnum expression;
 
-
+        /**
+         * 触发内容
+         */
+        private Set<Trigger> triggerList;
         /**
          * 条件
          */
         private Set<Condition> conditionList;
     }
 
+
+    @Data
+    public static class Trigger {
+        /**
+         * 表单项Id
+         */
+        private String formItemId;
+        /**
+         * 类型
+         */
+        private String type = "show";
+    }
 
     /**
      * 条件
@@ -72,6 +77,13 @@ public class UserFormLogicEntity extends BaseEntity<UserFormLogicEntity> {
          * 选项
          */
         private Object optionValue;
+
+
+        /**
+         * AND OR
+         */
+        private String relation;
+
     }
 
 }

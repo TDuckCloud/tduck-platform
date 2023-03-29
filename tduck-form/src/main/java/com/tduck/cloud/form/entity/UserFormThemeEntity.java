@@ -1,10 +1,10 @@
 package com.tduck.cloud.form.entity;
 
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.tduck.cloud.common.entity.BaseEntity;
+import com.tduck.cloud.common.mybatis.handler.BooleanTypeHandler;
 import lombok.Data;
 
 import javax.validation.constraints.NotBlank;
@@ -19,8 +19,6 @@ import javax.validation.constraints.NotBlank;
 @JsonIgnoreProperties(ignoreUnknown = true)
 @TableName(value = "fm_user_form_theme", autoResultMap = true)
 public class UserFormThemeEntity extends BaseEntity<UserFormThemeEntity> {
-    @TableId(type = IdType.AUTO)
-    private Long id;
     /**
      * 表单key
      */
@@ -41,11 +39,13 @@ public class UserFormThemeEntity extends BaseEntity<UserFormThemeEntity> {
      * 头部图片
      */
     private String headImgUrl;
+   
+    
 
     /**
-     * 按钮颜色
+     * 主题颜色
      */
-    private String btnsColor;
+    private String themeColor;
 
     /**
      * 提交按钮文字
@@ -65,15 +65,23 @@ public class UserFormThemeEntity extends BaseEntity<UserFormThemeEntity> {
     /**
      * 是否显示标题
      */
+    @TableField(typeHandler = BooleanTypeHandler.class)
     private Boolean showTitle;
     /**
      * 是否显示描述语
      */
+    @TableField(typeHandler = BooleanTypeHandler.class)
     private Boolean showDescribe;
     /**
      * 显示序号
      */
+    @TableField(typeHandler = BooleanTypeHandler.class)
     private Boolean showNumber;
 
+    /**
+     * 显示提交按钮
+     */
+    @TableField(typeHandler = BooleanTypeHandler.class)
+    private Boolean showSubmitBtn;
 
 }

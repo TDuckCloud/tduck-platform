@@ -12,6 +12,9 @@ public interface CommonConstants {
      * 超级管理员id
      */
     Long SUPER_ADMIN_ID = 1L;
+
+
+    String USER_KEY = "userId";
     /**
      * 用户正常状态
      * 1:正常 0 :禁用

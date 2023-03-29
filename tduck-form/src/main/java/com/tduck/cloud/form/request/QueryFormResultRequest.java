@@ -1,7 +1,6 @@
 package com.tduck.cloud.form.request;
 
 import cn.hutool.core.date.DatePattern;
-import com.tduck.cloud.common.entity.PageRequest;
 import com.tduck.cloud.form.entity.struct.FormDataFilterStruct;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -11,6 +10,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.validation.constraints.NotBlank;
 import java.time.LocalDateTime;
+import java.util.List;
 
 /**
  * @author : smalljop
@@ -21,7 +21,16 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 @FieldNameConstants
-public class QueryFormResultRequest extends PageRequest {
+public class QueryFormResultRequest {
+
+    /**
+     * 当前页
+     */
+    private Integer current;
+    /**
+     * 大小
+     */
+    private Integer size;
 
     /**
      * 固定字段
@@ -45,7 +54,7 @@ public class QueryFormResultRequest extends PageRequest {
     private FormDataFilterStruct authGroupFilter;
 
     /**
-     * 过滤字段
+     * 过滤字段 筛选的条件
      */
     private FormDataFilterStruct filter;
 
@@ -53,6 +62,11 @@ public class QueryFormResultRequest extends PageRequest {
      * 被查询的字段
      */
     private String[] filterFields;
+
+    /**
+     * 数据id 集合
+     */
+    private List<String> dataIds;
 
 
 }

@@ -30,6 +30,7 @@ public class QiniuCloudStorageService extends OssStorageService {
 
     }
 
+
     @Override
     public String upload(InputStream inputStream, String path) {
         byte[] bytes = IoUtil.readBytes(inputStream);

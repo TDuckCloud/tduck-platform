@@ -27,9 +27,18 @@ public class QueryFormRequest {
      */
     @Data
     public static class Page extends PageRequest {
+        private Long folderId;
+
+
+        private Integer type;
         private Integer status;
 
         private String name;
+
+        /**
+         * 是否包含文件夹
+         */
+        private Boolean folder;
 
         @DateTimeFormat(pattern = DatePattern.NORM_DATETIME_PATTERN)
         private LocalDateTime beginDateTime;
@@ -37,5 +46,8 @@ public class QueryFormRequest {
         @DateTimeFormat(pattern = DatePattern.NORM_DATETIME_PATTERN)
         private LocalDateTime endDateTime;
     }
+
+
+
 
 }

@@ -1,5 +1,6 @@
 package com.tduck.cloud.form.service.impl;
 
+import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.collection.CollectionUtil;
 import cn.hutool.core.date.DateField;
 import cn.hutool.core.date.DatePattern;
@@ -10,7 +11,6 @@ import cn.hutool.core.util.CharUtil;
 import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.core.util.StrUtil;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.tduck.cloud.common.constant.CommonConstants;
 import com.tduck.cloud.form.entity.UserFormDataEntity;
@@ -20,7 +20,9 @@ import com.tduck.cloud.form.mapper.FormDashboardMapper;
 import com.tduck.cloud.form.service.FormDashboardService;
 import com.tduck.cloud.form.service.UserFormDataService;
 import com.tduck.cloud.form.service.UserFormItemService;
+import com.tduck.cloud.form.util.HtmlUtils;
 import com.tduck.cloud.form.vo.FormReportVO;
+import com.tduck.cloud.form.vo.SituationVO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -35,7 +37,7 @@ import java.util.stream.Collectors;
 @Service
 @RequiredArgsConstructor
 public class FormDashboardServiceImpl implements FormDashboardService {
-    private final FormDashboardMapper FormDashboardMapper;
+    private final FormDashboardMapper formDashboardMapper;
 
     private final UserFormDataService userFormDataService;
 
@@ -43,12 +45,15 @@ public class FormDashboardServiceImpl implements FormDashboardService {
 
 
     @Override
-    public Collection<FormReportVO.Situation> formReportSituation(String formKey) {
-        Set<FormReportVO.Situation> reportSituations = FormDashboardMapper.selectFormReportSituation(formKey);
+    public Collection<SituationVO> formReportSituation(String formKey) {
         Date now = new Date();
-        List<DateTime> dateTimes = DateUtil.rangeToList(DateUtil.beginOfWeek(now), DateUtil.endOfWeek(now), DateField.DAY_OF_WEEK);
+        DateTime startTime = DateUtil.beginOfWeek(now);
+        DateTime endTime = DateUtil.endOfWeek(now);
+        Set<SituationVO> reportSituations = formDashboardMapper.selectFormReportSituation(formKey);
+        List<DateTime> dateTimes = DateUtil.rangeToList(startTime, endTime, DateField.DAY_OF_WEEK);
+        // 填充不存在的
         dateTimes.forEach(time -> {
-            reportSituations.add(new FormReportVO.Situation(time.toString(DatePattern.NORM_DATE_PATTERN), 0));
+            reportSituations.add(new SituationVO(time.toString(DatePattern.NORM_DATE_PATTERN), 0));
         });
         return CollectionUtil.sort(reportSituations, (o1, o2) -> DateUtil.parse(o1.getCreateTime(), DatePattern.NORM_DATE_PATTERN)
                 .isAfter(DateUtil.parse(o2.getCreateTime(), DatePattern.NORM_DATE_PATTERN)) ? 1 : -1);
@@ -56,7 +61,7 @@ public class FormDashboardServiceImpl implements FormDashboardService {
 
     @Override
     public Map<String, Integer> formReportPosition(String formKey) {
-        List<FormReportVO.Position> reportPositions = FormDashboardMapper.selectFormReportPosition(formKey);
+        List<FormReportVO.Position> reportPositions = formDashboardMapper.selectFormReportPosition(formKey);
         return reportPositions.stream()
                 .filter(item -> ObjectUtil.isNotNull(CollectionUtil.get(StrUtil.split(item.getSubmitAddress(), CharUtil.DASHED), 0)))
                 .map(item -> {
@@ -68,17 +73,17 @@ public class FormDashboardServiceImpl implements FormDashboardService {
 
     @Override
     public List<FormReportVO.Device> formReportDevice(String formKey) {
-        return FormDashboardMapper.selectFormReportDevice(formKey);
+        return formDashboardMapper.selectFormReportDevice(formKey);
     }
 
     @Override
     public List<FormReportVO.Source> formReportSource(String formKey) {
-        return FormDashboardMapper.selectFormReportSource(formKey);
+        return formDashboardMapper.selectFormReportSource(formKey);
     }
 
     @Override
     public List<FormReportVO.Analysis> formReportAnalysis(String formKey) {
-        List<FormItemTypeEnum> typeEnumList = Lists.newArrayList(
+        List<FormItemTypeEnum> typeEnumList = CollUtil.newArrayList(
                 FormItemTypeEnum.RADIO,
                 FormItemTypeEnum.CHECKBOX,
                 FormItemTypeEnum.IMAGE_SELECT,
@@ -96,7 +101,7 @@ public class FormDashboardServiceImpl implements FormDashboardService {
             if (typeEnumList.contains(userFormItemEntity.getType())) {
                 // id and label
                 FormReportVO.Analysis analysis = new FormReportVO.Analysis();
-                analysis.setLabel(userFormItemEntity.getLabel());
+                analysis.setLabel(HtmlUtils.cleanHtmlTag(userFormItemEntity.getLabel()));
                 analysis.setType(userFormItemEntity.getType().getDesc());
                 formMap.put(userFormItemEntity.getFormItemId(), analysis);
                 idList.add(userFormItemEntity.getFormItemId());
@@ -119,12 +124,16 @@ public class FormDashboardServiceImpl implements FormDashboardService {
                             Object value = fieldValues.get(i);
                             String label = value.equals(CommonConstants.ConstantNumber.ZERO) ? "其他" : fieldLabelValues.get(i);
                             Integer count = labelCountMap.get(label);
-                            labelCountMap.put(label.trim(), ObjectUtil.isNotNull(count) ? count + 1 : 1);
+                            if(StrUtil.isNotBlank(label)) {
+                                labelCountMap.put(label.trim(), ObjectUtil.isNotNull(count) ? count + 1 : 1);
+                            }
                         }
                     } else {
                         String label = MapUtil.getStr(originalData, fieldId + "label");
                         Integer count = labelCountMap.get(label);
-                        labelCountMap.put(label, ObjectUtil.isNotNull(count) ? count + 1 : 1);
+                        if(StrUtil.isNotBlank(label)){
+                            labelCountMap.put(label, ObjectUtil.isNotNull(count) ? count + 1 : 1);
+                        }
                     }
                 }
                 formMap.get(fieldId).setFieldName(labelCountMap.keySet());

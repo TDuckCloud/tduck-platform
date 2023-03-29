@@ -1,7 +1,7 @@
 package com.tduck.cloud.api.web.wrapper;
 
 import cn.hutool.core.util.StrUtil;
-import com.tduck.cloud.api.web.filter.HTMLFilter;
+import cn.hutool.http.HTMLFilter;
 import lombok.Getter;
 import org.apache.commons.io.IOUtils;
 import org.springframework.http.HttpHeaders;
@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletRequestWrapper;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -51,9 +52,9 @@ public class BodyReaderHttpServletRequestWrapper extends HttpServletRequestWrapp
             return super.getInputStream();
         }
         if (StrUtil.isBlank(bodyJson)) {
-            bodyJson = IOUtils.toString(super.getInputStream(), "utf-8");
+            bodyJson = IOUtils.toString(super.getInputStream(), StandardCharsets.UTF_8);
         }
-        final ByteArrayInputStream bis = new ByteArrayInputStream(bodyJson.getBytes("utf-8"));
+        final ByteArrayInputStream bis = new ByteArrayInputStream(bodyJson.getBytes(StandardCharsets.UTF_8));
         return new ServletInputStream() {
             @Override
             public boolean isFinished() {

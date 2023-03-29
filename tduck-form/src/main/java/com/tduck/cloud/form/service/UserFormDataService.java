@@ -7,6 +7,7 @@ import com.tduck.cloud.form.request.QueryFormResultRequest;
 import com.tduck.cloud.form.vo.FormDataTableVO;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * 表单表单项(FormResult)表服务接口
@@ -20,15 +21,16 @@ public interface UserFormDataService extends IService<UserFormDataEntity> {
     /**
      * 保存结果
      *
-     * @param entity
+     * @param entity 表单数据
+     * @return 结果
      */
-    void saveFormResult(UserFormDataEntity entity);
+    Map<String, Object> saveFormResult(UserFormDataEntity entity);
 
 
     /**
      * 下载表单结果中的附件
      *
-     * @param request
+     * @param request 请求
      * @return
      */
     Result downloadFormResultFile(QueryFormResultRequest request);
@@ -58,4 +60,12 @@ public interface UserFormDataService extends IService<UserFormDataEntity> {
      * @return
      */
     Boolean updateFormResult(UserFormDataEntity entity);
+
+    /**
+     * 获取数据详情
+     *
+     * @param dataId
+     * @return
+     */
+    Result getFormDataDetails(String dataId);
 }

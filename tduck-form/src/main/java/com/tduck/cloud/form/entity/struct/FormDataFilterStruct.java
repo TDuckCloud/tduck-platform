@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import java.util.List;
 
@@ -72,7 +73,11 @@ public class FormDataFilterStruct {
         /**
          * 范围
          */
-        RANGE
+        RANGE,
+        /**
+         * 时间范围
+         */
+        TIME_RANGE;
 
     }
 
@@ -100,6 +105,8 @@ public class FormDataFilterStruct {
     }
 
     @Data
+    @AllArgsConstructor
+    @NoArgsConstructor
     // 忽略前端传的未定义参数
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static class Condition {

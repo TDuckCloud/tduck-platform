@@ -12,28 +12,29 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <java.version>1.8</java.version>
-        <spring-boot.version>2.3.5.RELEASE</spring-boot.version>
+        <spring-boot.version>2.7.8</spring-boot.version>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
-        <mybatis.plus.version>3.4.3</mybatis.plus.version>
+        <mybatis.plus.version>3.5.3</mybatis.plus.version>
         <guava.version>30.1.1-jre</guava.version>
         <commons.lang3.vesrion>3.12.0</commons.lang3.vesrion>
         <commons.io.version>2.9.0</commons.io.version>
         <commons.configuration.version>1.10</commons.configuration.version>
         <jwt.version>0.9.1</jwt.version>
-        <hutool.version>5.7.18</hutool.version>
+        <hutool.version>5.8.16</hutool.version>
         <aliyun-oss.sdk.vesion>3.12.0</aliyun-oss.sdk.vesion>
-        <qiniu-oss.version>[7.2.0, 7.2.99]</qiniu-oss.version>
+        <qiniu-oss.version>7.12.1</qiniu-oss.version>
         <upyun.version>4.2.2</upyun.version>
+        <aws-java-sdk-s3.version>1.12.400</aws-java-sdk-s3.version>
         <velocity.version>1.7</velocity.version>
         <wx-java-mp.version>3.9.0</wx-java-mp.version>
-        <knife4j.version>3.0.2</knife4j.version>
+        <springdoc-openapi-ui.version>1.6.9</springdoc-openapi-ui.version>
         <jwt.version>0.7.0</jwt.version>
         <weixin-java.version>4.1.0</weixin-java.version>
         <captcha.version>1.2.8</captcha.version>
-        <fastjson.version>1.2.83</fastjson.version>
+        <fastjson.version>2.0.26</fastjson.version>
         <tencentcloud.version>4.0.11</tencentcloud.version>
-        <poi.version>5.0.0</poi.version>
+        <poi.version>5.1.0</poi.version>
     </properties>
 
     <modules>
@@ -95,11 +96,10 @@
             </dependency>
             <!--   swagger-->
             <dependency>
-                <groupId>com.github.xiaoymin</groupId>
-                <artifactId>knife4j-spring-boot-starter</artifactId>
-                <version>${knife4j.version}</version>
+                <groupId>org.springdoc</groupId>
+                <artifactId>springdoc-openapi-ui</artifactId>
+                <version>${springdoc-openapi-ui.version}</version>
             </dependency>
-
             <!--oss客户端-->
             <dependency>
                 <groupId>com.aliyun.oss</groupId>
@@ -133,12 +133,6 @@
                 <artifactId>weixin-java-pay</artifactId>
                 <version>${weixin-java.version}</version>
             </dependency>
-            <!--   jwt-->
-            <dependency>
-                <groupId>io.jsonwebtoken</groupId>
-                <artifactId>jjwt</artifactId>
-                <version>${jwt.version}</version>
-            </dependency>
             <!--  滑动验证码-->
             <dependency>
                 <groupId>com.anji-plus</groupId>
@@ -156,6 +150,12 @@
                 <artifactId>tencentcloud-sdk-java</artifactId>
                 <version>${tencentcloud.version}</version><!-- 注：这里只是示例版本号，请获取并替换为 最新的版本号 -->
             </dependency>
+            <!--   excel-->
+            <dependency>
+                <groupId>org.apache.poi</groupId>
+                <artifactId>poi</artifactId>
+                <version>${poi.version}</version>
+            </dependency>
             <!-- POI excel-->
             <dependency>
                 <groupId>org.apache.poi</groupId>
@@ -167,6 +167,11 @@
                 <groupId>com.upyun</groupId>
                 <artifactId>java-sdk</artifactId>
                 <version>${upyun.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.amazonaws</groupId>
+                <artifactId>aws-java-sdk-s3</artifactId>
+                <version>${aws-java-sdk-s3.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

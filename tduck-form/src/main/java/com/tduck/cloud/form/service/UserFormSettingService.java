@@ -1,10 +1,11 @@
 package com.tduck.cloud.form.service;
 
+import com.baomidou.mybatisplus.extension.service.IService;
 import com.tduck.cloud.common.util.Result;
-import com.tduck.cloud.form.entity.UserFormNotifySettingEntity;
-import com.tduck.cloud.form.entity.UserFormShareSettingEntity;
-import com.tduck.cloud.form.entity.UserFormSubmitSettingEntity;
-import com.tduck.cloud.form.entity.UserFormWriteSettingEntity;
+import com.tduck.cloud.form.entity.UserFormSettingEntity;
+import com.tduck.cloud.form.entity.struct.FormSettingSchemaStruct;
+
+import java.util.Map;
 
 /**
  * 表单设置
@@ -12,89 +13,47 @@ import com.tduck.cloud.form.entity.UserFormWriteSettingEntity;
  * @author smalljop
  * @since 2020-11-30 14:00:52
  */
-public interface UserFormSettingService {
+public interface UserFormSettingService extends IService<UserFormSettingEntity> {
     /**
-     * 保存提交设置
-     *
-     * @param settingEntity
-     * @return
+     * 保存表单设置
      */
-    Boolean saveSubmitFormSetting(UserFormSubmitSettingEntity settingEntity);
+    Boolean saveFormSetting(Map<String, Object> params);
+
 
     /**
-     * 查询提交设置
+     * 表单设置
      *
-     * @param formKey
-     * @return
+     * @param formKey 表单key
+     * @return 设置项
      */
-    UserFormSubmitSettingEntity getSubmitSettingByKey(String formKey);
+    UserFormSettingEntity getFormSettingByKey(String formKey);
 
     /**
-     * 保存填写设置
+     * 设置具体定义设置项
      *
-     * @param settingEntity
-     * @return
+     * @param formKey 表单key
+     * @return 设置项
      */
-    Boolean saveWriteFormSetting(UserFormWriteSettingEntity settingEntity);
-
-    /**
-     * 获取填写设置
-     *
-     * @param formKey
-     * @return
-     */
-    UserFormWriteSettingEntity getWriteSettingByKey(String formKey);
-
-    /**
-     * 项目通知保存
-     *
-     * @param settingEntity
-     * @return
-     */
-    Boolean saveNotifyFormSetting(UserFormNotifySettingEntity settingEntity);
-
-    /**
-     * 获取通知设置
-     *
-     * @param formKey
-     * @return
-     */
-    UserFormNotifySettingEntity getNotifySettingByKey(String formKey);
-
-    /**
-     * 分享设置保存
-     *
-     * @param settingEntity
-     * @return
-     */
-    Boolean saveShareFormSetting(UserFormShareSettingEntity settingEntity);
-
-    /**
-     * 分享设置查询
-     *
-     * @param formKey
-     * @return
-     */
-    UserFormShareSettingEntity getShareSettingByKey(String formKey);
-
+    FormSettingSchemaStruct getFormSettingSchema(String formKey);
 
     /**
      * 获取当前项目设置的状态
      * 是否可以填写等
      *
-     * @param formKey
-     * @param requestIp
-     * @param wxOpenId
-     * @return
+     * @param formKey   表单key
+     * @param requestIp 请求ip
+     * @param wxOpenId  微信openid
+     * @param type      类型 1公开填写 2.指定填写
+     * @return 是否可以填写
      */
-    Result getUserFormWriteSettingStatus(String formKey, String requestIp, String wxOpenId);
+    Result<Boolean> getUserFormWriteSettingStatus(String formKey, String requestIp, String wxOpenId, Integer type);
 
 
     /**
      * 删除表单所有设置
      *
-     * @param key
-     * @return
+     * @param key 表单key
+     * @return 是否删除成功
      */
     Boolean deleteAllSetting(String key);
 }
