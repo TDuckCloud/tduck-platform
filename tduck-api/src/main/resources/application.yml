@@ -4,8 +4,17 @@ spring:
   profiles:
     active: prod1
   jackson:
-    time-zone: GMT+8
     date-format: yyyy-MM-dd HH:mm:ss
+    #设置空如何序列化
+    defaultPropertyInclusion: always
+    serialization:
+      # 格式化输出
+      indent_output: false
+      # 忽略无法转换的对象
+      fail_on_empty_beans: false
+    deserialization:
+      #允许对象忽略json中不存在的属性
+      fail_on_unknown_properties: false
   mail:
     host: smtp.88.com
     port: 465
@@ -17,6 +26,9 @@ spring:
   cache:
     ehcache:
       config: classpath:ehcache.xml
+  autoconfigure:
+    exclude: org.springframework.boot.autoconfigure.mongo.MongoAutoConfiguration, org.springframework.boot.autoconfigure.data.mongo.MongoDataAutoConfiguration
+
 server:
   port: 8999
   compression:
@@ -93,6 +105,6 @@ springdoc:
 
 aj:
   captcha:
-    enable: true
+    enable: false
     water-mark: tduck
     cache-type: local

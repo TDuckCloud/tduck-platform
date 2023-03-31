@@ -4,7 +4,6 @@ import cn.hutool.core.util.StrUtil;
 import cn.hutool.core.util.URLUtil;
 import com.tduck.cloud.common.util.Result;
 import lombok.AllArgsConstructor;
-import lombok.SneakyThrows;
 import me.chanjar.weixin.common.bean.WxJsapiSignature;
 import me.chanjar.weixin.common.bean.WxOAuth2UserInfo;
 import me.chanjar.weixin.common.bean.oauth2.WxOAuth2AccessToken;
@@ -19,7 +18,7 @@ import javax.validation.constraints.NotBlank;
 
 /**
  * @author : smalljop
- * @description : 微信网页开发
+ * @description : 微信公众号网页
  * @create : 2020-12-02 13:40
  **/
 @AllArgsConstructor
@@ -49,28 +48,28 @@ public class WxJsApiController {
      * @return
      */
     @GetMapping("/authorization/user/info")
-    public Result<WxOAuth2UserInfo> greetUser(@RequestParam @NotBlank String code) throws WxErrorException {
-        WxOAuth2AccessToken accessToken = wxService.getOAuth2Service().getAccessToken(code);
-        WxOAuth2UserInfo userInfo = wxService.getOAuth2Service().getUserInfo(accessToken, null);
+    public Result<WxOAuth2UserInfo> greetUser(@RequestParam @NotBlank String code)  {
+        WxOAuth2UserInfo userInfo = null;
+        try {
+            WxOAuth2AccessToken accessToken = wxService.getOAuth2Service().getAccessToken(code);
+            userInfo = wxService.getOAuth2Service().getUserInfo(accessToken, null);
+        } catch (WxErrorException e) {
+            return Result.success();
+        }
         return Result.success(userInfo);
     }
 
 
     /**
-     * 签名
+     * 获取jsapi签名
      *
      * @param url 1
      * @return
      * @throws WxErrorException
      */
-    @SneakyThrows
     @GetMapping("/signature")
-    public Result getSignature(@RequestParam String url)  {
-        WxJsapiSignature signature = null;
-        try {
-            signature = wxService.createJsapiSignature(url);
-        }catch (Exception e){
-        }
+    public Result getSignature(@RequestParam String url) throws WxErrorException {
+        WxJsapiSignature signature = wxService.createJsapiSignature(url);
         return Result.success(signature);
     }
 

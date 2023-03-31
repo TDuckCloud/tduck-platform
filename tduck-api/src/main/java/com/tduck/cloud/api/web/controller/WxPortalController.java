@@ -10,6 +10,8 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
 /**
+ * 微信公众号消息处理
+ *
  * @author Binary Wang(https://github.com/binarywang)
  */
 @Slf4j

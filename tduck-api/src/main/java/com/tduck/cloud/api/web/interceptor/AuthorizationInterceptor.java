@@ -1,9 +1,8 @@
 package com.tduck.cloud.api.web.interceptor;
 
 import cn.hutool.core.util.StrUtil;
-import com.tduck.cloud.account.constant.AccountRedisKeyConstants;
 import com.tduck.cloud.account.util.JwtUtils;
-import com.tduck.cloud.api.annotation.Login;
+import com.tduck.cloud.api.annotation.NotLogin;
 import com.tduck.cloud.api.exception.AuthorizationException;
 import com.tduck.cloud.common.util.CacheUtils;
 import io.jsonwebtoken.Claims;
@@ -33,14 +32,15 @@ public class AuthorizationInterceptor extends HandlerInterceptorAdapter {
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-        Login annotation;
+        // 是否不需要登录
+        NotLogin annotation;
         if (handler instanceof HandlerMethod) {
-            annotation = ((HandlerMethod) handler).getMethodAnnotation(Login.class);
+            annotation = ((HandlerMethod) handler).getMethodAnnotation(NotLogin.class);
         } else {
             return true;
         }
 
-        if (annotation == null) {
+        if (annotation != null) {
             return true;
         }
 
@@ -60,10 +60,10 @@ public class AuthorizationInterceptor extends HandlerInterceptorAdapter {
             throw new AuthorizationException(jwtUtils.getHeader() + "失效，请重新登录");
         }
         // 缓存中是否存在token
-        String cacheToken = cacheUtils.get(StrUtil.format(AccountRedisKeyConstants.USER_TOKEN, claims.getSubject()));
-        if (StrUtil.isBlank(cacheToken) || !StrUtil.equals(cacheToken, token)) {
-            throw new AuthorizationException(jwtUtils.getHeader() + "失效，请重新登录");
-        }
+//        String cacheToken = cacheUtils.get(StrUtil.format(AccountRedisKeyConstants.USER_TOKEN, claims.getSubject()));
+//        if (StrUtil.isBlank(cacheToken) || !StrUtil.equals(cacheToken, token)) {
+//            throw new AuthorizationException(jwtUtils.getHeader() + "失效，请重新登录");
+//        }
         //设置userId到request里，后续根据userId，获取用户信息
         request.setAttribute(USER_KEY, Long.parseLong(claims.getSubject()));
         return true;

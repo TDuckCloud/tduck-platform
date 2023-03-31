@@ -1,12 +1,12 @@
 package com.tduck.cloud.common.util;
 
+import cn.hutool.core.util.StrUtil;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.*;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
-import lombok.Getter;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -21,15 +21,13 @@ import java.util.Map;
  **/
 public class JsonUtils {
 
-    @Getter
     private final static ObjectMapper objectMapper = new ObjectMapper();
 
     static {
         objectMapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
+        objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
         objectMapper.registerModule(new JavaTimeModule());
     }
-
-
 
     private JsonUtils() {
 
@@ -68,6 +66,9 @@ public class JsonUtils {
      * json 转对象
      */
     public static <T> T jsonToObj(String jsonString, Class<T> clazz) {
+        if (StrUtil.isBlank(jsonString)) {
+            return null;
+        }
         //允许出现单引号
         objectMapper.configure(JsonParser.Feature.ALLOW_SINGLE_QUOTES, true);
         //接受只有一个元素的数组的反序列化
@@ -83,6 +84,9 @@ public class JsonUtils {
      * json字符串转换为map
      */
     public static <T> Map<String, Object> jsonToMap(String jsonString) {
+        if (StrUtil.isBlank(jsonString)) {
+            return null;
+        }
         ObjectMapper mapper = new ObjectMapper();
         mapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
         try {
@@ -95,6 +99,9 @@ public class JsonUtils {
 
 
     public static <T> JsonNode jsonToJsonNode(String jsonString) {
+        if (StrUtil.isBlank(jsonString)) {
+            return null;
+        }
         ObjectMapper mapper = new ObjectMapper();
         mapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
         try {
@@ -200,7 +207,7 @@ public class JsonUtils {
         JavaType javaType = getCollectionType(ArrayList.class, clazz);
         List<T> lst = null;
         try {
-            lst = (List<T>) objectMapper.readValue(jsonArrayStr, javaType);
+            lst = objectMapper.readValue(jsonArrayStr, javaType);
         } catch (JsonProcessingException e) {
             e.printStackTrace();
         }
@@ -250,5 +257,20 @@ public class JsonUtils {
         return objectMapper.convertValue(obj, clazz);
     }
 
+
+    /**
+     * 是否是json格式
+     */
+    public static boolean isJson(String json) {
+        try {
+            if(StrUtil.isBlank(json)){
+                return false;
+            }
+            objectMapper.readTree(json);
+            return true;
+        } catch (IOException e) {
+            return false;
+        }
+    }
 
 }

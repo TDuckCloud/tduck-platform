@@ -18,6 +18,7 @@ import com.tduck.cloud.account.service.UserService;
 import com.tduck.cloud.account.service.UserValidateService;
 import com.tduck.cloud.account.util.QqAuthorizationUtils;
 import com.tduck.cloud.account.vo.LoginUserVO;
+import com.tduck.cloud.api.annotation.NotLogin;
 import com.tduck.cloud.api.util.HttpUtils;
 import com.tduck.cloud.common.util.CacheUtils;
 import com.tduck.cloud.common.util.JsonUtils;
@@ -57,6 +58,7 @@ public class UserLoginController {
      * @return
      */
     @PostMapping("/login/account")
+    @NotLogin
     public Result accountLogin(@RequestBody AccountLoginRequest request, HttpServletRequest httpRequest) {
         String ipAddr = HttpUtils.getIpAddr(httpRequest);
         request.setRequestIp(ipAddr);
@@ -75,6 +77,7 @@ public class UserLoginController {
      * @return
      */
     @PostMapping("/register/phone")
+    @NotLogin
     public Result phoneRegister(@RequestBody RegisterAccountRequest request) {
         Validator.validateMobile(request.getPhoneNumber(), "手机号码不正确");
         ValidatorUtils.validateEntity(request, RegisterAccountRequest.PhoneNumberGroup.class);
@@ -88,6 +91,7 @@ public class UserLoginController {
      * 手机号注册
      */
     @PostMapping("/register/email")
+    @NotLogin
     public Result emailRegister(@RequestBody RegisterAccountRequest request) {
         Validator.validateEmail(request.getEmail(), "邮箱地址不正确");
         ValidatorUtils.validateEntity(request, RegisterAccountRequest.EmailGroup.class);
@@ -99,6 +103,7 @@ public class UserLoginController {
      * 找回密码手机验证码
      */
     @GetMapping("/retrieve/password/phone/code")
+    @NotLogin
     public Result sendRetrievePwdPhoneCode(@RequestParam String phoneNumber) {
         Validator.validateMobile(phoneNumber, "手机号码不正确");
         UserEntity userEntity = userService.getUserByPhoneNumber(phoneNumber);
@@ -114,6 +119,7 @@ public class UserLoginController {
      * 发送找回密码邮件
      */
     @GetMapping("/retrieve/password/email")
+    @NotLogin
     public Result sendRetrievePwdEmail(@RequestParam String email) {
         Validator.validateEmail(email, "邮箱地址不正确");
         UserEntity userEntity = userService.getUserByEmail(email);
@@ -132,6 +138,7 @@ public class UserLoginController {
      * @return
      */
     @PostMapping("/retrieve/password/check/phone-code")
+    @NotLogin
     public Result checkRetrievePwdPhoneCode(@RequestBody RetrievePasswordRequest.CheckPhoneCode request) {
         Validator.validateMobile(request.getPhoneNumber(), "手机号码不正确");
         ValidatorUtils.validateEntity(request);
@@ -155,6 +162,7 @@ public class UserLoginController {
      * @return
      */
     @PostMapping("/retrieve/password/reset")
+    @NotLogin
     public Result retrieveResetPassword(@RequestBody RetrievePasswordRequest.Reset request) {
         ValidatorUtils.validateEntity(request);
         String codeKey = StrUtil.format(AccountRedisKeyConstants.RETRIEVE_PWD_USER_CODE, request.getCode());
@@ -177,6 +185,7 @@ public class UserLoginController {
      * @return
      */
     @GetMapping("/register/email/code")
+    @NotLogin
     public Result sendEmailCode(@RequestParam String email) {
         Validator.validateEmail(email, "邮箱地址不正确");
         userValidateService.sendEmailCode(email);
@@ -190,6 +199,7 @@ public class UserLoginController {
      * @return
      */
     @GetMapping("/register/phone/code")
+    @NotLogin
     public Result sendPhoneCode(@RequestParam String phoneNumber) {
         Validator.validateMobile(phoneNumber, "手机号码不正确");
         userValidateService.sendPhoneCode(phoneNumber);
@@ -202,6 +212,7 @@ public class UserLoginController {
      * @return
      */
     @GetMapping("/login/wx/qrcode")
+    @NotLogin
     public Result getWxLoginQrcodeImg() throws WxErrorException {
         String loginId = IdUtil.simpleUUID();
         String loginSceneStr = JsonUtils.objToJson(new WxMpQrCodeGenRequest(WxMpQrCodeGenRequest.QrCodeType.LOGIN, loginId));
@@ -219,6 +230,7 @@ public class UserLoginController {
      * @return
      */
     @GetMapping("/login/wx/qrcode/result")
+    @NotLogin
     public Result<LoginUserVO> queryWxLoginResult(@RequestParam(required = false) String loginId, HttpServletRequest request) {
         if (StrUtil.isBlank(loginId)) {
             return Result.success();
@@ -239,6 +251,7 @@ public class UserLoginController {
      * @return
      */
     @GetMapping("/login/qq/authorize/url")
+    @NotLogin
     public Result getQQAuthorizeUrl(@RequestParam String redirectUri) {
         return Result.success(qqAuthorizationUtils.getAuthorizationCodeUrl(redirectUri));
     }
@@ -251,6 +264,7 @@ public class UserLoginController {
      * @return
      */
     @PostMapping("/login/qq")
+    @NotLogin
     public Result qqLogin(@RequestBody QqLoginRequest request, HttpServletRequest httpRequest) {
         String requestIp = HttpUtils.getIpAddr(httpRequest);
         request.setRequestIp(requestIp);

@@ -4,16 +4,18 @@ import cn.hutool.core.io.FileUtil;
 import cn.hutool.core.util.CharUtil;
 import cn.hutool.core.util.IdUtil;
 import cn.hutool.crypto.SecureUtil;
-import com.tduck.cloud.api.annotation.Login;
 import com.tduck.cloud.common.util.Result;
 import com.tduck.cloud.storage.cloud.OssStorageFactory;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.annotation.security.PermitAll;
 import java.io.IOException;
 
 /**
+ * 表单文件上传
+ *
  * @author : smalljop
  * @description : 上传文件
  * @create : 2020-11-27 14:00
@@ -33,15 +35,14 @@ public class UploadFileController {
      * @return
      * @throws IOException
      */
-    @Login
     @PostMapping("/user/file/upload")
     public Result<String> uploadUserFile(@RequestParam("file") MultipartFile file, @RequestAttribute Long userId) throws IOException {
-        String path = new StringBuffer(SecureUtil.md5(String.valueOf(userId)))
-                .append(CharUtil.SLASH)
-                .append(IdUtil.simpleUUID())
-                .append(CharUtil.DOT)
-                .append(FileUtil.extName(file.getOriginalFilename())).toString();
-        String url = OssStorageFactory.build().upload(file.getInputStream(), path);
+        String path = SecureUtil.md5(String.valueOf(userId)) +
+                CharUtil.SLASH +
+                IdUtil.simpleUUID() +
+                CharUtil.DOT +
+                FileUtil.extName(file.getOriginalFilename());
+        String url = OssStorageFactory.getStorageService().upload(file.getInputStream(), path);
         return Result.success(url);
     }
 
@@ -49,19 +50,20 @@ public class UploadFileController {
     /**
      * 表单文件上传
      *
-     * @param file
-     * @param formKey
-     * @return
-     * @throws IOException
+     * @param file    文件
+     * @param formKey 表单key
+     * @return 文件地址
+     * @throws IOException IO异常
      */
     @PostMapping("/form/file/upload/{formKey}")
+    @PermitAll
     public Result<String> uploadFormFile(@RequestParam("file") MultipartFile file, @PathVariable("formKey") String formKey) throws IOException {
-        String path = new StringBuffer(SecureUtil.md5(formKey))
-                .append(CharUtil.SLASH)
-                .append(IdUtil.simpleUUID())
-                .append(CharUtil.DOT)
-                .append(FileUtil.extName(file.getOriginalFilename())).toString();
-        String url = OssStorageFactory.build().upload(file.getInputStream(), path);
+        String path = SecureUtil.md5(formKey) +
+                CharUtil.SLASH +
+                IdUtil.simpleUUID() +
+                CharUtil.DOT +
+                FileUtil.extName(file.getOriginalFilename());
+        String url = OssStorageFactory.getStorageService().upload(file.getInputStream(), path);
         return Result.success(url);
     }
 

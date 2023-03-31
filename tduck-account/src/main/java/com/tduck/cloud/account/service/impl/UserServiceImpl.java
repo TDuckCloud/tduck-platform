@@ -104,6 +104,11 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, UserEntity> impleme
     }
 
 
+    public static void main(String[] args) {
+        String s = DigestUtil.sha256Hex("123456");
+        System.out.println(s);
+    }
+
     /**
      * 获取登录结果
      */

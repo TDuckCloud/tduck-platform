@@ -29,7 +29,6 @@ public interface IDictEnum<T extends Serializable> extends IEnum<T> {
      *
      * @return 数据库中存储的值
      */
-    @JsonValue
     @Override
     T getValue();
 

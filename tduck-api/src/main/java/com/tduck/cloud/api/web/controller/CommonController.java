@@ -3,6 +3,7 @@ package com.tduck.cloud.api.web.controller;
 import cn.hutool.core.io.FileUtil;
 import cn.hutool.core.util.CharUtil;
 import cn.hutool.core.util.IdUtil;
+import com.tduck.cloud.api.annotation.NotLogin;
 import com.tduck.cloud.common.util.AsyncProcessUtils;
 import com.tduck.cloud.common.util.Result;
 import com.tduck.cloud.storage.cloud.OssStorageFactory;
@@ -38,6 +39,7 @@ public class CommonController {
      * @throws IOException
      */
     @PostMapping("/upload")
+    @NotLogin
     public Result avatar(@RequestParam("file") MultipartFile file) throws IOException {
         if (!file.isEmpty()) {
             String path = new StringBuffer(IdUtil.simpleUUID())

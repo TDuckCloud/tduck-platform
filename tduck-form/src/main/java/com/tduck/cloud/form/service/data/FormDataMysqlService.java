@@ -25,7 +25,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-import static com.tduck.cloud.form.constant.FormConstants.SCORE_FIELD_KEY;
 
 /**
  * @author : wangqing
@@ -34,7 +33,6 @@ import static com.tduck.cloud.form.constant.FormConstants.SCORE_FIELD_KEY;
  **/
 @Service
 @Slf4j
-@ConditionalOnProperty(prefix = "platform.form.data", name = "storage", havingValue = "mysql")
 public class FormDataMysqlService extends FormDataBaseService {
 
     @Autowired
@@ -116,7 +114,7 @@ public class FormDataMysqlService extends FormDataBaseService {
 
     public String getWhereField(String field) {
         // 如果是表单字段 需要从original_data中查询 包含数字的是表单字段
-        if ((StrUtil.isNotBlank(field) && field.matches(".*\\d+.*")) || StrUtil.containsAny(field, SCORE_FIELD_KEY)) {
+        if ((StrUtil.isNotBlank(field) && field.matches(".*\\d+.*")) ) {
             return StrUtil.format(" JSON_EXTRACT(original_data, '$.\"{}\"')", field);
         } else {
             return StrUtil.toUnderlineCase(field);

@@ -33,7 +33,7 @@ public class JwtUtils {
 
         return Jwts.builder()
                 .setHeaderParam("typ", "JWT")
-                .setSubject(userId + "")
+                .setSubject(String.valueOf(userId))
                 .setIssuedAt(nowDate)
                 .setExpiration(expireDate)
                 .signWith(SignatureAlgorithm.HS512, secret)

@@ -36,8 +36,7 @@ public class FormDataUtils {
      * 特殊字段 会多出一个xxx label字段存放显示值 默认字段存放原始值
      */
     public static final List<FormItemTypeEnum> specialFields = CollUtil.newArrayList(FormItemTypeEnum.SELECT, FormItemTypeEnum.IMAGE_SELECT, FormItemTypeEnum.CHECKBOX, FormItemTypeEnum.RADIO, FormItemTypeEnum.CASCADER);
-    public final static String FIELD_TOTAL_PRICE = "totalPrice";
-    final static String FIELD_TOTAL_SCORE = FormConstants.SCORE_FIELD_KEY;
+
     private final static String FIELD_USER_TYPE = "USER";
 
     private final FormDataBaseService formDataBaseService;

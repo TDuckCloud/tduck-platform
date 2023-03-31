@@ -33,8 +33,6 @@ public enum FormTypeEnum implements IDictEnum {
      */
     EXAM(4, "考试");
 
-    @JsonValue
-    @EnumValue
     private Integer value;
     private String desc;
 

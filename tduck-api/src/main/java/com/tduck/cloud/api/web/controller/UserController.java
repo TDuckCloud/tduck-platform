@@ -13,7 +13,6 @@ import com.tduck.cloud.account.service.UserAuthorizeService;
 import com.tduck.cloud.account.service.UserService;
 import com.tduck.cloud.account.service.UserValidateService;
 import com.tduck.cloud.account.vo.UserDetailVO;
-import com.tduck.cloud.api.annotation.Login;
 import com.tduck.cloud.api.annotation.LoginUser;
 import com.tduck.cloud.common.util.JsonUtils;
 import com.tduck.cloud.common.util.Result;
@@ -47,7 +46,6 @@ public class UserController {
      * @param userId
      * @return
      */
-    @Login
     @GetMapping("/current/detail")
     public Result queryCurrentUser(@RequestAttribute Long userId) {
         UserEntity userEntity = userService.getById(userId);
@@ -71,7 +69,6 @@ public class UserController {
      * @param userEntity
      * @return
      */
-    @Login
     @PostMapping("/update")
     public Result updateUser(@RequestBody UserEntity userEntity, @RequestAttribute Long userId) {
         userEntity.setPassword(null);
@@ -86,7 +83,6 @@ public class UserController {
      * @return
      */
     @GetMapping("/update-email/msg")
-    @Login
     public Result sendUpdateEmailMsg(@RequestParam String email, @RequestAttribute Long userId) {
         Validator.validateEmail(email, "邮箱地址不正确");
         UserEntity userEntity = userService.getUserByEmail(email);
@@ -143,7 +139,6 @@ public class UserController {
      *
      * @return
      */
-    @Login
     @GetMapping("/bind/wx/qrcode")
     public Result getBindWxQrcode(@RequestAttribute Long userId) throws WxErrorException {
         String bindSceneStr = JsonUtils.objToJson(new WxMpQrCodeGenRequest(WxMpQrCodeGenRequest.QrCodeType.BIND_ACCOUNT, String.valueOf(userId)));
@@ -158,7 +153,6 @@ public class UserController {
      *
      * @return
      */
-    @Login
     @PostMapping("/update/phone-number")
     public Result updatePhoneNumber(@RequestBody UpdateUserRequest.PhoneNumber request, @RequestAttribute Long userId) {
         ValidatorUtils.validateEntity(request);
@@ -182,7 +176,6 @@ public class UserController {
      * @return
      */
     @PostMapping("/update/password")
-    @Login
     public Result updatePassword(@RequestBody UpdateUserRequest.Password request, @LoginUser UserEntity userEntity) {
         ValidatorUtils.validateEntity(request);
         if (!userEntity.getPassword().equals(DigestUtil.sha256Hex(request.getOldPassword()))) {
@@ -201,7 +194,6 @@ public class UserController {
      * @return
      */
 
-    @Login
     @PostMapping("/bind/qq")
     public Result bindQQAccount(@RequestBody QqLoginRequest request, @RequestAttribute Long userId) {
         UserAuthorizeEntity authorizeEntity = userAuthorizeService.getQqAuthorization(request.getAuthorizeCode(), request.getRedirectUri(), new UserEntity());
