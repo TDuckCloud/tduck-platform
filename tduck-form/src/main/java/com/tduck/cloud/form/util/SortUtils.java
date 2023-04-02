@@ -49,7 +49,7 @@ public class SortUtils {
     public Long getInitialSortPosition(String formKey) {
         String redisKey = StrUtil.format(FormRedisKeyConstants.FORM_ITEM_POS_DELTA, formKey);
         // 模板创建时 初始排序数值
-        if (StrUtil.isNotEmpty(cacheUtils.get(redisKey))) {
+        if (StrUtil.isBlank(cacheUtils.get(redisKey))) {
             Long sort = formItemService.getLastItemSort(formKey);
             cacheUtils.save(redisKey, String.valueOf(sort == null ? 1 : sort));
         }

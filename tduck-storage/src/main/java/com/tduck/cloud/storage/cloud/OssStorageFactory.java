@@ -41,7 +41,7 @@ public final class OssStorageFactory {
             storageService = new UpyunStorageService(config);
         } else if (config.getOssType() == OssTypeEnum.LOCAL) {
             storageService = new LocalStorageService(config);
-        } else {
+        } else if (config.getOssType() == OssTypeEnum.S3) {
             storageService = new S3StorageService(config);
         }
         log.info("更新存储配置完成:{}", JsonUtils.objToJson(config));

@@ -1,6 +1,8 @@
 package com.tduck.cloud.form.util;
 
 
+import cn.hutool.core.util.ObjectUtil;
+import com.tduck.cloud.common.exception.BaseException;
 import com.tduck.cloud.common.util.SecurityUtils;
 import com.tduck.cloud.common.util.SpringContextUtils;
 import com.tduck.cloud.form.entity.UserFormEntity;
@@ -27,9 +29,12 @@ public class FormAuthUtils {
         }
         UserFormService userFormService = SpringContextUtils.getBean(UserFormService.class);
         UserFormEntity userFormEntity = userFormService.getByKey(formKey);
-        // 是否是所有者
-        if (userFormEntity.getUserId().equals(SecurityUtils.getUserId())) {
+        if(ObjectUtil.isNull(userFormEntity)){
             return;
+        }
+        // 是否是所有者
+        if (!userFormEntity.getUserId().equals(SecurityUtils.getUserId())) {
+            throw new BaseException("无表单权限");
         }
     }
 
