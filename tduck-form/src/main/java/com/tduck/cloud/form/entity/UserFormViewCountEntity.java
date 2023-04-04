@@ -3,6 +3,7 @@ package com.tduck.cloud.form.entity;
 import com.baomidou.mybatisplus.annotation.*;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+
 import java.time.LocalDateTime;
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -22,18 +23,18 @@ public class UserFormViewCountEntity extends BaseEntity {
 
     private static final long serialVersionUID = 1L;
 
-            /**
-             * 
-             */
-            @TableId(value = "id")
-        private Long id;
-            /**
-             * 表单唯一标识
-             */
-        private String formKey;
-            /**
-             * 
-             */
-        private Long count;
+    /**
+     *
+     */
+    @TableId(value = "id")
+    private Long id;
+    /**
+     * 表单唯一标识
+     */
+    private String formKey;
+    /**
+     *
+     */
+    private Long count;
 
 }
