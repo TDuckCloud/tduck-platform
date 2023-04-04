@@ -44,21 +44,6 @@ public class QueryFormResultRequest {
     private LocalDateTime endDateTime;
 
     /**
-     * 权限组
-     */
-    private Long authGroupId;
-
-    /**
-     * 权限组的数组过滤
-     */
-    private FormDataFilterStruct authGroupFilter;
-
-    /**
-     * 过滤字段 筛选的条件
-     */
-    private FormDataFilterStruct filter;
-
-    /**
      * 被查询的字段
      */
     private String[] filterFields;

@@ -18,8 +18,10 @@ import com.tduck.cloud.account.request.QqLoginRequest;
 import com.tduck.cloud.account.request.RegisterAccountRequest;
 import com.tduck.cloud.account.service.UserAuthorizeService;
 import com.tduck.cloud.account.service.UserService;
+import com.tduck.cloud.account.service.UserTokenService;
 import com.tduck.cloud.account.util.JwtUtils;
 import com.tduck.cloud.account.util.NameUtils;
+import com.tduck.cloud.account.util.PasswordUtils;
 import com.tduck.cloud.account.vo.LoginUserVO;
 import com.tduck.cloud.common.util.CacheUtils;
 import com.tduck.cloud.common.util.Result;
@@ -43,6 +45,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, UserEntity> impleme
 
     private final JwtUtils jwtUtils;
     private final CacheUtils cacheUtils;
+    private final UserTokenService userTokenService;
     private final UserAuthorizeService userAuthorizeService;
 
 
@@ -82,7 +85,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, UserEntity> impleme
     private void createUser(UserEntity userEntity) {
         userEntity.setName(NameUtils.getCnName());
         userEntity.setAvatar(AccountConstants.DEFAULT_AVATAR);
-        userEntity.setPassword(DigestUtil.sha256Hex(userEntity.getPassword()));
+        userEntity.setPassword(PasswordUtils.encode(userEntity.getPassword()));
         this.save(userEntity);
     }
 
@@ -95,19 +98,28 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, UserEntity> impleme
         } else {
             userEntity = getUserByPhoneNumber(request.getAccount());
         }
-        if (ObjectUtil.isNull(userEntity) || !DigestUtil.sha256Hex(request.getPassword()).equals(userEntity.getPassword())) {
+        if (ObjectUtil.isNull(userEntity) || !PasswordUtils.checkPassword(userEntity, request.getPassword())) {
             return Result.failed("账号或密码错误");
         }
+        updatePasswordType(userEntity, request.getPassword());
         return Result.success(getLoginResult(userEntity,
                 ReUtil.isMatch(Validator.EMAIL, request.getAccount()) ? AccountChannelEnum.EMAIL : AccountChannelEnum.PHONE,
                 request.getRequestIp()));
     }
 
 
-    public static void main(String[] args) {
-        String s = DigestUtil.sha256Hex("123456");
-        System.out.println(s);
+    /**
+     * 更新密码和加密模式
+     */
+    public void updatePasswordType(UserEntity userEntity, String password) {
+        if (userEntity.getPasswordType() == 1) {
+            return;
+        }
+        userEntity.setPasswordType(1);
+        userEntity.setPassword(PasswordUtils.encode(password));
+        this.updateById(userEntity);
     }
+
 
     /**
      * 获取登录结果
@@ -120,8 +132,8 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, UserEntity> impleme
         this.updateById(userEntity);
         String token = jwtUtils.generateToken(userEntity.getId());
         // 缓存token
-        cacheUtils.save(StrUtil.format(AccountRedisKeyConstants.USER_TOKEN, userEntity.getId()), token);
-        return new LoginUserVO(userEntity.getAvatar(), userEntity.getName(), token);
+        userTokenService.saveToken(token, userEntity.getId(), LocalDateTime.now().plusDays(2));
+        return new LoginUserVO(userEntity.getAvatar(), userEntity.getName(), token, userEntity.isAdmin());
     }
 
     @Override
@@ -158,7 +170,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, UserEntity> impleme
     public Boolean updatePassword(Long userId, String password) {
         UserEntity userEntity = new UserEntity();
         userEntity.setId(userId);
-        userEntity.setPassword(DigestUtil.sha256Hex(password));
+        userEntity.setPassword(PasswordUtils.encode(password));
         return this.updateById(userEntity);
     }
 }

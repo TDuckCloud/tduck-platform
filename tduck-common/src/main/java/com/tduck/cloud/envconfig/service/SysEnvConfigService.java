@@ -20,12 +20,6 @@ public interface SysEnvConfigService extends IService<SysEnvConfigEntity> {
     SysEnvConfigEntity getByKey(String key);
 
 
-//    /**
-//     * 获取系统基础配置
-//     *
-//     * @return {@link SystemEnvConfig}
-//     */
-//    SystemEnvConfig getSystemEnvConfig();
 
     /**
      * 获取配置值

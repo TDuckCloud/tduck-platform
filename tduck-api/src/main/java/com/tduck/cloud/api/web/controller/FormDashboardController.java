@@ -8,6 +8,7 @@ import com.tduck.cloud.common.util.Result;
 import com.tduck.cloud.form.entity.UserFormDataEntity;
 import com.tduck.cloud.form.service.FormDashboardService;
 import com.tduck.cloud.form.service.UserFormDataService;
+import com.tduck.cloud.form.service.UserFormViewCountService;
 import com.tduck.cloud.form.util.FormAuthUtils;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -29,6 +30,7 @@ import static com.tduck.cloud.form.constant.FormRedisKeyConstants.FORM_VIEW_COUN
 public class FormDashboardController {
 
     private final CacheUtils cacheUtils;
+    private final UserFormViewCountService userFormViewCountService;
     private final UserFormDataService userFormDataService;
     private final FormDashboardService formDashboardService;
 
@@ -38,7 +40,7 @@ public class FormDashboardController {
     @GetMapping("/user/form/report/stats")
     public Result formReportStats(String formKey) {
         //浏览量
-        Long viewCount = Convert.toLong(cacheUtils.get(StrUtil.format(FORM_VIEW_COUNT_KEY, formKey)));
+        Long viewCount = userFormViewCountService.count(formKey);
         //平均完成时间
         Map<String, Object> resultMap = userFormDataService.getMap(Wrappers.<UserFormDataEntity>query().select("AVG(complete_time) as avgCompleteTime, count(1) as completeCount").eq("form_key", formKey));
         resultMap.put("viewCount", viewCount);

@@ -12,6 +12,7 @@ import com.tduck.cloud.account.request.UpdateUserRequest;
 import com.tduck.cloud.account.service.UserAuthorizeService;
 import com.tduck.cloud.account.service.UserService;
 import com.tduck.cloud.account.service.UserValidateService;
+import com.tduck.cloud.account.util.PasswordUtils;
 import com.tduck.cloud.account.vo.UserDetailVO;
 import com.tduck.cloud.api.annotation.LoginUser;
 import com.tduck.cloud.common.util.JsonUtils;
@@ -60,6 +61,7 @@ public class UserController {
         if (ObjectUtil.isNotNull(wxMpUserEntity)) {
             userDetailVO.setWxName(wxMpUserEntity.getNickname());
         }
+        userDetailVO.setAdmin(userEntity.isAdmin());
         return Result.success(userDetailVO);
     }
 
@@ -178,7 +180,7 @@ public class UserController {
     @PostMapping("/update/password")
     public Result updatePassword(@RequestBody UpdateUserRequest.Password request, @LoginUser UserEntity userEntity) {
         ValidatorUtils.validateEntity(request);
-        if (!userEntity.getPassword().equals(DigestUtil.sha256Hex(request.getOldPassword()))) {
+        if (!PasswordUtils.checkPassword(userEntity, request.getOldPassword())) {
             return Result.failed("旧密码错误");
         }
         if (!request.getPassword().equals(request.getRepeatPassword())) {

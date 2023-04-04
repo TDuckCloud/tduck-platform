@@ -71,12 +71,10 @@ public class FormDataExportUtils {
         // 查询指定数据
         QueryFormResultRequest queryFormResultRequest = new QueryFormResultRequest();
         queryFormResultRequest.setFormKey(exportRequest.getFormKey());
-        queryFormResultRequest.setFilter(new FormDataFilterStruct());
         queryFormResultRequest.setFilterFields(exportRequest.getColumns().toArray(new String[]{}));
         if (exportRequest.getMode().equals(MODE_CURRENT)) {
             queryFormResultRequest.setCurrent(exportRequest.getCurrentPage());
             queryFormResultRequest.setSize(exportRequest.getPageSize());
-            queryFormResultRequest.setFilter(exportRequest.getFilter());
         } else if (exportRequest.getMode().equals(MODE_SELECTED)) {
             queryFormResultRequest.setDataIds(exportRequest.getCheckboxIds());
         }

@@ -26,6 +26,11 @@ public interface FormDashboardMapper extends BaseMapper<UserFormDataEntity> {
      * @param formKey
      * @return
      */
+    @Select(" SELECT date_format(create_time, '%Y-%m-%d') as create_time, COUNT(1) AS count\n" +
+            "        FROM fm_user_form_data\n" +
+            "        WHERE create_time >= YEARWEEK(now())\n" +
+            "          AND form_key = #{formKey}\n" +
+            "        GROUP BY date_format(create_time, '%Y-%m-%d')")
     Set<SituationVO> selectFormReportSituation(@Param("formKey") String formKey);
 
 

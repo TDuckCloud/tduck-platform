@@ -1,6 +1,5 @@
 package com.tduck.cloud.api.web.controller;
 
-import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.core.util.StrUtil;
 import com.tduck.cloud.api.util.HttpUtils;
 import com.tduck.cloud.common.constant.CommonConstants;
@@ -13,6 +12,7 @@ import com.tduck.cloud.form.request.ExportRequest;
 import com.tduck.cloud.form.request.QueryFormResultRequest;
 import com.tduck.cloud.form.service.UserFormDataService;
 import com.tduck.cloud.form.service.UserFormSettingService;
+import com.tduck.cloud.form.service.UserFormViewCountService;
 import com.tduck.cloud.form.util.FormAuthUtils;
 import com.tduck.cloud.form.util.FormDataExportUtils;
 import com.tduck.cloud.form.util.FormDataImportUtils;
@@ -28,7 +28,6 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
-import static com.tduck.cloud.form.constant.FormRedisKeyConstants.FORM_VIEW_COUNT_KEY;
 
 /**
  * 表单数据
@@ -48,7 +47,7 @@ public class UserFormResultController {
     private final FormDataImportUtils formDataImportUtils;
     private final FormDataExportUtils formDataExportUtils;
 
-
+    private final UserFormViewCountService userFormViewCountService;
     private final CacheUtils redisUtils;
 
 
@@ -59,8 +58,7 @@ public class UserFormResultController {
     @GetMapping("view/{formKey}")
     @PermitAll
     public Result<Void> viewForm(HttpServletRequest request, @PathVariable("formKey") String formKey) {
-        String key = StrUtil.format(FORM_VIEW_COUNT_KEY, formKey);
-        redisUtils.incr(key, 1);
+        userFormViewCountService.increment(formKey);
         return Result.success();
     }
 
@@ -72,9 +70,7 @@ public class UserFormResultController {
      */
     @PostMapping("query")
     public Result queryFormDataTable(@RequestBody QueryFormResultRequest request) {
-        if (ObjectUtil.isNull(request.getAuthGroupId())) {
-            FormAuthUtils.hasPermission(request.getFormKey());
-        }
+        FormAuthUtils.hasPermission(request.getFormKey());
         return Result.success(formResultService.listFormDataTable(request));
     }
 
