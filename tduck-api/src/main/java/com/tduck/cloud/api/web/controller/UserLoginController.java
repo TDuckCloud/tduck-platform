@@ -71,24 +71,10 @@ public class UserLoginController {
     }
 
 
-    /**
-     * 手机号注册
-     *
-     * @return
-     */
-    @PostMapping("/register/phone")
-    @NotLogin
-    public Result phoneRegister(@RequestBody RegisterAccountRequest request) {
-        Validator.validateMobile(request.getPhoneNumber(), "手机号码不正确");
-        ValidatorUtils.validateEntity(request, RegisterAccountRequest.PhoneNumberGroup.class);
-        if (!userValidateService.checkPhoneCode(request.getPhoneNumber(), request.getCode())) {
-            return Result.failed("验证码错误");
-        }
-        return userService.phoneRegister(request);
-    }
+
 
     /**
-     * 手机号注册
+     * 邮箱注册
      */
     @PostMapping("/register/email")
     @NotLogin
@@ -99,20 +85,6 @@ public class UserLoginController {
     }
 
 
-    /**
-     * 找回密码手机验证码
-     */
-    @GetMapping("/retrieve/password/phone/code")
-    @NotLogin
-    public Result sendRetrievePwdPhoneCode(@RequestParam String phoneNumber) {
-        Validator.validateMobile(phoneNumber, "手机号码不正确");
-        UserEntity userEntity = userService.getUserByPhoneNumber(phoneNumber);
-        if (ObjectUtil.isNull(userEntity)) {
-            return Result.failed("该手机号尚未注册");
-        }
-        userValidateService.sendRetrievePwdPhoneCode(phoneNumber);
-        return Result.success();
-    }
 
 
     /**
@@ -131,28 +103,6 @@ public class UserLoginController {
     }
 
 
-    /**
-     * 检查找回密码手机验证码是否正确
-     * 正确则返回身份Code
-     *
-     * @return
-     */
-    @PostMapping("/retrieve/password/check/phone-code")
-    @NotLogin
-    public Result checkRetrievePwdPhoneCode(@RequestBody RetrievePasswordRequest.CheckPhoneCode request) {
-        Validator.validateMobile(request.getPhoneNumber(), "手机号码不正确");
-        ValidatorUtils.validateEntity(request);
-        String code = cacheUtils.getTemp(StrUtil.format(AccountRedisKeyConstants.PHONE_RETRIEVE_PWD_CODE, request.getPhoneNumber()));
-        if (!request.getCode().equals(code)) {
-            return Result.failed("验证码错误");
-        }
-        UserEntity userEntity = userService.getUserByPhoneNumber(request.getPhoneNumber());
-        if (ObjectUtil.isNotNull(userEntity)) {
-            String restPasswordCode = userValidateService.getRestPasswordCode(userEntity.getId());
-            return Result.success(restPasswordCode);
-        }
-        return Result.success();
-    }
 
 
     /**
@@ -193,18 +143,7 @@ public class UserLoginController {
     }
 
 
-    /**
-     * 发送手机验证码
-     *
-     * @return
-     */
-    @GetMapping("/register/phone/code")
-    @NotLogin
-    public Result sendPhoneCode(@RequestParam String phoneNumber) {
-        Validator.validateMobile(phoneNumber, "手机号码不正确");
-        userValidateService.sendPhoneCode(phoneNumber);
-        return Result.success();
-    }
+
 
     /**
      * 获取登录微信二维码

@@ -1,7 +1,15 @@
-FROM java:8
-EXPOSE 8999
+FROM openjdk:8u272-jdk as builder
+WORKDIR application
+ARG JAR_FILE=target/tduck-api.jar
+COPY ${JAR_FILE} application.jar
+RUN java -Djarmode=layertools -jar application.jar extract
 
-VOLUME /tmp
-ADD target/tduck-api.jar /app.jar
-RUN bash -c 'touch /app.jar'
-ENTRYPOINT ["java","-jar","/app.jar"]
+FROM openjdk:8u272-jdk
+WORKDIR application
+COPY --from=builder application/dependencies/ ./
+COPY --from=builder application/snapshot-dependencies/ ./
+COPY --from=builder application/spring-boot-loader/ ./
+COPY --from=builder application/application/ ./
+COPY docker-entrypoint.sh ./
+RUN chmod +x docker-entrypoint.sh
+ENTRYPOINT ["./docker-entrypoint.sh"]

@@ -119,22 +119,6 @@ public class UserController {
         return Result.success(true);
     }
 
-    /**
-     * 修改手机号验证码
-     *
-     * @return
-     */
-    @GetMapping("/update-phone/code")
-    public Result sendUpdatePhoneCode(@RequestParam String phoneNumber) {
-        Validator.validateMobile(phoneNumber, "手机号码不正确");
-        UserEntity userEntity = userService.getUserByPhoneNumber(phoneNumber);
-        if (ObjectUtil.isNotNull(userEntity)) {
-            return Result.failed("该手机号已被绑定");
-        }
-        userValidateService.sendPhoneCode(phoneNumber);
-        return Result.success();
-    }
-
 
     /**
      * 绑定微信二维码
@@ -148,27 +132,6 @@ public class UserController {
         WxMpQrCodeTicket ticket = wxMpService.getQrcodeService().qrCodeCreateTmpTicket(bindSceneStr, 10 * 60);
         String bindAccountQrcodeUrl = wxMpService.getQrcodeService().qrCodePictureUrl(ticket.getTicket());
         return Result.success(bindAccountQrcodeUrl);
-    }
-
-    /**
-     * 修改手机号
-     *
-     * @return
-     */
-    @PostMapping("/update/phone-number")
-    public Result updatePhoneNumber(@RequestBody UpdateUserRequest.PhoneNumber request, @RequestAttribute Long userId) {
-        ValidatorUtils.validateEntity(request);
-        Validator.validateMobile(request.getPhoneNumber(), "手机号码不正确");
-        //检查验证码是否正确
-        Boolean checkPhoneCode = userValidateService.checkPhoneCode(request.getPhoneNumber(), request.getCode());
-        if (checkPhoneCode) {
-            return Result.failed("验证码错误");
-        }
-        UserEntity userEntity = new UserEntity();
-        userEntity.setId(userId);
-        userEntity.setPhoneNumber(request.getPhoneNumber());
-        userService.updateById(userEntity);
-        return Result.success();
     }
 
 

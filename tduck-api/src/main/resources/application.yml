@@ -2,7 +2,7 @@ spring:
   application:
     name: tduck-api
   profiles:
-    active: prod1
+    active: prod
   jackson:
     date-format: yyyy-MM-dd HH:mm:ss
     #设置空如何序列化
@@ -21,8 +21,8 @@ spring:
     protocol: smtps
   servlet:
     multipart:
-      max-file-size: 100MB
-      max-request-size: 100MB
+      max-file-size: 1000MB
+      max-request-size: 1000MB
   cache:
     ehcache:
       config: classpath:ehcache.xml
@@ -59,27 +59,6 @@ mybatis-plus:
 platform:
   request:
     trace-log: false
-  sign:
-    enable: false
-    secret: 916lWh2WMcbSWiHv
-    ignore-urls:
-      - /webjars/**
-      - /swagger/**
-      - /swagger-ui.html
-      - /swagger-resources/**
-      - /swagger/**
-      - /**/v2/api-docs
-      - /**/v2/api-docs-ext
-      - /doc.html
-      - /user/file/upload
-      - /form/file/upload/*
-      - /wx/mp/portal/**
-      - /profile/**
-      - /wx/**
-      - /**/*.js
-      - /**/*.css
-      - /**/*.png
-      - /**/*.ico
   jwt:
     # 加密秘钥
     secret: f6f31a5f2136758f86b67cde583cb125

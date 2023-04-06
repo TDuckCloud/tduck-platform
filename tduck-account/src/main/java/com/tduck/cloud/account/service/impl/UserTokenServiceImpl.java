@@ -29,7 +29,7 @@ public class UserTokenServiceImpl extends ServiceImpl<UserTokenMapper, UserToken
 
     @Override
     public void saveToken(String token, Long userId, LocalDateTime expireTime) {
-        this.remove(Wrappers.<UserTokenEntity>lambdaQuery().eq(UserTokenEntity::getUserId, userId));
+        this.remove(Wrappers.<UserTokenEntity>lambdaQuery().eq(UserTokenEntity::getUserId, userId).le(UserTokenEntity::getExpireTime, LocalDateTime.now()));
         UserTokenEntity userTokenEntity = new UserTokenEntity();
         userTokenEntity.setToken(token);
         userTokenEntity.setUserId(userId);

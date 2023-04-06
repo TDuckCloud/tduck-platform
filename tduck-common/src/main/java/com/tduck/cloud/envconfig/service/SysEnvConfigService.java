@@ -2,6 +2,7 @@ package com.tduck.cloud.envconfig.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.tduck.cloud.envconfig.entity.SysEnvConfigEntity;
+import com.tduck.cloud.envconfig.entity.SystemInfoConfig;
 
 /**
  * 系统环境配置Service接口
@@ -20,6 +21,11 @@ public interface SysEnvConfigService extends IService<SysEnvConfigEntity> {
     SysEnvConfigEntity getByKey(String key);
 
 
+    /**
+     * 获取系统配置
+     * @return {@link SystemInfoConfig}
+     */
+    SystemInfoConfig getSystemEnvConfig();
 
     /**
      * 获取配置值

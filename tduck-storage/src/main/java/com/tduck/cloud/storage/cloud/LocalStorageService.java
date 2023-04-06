@@ -21,6 +21,7 @@ public class LocalStorageService extends OssStorageService {
 
     @Override
     public String upload(InputStream inputStream, String path) {
+        log.info("上传文件到本地服务器{}",config.getUploadFolder());
         File file = FileUtil.file(config.getUploadFolder() + File.separator + path);
         //目录是否存在
         if (!FileUtil.exist(file.getParent())) {

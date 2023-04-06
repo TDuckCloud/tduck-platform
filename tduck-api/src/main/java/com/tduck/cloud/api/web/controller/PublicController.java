@@ -8,9 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.annotation.security.PermitAll;
-
-import static com.tduck.cloud.envconfig.constants.ConfigConstants.SYSTEM_INFO_CONFIG;
+import static com.tduck.cloud.envconfig.constant.ConfigConstants.SYSTEM_INFO_CONFIG;
 
 
 /**

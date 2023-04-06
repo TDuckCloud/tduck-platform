@@ -6,7 +6,7 @@ import cn.hutool.core.util.StrUtil;
 import com.tduck.cloud.common.util.JsonUtils;
 import com.tduck.cloud.common.util.ServletUtils;
 import com.tduck.cloud.common.util.SpringContextUtils;
-import com.tduck.cloud.envconfig.constants.ConfigConstants;
+import com.tduck.cloud.envconfig.constant.ConfigConstants;
 import com.tduck.cloud.envconfig.service.SysEnvConfigService;
 import com.tduck.cloud.storage.enums.OssTypeEnum;
 import lombok.Getter;
@@ -49,7 +49,7 @@ public final class OssStorageFactory {
                 // 本地存储默认配置
                 if (StrUtil.isBlank(config.getUploadFolder())) {
                     ApplicationHome ah = new ApplicationHome(OssStorageFactory.class);
-                    config.setUploadFolder(ah.getDir().getAbsolutePath());
+                    config.setUploadFolder(ah.getDir().getAbsolutePath() + "/upload");
                 }
                 if (StrUtil.isBlank(config.getDomain())) {
                     String domain = ServletUtils.getDomain(ServletUtils.getRequest());

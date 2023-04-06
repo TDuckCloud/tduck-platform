@@ -60,6 +60,7 @@ public class WebMvcConfig implements WebMvcConfigurer {
             if (StrUtil.isBlank(uploadFolder)) {
                 ApplicationHome ah = new ApplicationHome(OssStorageFactory.class);
                 uploadFolder = ah.getDir().getAbsolutePath();
+
             }
             uploadFolder = StringUtils.appendIfMissing(uploadFolder, File.separator);
             registry.addResourceHandler(config.getAccessPathPattern())

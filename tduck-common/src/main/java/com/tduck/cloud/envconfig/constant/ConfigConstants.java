@@ -1,4 +1,4 @@
-package com.tduck.cloud.envconfig.constants;
+package com.tduck.cloud.envconfig.constant;
 
 /**
  * @description: 配置表key

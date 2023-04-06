@@ -44,28 +44,7 @@ public interface UserValidateService {
      */
     Long getUpdateEmailUserId(UpdateUserRequest.Email request);
 
-    /**
-     * 发送短信验证码
-     *
-     * @param phoneNumber
-     */
-    void sendPhoneCode(String phoneNumber);
 
-
-    /**
-     * 验证码是否正确
-     *
-     * @param phoneNumber
-     */
-    Boolean checkPhoneCode(String phoneNumber, String code);
-
-
-    /**
-     * 找回密码验证码
-     *
-     * @param phoneNumber
-     */
-    void sendRetrievePwdPhoneCode(String phoneNumber);
 
 
     /**

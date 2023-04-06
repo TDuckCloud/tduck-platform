@@ -1,14 +1,13 @@
 package com.tduck.cloud.envconfig.service.impl;
 
 import cn.hutool.core.util.ObjectUtil;
-import cn.hutool.core.util.StrUtil;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.tduck.cloud.common.constant.ConfigConstants;
-import com.tduck.cloud.common.constant.RedisKeyConstants;
+import com.tduck.cloud.envconfig.constant.ConfigConstants;
 import com.tduck.cloud.common.util.JsonUtils;
 import com.tduck.cloud.common.util.SpringContextUtils;
 import com.tduck.cloud.envconfig.entity.SysEnvConfigEntity;
+import com.tduck.cloud.envconfig.entity.SystemInfoConfig;
 import com.tduck.cloud.envconfig.entity.event.EnvConfigRefreshEvent;
 import com.tduck.cloud.envconfig.mapper.SysEnvConfigMapper;
 import com.tduck.cloud.envconfig.service.SysEnvConfigService;
@@ -52,10 +51,10 @@ public class SysEnvConfigServiceImpl extends ServiceImpl<SysEnvConfigMapper, Sys
         return baseMapper.selectOne(Wrappers.<SysEnvConfigEntity>lambdaQuery().eq(SysEnvConfigEntity::getEnvKey, key));
     }
 
-//    @Override
-//    public SystemEnvConfig getSystemEnvConfig() {
-//        return JsonUtils.jsonToObj(getValueByKey(ConfigConstants.SYSTEM_INFO_CONFIG), SystemEnvConfig.class);
-//    }
+    @Override
+    public SystemInfoConfig getSystemEnvConfig() {
+        return JsonUtils.jsonToObj(getValueByKey(ConfigConstants.SYSTEM_INFO_CONFIG), SystemInfoConfig.class);
+    }
 
 
     @Override
