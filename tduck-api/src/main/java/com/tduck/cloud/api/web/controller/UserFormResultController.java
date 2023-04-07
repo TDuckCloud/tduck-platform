@@ -8,6 +8,7 @@ import com.tduck.cloud.common.util.Result;
 import com.tduck.cloud.common.util.SecurityUtils;
 import com.tduck.cloud.common.validator.ValidatorUtils;
 import com.tduck.cloud.form.entity.UserFormDataEntity;
+import com.tduck.cloud.form.entity.UserFormViewCountEntity;
 import com.tduck.cloud.form.request.ExportRequest;
 import com.tduck.cloud.form.request.QueryFormResultRequest;
 import com.tduck.cloud.form.service.UserFormDataService;
@@ -27,6 +28,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ConcurrentMap;
 
 
 /**
@@ -49,7 +52,7 @@ public class UserFormResultController {
 
     private final UserFormViewCountService userFormViewCountService;
     private final CacheUtils redisUtils;
-
+    private final ConcurrentMap<String, Integer> viewFormMap = new ConcurrentHashMap<>();
 
     /***
      * 查看表单
@@ -58,7 +61,19 @@ public class UserFormResultController {
     @GetMapping("view/{formKey}")
     @PermitAll
     public Result<Void> viewForm(HttpServletRequest request, @PathVariable("formKey") String formKey) {
-        userFormViewCountService.increment(formKey);
+        if (viewFormMap.containsKey(formKey)) {
+            userFormViewCountService.increment(formKey);
+        } else {
+            // 不存在则添加
+            Long count = userFormViewCountService.count(formKey);
+            if (count == 0) {
+                UserFormViewCountEntity entity = new UserFormViewCountEntity();
+                entity.setFormKey(formKey);
+                entity.setCount(1L);
+                userFormViewCountService.save(entity);
+            }
+            viewFormMap.put(formKey, 1);
+        }
         return Result.success();
     }
 

@@ -132,7 +132,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, UserEntity> impleme
         this.updateById(userEntity);
         String token = jwtUtils.generateToken(userEntity.getId());
         // 缓存token
-        userTokenService.saveToken(token, userEntity.getId(), LocalDateTime.now().plusDays(2));
+        userTokenService.saveToken(token, userEntity.getId(), LocalDateTime.now().plusSeconds(jwtUtils.getExpire()));
         return new LoginUserVO(userEntity.getAvatar(), userEntity.getName(), token, userEntity.isAdmin());
     }
 

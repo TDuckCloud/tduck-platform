@@ -1,13 +1,11 @@
 package com.tduck.cloud.form.service.impl;
 
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
-import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.tduck.cloud.form.mapper.UserFormViewCountMapper;
 import com.tduck.cloud.form.entity.UserFormViewCountEntity;
+import com.tduck.cloud.form.mapper.UserFormViewCountMapper;
 import com.tduck.cloud.form.service.UserFormViewCountService;
+import org.springframework.stereotype.Service;
 
 /**
  * 用户表单查看次数Service业务层处理
@@ -25,6 +23,7 @@ public class UserFormViewCountServiceImpl extends ServiceImpl<UserFormViewCountM
 
     @Override
     public Long count(String formKey) {
-        return baseMapper.selectCount(Wrappers.<UserFormViewCountEntity>lambdaQuery().eq(UserFormViewCountEntity::getFormKey, formKey));
+        UserFormViewCountEntity viewCount = baseMapper.selectOne(Wrappers.<UserFormViewCountEntity>lambdaQuery().eq(UserFormViewCountEntity::getFormKey, formKey));
+        return viewCount == null ? 0 : viewCount.getCount();
     }
 }

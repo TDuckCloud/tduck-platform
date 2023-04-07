@@ -19,6 +19,6 @@ public interface UserFormViewCountMapper extends BaseMapper<UserFormViewCountEnt
      *
      * @param formKey 表单key
      */
-    @Update("update fm_user_form_view_count set count = count + 1 where form_key = #{formKey}")
+    @Update("update fm_user_form_view_count set count = count + 1 , update_time=now() where form_key = #{formKey}")
     void incrementCount(@Param("formKey") String formKey);
 }
