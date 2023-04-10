@@ -6,3 +6,4 @@ java $JAVA_OPTS -server \
 -Djava.security.egd=file:/dev/./urandom \
 org.springframework.boot.loader.JarLauncher
 
+
