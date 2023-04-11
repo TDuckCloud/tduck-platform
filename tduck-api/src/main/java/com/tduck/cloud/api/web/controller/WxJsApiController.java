@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.annotation.security.PermitAll;
 import javax.validation.constraints.NotBlank;
 
 /**
@@ -34,6 +35,7 @@ public class WxJsApiController {
      * @return hcah
      */
     @GetMapping("/authorization/url")
+    @PermitAll
     public Result getAuthorizationUrl(@RequestParam @NotBlank String url) {
         String appId = wxService.getWxMpConfigStorage().getAppId();
         String authorizationUrl = StrUtil.format("https://open.weixin.qq.com/connect/oauth2/authorize?appid={}&redirect_uri={}&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect", appId, URLUtil.encode(url));
@@ -48,6 +50,7 @@ public class WxJsApiController {
      * @return
      */
     @GetMapping("/authorization/user/info")
+    @PermitAll
     public Result<WxOAuth2UserInfo> greetUser(@RequestParam @NotBlank String code)  {
         WxOAuth2UserInfo userInfo = null;
         try {
@@ -68,6 +71,7 @@ public class WxJsApiController {
      * @throws WxErrorException
      */
     @GetMapping("/signature")
+    @PermitAll
     public Result getSignature(@RequestParam String url) throws WxErrorException {
         WxJsapiSignature signature = wxService.createJsapiSignature(url);
         return Result.success(signature);
