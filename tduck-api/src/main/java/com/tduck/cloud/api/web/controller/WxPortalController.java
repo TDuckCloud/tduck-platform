@@ -9,6 +9,8 @@ import me.chanjar.weixin.mp.bean.message.WxMpXmlOutMessage;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.security.PermitAll;
+
 /**
  * 微信公众号消息处理
  *
@@ -23,6 +25,7 @@ public class WxPortalController {
     private final WxMpMessageRouter messageRouter;
 
     @GetMapping(produces = "text/plain;charset=utf-8")
+    @PermitAll
     public String authGet(@PathVariable String appid,
                           @RequestParam(name = "signature", required = false) String signature,
                           @RequestParam(name = "timestamp", required = false) String timestamp,
@@ -47,6 +50,7 @@ public class WxPortalController {
     }
 
     @PostMapping(produces = "application/xml; charset=UTF-8")
+    @PermitAll
     public String post(@PathVariable String appid,
                        @RequestBody String requestBody,
                        @RequestParam("signature") String signature,
