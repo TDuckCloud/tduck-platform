@@ -49,6 +49,9 @@
 ##  如有帮助请点亮 Star ⭐️
 ![登录](readmeImages/star.gif)
 
+## 前端项目
+- https://gitee.com/TDuckApp/tduck-front
+
 ## 预览-开源版 - Preview
 
 ![登录](readmeImages/screely-1680875090915.png)
