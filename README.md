@@ -19,7 +19,6 @@
     <a href="https://space.bilibili.com/409825300" target="_blank">bilibili频道</a>
 </p>
 
-<br />
 
 简体中文 |  [English](./README_en.md)
 
@@ -41,6 +40,8 @@
 ## 演示 - Demonstrate
 
 - 在线体验：<a href="http://www.tduckcloud.com" target="_blank">演示地址</a>
+- 部署管理员账号：admin@tduckcloud.com
+- 部署默认密码：123456
 
 ## 文档 - Document
 - 项目文档： <a href="https://doc.tduckcloud.com" target="_blank">文档地址</a>

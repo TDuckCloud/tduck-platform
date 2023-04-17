@@ -37,7 +37,9 @@
 - Open source version After 2 years of optimization, the function tends to be stable; tduck-Pro commercial version was launched in the second half of 2021.
 
 ## Demo
--  [Demo address](https://demo.tduckapp.com)
+- [Demo address](https://demo.tduckapp.com)
+- adminAccount：admin@tduckcloud.com
+- adminPassword：123456
 
 ## Document
 -  [Document address](https://doc.tduckcloud.com)
