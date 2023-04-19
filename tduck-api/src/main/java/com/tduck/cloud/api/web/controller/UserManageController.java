@@ -1,5 +1,4 @@
-package com.tduck.cloud.account.controller;
-
+package com.tduck.cloud.api.web.controller;
 import java.util.List;
 
 import cn.hutool.core.util.ObjUtil;
@@ -63,6 +62,7 @@ public class UserManageController {
     public Result<Boolean> add(@Validated(AddGroup.class) @RequestBody UserEntity user) {
         checkUnique(user);
         user.setPasswordType(1);
+        user.setAvatar(AccountConstants.DEFAULT_AVATAR);
         user.setPassword(PasswordUtils.encode(user.getPassword()));
         return Result.success(userService.save(user));
     }
