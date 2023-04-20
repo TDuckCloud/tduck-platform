@@ -77,7 +77,7 @@ CREATE TABLE `ac_user_token`
     `create_time` datetime                                                      NOT NULL DEFAULT CURRENT_TIMESTAMP,
     `update_time` datetime                                                      NOT NULL DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (`id`) USING BTREE,
-    KEY           `token` (`token`)
+    constraint token unique (token)
 ) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC COMMENT='用户';
 
 -- ----------------------------
