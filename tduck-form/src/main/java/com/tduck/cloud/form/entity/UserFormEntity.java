@@ -1,5 +1,6 @@
 package com.tduck.cloud.form.entity;
 
+import cn.hutool.core.util.StrUtil;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.tduck.cloud.common.entity.BaseEntity;
@@ -84,6 +85,9 @@ public class UserFormEntity extends BaseEntity<UserFormEntity> {
      * @return 文本
      */
     public String getTextName() {
+        if (StrUtil.isBlank(name)) {
+            return null;
+        }
         // 标题是富文本 去除html 标签
         return HtmlUtils.cleanHtmlTag(name);
     }
