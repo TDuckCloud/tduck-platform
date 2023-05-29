@@ -85,6 +85,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, UserEntity> impleme
     private void createUser(UserEntity userEntity) {
         userEntity.setName(NameUtils.getCnName());
         userEntity.setAvatar(AccountConstants.DEFAULT_AVATAR);
+        userEntity.setPasswordType(1);
         userEntity.setPassword(PasswordUtils.encode(userEntity.getPassword()));
         this.save(userEntity);
     }
