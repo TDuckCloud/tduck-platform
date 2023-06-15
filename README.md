@@ -32,7 +32,7 @@
 
 - 2019年底「COVID-19」的出现，对问卷表单系统的需求又上升一个等级，我们通过不断优化，使企事业单位能够低成本快速拥有一套独立部署的表单问卷系统，即时赋能业务。
 
-- [开源版](https://demo.tduckapp.com) 经过了2年的优化后，功能趋于稳定； 2021年下半年推出了[tduck-Pro商业版](https://pro.tduckcloud.com)，2023年5月推出<a href="https://pro.tduckcloud.com/s/LNnVStZV" target="_blank">TReport可视化大屏>>内测招募🔥</a>。
+- [社区版](https://demo.tduckapp.com) 经过了2年的优化后，功能趋于稳定； 2021年下半年推出了[tduck-Pro商业版](https://pro.tduckcloud.com)，2023年5月推出<a href="https://pro.tduckcloud.com/s/LNnVStZV" target="_blank">TReport可视化大屏>>内测招募🔥</a>。
 
 
 ------------------------------
@@ -53,7 +53,7 @@
 ## 前端项目
 - https://gitee.com/TDuckApp/tduck-front
 
-## 预览-开源版 - Preview
+## 预览-社区版 - Preview
 
 
 ![登录](readmeImages/screely-1680875090915.png)
