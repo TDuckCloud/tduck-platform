@@ -17,6 +17,7 @@ public class TduckApiApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(TduckApiApplication.class, args);
+        System.out.println("Tduck-填鸭表单社区版-启动成功>>");
     }
 
 }
