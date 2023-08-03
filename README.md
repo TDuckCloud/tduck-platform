@@ -15,14 +15,32 @@
     <br />   
     <a href="https://www.tduckcloud.com/" target="_blank">官方网站</a>&nbsp;
     <a href="https://doc.tduckcloud.com"  target="_blank" >部署文档</a>&nbsp;
-    <a href="https://pro.tduckcloud.com/s/QUiDSKq8" target="_blank">微信社区</a>&nbsp;
+    <a href="https://pro.tduckcloud.com/s/QUiDSKq8" target="_blank">用户社区</a>&nbsp;
     <a href="https://space.bilibili.com/409825300" target="_blank">bilibili频道</a>
 </p>
 
 
 简体中文 |  [English](./README_en.md)
 
-## 简介 - idea
+### 社区活动 🔥
+- 给项目助力，获取社区版最新 **表单编辑器源码**！（限时）
+- 活动参与方式：[点击查看](https://doc.tduckcloud.com/openSource/#hot-%E7%A4%BE%E5%8C%BA%E6%B4%BB%E5%8A%A8-%F0%9F%94%A5)
+- 项目发展离不开您的助力，如有帮助请点亮star
+![登录](readmeImages/star.gif)
+
+### 演示地址
+- <a href="http://www.tduckcloud.com" target="_blank">在线体验</a>
+- 部署管理员账号：admin@tduckcloud.com
+- 部署默认密码：123456
+- <a href="https://doc.tduckcloud.com" target="_blank">项目文档</a>
+- [更新日志](https://doc.tduckcloud.com/openSource/changeLog.html)
+- [使用宝塔部署](https://doc.tduckcloud.com/openSource/deploy/openSourceDeploy.html)
+- [使用docker快速启动](https://doc.tduckcloud.com/openSource/deploy/dockerDeploy.html)
+
+## 前端项目
+- https://gitee.com/TDuckApp/tduck-front
+
+## 项目介绍 - idea
 
 - 2019年初，同事想做一场针对全国范围内的照片数据收集活动，经过考察当时使用了一款saas工具;
 
@@ -37,21 +55,6 @@
 
 ------------------------------
 
-## 演示 - Demonstrate
-
-
-- 在线体验：<a href="http://www.tduckcloud.com" target="_blank">演示地址</a>
-- 部署管理员账号：admin@tduckcloud.com
-- 部署默认密码：123456
-
-## 文档 - Document
-- 项目文档： <a href="https://doc.tduckcloud.com" target="_blank">文档地址</a>
-
-##  如有帮助请点亮 Star ⭐️
-![登录](readmeImages/star.gif)
-
-## 前端项目
-- https://gitee.com/TDuckApp/tduck-front
 
 ## 预览-社区版 - Preview
 
