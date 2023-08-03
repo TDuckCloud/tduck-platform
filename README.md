@@ -26,6 +26,7 @@
 - 给项目助力，获取社区版最新 **表单编辑器源码**！（限时）
 - 活动参与方式：[点击查看](https://doc.tduckcloud.com/openSource/#hot-%E7%A4%BE%E5%8C%BA%E6%B4%BB%E5%8A%A8-%F0%9F%94%A5)
 - 项目发展离不开您的助力，如有帮助请点亮star
+
 ![登录](readmeImages/star.gif)
 
 ### 演示地址
