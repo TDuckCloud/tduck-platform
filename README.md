@@ -48,6 +48,36 @@
 - 部署默认密码：123456
 - 部署文档、docker快速启动，请查看 <a href="https://doc.tduckcloud.com" target="_blank">项目文档</a>
 - 前端项目地址： https://gitee.com/TDuckApp/tduck-front
+
+### 版本区别
+- 功能对比：https://docs.qq.com/sheet/DSUhoR2pOc2RuZ0Va?tab=BB08J2
+- 社区版：https://demo.tduckapp.com/home
+- Pro版：https://pro.tduckcloud.com
+- 小程序插件：https://doc.tduckcloud.com/functionDesc/uniappDesc.html
+
+### 项目部署
+
+#### 使用命令快速启动
+```shell
+docker run -e SPRING_DATASOURCE_URL="jdbc:mysql://127.0.0.1:3310/tduck-v4?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai&tinyInt1isBit=false&nullCatalogMeansCurrent=true" -e SPRING_DATASOURCE_USERNAME=root -e SPRING_DATASOURCE_PASSWORD=tduck@tduck -p 8999:8999  -v /upload:/application/BOOT-INF/lib/upload  tduckcloud/tduck-platform
+```
+#### docker-compose 部署环境及项目
+```shell
+1.先安装docker-compose
+2.下载tduck源码
+3.进入目录下的docker目录 cd docker，执行命令：docker-compose up
+4.运行结束 会自动安装mysql以及tduck程序
+```
+#### 使用宝塔部署项目
+- 部署文档：https://doc.tduckcloud.com/openSource/deploy/openSourceDeploy.html
+- 使用指定配置文件：https://doc.tduckcloud.com/openSource/deploy/startByProfile.html
+
+#### 前后端分离部署
+- 部署文档：https://doc.tduckcloud.com/openSource/deploy/fenli.html
+- 常见问题：https://doc.tduckcloud.com/openSource/deploy/usualQuestion.html
+
+### 关于问题咨询
+- 此项目为Tduck团队兼职维护，如果您在使用社区版过程中遇到了问题，可在社区查看常见问题或留言进行求助 - [点击进入填鸭问答社区](https://support.qq.com/products/389844/)
 ------------------------------
 
 ## 预览-社区版 - Preview
