@@ -261,13 +261,13 @@ public class FormDataImportUtils {
                     cascadeValues.add(option.getValue());
                     cascadeLabels.add(option.getLabel());
                     String child = CollUtil.get(strList, 1);
-                    if (StrUtil.isBlank(child)) {
-                        option.getChildren().stream().filter(o1 -> o1.getLabel().equals(CollUtil.get(strList, 0))).findFirst().ifPresent(o1 -> {
+                    if (!StrUtil.isBlank(child)) {
+                        option.getChildren().stream().filter(o1 -> o1.getLabel().equals(CollUtil.get(strList, 1))).findFirst().ifPresent(o1 -> {
                             cascadeValues.add(o1.getValue());
                             cascadeLabels.add(o1.getLabel());
                             String child1 = CollUtil.get(strList, 2);
-                            if (StrUtil.isBlank(child1)) {
-                                option.getChildren().stream().filter(o2 -> o2.getLabel().equals(CollUtil.get(strList, 0))).findFirst().ifPresent(o2 -> {
+                            if (!StrUtil.isBlank(child1)) {
+                                o1.getChildren().stream().filter(o2 -> o2.getLabel().equals(CollUtil.get(strList, 2))).findFirst().ifPresent(o2 -> {
                                     cascadeValues.add(o2.getValue());
                                     cascadeLabels.add(o2.getLabel());
                                 });
