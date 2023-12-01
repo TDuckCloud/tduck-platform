@@ -1,24 +1,34 @@
 package com.tduck.cloud.api.web.controller;
 
+import cn.hutool.core.date.DateUtil;
+import cn.hutool.core.map.MapUtil;
+import cn.hutool.core.thread.ThreadUtil;
+import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.core.util.StrUtil;
 import com.tduck.cloud.api.util.HttpUtils;
 import com.tduck.cloud.common.constant.CommonConstants;
+import com.tduck.cloud.common.email.MailService;
 import com.tduck.cloud.common.util.CacheUtils;
 import com.tduck.cloud.common.util.Result;
 import com.tduck.cloud.common.util.SecurityUtils;
 import com.tduck.cloud.common.validator.ValidatorUtils;
 import com.tduck.cloud.form.entity.UserFormDataEntity;
+import com.tduck.cloud.form.entity.UserFormEntity;
 import com.tduck.cloud.form.entity.UserFormViewCountEntity;
+import com.tduck.cloud.form.entity.struct.FormSettingSchemaStruct;
 import com.tduck.cloud.form.request.ExportRequest;
 import com.tduck.cloud.form.request.QueryFormResultRequest;
 import com.tduck.cloud.form.service.UserFormDataService;
+import com.tduck.cloud.form.service.UserFormService;
 import com.tduck.cloud.form.service.UserFormSettingService;
 import com.tduck.cloud.form.service.UserFormViewCountService;
 import com.tduck.cloud.form.util.FormAuthUtils;
 import com.tduck.cloud.form.util.FormDataExportUtils;
 import com.tduck.cloud.form.util.FormDataImportUtils;
+import com.tduck.cloud.wx.mp.service.WxMpUserMsgService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -49,9 +59,10 @@ public class UserFormResultController {
     private final UserFormSettingService userFormSettingService;
     private final FormDataImportUtils formDataImportUtils;
     private final FormDataExportUtils formDataExportUtils;
-
+    private final UserFormService userFormService;
     private final UserFormViewCountService userFormViewCountService;
-    private final CacheUtils redisUtils;
+    private final MailService mailService;
+    private final WxMpUserMsgService userMsgService;
     private final ConcurrentMap<String, Integer> viewFormMap = new ConcurrentHashMap<>();
 
     /***
@@ -150,7 +161,9 @@ public class UserFormResultController {
         // 如果已经登陆了也记录用户信息 try catch 避免抛出异常
         entity.setCreateBy(SecurityUtils.getUserId() != null ? String.valueOf(SecurityUtils.getUserId()) : null);
         Map<String, Object> result = formResultService.saveFormResult(entity);
-
+        ThreadUtil.execAsync(() -> {
+            sendWriteResultNotify(entity.getFormKey());
+        });
         return Result.success(result);
     }
 
@@ -218,5 +231,23 @@ public class UserFormResultController {
         return Result.success(formDataImportUtils.importFile(file.getInputStream(), dataEntity.getFormKey()));
     }
 
+
+    private void sendWriteResultNotify(String formKey) {
+        FormSettingSchemaStruct formSettingSchema = userFormSettingService.getFormSettingSchema(formKey);
+        if (ObjectUtil.isNull(formSettingSchema)) {
+            return;
+        }
+        UserFormEntity form = userFormService.getByKey(formKey);
+        if (StrUtil.isNotBlank(formSettingSchema.getNewWriteNotifyEmail())) {
+            mailService.sendTemplateHtmlMail(formSettingSchema.getNewWriteNotifyEmail(), "新回复通知", "mail/form-write-notify", MapUtil.of("projectName", form.getName()));
+        }
+
+        if (StrUtil.isNotBlank(formSettingSchema.getNewWriteNotifyWx())) {
+            List<String> openIdList = StrUtil.splitTrim(formSettingSchema.getNewWriteNotifyWx(), ";");
+            openIdList.stream().forEach(openId -> {
+                userMsgService.sendKfTextMsg("", openId, "收到新的反馈，请去Pc端查看");
+            });
+        }
+    }
 
 }
