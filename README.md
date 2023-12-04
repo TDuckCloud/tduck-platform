@@ -34,6 +34,8 @@
 
 - [社区版](https://demo.tduckapp.com) 经过了2年的优化后，功能趋于稳定； 2021年下半年推出了[tduck-Pro版](https://pro.tduckcloud.com)，2023年5月推出<a href="https://pro.tduckcloud.com/s/LNnVStZV" target="_blank">可视化大屏</a>。
 
+- 2023年12月推出<a href="https://www.tduckcloud.com/x" target="_blank">TDuckX-Vue3旗舰版</a>。
+
 
 ### 社区活动 🔥🔥🔥🔥
 - 给项目助力，获取社区版最新 **表单编辑器源码**！（限时）
