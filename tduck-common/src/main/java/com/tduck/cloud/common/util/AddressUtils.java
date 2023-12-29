@@ -4,6 +4,7 @@ import cn.hutool.core.map.MapUtil;
 import cn.hutool.core.util.ArrayUtil;
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.http.HttpUtil;
+import lombok.Data;
 import lombok.experimental.UtilityClass;
 import lombok.extern.slf4j.Slf4j;
 
@@ -20,8 +21,22 @@ public class AddressUtils {
 
     /**
      * IP地址查询
+     * {"ip":"121.35.102.201","pro":"广东省","proCode":"440000","city":"深圳市","cityCode":"440300","region":"宝安区","regionCode":"440306","addr":"广东省深圳市宝安区 电信","regionNames":"","err":""}
      */
     public static final String IP_URL = "http://whois.pconline.com.cn/ipJson.jsp";
+
+    /**
+     * IP地址查询
+     * {"code":"Success","data":{"continent":"亚洲","country":"中国","zipcode":"518051","timezone":"UTC+8","accuracy":"区县","owner":"中国电信","isp":"中国电信","source":"数据挖掘","areacode":"CN","adcode":"440305","asnumber":"4134","lat":"22.556244","lng":"113.939291","radius":"25.3318","prov":"广东省","city":"深圳市","district":"南山区"},"charge":true,"msg":"查询成功","ip":"121.35.102.201","coordsys":"WGS84"}
+     */
+    public static final String IP_URL2 = "https://qifu.baidu.com/ip/geo/v1/district?ip=";
+
+    @Data
+    static class IP_URL2_DATA {
+        private String prov;
+        private String city;
+        private String district;
+    }
 
     /**
      * 未知地址
@@ -30,23 +45,38 @@ public class AddressUtils {
 
     public static String getRealAddressByIP(String ip) {
         String address = UNKNOWN;
-        try {
-            // 内网不查询
-            if (internalIp(ip)) {
-                return "内网IP";
-            }
-            String rspStr = HttpUtil.get(StrUtil.format("{}?ip={}&json=true", IP_URL, ip));
-            if (StrUtil.isEmpty(rspStr)) {
-                log.error("获取地理位置异常 {}", ip);
-                return UNKNOWN;
-            }
-            Map<String, Object> map = JsonUtils.jsonToMap(rspStr);
-            String region = MapUtil.getStr(map, "pro");
-            String city = MapUtil.getStr(map, "city");
-            return String.format("%s-%s", region, city);
-        } catch (Exception e) {
-            log.error("获取地理位置异常 {}", e);
+        // 内网不查询
+        if (internalIp(ip)) {
+            return "内网IP";
         }
+
+        try {
+            String rspStr = HttpUtil.get(StrUtil.format("{}?ip={}&json=true", IP_URL, ip));
+            if (StrUtil.isNotEmpty(rspStr)) {
+                Map<String, Object> map = JsonUtils.jsonToMap(rspStr);
+                String province = MapUtil.getStr(map, "pro", "");
+                String city = MapUtil.getStr(map, "city", "");
+                if (!province.isEmpty()) {
+                    return !city.isEmpty() ? String.format("%s-%s", province, city) : province;
+                }
+            }
+        } catch (Exception e) {
+            log.error("pconline 获取地理位置异常 {} {}", ip, e);
+        }
+
+        try {
+            String rspStr = HttpUtil.get(StrUtil.format("{}{}", IP_URL2, ip));
+            if (StrUtil.isNotEmpty(rspStr)) {
+                Map<String, Object> map = JsonUtils.jsonToMap(rspStr);
+                IP_URL2_DATA data = MapUtil.get(map, "data", IP_URL2_DATA.class);
+                if (data != null && data.getProv() != null) {
+                    return data.getCity() != null ? String.format("%s-%s", data.getProv(), data.getCity()) : data.getProv();
+                }
+            }
+        } catch (Exception e) {
+            log.error("baidu 获取地理位置异常 {} {}", ip, e);
+        }
+
         return address;
     }
 
