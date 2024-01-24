@@ -36,7 +36,7 @@
 
 - 2023年12月推出：<a href="https://www.tduckcloud.com/x" target="_blank">TDuckX-Vue3旗舰版</a>。
 
-- 2024年1月推出大屏产品：<a href="https://gitee.com/TDuckApp/tduck-report-platform" target="_blank">TReport</a>。
+- 2024年1月 **全量开源** 大屏产品：<a href="https://gitee.com/TDuckApp/tduck-report-platform" target="_blank">TReport</a>。
 
 
 ### 社区活动 🔥🔥🔥🔥
