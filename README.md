@@ -34,7 +34,9 @@
 
 - [社区版](https://demo.tduckapp.com) 经过了2年的优化后，功能趋于稳定； 2021年下半年推出了[tduck-Pro版](https://pro.tduckcloud.com)，2023年5月推出<a href="https://pro.tduckcloud.com/s/LNnVStZV" target="_blank">可视化大屏</a>。
 
-- 2023年12月推出<a href="https://www.tduckcloud.com/x" target="_blank">TDuckX-Vue3旗舰版</a>。
+- 2023年12月推出：<a href="https://www.tduckcloud.com/x" target="_blank">TDuckX-Vue3旗舰版</a>。
+
+- 2024年1月推出大屏产品：<a href="https://gitee.com/TDuckApp/tduck-report-platform" target="_blank">TReport</a>。
 
 
 ### 社区活动 🔥🔥🔥🔥
