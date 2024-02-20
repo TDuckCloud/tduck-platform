@@ -62,7 +62,7 @@ public class FormDataImportUtils {
      * @return 结果
      */
     public void importTemplateExcel(HttpServletResponse response, String formKey) {
-        List<UserFormItemEntity> list = userFormItemService.list(Wrappers.<UserFormItemEntity>lambdaQuery().eq(UserFormItemEntity::getFormKey, formKey).eq(UserFormItemEntity::getDisplayType, false));
+        List<UserFormItemEntity> list = userFormItemService.list(Wrappers.<UserFormItemEntity>lambdaQuery().eq(UserFormItemEntity::getFormKey, formKey).eq(UserFormItemEntity::getDisplayType, false).orderByAsc(UserFormItemEntity::getSort));
         List<String> rows = list.stream().map(item -> HtmlUtils.cleanHtmlTag(item.getLabel())).collect(Collectors.toList());
         // 示例数据
         List<String> demoList = CollUtil.newArrayList();
