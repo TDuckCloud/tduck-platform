@@ -4,7 +4,7 @@
     </a>
 </p>
 
-<p align="center">一款在线数据收集/问卷调查工具</p>
+<p align="center">一款免费的在线数据收集/问卷调查工具</p>
 
 <p align="center">
     <img src='https://gitee.com/TDuckApp/tduck-platform/badge/star.svg?theme=dark' alt='star'></img>
@@ -23,6 +23,8 @@
 简体中文 |  [English](./README_en.md)
 
 ## 项目介绍 - idea
+
+- Tduck填鸭表单是一款自定义表单工具，支持问卷调查、数据收集等功能。采用无代码理念支持开发自定义组件，简单拖拽即可生成表单，完成数据收集。采用SpringBoot+Vue+ElementUI技术栈，功能强大界面清新，支持一键部署。
 
 - 2019年初，同事想做一场针对全国范围内的照片数据收集活动，经过考察当时使用了一款saas工具;由于数据量较大，saas工具的部分业务组件、附件存储费用偏高(对我来说)；而且收集的内容隐私性要求高，在当时saas的工具无法满足独立部署。考虑到安全性和费用等问题，我开始规划自己的表单系统。逛了开源社区发现当时国内的开源表单系统比较少，或者说还达不到我们对「美」的追求；于是计划用空余时间写一个问卷表单系统，并从开源做起。```tduck表单```由此诞生。
 
@@ -52,7 +54,7 @@
 ### 版本区别
 - 功能对比：https://docs.qq.com/sheet/DSUhoR2pOc2RuZ0Va?tab=BB08J2
 - 社区版：https://demo.tduckapp.com/home
-- Pro版：https://pro.tduckcloud.com
+- 官网：https://www.tduckcloud.com
 - 小程序插件：https://doc.tduckcloud.com/functionDesc/uniappDesc.html
 
 ### 项目部署
@@ -77,7 +79,7 @@ docker run -e SPRING_DATASOURCE_URL="jdbc:mysql://127.0.0.1:3310/tduck-v4?useSSL
 - 常见问题：https://doc.tduckcloud.com/openSource/deploy/usualQuestion.html
 
 ### 关于问题咨询
-- 此项目为Tduck团队兼职维护，如果您在使用社区版过程中遇到了问题，可在社区查看常见问题或留言进行求助 - [点击进入填鸭问答社区](https://support.qq.com/products/389844/)
+- 此项目为Tduck团队兼职维护，如果您在使用社区版过程中遇到了问题，可在社区查看常见问题或留言进行求助 - [点击进入填鸭问答社区](https://gitee.com/TDuckApp/tduck-platform/issues)
 ------------------------------
 
 ## 预览-社区版 - Preview
