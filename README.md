@@ -15,7 +15,7 @@
     <br />   
     <a href="https://www.tduckcloud.com/" target="_blank">官方网站</a>&nbsp;
     <a href="https://doc.tduckcloud.com"  target="_blank" >部署文档</a>&nbsp;
-    <a href="https://pro.tduckcloud.com/s/QUiDSKq8" target="_blank">用户社区</a>&nbsp;
+    <a href="https://gitee.com/TDuckApp/tduck-platform/issues" target="_blank">用户社区</a>&nbsp;
     <a href="https://space.bilibili.com/409825300" target="_blank">bilibili频道</a>
 </p>
 
