@@ -28,6 +28,7 @@ import com.tduck.cloud.form.request.QueryFormResultRequest;
 import com.tduck.cloud.form.service.UserFormDataService;
 import com.tduck.cloud.form.service.UserFormItemService;
 import com.tduck.cloud.form.util.FormDataUtils;
+import com.tduck.cloud.form.util.FormWebHookUtils;
 import com.tduck.cloud.form.vo.FormDataTableVO;
 import com.tduck.cloud.form.vo.FormFieldVO;
 import com.tduck.cloud.storage.cloud.OssStorageFactory;
@@ -72,6 +73,7 @@ public class UserFormDataServiceImpl extends ServiceImpl<UserFormDataMapper, Use
         this.save(entity);
         formDataUtils.syncSaveFormData(entity);
         result.put("id", entity.getId());
+        FormWebHookUtils.pushFormDataSaveWebHook(entity, formKey);
         return result;
     }
 
@@ -143,6 +145,7 @@ public class UserFormDataServiceImpl extends ServiceImpl<UserFormDataMapper, Use
     public Boolean deleteByIds(List<String> dataIdList, String formKey) {
         baseMapper.deleteBatchIds(dataIdList);
         formDataUtils.asyncDeleteEsDocument(dataIdList, formKey);
+        FormWebHookUtils.pushFormDataDeleteWebHook(dataIdList, formKey);
         return true;
     }
 
@@ -154,6 +157,7 @@ public class UserFormDataServiceImpl extends ServiceImpl<UserFormDataMapper, Use
         boolean update = this.updateById(dataEntity);
         // 查询数据 同步到es 避免数据变空被覆盖
         formDataUtils.asyncUpdateEsDocument(dataEntity);
+        FormWebHookUtils.pushFormDataSaveWebHook(entity, dataEntity.getFormKey());
         return update;
     }
 

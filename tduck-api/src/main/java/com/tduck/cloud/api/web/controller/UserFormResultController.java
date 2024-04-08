@@ -27,6 +27,7 @@ import com.tduck.cloud.form.util.FormDataExportUtils;
 import com.tduck.cloud.form.util.FormDataImportUtils;
 import com.tduck.cloud.wx.mp.service.WxMpUserMsgService;
 import lombok.RequiredArgsConstructor;
+import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.web.bind.annotation.*;
@@ -61,7 +62,6 @@ public class UserFormResultController {
     private final FormDataExportUtils formDataExportUtils;
     private final UserFormService userFormService;
     private final UserFormViewCountService userFormViewCountService;
-    private final MailService mailService;
     private final WxMpUserMsgService userMsgService;
     private final ConcurrentMap<String, Integer> viewFormMap = new ConcurrentHashMap<>();
 
@@ -232,6 +232,7 @@ public class UserFormResultController {
     }
 
 
+    @SneakyThrows
     private void sendWriteResultNotify(String formKey) {
         FormSettingSchemaStruct formSettingSchema = userFormSettingService.getFormSettingSchema(formKey);
         if (ObjectUtil.isNull(formSettingSchema)) {
@@ -239,7 +240,7 @@ public class UserFormResultController {
         }
         UserFormEntity form = userFormService.getByKey(formKey);
         if (StrUtil.isNotBlank(formSettingSchema.getNewWriteNotifyEmail())) {
-            mailService.sendTemplateHtmlMail(formSettingSchema.getNewWriteNotifyEmail(), "新回复通知", "mail/form-write-notify", MapUtil.of("projectName", form.getName()));
+            MailService.sendTemplateHtmlMail(formSettingSchema.getNewWriteNotifyEmail(), "新回复通知", "mail/form-write-notify", MapUtil.of("projectName", form.getName()));
         }
 
         if (StrUtil.isNotBlank(formSettingSchema.getNewWriteNotifyWx())) {

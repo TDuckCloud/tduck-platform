@@ -1,16 +1,23 @@
 package com.tduck.cloud.wx.mp.config;
 
+import cn.hutool.core.collection.CollUtil;
+import cn.hutool.core.util.ObjectUtil;
+import cn.hutool.core.util.StrUtil;
+import com.tduck.cloud.common.util.JsonUtils;
+import com.tduck.cloud.common.util.SpringContextUtils;
+import com.tduck.cloud.envconfig.constant.ConfigConstants;
+import com.tduck.cloud.envconfig.service.SysEnvConfigService;
 import com.tduck.cloud.wx.mp.handler.*;
 import lombok.RequiredArgsConstructor;
 import me.chanjar.weixin.mp.api.WxMpMessageRouter;
 import me.chanjar.weixin.mp.api.WxMpService;
 import me.chanjar.weixin.mp.api.impl.WxMpServiceImpl;
 import me.chanjar.weixin.mp.config.impl.WxMpDefaultConfigImpl;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import java.util.List;
 import java.util.stream.Collectors;
 
 import static me.chanjar.weixin.common.api.WxConsts.EventType;
@@ -41,27 +48,43 @@ public class WxMpConfiguration {
     private final SubscribeHandler subscribeHandler;
     private final ScanHandler scanHandler;
     private final WxMpProperties properties;
+    private final SysEnvConfigService sysEnvConfigService;
 
 
     @Bean
+    @ConditionalOnBean(SysEnvConfigService.class)
     public WxMpService wxMpService() {
-        final List<WxMpProperties.MpConfig> configs = this.properties.getConfigs();
-        if (configs == null) {
-            throw new RuntimeException("公众号配置错误");
-        }
-
+        String mpConfigJson = sysEnvConfigService.getValueByKey(ConfigConstants.WX_MP_ENV_CONFIG);
         WxMpService service = new WxMpServiceImpl();
-        service.setMultiConfigStorages(configs
-                .stream().map(a -> {
-                    WxMpDefaultConfigImpl wxMpDefaultConfig = new WxMpDefaultConfigImpl();
-                    wxMpDefaultConfig.setAppId(a.getAppId());
-                    wxMpDefaultConfig.setSecret(a.getSecret());
-                    wxMpDefaultConfig.setToken(a.getToken());
-                    wxMpDefaultConfig.setAesKey(a.getAesKey());
-                    return wxMpDefaultConfig;
-                }).collect(Collectors.toMap(WxMpDefaultConfigImpl::getAppId, a -> a, (o, n) -> o)));
+        if (StrUtil.isBlank(mpConfigJson)) {
+            return service;
+        }
+        WxMpProperties.MpConfig configs = JsonUtils.jsonToObj(mpConfigJson, WxMpProperties.MpConfig.class);
+        if (ObjectUtil.isNull(configs)) {
+            return service;
+        }
+        setWxMpConfig(service, configs);
         return service;
     }
+
+
+    /**
+     * 设置微信公众号配置信息
+     *
+     * @param wxMpService 微信公众号服务
+     * @param configs     微信公众号配置信息
+     */
+    public static void setWxMpConfig(WxMpService wxMpService, WxMpProperties.MpConfig configs) {
+        wxMpService.setMultiConfigStorages(CollUtil.newArrayList(configs).stream().map(a -> {
+            WxMpDefaultConfigImpl wxMpRedisConfig = new WxMpDefaultConfigImpl();
+            wxMpRedisConfig.setAppId(a.getAppId());
+            wxMpRedisConfig.setSecret(a.getSecret());
+            wxMpRedisConfig.setToken(a.getToken());
+            wxMpRedisConfig.setAesKey(a.getAesKey());
+            return wxMpRedisConfig;
+        }).collect(Collectors.toMap(WxMpDefaultConfigImpl::getAppId, a -> a, (o, n) -> o)));
+    }
+
 
     @Bean
     public WxMpMessageRouter messageRouter(WxMpService wxMpService) {
@@ -71,12 +94,9 @@ public class WxMpConfiguration {
         newRouter.rule().handler(this.logHandler).next();
 
         // 接收客服会话管理事件
-        newRouter.rule().async(false).msgType(EVENT).event(KF_CREATE_SESSION)
-                .handler(this.kfSessionHandler).end();
-        newRouter.rule().async(false).msgType(EVENT).event(KF_CLOSE_SESSION)
-                .handler(this.kfSessionHandler).end();
-        newRouter.rule().async(false).msgType(EVENT).event(KF_SWITCH_SESSION)
-                .handler(this.kfSessionHandler).end();
+        newRouter.rule().async(false).msgType(EVENT).event(KF_CREATE_SESSION).handler(this.kfSessionHandler).end();
+        newRouter.rule().async(false).msgType(EVENT).event(KF_CLOSE_SESSION).handler(this.kfSessionHandler).end();
+        newRouter.rule().async(false).msgType(EVENT).event(KF_SWITCH_SESSION).handler(this.kfSessionHandler).end();
 
         // 门店审核事件
         newRouter.rule().async(false).msgType(EVENT).event(POI_CHECK_NOTIFY).handler(this.storeCheckNotifyHandler).end();
