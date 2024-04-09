@@ -46,6 +46,8 @@ import java.util.List;
 import java.util.Map;
 
 import static com.tduck.cloud.form.constant.FormRedisKeyConstants.FORM_RESULT_NUMBER;
+import static com.tduck.cloud.webhook.constant.WebhookEventConstants.WEBHOOK_EVENT_TYPE_FORM_DATA_ADD;
+import static com.tduck.cloud.webhook.constant.WebhookEventConstants.WEBHOOK_EVENT_TYPE_FORM_DATA_UPDATE;
 
 /**
  * 表单表单项(FormResult)表服务实现类
@@ -73,7 +75,7 @@ public class UserFormDataServiceImpl extends ServiceImpl<UserFormDataMapper, Use
         this.save(entity);
         formDataUtils.syncSaveFormData(entity);
         result.put("id", entity.getId());
-        FormWebHookUtils.pushFormDataSaveWebHook(entity, formKey);
+        FormWebHookUtils.pushFormDataSaveWebHook(entity, WEBHOOK_EVENT_TYPE_FORM_DATA_ADD);
         return result;
     }
 
@@ -157,7 +159,7 @@ public class UserFormDataServiceImpl extends ServiceImpl<UserFormDataMapper, Use
         boolean update = this.updateById(dataEntity);
         // 查询数据 同步到es 避免数据变空被覆盖
         formDataUtils.asyncUpdateEsDocument(dataEntity);
-        FormWebHookUtils.pushFormDataSaveWebHook(entity, dataEntity.getFormKey());
+        FormWebHookUtils.pushFormDataSaveWebHook(entity, WEBHOOK_EVENT_TYPE_FORM_DATA_UPDATE);
         return update;
     }
 
