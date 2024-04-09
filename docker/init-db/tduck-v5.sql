@@ -41,8 +41,16 @@ CREATE TABLE `ac_user`
     `update_time`        datetime                                                      NOT NULL DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=15672 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC COMMENT='用户';
-INSERT INTO ac_user (`id`, `name`, `avatar`, `gender`, `email`, `phone_number`, `password`, `reg_channel`, `last_login_channel`, `last_login_time`, `last_login_ip`, `password_type`, `deleted`, `create_time`, `update_time`) VALUES (1, 'admin', '', 1, 'admin@tduckcloud.com', NULL, '$2a$10$FgOTdkh3qVLE9DNgD4XzDu2PCJB3QtnGbriBPaMhMKTVWM9XYsiIm', '1', 2, '2023-04-06 09:35:22', '172.17.0.1', 1, 0, '2021-06-13 13:49:25', '2023-04-06 09:35:22');
-INSERT INTO ac_user (`id`, `name`, `avatar`, `gender`, `email`, `phone_number`, `password`, `reg_channel`, `last_login_channel`, `last_login_time`, `last_login_ip`, `password_type`, `deleted`, `create_time`, `update_time`) VALUES (2, 'test', '', 1, 'test@tduckapp.com', NULL, 'ef797c8118f02dfb649607dd5d3f8c7623048c9c063d532cc95c5ed7a898a64f', '1', 2, '2023-04-06 09:35:22', '172.17.0.1', 0, 0, '2021-06-13 13:49:25', '2023-04-06 09:35:22');
+INSERT INTO ac_user (`id`, `name`, `avatar`, `gender`, `email`, `phone_number`, `password`, `reg_channel`,
+                     `last_login_channel`, `last_login_time`, `last_login_ip`, `password_type`, `deleted`,
+                     `create_time`, `update_time`)
+VALUES (1, 'admin', '', 1, 'admin@tduckcloud.com', NULL, '$2a$10$FgOTdkh3qVLE9DNgD4XzDu2PCJB3QtnGbriBPaMhMKTVWM9XYsiIm',
+        '1', 2, '2023-04-06 09:35:22', '172.17.0.1', 1, 0, '2021-06-13 13:49:25', '2023-04-06 09:35:22');
+INSERT INTO ac_user (`id`, `name`, `avatar`, `gender`, `email`, `phone_number`, `password`, `reg_channel`,
+                     `last_login_channel`, `last_login_time`, `last_login_ip`, `password_type`, `deleted`,
+                     `create_time`, `update_time`)
+VALUES (2, 'test', '', 1, 'test@tduckapp.com', NULL, 'ef797c8118f02dfb649607dd5d3f8c7623048c9c063d532cc95c5ed7a898a64f',
+        '1', 2, '2023-04-06 09:35:22', '172.17.0.1', 0, 0, '2021-06-13 13:49:25', '2023-04-06 09:35:22');
 
 -- ----------------------------
 -- Table structure for ac_user_authorize
@@ -77,7 +85,7 @@ CREATE TABLE `ac_user_token`
     `create_time` datetime                                                      NOT NULL DEFAULT CURRENT_TIMESTAMP,
     `update_time` datetime                                                      NOT NULL DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (`id`) USING BTREE,
-    KEY           `token` (`token`)
+    constraint token unique (token)
 ) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC COMMENT='用户';
 
 -- ----------------------------
@@ -325,8 +333,12 @@ CREATE TABLE `sys_env_config`
     PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8mb3 ROW_FORMAT=DYNAMIC COMMENT='系统环境配置表';
 
-INSERT INTO sys_env_config (`id`, `env_key`, `env_value`, `update_time`, `create_time`) VALUES (9, 'systemInfoConfig', '{\"webBaseUrl\": \"\", \"openWxMpLogin\": false}', '2023-04-04 14:33:29', '2023-04-06 21:19:21');
-INSERT INTO sys_env_config (`id`, `env_key`, `env_value`, `update_time`, `create_time`) VALUES (14, 'fileEnvConfig', '{\"ossType\": \"LOCAL\"}', '2023-03-26 14:34:38', '2023-04-04 22:48:43');
+INSERT INTO sys_env_config (`id`, `env_key`, `env_value`, `update_time`, `create_time`)
+VALUES (9, 'systemInfoConfig', '{
+  \"webBaseUrl\": \"\", \"openWxMpLogin\": false}', '2023-04-04 14:33:29', '2023-04-06 21:19:21');
+INSERT INTO sys_env_config (`id`, `env_key`, `env_value`, `update_time`, `create_time`)
+VALUES (14, 'fileEnvConfig', '{
+  \"ossType\": \"LOCAL\"}', '2023-03-26 14:34:38', '2023-04-04 22:48:43');
 -- ----------------------------
 -- Table structure for wx_mp_user
 -- ----------------------------
@@ -350,6 +362,39 @@ CREATE TABLE `wx_mp_user`
     PRIMARY KEY (`id`) USING BTREE,
     KEY            `wx_union_id` (`head_img_url`(191)) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=15651 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC COMMENT='微信公众号用户 ';
+
+DROP TABLE IF EXISTS `webhook_config`;
+CREATE TABLE `webhook_config`
+(
+    `id`            bigint                                                        NOT NULL AUTO_INCREMENT COMMENT '主键ID',
+    `hook_name`     varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci           DEFAULT NULL COMMENT 'Webhook配置名称',
+    `source_type`   varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci  NOT NULL COMMENT '配置的来源类型',
+    `source_id`     varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '来源Id',
+    `url`           varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT 'Webhook的URL地址',
+    `request_type`  varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci  NOT NULL COMMENT 'Webhook请求类型，如POST、GET等',
+    `enabled`       tinyint(1) NOT NULL COMMENT '是否启用',
+    `other_options` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci COMMENT '其他Webhook配置，例如请求头等。以JSON格式存储',
+    `create_time`   timestamp                                                     NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+    `update_time`   timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+    PRIMARY KEY (`id`) USING BTREE,
+    KEY             `source_type` (`source_type`,`source_id`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=64 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC COMMENT='Webhook配置表';
+
+DROP TABLE IF EXISTS `webhook_event`;
+CREATE TABLE `webhook_event`
+(
+    `id`                bigint                                                        NOT NULL AUTO_INCREMENT COMMENT '主键ID',
+    `webhook_config_id` bigint                                                        NOT NULL COMMENT '关联的Webhook配置ID',
+    `source_id`         varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '来源的数据Id',
+    `event_type`        varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci  NOT NULL COMMENT 'Webhook事件类型',
+    `event_data`        text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT 'Webhook事件数据',
+    `status`            varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci  NOT NULL COMMENT 'Webhook事件状态，如pending、success、failed等',
+    `retry_times`       int                                                           NOT NULL DEFAULT '0' COMMENT 'Webhook事件重试次数',
+    `last_error`        text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci COMMENT 'Webhook事件最后一次错误信息',
+    `create_time`       timestamp                                                     NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+    `update_time`       timestamp                                                     NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+    PRIMARY KEY (`id`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=146 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC COMMENT='Webhook事件表';
 
 SET
 FOREIGN_KEY_CHECKS = 1;
