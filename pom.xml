@@ -44,6 +44,7 @@
         <module>tduck-account</module>
         <module>tduck-form</module>
         <module>tduck-wx-mp</module>
+        <module>tduck-webhook</module>
     </modules>
 
     <dependencyManagement>

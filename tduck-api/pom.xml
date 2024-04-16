@@ -53,6 +53,11 @@
         </dependency>
         <dependency>
             <groupId>com.tduck</groupId>
+            <artifactId>tduck-webhook</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>com.tduck</groupId>
             <artifactId>tduck-wx-mp</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>

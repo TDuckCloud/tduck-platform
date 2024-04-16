@@ -28,6 +28,7 @@ import com.tduck.cloud.form.request.QueryFormResultRequest;
 import com.tduck.cloud.form.service.UserFormDataService;
 import com.tduck.cloud.form.service.UserFormItemService;
 import com.tduck.cloud.form.util.FormDataUtils;
+import com.tduck.cloud.form.util.FormWebHookUtils;
 import com.tduck.cloud.form.vo.FormDataTableVO;
 import com.tduck.cloud.form.vo.FormFieldVO;
 import com.tduck.cloud.storage.cloud.OssStorageFactory;
@@ -45,6 +46,8 @@ import java.util.List;
 import java.util.Map;
 
 import static com.tduck.cloud.form.constant.FormRedisKeyConstants.FORM_RESULT_NUMBER;
+import static com.tduck.cloud.webhook.constant.WebhookEventConstants.WEBHOOK_EVENT_TYPE_FORM_DATA_ADD;
+import static com.tduck.cloud.webhook.constant.WebhookEventConstants.WEBHOOK_EVENT_TYPE_FORM_DATA_UPDATE;
 
 /**
  * 表单表单项(FormResult)表服务实现类
@@ -72,6 +75,7 @@ public class UserFormDataServiceImpl extends ServiceImpl<UserFormDataMapper, Use
         this.save(entity);
         formDataUtils.syncSaveFormData(entity);
         result.put("id", entity.getId());
+        FormWebHookUtils.pushFormDataSaveWebHook(entity, WEBHOOK_EVENT_TYPE_FORM_DATA_ADD);
         return result;
     }
 
@@ -143,6 +147,7 @@ public class UserFormDataServiceImpl extends ServiceImpl<UserFormDataMapper, Use
     public Boolean deleteByIds(List<String> dataIdList, String formKey) {
         baseMapper.deleteBatchIds(dataIdList);
         formDataUtils.asyncDeleteEsDocument(dataIdList, formKey);
+        FormWebHookUtils.pushFormDataDeleteWebHook(dataIdList, formKey);
         return true;
     }
 
@@ -154,6 +159,7 @@ public class UserFormDataServiceImpl extends ServiceImpl<UserFormDataMapper, Use
         boolean update = this.updateById(dataEntity);
         // 查询数据 同步到es 避免数据变空被覆盖
         formDataUtils.asyncUpdateEsDocument(dataEntity);
+        FormWebHookUtils.pushFormDataSaveWebHook(entity, WEBHOOK_EVENT_TYPE_FORM_DATA_UPDATE);
         return update;
     }
 

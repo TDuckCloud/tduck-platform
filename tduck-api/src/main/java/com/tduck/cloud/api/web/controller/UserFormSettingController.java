@@ -94,11 +94,16 @@ public class UserFormSettingController {
      */
     @GetMapping("/user/form/wx/notify-qrcode")
     public Result<String> getWxNotifyQrCode(@RequestParam("key") String formKey) throws WxErrorException {
-        String loginSceneStr = JsonUtils.objToJson(new WxMpQrCodeGenRequest(WxMpQrCodeGenRequest.QrCodeType.SUB_NOTIFY, formKey));
-        //5分钟有效
-        WxMpQrCodeTicket ticket = wxMpService.getQrcodeService().qrCodeCreateTmpTicket(loginSceneStr, 10 * 60);
-        String subNotifyQrcodeUrl = wxMpService.getQrcodeService().qrCodePictureUrl(ticket.getTicket());
-        return Result.success(subNotifyQrcodeUrl);
+        try {
+            String loginSceneStr = JsonUtils.objToJson(new WxMpQrCodeGenRequest(WxMpQrCodeGenRequest.QrCodeType.SUB_NOTIFY, formKey));
+            //5分钟有效
+            WxMpQrCodeTicket ticket = wxMpService.getQrcodeService().qrCodeCreateTmpTicket(loginSceneStr, 10 * 60);
+            String subNotifyQrcodeUrl = wxMpService.getQrcodeService().qrCodePictureUrl(ticket.getTicket());
+            return Result.success(subNotifyQrcodeUrl);
+        } catch (Exception e) {
+            log.error("获取微信通知二维码失败", e);
+            return Result.success("获取微信通知二维码失败");
+        }
     }
 
 

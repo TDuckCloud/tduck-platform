@@ -15,6 +15,7 @@ import com.tduck.cloud.common.email.MailService;
 import com.tduck.cloud.common.util.CacheUtils;
 import com.tduck.cloud.envconfig.service.SysEnvConfigService;
 import lombok.RequiredArgsConstructor;
+import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
@@ -33,16 +34,17 @@ public class UserValidateServiceImpl implements UserValidateService {
     private final static String REG_EMAIL_TITLE = "TDuck注册验证码";
     private final static String RESET_PWD_EMAIL_TITLE = "重置密码";
     private final CacheUtils cacheUtils;
-    private final MailService mailService;
     private final SysEnvConfigService sysEnvConfigService;
 
+    @SneakyThrows
     @Override
     public void sendEmailCode(String email) {
         String code = genValidateCode(StrUtil.format(AccountRedisKeyConstants.EMAIL_CODE, email));
         //发送邮件
-        mailService.sendTemplateHtmlMail(email, REG_EMAIL_TITLE, "mail/reg-code", MapUtil.of("code", code));
+        MailService.sendTemplateHtmlMail(email, REG_EMAIL_TITLE, "mail/reg-code", MapUtil.of("code", code));
     }
 
+    @SneakyThrows
     @Override
     public void sendResetPwdEmail(String email, UserEntity userEntity) {
         String code = getRestPasswordCode(userEntity.getId());
@@ -50,9 +52,10 @@ public class UserValidateServiceImpl implements UserValidateService {
         String webBaseUrl = sysEnvConfigService.getSystemEnvConfig().getWebBaseUrl();
         String resetPwdUrl = webBaseUrl + "/forget/password?code={}&email={}";
         Map<String, Object> params = ImmutableMap.of("email", email, "resetPwdUrl", StrUtil.format(resetPwdUrl, code, email));
-        mailService.sendTemplateHtmlMail(email, RESET_PWD_EMAIL_TITLE, "mail/reset-password", params);
+        MailService.sendTemplateHtmlMail(email, RESET_PWD_EMAIL_TITLE, "mail/reset-password", params);
     }
 
+    @SneakyThrows
     @Override
     public void sendUpdateAccountEmail(String email, Long userId) {
         String code = IdUtil.fastUUID();
@@ -61,7 +64,7 @@ public class UserValidateServiceImpl implements UserValidateService {
         String webBaseUrl = sysEnvConfigService.getSystemEnvConfig().getWebBaseUrl();
         String updateEmailUrl = webBaseUrl + "/account/forget/validate?type=updateEmail&code={}&email={}";
         Map<String, Object> params = ImmutableMap.of("updateEmailUrl", StrUtil.format(updateEmailUrl, code, email));
-        mailService.sendTemplateHtmlMail(email, RESET_PWD_EMAIL_TITLE, "mail/update-account-email", params);
+        MailService.sendTemplateHtmlMail(email, RESET_PWD_EMAIL_TITLE, "mail/update-account-email", params);
     }
 
     @Override
