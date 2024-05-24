@@ -38,10 +38,6 @@ public class WxPortalController {
             throw new IllegalArgumentException("请求参数非法，请核实!");
         }
 
-        if (!this.wxService.switchover(appid)) {
-            throw new IllegalArgumentException(String.format("未找到对应appid=[%s]的配置，请核实！", appid));
-        }
-
         if (wxService.checkSignature(timestamp, nonce, signature)) {
             return echostr;
         }

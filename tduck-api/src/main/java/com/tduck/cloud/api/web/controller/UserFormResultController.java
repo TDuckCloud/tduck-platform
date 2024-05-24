@@ -190,7 +190,6 @@ public class UserFormResultController {
      * @return Result
      */
     @PostMapping("/update")
-    @PermitAll
     public Result<Void> updateFormResult(@RequestBody UserFormDataEntity entity, HttpServletRequest request) {
         ValidatorUtils.validateEntity(entity);
         try {

@@ -30,7 +30,8 @@ public class MailConfiguration {
 
 
     public static synchronized void buildMailSender() {
-        Prop properties = JsonUtils.jsonToObj(SpringContextUtils.getBean(SysEnvConfigService.class).getValueByKey(ConfigConstants.EMAIL_ENV_CONFIG), Prop.class);
+        Prop properties = JsonUtils.jsonToObj(SpringContextUtils.getBean(SysEnvConfigService.class)
+                .getValueByKey(ConfigConstants.EMAIL_ENV_CONFIG), Prop.class);
         if (ObjectUtil.isNull(properties)) {
             return;
         }

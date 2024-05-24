@@ -4,6 +4,8 @@ services:
   mysql:
     image: mysql:8
     container_name: tduck-mysql
+    networks:
+      - tduck-network
     restart: always
     environment:
       - MYSQL_ROOT_PASSWORD=tduck@mysql
@@ -17,19 +19,20 @@ services:
       - ./init-db:/docker-entrypoint-initdb.d
     command: --default-authentication-plugin=mysql_native_password --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
 
-
   tduck-platform:
     image: "tduckcloud/tduck-platform"
     container_name: tduck-platform
+    networks:
+      - tduck-network
     restart: always
     ports:
-      - "8999:8999" # API端口
+      - "8999:8999"
     volumes:
-      - "upload-volume:/application/BOOT-INF/lib/upload"  # 持久化上传的文件
+      - "upload-volume:/application/BOOT-INF/lib/upload"
     environment:
       - "JAVA_OPTS=-Duser.language=zh -XX:+UseG1GC"
       - "TZ=Asia/Shanghai"
-      - "spring.datasource.url=jdbc:mysql://mysql:3306/tduck?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC&tinyInt1isBit=false" #数据库连接地址
+      - "spring.datasource.url=jdbc:mysql://mysql:3306/tduck?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC&tinyInt1isBit=false"
       - "spring.datasource.username=root"
       - "spring.datasource.password=tduck@mysql"
     links:
@@ -40,3 +43,7 @@ services:
 volumes:
   mysql-volume:
   upload-volume:
+
+networks:
+  tduck-network:
+    external: true

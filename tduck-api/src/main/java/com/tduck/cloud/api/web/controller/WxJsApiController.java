@@ -37,9 +37,13 @@ public class WxJsApiController {
     @GetMapping("/authorization/url")
     @PermitAll
     public Result getAuthorizationUrl(@RequestParam @NotBlank String url) {
-        String appId = wxService.getWxMpConfigStorage().getAppId();
-        String authorizationUrl = StrUtil.format("https://open.weixin.qq.com/connect/oauth2/authorize?appid={}&redirect_uri={}&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect", appId, URLUtil.encode(url));
-        return Result.success(authorizationUrl);
+        try {
+            String appId = wxService.getWxMpConfigStorage().getAppId();
+            String authorizationUrl = StrUtil.format("https://open.weixin.qq.com/connect/oauth2/authorize?appid={}&redirect_uri={}&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect", appId, URLUtil.encode(url));
+            return Result.success(authorizationUrl);
+        } catch (Exception e) {
+            return Result.success();
+        }
     }
 
 
@@ -51,7 +55,7 @@ public class WxJsApiController {
      */
     @GetMapping("/authorization/user/info")
     @PermitAll
-    public Result<WxOAuth2UserInfo> greetUser(@RequestParam @NotBlank String code)  {
+    public Result<WxOAuth2UserInfo> greetUser(@RequestParam @NotBlank String code) {
         WxOAuth2UserInfo userInfo = null;
         try {
             WxOAuth2AccessToken accessToken = wxService.getOAuth2Service().getAccessToken(code);
