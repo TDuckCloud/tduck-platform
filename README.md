@@ -49,7 +49,7 @@ TDuck填鸭表单 是国内首批基于Vue开源的问卷/表单收集工具。
 
 2024年4月支持表单数据通过WebHook集成至大屏端，实现数据同步：[表单与TReport数据同步教程](https://www.bilibili.com/video/BV1MH4y1K7Xa/)；
 
-2024年5月一次全新的尝试，我们推出 **免费的在线产品**  <a href="https://nium.top" target="_blank">🔥 Nium牛码二维码</a> 开始探索二维码和表单的新能力。
+2024年5月一次全新的尝试，我们推出 **免费的在线产品**  <a href="https://nium.top" target="_blank">🔥 Nium牛码二维码</a> 开始探索二维码和表单的新能力...
 
 ---
 
