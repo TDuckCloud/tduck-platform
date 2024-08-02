@@ -42,7 +42,7 @@ CREATE TABLE `ac_user`  (
 -- ----------------------------
 -- Records of ac_user
 -- ----------------------------
-INSERT INTO `ac_user` VALUES (201, 'Tduck001', 'https://freebrio.oss-cn-shanghai.aliyuncs.com/t/avatar.jpg', 0, 'test@tduckapp.com', NULL, 'ef797c8118f02dfb649607dd5d3f8c7623048c9c063d532cc95c5ed7a898a64f', '1', 2, '2022-04-09 09:13:42', '127.0.0.1', 0, '2020-11-12 11:50:50', '2022-04-09 09:13:42');
+INSERT INTO `ac_user` VALUES (201, 'Tduck001', 'https://oss-cn-shanghai.aliyuncs.com/t/xxx.jpg', 0, 'test@tduckapp.com', NULL, 'ef797c8118f02dfb649607dd5d3f8c7623048c9c063d532cc95c5ed7a898a64f', '1', 2, '2022-04-09 09:13:42', '127.0.0.1', 0, '2020-11-12 11:50:50', '2022-04-09 09:13:42');
 
 -- ----------------------------
 -- Table structure for ac_user_authorize

@@ -23,6 +23,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 
@@ -77,6 +79,10 @@ public class FormDataMysqlService extends FormDataBaseService {
 
     @Override
     public FormDataTableVO search(QueryFormResultRequest request) {
+        // 校验formKey只允许存在字符串和数字
+        if (StrUtil.isBlank(request.getFormKey()) || !request.getFormKey().matches("^[a-zA-Z0-9]+$")) {
+            return new FormDataTableVO();
+        }
         // 拼接sql
         StringBuilder sqlBuilder = new StringBuilder();
         sqlBuilder.append("select * from fm_user_form_data where form_key = '").append(request.getFormKey()).append("'");
@@ -102,6 +108,21 @@ public class FormDataMysqlService extends FormDataBaseService {
         // 过滤指定字段
         List<Map> maps = expandData(userFormDataEntities, request.getFilterFields());
         return new FormDataTableVO(maps, total);
+    }
+
+
+    /**
+     * 判断sql是否合法
+     *
+     * @param str the string
+     * @return true 不合法 false 合法
+     */
+    protected static boolean sqlValidate(String str) {
+        String badStr = "(?:')|(?:--)|(/\\*(?:.|[\\n\\r])*?\\*/)|" + "(\\b(select|update|and|or|delete|insert|trancate|char|into|substr|ascii|declare|exec|count|master|into|drop|execute|\\>|\\<)\\b)";
+        Pattern compile = Pattern.compile(badStr, Pattern.CASE_INSENSITIVE);
+        Matcher matcher = compile.matcher(str);
+        //使用正则表达式进行匹配
+        return matcher.find();
     }
 
 
