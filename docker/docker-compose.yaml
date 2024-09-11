@@ -2,7 +2,7 @@ version: '3.6'
 services:
 
   mysql:
-    image: mysql:8
+    image: mysql:8.0.36
     container_name: tduck-mysql
     networks:
       - tduck-network
@@ -17,7 +17,8 @@ services:
     volumes:
       - mysql-volume:/var/lib/mysql
       - ./init-db:/docker-entrypoint-initdb.d
-    command: --default-authentication-plugin=mysql_native_password --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+    command: --default-authentication-plugin=caching_sha2_password --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+
 
   tduck-platform:
     image: "tduckcloud/tduck-platform"
