@@ -18,7 +18,11 @@ services:
       - mysql-volume:/var/lib/mysql
       - ./init-db:/docker-entrypoint-initdb.d
     command: --default-authentication-plugin=caching_sha2_password --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
-
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
 
   tduck-platform:
     image: "tduckcloud/tduck-platform"
@@ -33,13 +37,14 @@ services:
     environment:
       - "JAVA_OPTS=-Duser.language=zh -XX:+UseG1GC"
       - "TZ=Asia/Shanghai"
-      - "spring.datasource.url=jdbc:mysql://mysql:3306/tduck?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC&tinyInt1isBit=false"
+      - "spring.datasource.url=jdbc:mysql://mysql:3306/tduck?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC&tinyInt1isBit=false&allowPublicKeyRetrieval=true"
       - "spring.datasource.username=root"
       - "spring.datasource.password=tduck@mysql"
     links:
       - mysql:mysql
     depends_on:
-      - mysql
+      mysql:
+        condition: service_healthy
 
 volumes:
   mysql-volume:
@@ -47,4 +52,4 @@ volumes:
 
 networks:
   tduck-network:
-    external: true
+    driver: bridge
