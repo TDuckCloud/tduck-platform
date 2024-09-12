@@ -66,7 +66,7 @@ TDuck填鸭表单 是国内首批基于Vue开源的问卷/表单收集工具。
 
 2024年4月支持表单数据通过WebHook集成至大屏端，实现数据同步：[表单与TReport数据同步教程](https://www.bilibili.com/video/BV1MH4y1K7Xa/)；
 
-2024年5月一次全新的尝试，我们推出 **免费的在线产品**  <a href="https://nium.top" target="_blank">🔥 Nium牛码二维码</a> 开始探索二维码和表单的新能力...
+2024年5月一次全新的尝试，我们推出 **免费的在线产品**  <a href="https://nium.top" target="_blank">Nium牛码二维码</a> 开始探索二维码和表单的新能力...
 
 ---
 
@@ -85,16 +85,25 @@ TDuck填鸭表单 是国内首批基于Vue开源的问卷/表单收集工具。
 
 ### 三、如何体验及文档
 - 查看不同版本的 <a href="http://www.tduckcloud.com" target="_blank">在线体验</a>
-- 部署文档、docker快速启动，请查看 <a href="https://doc.tduckcloud.com" target="_blank">项目文档</a>
+- 使用宝塔一键安装，请查看 <a href="https://doc.tduckcloud.com/openSource/deploy/deployforbt.html" target="_blank">项目文档</a>
 - 前端项目地址： https://gitee.com/TDuckApp/tduck-front
 
-- 社区版：https://demo.tduckapp.com/home
+- 社区版体验地址：https://demo.tduckapp.com/home
 - 官网：https://www.tduckcloud.com
-- 小程序插件：https://doc.tduckcloud.com/functionDesc/uniappDesc.html
+- 小程序插件（社区版不适用）：https://doc.tduckcloud.com/functionDesc/uniappDesc.html
 
 ### 四、项目部署
 > - 部署管理员账号：admin@tduckcloud.com
 > - 部署默认密码：123456
+
+
+#### 【🔥推荐】使用宝塔面板一键安装
+详细文档：https://doc.tduckcloud.com/openSource/deploy/deployforbt.html
+
+
+*无技术难度，会安装宝塔面板即可，软件商店选择填鸭表单点击安装即可。
+
+
 
 #### ①使用docker命令快速启动
 ```shell
