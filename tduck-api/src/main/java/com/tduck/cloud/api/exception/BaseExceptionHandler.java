@@ -2,6 +2,7 @@ package com.tduck.cloud.api.exception;
 
 import cn.hutool.core.exceptions.ValidateException;
 import com.tduck.cloud.common.constant.ResponseCodeConstants;
+import com.tduck.cloud.common.exception.AuthorizationException;
 import com.tduck.cloud.common.util.Result;
 import lombok.extern.slf4j.Slf4j;
 import me.chanjar.weixin.common.error.WxErrorException;

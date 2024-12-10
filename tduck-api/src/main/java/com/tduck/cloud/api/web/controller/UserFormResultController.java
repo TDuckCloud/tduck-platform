@@ -159,7 +159,11 @@ public class UserFormResultController {
             return Result.failed(userFormSettingStatus.getMsg());
         }
         // 如果已经登陆了也记录用户信息 try catch 避免抛出异常
-        entity.setCreateBy(SecurityUtils.getUserId() != null ? String.valueOf(SecurityUtils.getUserId()) : null);
+        try {
+            entity.setCreateBy(SecurityUtils.getUserId() != null ? String.valueOf(SecurityUtils.getUserId()) : null);
+        } catch (Exception ignored) {
+        }
+
         Map<String, Object> result = formResultService.saveFormResult(entity);
         ThreadUtil.execAsync(() -> {
             sendWriteResultNotify(entity.getFormKey());

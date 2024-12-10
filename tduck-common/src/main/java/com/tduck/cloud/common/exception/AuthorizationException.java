@@ -1,6 +1,4 @@
-package com.tduck.cloud.api.exception;
-
-import com.tduck.cloud.common.exception.BaseException;
+package com.tduck.cloud.common.exception;
 
 /**
  * @author : smalljop
