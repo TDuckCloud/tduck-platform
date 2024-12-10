@@ -58,7 +58,7 @@ TDuck填鸭表单 是国内首批基于Vue开源的问卷/表单收集工具。
 
 2023年5月推出: <a href="https://report.tduckcloud.com" target="_blank">TReport可视化大屏</a>；
 
-2023年12月推出: <a href="https://www.tduckcloud.com/x" target="_blank">🔥填鸭表单-TDuckX-Vue3旗舰版</a>；
+2023年12月推出: <a href="https://www.tduckcloud.com/x" target="_blank">🔥填鸭表单-TDuckX-Vue3版</a>；
 
 > ps：问卷系统有3个版本，此处绕不清的友友可以看看 [填表单功能对比](http://https://docs.qq.com/sheet/DSUhoR2pOc2RuZ0Va?tab=BB08J2)
 
