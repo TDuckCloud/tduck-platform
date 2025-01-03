@@ -50,21 +50,18 @@ TDuck填鸭表单 是国内首批基于Vue开源的问卷/表单收集工具。
 
 ---
 
-### 发展历程
+### 其他产品
 
-2019年一次偶然的启发，我们开始开发 [TDuck填鸭表单社区版](https://demo.tduckapp.com)， 经过了2年的优化沉淀功能趋于稳定；
+[填鸭表单-TDuckPro-Vue2版](https://pro.tduckcloud.com)；
 
-2021年下半年推出了: [填鸭表单-TDuckPro版](https://pro.tduckcloud.com)；
+[填鸭表单-TDuckX-Vue3版](https://x.tduckcloud.com)；
 
-2023年5月推出: <a href="https://report.tduckcloud.com" target="_blank">TReport可视化大屏</a>；
+[填鸭表单-TReport可视化大屏](https://report.tduckcloud.com)；
 
-2023年12月推出: <a href="https://www.tduckcloud.com/x" target="_blank">🔥填鸭表单-TDuckX-Vue3版</a>；
 
-> ps：问卷系统有3个版本，此处绕不清的友友可以看看 [填鸭表单功能对比](http://https://docs.qq.com/sheet/DSUhoR2pOc2RuZ0Va?tab=BB08J2)
+> ps：表单系统有3个版本（社区、Pro、TDuckX），此处绕不清的友友可以看看 [填鸭表单功能对比](http://https://docs.qq.com/sheet/DSUhoR2pOc2RuZ0Va?tab=BB08J2)
 
-我们一直在寻找一个数据收集后的呈现方案，同时为了方便所有TDuck的使用用户，我们决定在 2024年1月 **全量开源** 大屏产品：<a href="https://gitee.com/TDuckApp/tduck-report-platform" target="_blank">TReport可视化大屏</a>，所有用户都能 **免费** 通过大屏将数据进行快捷呈现！
-
-2024年4月支持所有版本的填鸭表单数据通过WebHook集成至大屏端，实现数据同步：[表单与TReport数据同步教程](https://www.bilibili.com/video/BV1MH4y1K7Xa/)；
+所有版本的填鸭表单数据都可以通过WebHook集成至大屏端，实现数据同步：[表单与TReport数据同步教程](https://www.bilibili.com/video/BV1MH4y1K7Xa/)；
 
 ---
 
