@@ -1,15 +1,18 @@
-FROM openjdk:8u272-jdk as builder
-WORKDIR application
+# 使用 openjdk:8-jdk-alpine 作为基础镜像
+FROM openjdk:8-jdk-alpine
+
+# 安装字体和 fontconfig
+RUN apk add --no-cache ttf-dejavu fontconfig
+
+# 设置工作目录
+WORKDIR /application
+
+# 将构建好的 JAR 文件拷贝到容器中，假设你已经在本地生成了 JAR 文件
 ARG JAR_FILE=target/tduck-api.jar
 COPY ${JAR_FILE} application.jar
-RUN java -Djarmode=layertools -jar application.jar extract
 
-FROM openjdk:8u272-jdk
-WORKDIR application
-COPY --from=builder application/dependencies/ ./
-COPY --from=builder application/snapshot-dependencies/ ./
-COPY --from=builder application/spring-boot-loader/ ./
-COPY --from=builder application/application/ ./
-COPY docker-entrypoint.sh ./
-RUN chmod +x docker-entrypoint.sh
-ENTRYPOINT ["./docker-entrypoint.sh"]
+# 暴露 Spring Boot 默认的端口 8999
+EXPOSE 8999
+
+# 运行 Spring Boot 应用
+ENTRYPOINT ["java", "-jar", "application.jar"]
