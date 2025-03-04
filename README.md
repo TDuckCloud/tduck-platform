@@ -50,8 +50,6 @@ TDuck填鸭表单 是国内首批基于Vue开源的问卷/表单收集工具。
 - 支持配置TReport可视化大屏，高效展示数据：https://gitee.com/TDuckApp/tduck-report-platform
 
 
-<img src="https://doc-oss.tduckcloud.com/doc/20250304180718.png" style="width: 100px;"/>
-
 
 ---
 
