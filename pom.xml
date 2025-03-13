@@ -33,7 +33,7 @@
         <weixin-java.version>4.1.0</weixin-java.version>
         <captcha.version>1.2.8</captcha.version>
         <fastjson.version>2.0.26</fastjson.version>
-        <tencentcloud.version>4.0.11</tencentcloud.version>
+        <tencentcloud.version>3.1.977</tencentcloud.version>
         <poi.version>5.1.0</poi.version>
         <okhttp3.version>4.11.0</okhttp3.version>
         <okio.version>3.5.0</okio.version>

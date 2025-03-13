@@ -339,7 +339,8 @@ public class UserFormController {
         FormAuthUtils.hasPermission(request.getFormKey());
         ValidatorUtils.validateEntity(request, UpdateGroup.class);
         request.setSpecialType(formItemService.isSpecialTypeItem(request));
-        boolean update = formItemService.update(request, Wrappers.<UserFormItemEntity>lambdaQuery().eq(UserFormItemEntity::getFormKey, request.getFormKey()).eq(UserFormItemEntity::getFormItemId, request.getFormItemId()));
+        boolean update = formItemService.update(request, Wrappers.<UserFormItemEntity>lambdaQuery()
+                .eq(UserFormItemEntity::getFormKey, request.getFormKey()).eq(UserFormItemEntity::getFormItemId, request.getFormItemId()));
         return Result.success(update);
     }
 

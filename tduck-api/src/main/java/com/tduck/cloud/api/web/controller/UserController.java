@@ -22,6 +22,7 @@ import com.tduck.cloud.wx.mp.entity.WxMpUserEntity;
 import com.tduck.cloud.wx.mp.request.WxMpQrCodeGenRequest;
 import com.tduck.cloud.wx.mp.service.WxMpUserService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import me.chanjar.weixin.common.error.WxErrorException;
 import me.chanjar.weixin.mp.api.WxMpService;
 import me.chanjar.weixin.mp.bean.result.WxMpQrCodeTicket;
@@ -32,6 +33,7 @@ import org.springframework.web.bind.annotation.*;
  * @description :
  * @create : 2020-12-18 15:50
  **/
+@Slf4j
 @RequestMapping("/user")
 @RestController
 @RequiredArgsConstructor
@@ -129,9 +131,14 @@ public class UserController {
     public Result getBindWxQrcode(@RequestAttribute Long userId) throws WxErrorException {
         String bindSceneStr = JsonUtils.objToJson(new WxMpQrCodeGenRequest(WxMpQrCodeGenRequest.QrCodeType.BIND_ACCOUNT, String.valueOf(userId)));
         //5分钟有效
-        WxMpQrCodeTicket ticket = wxMpService.getQrcodeService().qrCodeCreateTmpTicket(bindSceneStr, 10 * 60);
-        String bindAccountQrcodeUrl = wxMpService.getQrcodeService().qrCodePictureUrl(ticket.getTicket());
-        return Result.success(bindAccountQrcodeUrl);
+        try {
+            WxMpQrCodeTicket ticket = wxMpService.getQrcodeService().qrCodeCreateTmpTicket(bindSceneStr, 10 * 60);
+            String bindAccountQrcodeUrl = wxMpService.getQrcodeService().qrCodePictureUrl(ticket.getTicket());
+            return Result.success(bindAccountQrcodeUrl);
+        } catch (Exception e) {
+            log.error("获取绑定二维码失败", e);
+        }
+        return Result.success("未配置微信参数");
     }
 
 
