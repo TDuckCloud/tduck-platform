@@ -62,7 +62,7 @@ The system adopts the concept of no-code design. Users can create questionnaire 
 [TReport Visual Big Screen of TDuck Fill-in-the-Blank Form](https://report.tduckcloud.com);
 
 
-> ps: There are three versions of the form system (Community, Pro, TDuckX). For those who are confused here, you can check out [Function Comparison of TDuck Fill-in-the-Blank Form](http://https://docs.qq.com/sheet/DSUhoR2pOc2RuZ0Va?tab=BB08J2)
+> ps: There are three versions of the form system (Community, Pro, TDuckX). For those who are confused here, you can check out [Function Comparison of TDuck Fill-in-the-Blank Form](https://docs.qq.com/sheet/DSUhoR2pOc2RuZ0Va?tab=BB08J2)
 
 The data of all versions of the TDuck fill-in-the-blank form can be integrated into the big screen through WebHook to achieve data synchronization: [Tutorial on Data Synchronization between Form and TReport](https://www.bilibili.com/video/BV1MH4y1K7Xa/);
 
