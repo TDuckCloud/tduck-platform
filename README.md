@@ -62,7 +62,7 @@ TDuck填鸭表单 是国内首批基于Vue开源的问卷/表单收集工具。
 [填鸭表单-TReport可视化大屏](https://report.tduckcloud.com)；
 
 
-> ps：表单系统有3个版本（社区、Pro、TDuckX），此处绕不清的友友可以看看 [填鸭表单功能对比](http://https://docs.qq.com/sheet/DSUhoR2pOc2RuZ0Va?tab=BB08J2)
+> ps：表单系统有3个版本（社区、Pro、TDuckX），此处绕不清的友友可以看看 [填鸭表单功能对比](https://docs.qq.com/sheet/DSUhoR2pOc2RuZ0Va?tab=BB08J2)
 
 所有版本的填鸭表单数据都可以通过WebHook集成至大屏端，实现数据同步：[表单与TReport数据同步教程](https://www.bilibili.com/video/BV1MH4y1K7Xa/)；
 
