@@ -89,8 +89,12 @@ public class FormDataMysqlService extends FormDataBaseService {
         //1. 拼接条件 查询条件 用大括号包起来 里面的条件会拼接 OR 或者 AND 不能影响其他默认附带条件 比如form_key 否则会错误查询
         StringBuilder whereBuilder = new StringBuilder();
         // 查询指定id数据
-        if (ObjectUtil.isNotNull(request.getDataIds()) && 0 != request.getDataIds().size()) {
-            whereBuilder.append(" and id in (").append(CollUtil.join(request.getDataIds(), ",")).append(")");
+        if (ObjectUtil.isNotNull(request.getDataIds()) && !request.getDataIds().isEmpty()) {
+            String ids = CollUtil.join(request.getDataIds(), ",");
+            if (!ids.matches("^[\\d,]+$")) {
+                throw new IllegalArgumentException("错误的参数");
+            }
+            whereBuilder.append(" and id in (").append(ids).append(")");
         }
         // 先查询总数，查询总数后再进行拼接order by 及 limit 语句
         StringBuilder countBuilder = new StringBuilder("select count(1) from fm_user_form_data where form_key = '").append(request.getFormKey()).append("'");
