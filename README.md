@@ -62,7 +62,7 @@ TDuck填鸭表单 是国内首批基于Vue开源的问卷/表单收集工具。
 [填鸭表单-TReport可视化大屏](https://report.tduckcloud.com)；
 
 
-> ps：表单系统有3个版本（社区、Pro、TDuckX），此处绕不清的友友可以看看 [填鸭表单功能对比](https://docs.qq.com/sheet/DSUhoR2pOc2RuZ0Va?tab=BB08J2)
+> ps：表单系统有3个版本（社区、Pro、TDuckX），此处绕不清的友友可以看看 [填鸭表单功能对比](http://https://docs.qq.com/sheet/DSUhoR2pOc2RuZ0Va?tab=BB08J2)
 
 所有版本的填鸭表单数据都可以通过WebHook集成至大屏端，实现数据同步：[表单与TReport数据同步教程](https://www.bilibili.com/video/BV1MH4y1K7Xa/)；
 
@@ -104,9 +104,39 @@ TDuck填鸭表单 是国内首批基于Vue开源的问卷/表单收集工具。
 
 
 #### ①使用docker命令快速启动
-```shell
-docker run -e SPRING_DATASOURCE_URL="jdbc:mysql://127.0.0.1:3310/tduck-v4?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai&tinyInt1isBit=false&nullCatalogMeansCurrent=true" -e SPRING_DATASOURCE_USERNAME=root -e SPRING_DATASOURCE_PASSWORD=tduck@tduck -p 8999:8999  -v /upload:/application/BOOT-INF/lib/upload  tduckcloud/tduck-platform
+
+
+```bash
+docker run -d \
+  --name tduck-platform \
+  --restart=always \
+  -p 8999:8999 \
+  -e SPRING_DATASOURCE_URL="jdbc:mysql://127.0.0.1:3310/tduck-v4?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai&tinyInt1isBit=false&nullCatalogMeansCurrent=true" \
+  -e SPRING_DATASOURCE_USERNAME=root \
+  -e SPRING_DATASOURCE_PASSWORD=tduck@tduck \
+  -v /upload:/application/BOOT-INF/lib/upload \
+  tduckcloud/tduck-platform
 ```
+
+---
+
+## 📌 参数说明
+
+| 参数 | 说明 |
+|------|------|
+| `--name tduck-platform` | 设置容器名称，便于后续停止/重启管理 |
+| `--restart=always` | 容器异常退出时自动重启 |
+| `-p 8999:8999` | 将容器内部 8999 端口映射到主机 |
+| `-e SPRING_DATASOURCE_URL=...` | 配置 MySQL 数据库连接 URL；注意：如果 MySQL 在宿主机上，请将 <host> 改为 host.docker.internal（Mac/Windows）或宿主机 IP（Linux）。 |
+| `-e SPRING_DATASOURCE_USERNAME` | MySQL 用户名 |
+| `-e SPRING_DATASOURCE_PASSWORD` | MySQL 密码 |
+| `-v /upload:/application/BOOT-INF/lib/upload` | 上传目录挂载，确保宿主机已有该目录 |
+
+
+
+> 注意：如果 MySQL 在宿主机上，请将 `<host>` 改为 `host.docker.internal`（Mac/Windows）或宿主机 IP（Linux）。
+
+
 #### ②使用docker-compose 部署环境及项目
 ```shell
 1.先安装docker-compose
@@ -145,18 +175,13 @@ docker run -e SPRING_DATASOURCE_URL="jdbc:mysql://127.0.0.1:3310/tduck-v4?useSSL
 
 ### 七、免责声明
 
-**近期我们收到了有关单位的反馈，有用户在使用填鸭表单产品从事非法行为**。
+近期收到反馈，有用户使用 TDuck 产品从事非法活动，我们特此声明：
 
-TDUCK填鸭表单一直严格遵守国家相关法律法规，致力于确保平台和用户的安全，为用户提供绿色、安全、健康、便捷的工具。 为此，TDUCK特发表以下优化后的免责声明：
+- TDuck 始终遵守国家法律法规，倡导合法合规使用产品。
+- 未授权任何代理商、经销商、分公司或合作单位，所有销售行为均通过官网或官方渠道进行。
+- 若发现非法用途，我们将配合监管部门调查并保留追责权利。
+- 所有资源使用均由用户自担风险，我们不对非法行为产生的后果负责。
 
-TDUCK填鸭表单仅通过官网tduckcloud.com展示产品信息，并提供官网上介绍的销售联系方式进行直接销售。我们没有授权任何分销商，也没有任何分公司、代理商、办事处、经销商等销售TDUCK旗下的产品。
-
-任何用户不得利用TDUCK的产品从事非法行为，必须合法合规地使用产品。如果我们发现客户在使用产品时存在任何非法行为，**我们将会全力配合有关机关进行调查或向政府部门举报**。TDUCK不承担因客户的非法行为而产生的任何法律责任。
-
-TDUCK填鸭表单不提供任何形式的保证。所有与使用本站相关的资源由客户自行承担直接风险。
-
-TDUCK填鸭表单一直坚持合法合规的开发和销售软件产品。我们诚挚地希望所有用户遵守国家法律法规，在合法的前提下使用我们的产品。
-
-特此声明。
+**请用户合法合规使用 TDuck 产品，共同维护健康、安全的开源环境。**
 
 
