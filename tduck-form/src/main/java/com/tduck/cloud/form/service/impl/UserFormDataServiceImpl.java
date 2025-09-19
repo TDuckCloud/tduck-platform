@@ -88,6 +88,7 @@ public class UserFormDataServiceImpl extends ServiceImpl<UserFormDataMapper, Use
      */
     @Override
     public Result downloadFormResultFile(QueryFormResultRequest request) {
+        request.validateSqlInjection();
         String uuid = IdUtil.simpleUUID();
         List<UserFormItemEntity> userFormItemEntityList = userFormItemService.list(Wrappers.<UserFormItemEntity>lambdaQuery().eq(UserFormItemEntity::getFormKey, request.getFormKey()).in(UserFormItemEntity::getType, CollUtil.newArrayList(FormItemTypeEnum.UPLOAD.toString(), FormItemTypeEnum.IMAGE_UPLOAD.toString())));
         //结果

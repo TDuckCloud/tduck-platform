@@ -1,6 +1,8 @@
 package com.tduck.cloud.form.request;
 
 import cn.hutool.core.date.DatePattern;
+import com.baomidou.mybatisplus.core.toolkit.Assert;
+import com.baomidou.mybatisplus.core.toolkit.sql.SqlInjectionUtils;
 import com.tduck.cloud.form.entity.struct.FormDataFilterStruct;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -53,5 +55,19 @@ public class QueryFormResultRequest {
      */
     private List<String> dataIds;
 
+
+    public void validateSqlInjection() {
+        Assert.isTrue(SqlInjectionUtils.check(formKey), "参数异常");
+        if (filterFields != null) {
+            for (String field : filterFields) {
+                Assert.isTrue(SqlInjectionUtils.check(field), "参数异常");
+            }
+        }
+        if (dataIds != null) {
+            for (String id : dataIds) {
+                Assert.isTrue(SqlInjectionUtils.check(id), "参数异常");
+            }
+        }
+    }
 
 }

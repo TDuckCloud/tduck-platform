@@ -22,7 +22,6 @@ import javax.servlet.http.HttpServletResponse;
 public class AuthorizationInterceptor extends HandlerInterceptorAdapter {
     public static final String USER_KEY = "userId";
 
-
     private final JwtUtils jwtUtils;
 
     private final UserTokenService userTokenService;
@@ -43,24 +42,22 @@ public class AuthorizationInterceptor extends HandlerInterceptorAdapter {
         } else {
             return true;
         }
+        boolean noLogin = annotation != null || permitAll != null;
 
-        if (annotation != null || permitAll != null) {
-            return true;
-        }
-
-        //获取用户凭证
+        // 获取用户凭证
         String token = request.getHeader(jwtUtils.getHeader());
         if (StrUtil.isBlank(token)) {
             token = request.getParameter(jwtUtils.getHeader());
         }
-
-        //凭证为空
-        if (StrUtil.isBlank(token)) {
+        // 凭证为空
+        if (StrUtil.isBlank(token) && !noLogin) {
             throw new AuthorizationException(jwtUtils.getHeader() + "不能为空");
         }
 
         Claims claims = jwtUtils.getClaimByToken(token);
-        if (claims == null || jwtUtils.isTokenExpired(claims.getExpiration())) {
+        if (claims == null && noLogin) {
+            return true;
+        } else if (claims == null || jwtUtils.isTokenExpired(claims.getExpiration())) {
             throw new AuthorizationException(jwtUtils.getHeader() + "失效，请重新登录");
         }
         long userId = Long.parseLong(claims.getSubject());
@@ -72,7 +69,7 @@ public class AuthorizationInterceptor extends HandlerInterceptorAdapter {
         // 设置userId到request里，后续根据userId，获取用户信息
         request.setAttribute(USER_KEY, userId);
         // 不允许访问
-        if (StrUtil.containsAny(request.getRequestURI(), "/mange/", "/system/env/")) {
+        if (StrUtil.containsAny(request.getRequestURL().toString(), "/mange/", "/system/env/")) {
             if (!SecurityUtils.isAdmin(userId)) {
                 throw new AuthorizationException("无权限访问");
             }

@@ -1,6 +1,7 @@
 package com.tduck.cloud.api.web.controller;
 import java.util.List;
 
+import cn.hutool.core.lang.Assert;
 import cn.hutool.core.util.ObjUtil;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
@@ -9,6 +10,7 @@ import com.tduck.cloud.account.constant.AccountConstants;
 import com.tduck.cloud.account.util.PasswordUtils;
 import com.tduck.cloud.common.util.QueryWrapperUtils;
 import com.tduck.cloud.common.util.Result;
+import com.tduck.cloud.common.util.SecurityUtils;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.validation.annotation.Validated;
@@ -40,6 +42,7 @@ public class UserManageController {
      */
     @GetMapping("/page")
     public Result queryPage(Page page, UserEntity user) {
+        Assert.isTrue(SecurityUtils.isAdmin());
         QueryWrapper<UserEntity> simpleQuery = QueryWrapperUtils.toSimpleQuery(user);
         simpleQuery.orderByDesc("create_time");
         return Result.success(userService.page(page, simpleQuery));
@@ -52,7 +55,8 @@ public class UserManageController {
      * @param id 主键
      */
     @GetMapping(value = "/{id}")
-    public Result<UserEntity> getInfo(@PathVariable("id") String id) {
+    public Result<UserEntity> getInfo(@PathVariable("id") Long id) {
+        Assert.isTrue(SecurityUtils.isAdmin());
         return Result.success(userService.getById(id));
     }
 
@@ -61,6 +65,7 @@ public class UserManageController {
      */
     @PostMapping("/add")
     public Result<Boolean> add(@Validated(AddGroup.class) @RequestBody UserEntity user) {
+        Assert.isTrue(SecurityUtils.isAdmin());
         checkUnique(user);
         user.setPasswordType(1);
         user.setAvatar(AccountConstants.DEFAULT_AVATAR);
@@ -73,6 +78,7 @@ public class UserManageController {
      */
     @PostMapping("/update")
     public Result<Boolean> update(@RequestBody UserEntity user) {
+        Assert.isTrue(SecurityUtils.isAdmin());
         checkUnique(user);
         return Result.success(userService.updateById(user));
     }
@@ -97,6 +103,7 @@ public class UserManageController {
      */
     @PostMapping("/delete/{ids}")
     public Result<Boolean> delete(@PathVariable List<String> ids) {
+        Assert.isTrue(SecurityUtils.isAdmin());
         return Result.success(userService.removeByIds(ids));
     }
 }

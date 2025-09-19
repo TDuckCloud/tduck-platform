@@ -29,7 +29,7 @@ public class SecurityUtils {
         Long userId = Convert.toLong(attributes.getAttribute(USER_KEY, RequestAttributes.SCOPE_REQUEST));
 
         if (null == userId) {
-            throw new AuthorizationException( "登录失效，请重新登录");
+            throw new AuthorizationException("登录失效，请重新登录");
         }
         return userId;
     }
@@ -43,6 +43,18 @@ public class SecurityUtils {
      */
     public static boolean isAdmin(Long userId) {
         return userId.equals(CommonConstants.SUPER_ADMIN_ID);
+    }
+
+
+    /**
+     * 是否是管理员
+     */
+    public static boolean isAdmin() {
+        try {
+            return isAdmin(getUserId());
+        } catch (Exception e) {
+            return false;
+        }
     }
 
 
