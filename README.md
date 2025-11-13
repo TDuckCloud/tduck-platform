@@ -49,19 +49,26 @@ TDuck填鸭表单 是国内首批基于Vue开源的问卷/表单收集工具。
 - 支持回收中心，快速恢复问卷。
 - 支持配置TReport可视化大屏，高效展示数据：https://gitee.com/TDuckApp/tduck-report-platform
 
-
-
 ---
 
 ### 在线体验
 
-[填鸭表单-演示环境](https://www.tduckcloud.com)；
 
-> ps：表单系统有3个版本（社区、Pro、TDuckX），此处绕不清的友友可以看看 [填鸭表单功能对比](http://https://docs.qq.com/sheet/DSUhoR2pOc2RuZ0Va?tab=BB08J2)
+[填鸭表单-TDuckX-Vue3版🔥](https://x.tduckcloud.com)：AI创建、问卷/表单收集、考试测评、流程审批、国际化多语言、投票核销预约、模板打印、提交抽奖、消息通知、微信红包、微信支付、小程序端、企微飞书钉钉集成、Oauth2/CAS登录...
+
+[填鸭表单-TDuckPro-Vue2版](https://pro.tduckcloud.com)：问卷/表单收集、（基础）考试测评、（基础）流程审批、小程序端、消息通知、核销预约
+
+[填鸭表单-TDuck社区版🌳](https://demo.tduckapp.com)：问卷/表单收集
+
+[填鸭表单-TReport可视化大屏](https://gitee.com/TDuckApp/tduck-report-platform)；
+
+表单系统有3个版本（社区、Pro、TDuckX），此处绕不清的友友可以看看 [填鸭表单产品能力对比](https://www.tduckcloud.com/doc/x/nSJMvQh6)
 
 所有版本的填鸭表单数据都可以通过WebHook集成至大屏端，实现数据同步：[表单与TReport数据同步教程](https://www.bilibili.com/video/BV1MH4y1K7Xa/)；
 
 ---
+
+
 
 ### 二、社区活动
 社区版表单编辑器暂未开源，该模块通过npm引用，不影响使用、二开其他功能。
@@ -76,7 +83,7 @@ TDuck填鸭表单 是国内首批基于Vue开源的问卷/表单收集工具。
 
 ---
 
-### 三、文档
+### 三、项目文档
 - 查看不同版本的 <a href="http://www.tduckcloud.com" target="_blank">在线体验</a>
 - 使用宝塔一键安装，请查看 <a href="https://doc.tduckcloud.com/openSource/deploy/deployforbt.html" target="_blank">项目文档</a>
 - 前端项目地址： https://gitee.com/TDuckApp/tduck-front
@@ -84,21 +91,22 @@ TDuck填鸭表单 是国内首批基于Vue开源的问卷/表单收集工具。
 - 社区版体验地址：https://demo.tduckapp.com/home
 - 官网：https://www.tduckcloud.com
 - 小程序插件（社区版不适用）：https://doc.tduckcloud.com/functionDesc/uniappDesc.html
+---
 
 ### 四、项目部署
 > - 部署管理员账号：admin@tduckcloud.com
 > - 部署默认密码：123456
 
 
-#### 【🔥推荐】使用宝塔面板一键安装
+#### 方式一：使用宝塔面板一键安装 🔥推荐
 详细文档：https://doc.tduckcloud.com/openSource/deploy/deployforbt.html
 
 
 *无技术难度，会安装宝塔面板即可，软件商店选择填鸭表单点击安装即可。
 
+---
 
-
-#### ①使用docker命令快速启动
+#### 方式二：使用docker命令快速启动
 
 
 ```bash
@@ -115,7 +123,7 @@ docker run -d \
 
 ---
 
-## 📌 参数说明
+##  📚参数说明
 
 | 参数 | 说明 |
 |------|------|
@@ -131,21 +139,27 @@ docker run -d \
 
 > 注意：如果 MySQL 在宿主机上，请将 `<host>` 改为 `host.docker.internal`（Mac/Windows）或宿主机 IP（Linux）。
 
+---
 
-#### ②使用docker-compose 部署环境及项目
+#### 方式三：使用docker-compose 部署环境及项目
 ```shell
 1.先安装docker-compose
 2.下载tduck源码
 3.进入目录下的docker目录 cd docker，执行命令：docker-compose up
 4.运行结束 会自动安装mysql以及tduck程序
 ```
-#### ③使用宝塔部署项目
+---
+
+#### 方式四：使用宝塔部署项目
 - 部署文档：https://doc.tduckcloud.com/openSource/deploy/openSourceDeploy.html
 - 使用指定配置文件：https://doc.tduckcloud.com/openSource/deploy/startByProfile.html
 
-#### ④前后端分离部署
+---
+
+#### 方式五：前后端分离部署
 - 部署文档：https://doc.tduckcloud.com/openSource/deploy/fenli.html
 - 常见问题：https://doc.tduckcloud.com/openSource/deploy/usualQuestion.html
+---
 
 ### 五、关于问题咨询
 - 如果您在使用社区版过程中遇到了问题，可在社区查看常见问题或留言进行求助 - [点击进入填鸭问答社区](https://gitee.com/TDuckApp/tduck-platform/issues)
