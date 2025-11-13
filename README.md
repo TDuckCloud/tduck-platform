@@ -54,13 +54,12 @@ TDuck填鸭表单 是国内首批基于Vue开源的问卷/表单收集工具。
 ### 在线体验
 
 
-[填鸭表单-TDuckX-Vue3版🔥](https://x.tduckcloud.com)：AI创建、问卷/表单收集、考试测评、流程审批、国际化多语言、投票核销预约、模板打印、提交抽奖、消息通知、微信红包、微信支付、小程序端、企微飞书钉钉集成、Oauth2/CAS登录...
+| 产品 | 功能概览 |
+|:---:|:---|
+| [TDuck-社区版](https://demo.tduckapp.com) | 问卷/表单收集、数据导出 |
+| [TDuckPro-Vue2版](https://pro.tduckcloud.com) | 问卷/表单收集、基础考试测评、基础流程审批、小程序端、消息通知、核销预约 |
+| [TDuckX-Vue3版 🔥](https://x.tduckcloud.com) | AI创建、问卷/表单收集、考试测评、流程审批、国际化多语言、投票/核销/预约、模板打印、提交抽奖、消息通知、微信红包、微信支付、小程序端、企微/飞书/钉钉集成、Oauth2/CAS登录 |
 
-[填鸭表单-TDuckPro-Vue2版](https://pro.tduckcloud.com)：问卷/表单收集、（基础）考试测评、（基础）流程审批、小程序端、消息通知、核销预约
-
-[填鸭表单-TDuck社区版🌳](https://demo.tduckapp.com)：问卷/表单收集
-
-[填鸭表单-TReport可视化大屏](https://gitee.com/TDuckApp/tduck-report-platform)；
 
 表单系统有3个版本（社区、Pro、TDuckX），此处绕不清的友友可以看看 [填鸭表单产品能力对比](https://www.tduckcloud.com/doc/x/nSJMvQh6)
 
