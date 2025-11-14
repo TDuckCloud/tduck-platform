@@ -14,12 +14,9 @@
     <a href="https://space.bilibili.com/409825300" target="_blank">Bilibili频道</a>
 </p>
 
-
-
 **<p align="center">如果您觉得我们的开源项目有帮助，请点击 :star: Star 支持 TDuck 开源团队:heart:</p>**
 
 ---
-
 
 简体中文 |  [English](./README_en.md)
 
@@ -47,50 +44,17 @@ TDuck填鸭表单 是国内首批基于Vue开源的问卷/表单收集工具。
 - 文件存储自定义配置： **支持阿里云、七牛云、又拍云、本地、通用S3协议上传** 。
 - 支持 **邮件、短信（阿里云、腾讯云、中昱维信）、微信公众号参数配置** 。
 - 支持回收中心，快速恢复问卷。
-- 支持配置TReport可视化大屏，高效展示数据：https://gitee.com/TDuckApp/tduck-report-platform
-
----
+- 支持配置[TReport可视化大屏](https://gitee.com/TDuckApp/tduck-report-platform)，高效展示数据
 
 ### 在线体验
 
-<table>
-  <tr>
-    <th width="250px" align="center">产品</th>
-    <th width="600px">功能概览</th>
-  </tr>
-  <tr>
-    <td align="center">
-      <a href="https://demo.tduckapp.com">🌳 TDuckCE-社区版</a><br>
-      <div style="font-size:small; color:gray">开源免费版</div>
-    </td>
-    <td>问卷/表单基础收集、数据导出、用户管理、模板管理</td>
-  </tr>
-  <tr>
-    <td align="center">
-      <a href="https://pro.tduckcloud.com">TDuckProVue2版</a><br>
-      <div style="font-size:small; color:gray">基础商业版</div>
-    </td>
-    <td>问卷/表单收集、基础考试测评、基础流程审批、模板管理、小程序端、消息通知、核销预约</td>
-  </tr>
-  <tr>
-    <td align="center">
-      <a href="https://x.tduckcloud.com">🏆 TDuckX-Vue3版</a><br>
-      <div style="font-size:small; color:gray">高级商业版 / 支持AI创建</div>
-    </td>
-    <td>AI创建、问卷/表单收集、考试测评、流程审批、国际化多语言、投票/核销/预约、模板打印、提交抽奖、消息通知、微信红包、微信支付、小程序端、企微/飞书/钉钉集成、Oauth2/CAS登录...</td>
-  </tr>
-</table>
-
-
-
+[TDuck-社区版](https://demo.tduckapp.com) | [TDuckPro-vue2商业版](https://pro.tduckcloud.com) |  [TDuckX-vue3商业版](https://x.tduckcloud.com) 
 
 表单系统有3个版本（社区、Pro、TDuckX），此处绕不清的友友可以看看 [填鸭表单产品能力对比](https://www.tduckcloud.com/doc/x/nSJMvQh6)
 
 所有版本的填鸭表单数据都可以通过WebHook集成至大屏端，实现数据同步：[表单与TReport数据同步教程](https://www.bilibili.com/video/BV1MH4y1K7Xa/)；
 
 ---
-
-
 
 ### 二、社区活动
 社区版表单编辑器暂未开源，该模块通过npm引用，不影响使用、二开其他功能。
@@ -105,14 +69,13 @@ TDuck填鸭表单 是国内首批基于Vue开源的问卷/表单收集工具。
 
 ---
 
-### 三、项目文档
-- 查看不同版本的 <a href="http://www.tduckcloud.com" target="_blank">在线体验</a>
-- 使用宝塔一键安装，请查看 <a href="https://doc.tduckcloud.com/openSource/deploy/deployforbt.html" target="_blank">项目文档</a>
-- 前端项目地址： https://gitee.com/TDuckApp/tduck-front
+### 三、项目相关文档
+- [填鸭表单生态产品能力对比](https://www.tduckcloud.com/doc/x/nSJMvQh6)
+- <a href="https://doc.tduckcloud.com/openSource/deploy/deployforbt.html" target="_blank">使用宝塔一键安装</a>
+- [前端项目地址](https://gitee.com/TDuckApp/tduck-front)
 
-- 社区版体验地址：https://demo.tduckapp.com/home
-- 官网：https://www.tduckcloud.com
-- 小程序插件（社区版不适用）：https://doc.tduckcloud.com/functionDesc/uniappDesc.html
+- [社区版体验地址](https://demo.tduckapp.com/home)
+- [小程序插件（社区版不适用）](https://doc.tduckcloud.com/functionDesc/uniappDesc.html)
 ---
 
 ### 四、项目部署
