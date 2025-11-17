@@ -57,15 +57,15 @@ public class QueryFormResultRequest {
 
 
     public void validateSqlInjection() {
-        Assert.isTrue(SqlInjectionUtils.check(formKey), "参数异常");
+        Assert.isFalse(SqlInjectionUtils.check(formKey), "参数异常");
         if (filterFields != null) {
             for (String field : filterFields) {
-                Assert.isTrue(SqlInjectionUtils.check(field), "参数异常");
+                Assert.isFalse(SqlInjectionUtils.check(field), "参数异常");
             }
         }
         if (dataIds != null) {
             for (String id : dataIds) {
-                Assert.isTrue(SqlInjectionUtils.check(id), "参数异常");
+                Assert.isFalse(SqlInjectionUtils.check(id), "参数异常");
             }
         }
     }
